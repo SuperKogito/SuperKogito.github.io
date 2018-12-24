@@ -19,7 +19,7 @@ print(sys.path)
 
 # -- Project information -----------------------------------------------------
 
-project = 'Sphinx with Napoleon extension tutorial'
+project = 'Ayoub Malek'
 copyright = '2018, SuperKogito'
 author = 'SuperKogito'
 
