@@ -17,6 +17,7 @@ Content
    Education
    Internships
    Experience
+   Activities
    Projects
    Contact
 
