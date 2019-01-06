@@ -129,7 +129,7 @@ html_theme_options = {
                       'content_width': '900px',
                       'nav_fixed': True,
                       'googlewebfont': True,
-                      'googlewebfont_url': 'http://fonts.googleapis.com/css?family=Text+Me+One',
+                      'googlewebfont_url': '//fonts.googleapis.com/css?family=Text+Me+One',
                       'googlewebfont_style': "font-family: 'Text Me One', sans-serif",
                       'inner_theme': True,
                       'inner_theme_name': 'bootswatch-readable',
