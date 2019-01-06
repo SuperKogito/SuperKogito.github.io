@@ -17,6 +17,10 @@ import sys
 sys.path.insert(0, os.path.abspath('../../'))
 print(sys.path)
 
+#sys.path.append(os.path.abspath('../_themes'))
+#html_theme_path = ['_themes']
+#html_theme = 'pylons'
+
 # -- Project information -----------------------------------------------------
 
 project = 'Ayoub Malek'
@@ -45,10 +49,14 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinxcontrib.napoleon',
+    'sphinxjp.themes.basicstrap',
+
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -80,14 +88,53 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
-html_logo =  '../html_logo.png'
+#html_theme = 'sphinxbootstrap4theme'
+import sphinx_readable_theme
+import sphinxbootstrap4theme
+
+#html_theme = 'sphinxbootstrap4theme'
+#html_theme_path = [sphinxbootstrap4theme.get_path()]
+#html_theme = "sphinx_fossasia_theme"
+#html_theme = 'flask'
+#html_theme_path = [sphinx_readable_theme.get_html_theme_path()]
+#html_theme = 'readable'
+#from better import better_theme_path
+#html_theme_path = [better_theme_path]
+#html_theme = 'better'
+#html_theme = 'sphinx_materialdesign_theme'
+# sys.path.append(os.path.abspath('../_themes'))
+# html_theme_path = ['../_themes']
+# html_theme = 'custom_sphinx_rtd_theme'
+
+#import sphinx_nameko_theme
+
+#html_theme_path = [sphinx_nameko_theme.get_html_theme_path()]
+#html_theme = 'nameko'
+# import mdn_theme
+
+#html_theme_path = [mdn_theme.get_theme_dir()]
+#html_theme = 'mdn'
+
+#html_theme = "flask"
+html_theme = 'basicstrap'
+#html_logo =  '../html_logo.png'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+                      'nosidebar': True,
+                      'content_fixed': True,
+                      'content_width': '900px',
+                      'nav_fixed': True,
+                      'googlewebfont': True,
+                      'googlewebfont_url': 'http://fonts.googleapis.com/css?family=Text+Me+One',
+                      'googlewebfont_style': "font-family: 'Text Me One', sans-serif",
+                      'inner_theme': True,
+                      'inner_theme_name': 'bootswatch-readable',
+                     }
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
