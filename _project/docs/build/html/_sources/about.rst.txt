@@ -13,10 +13,6 @@ My first code lines were in pascal in high-school, which I graduated with honor 
 Since 2012 I live in Munich (Germany) and study electrical engineering at the Technical University of Munich. I’m a big fan of sports, and very interested in programming and cyber-culture.
 
 
-.. raw:: html
-
-     <a href="https://github.com/SuperKogito"><img src="github.png" title="Example Image Link" /></a>
-
 
 - More details under:
 
