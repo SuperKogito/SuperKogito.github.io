@@ -55,6 +55,7 @@ extensions = [
     'sphinxcontrib.napoleon',
     'sphinxjp.themes.basicstrap',
     'sphinxcontrib.googleanalytics',
+    #'sphinxcontrib.disqus',
     'sphinxcontrib.email',
     'sphinx_sitemap',
     'ablog',
@@ -62,7 +63,7 @@ extensions = [
 
 # 2. Add ablog templates path
 import ablog
-
+#disqus_shortname = 'https-superkogito-github-io'
 # 2a. if `templates_path` is not defined
 templates_path = [ablog.get_html_templates_path()]
 googleanalytics_id = 'UA-133660046-1'
@@ -152,8 +153,8 @@ html_theme_options = {
                         'navigation_depth': 4,
                         'canonical_url': 'https://superkogito.github.io/',
                         'blog_url': 'https://superkogito.github.io/blog',
-                        'disqus_comments': True,
-                        'disqus_username': 'SuperKogito',
+                        'disqus_comments': False,
+                        #'disqus_username': 'SuperKogito',
                         'collapse_navigation': False,
                         'display_version': False,
 }
