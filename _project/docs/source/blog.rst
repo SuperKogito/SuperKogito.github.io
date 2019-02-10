@@ -1,0 +1,5 @@
+Blog
+====
+
+.. toctree::
+    blog/intro
