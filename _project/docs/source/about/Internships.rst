@@ -4,7 +4,7 @@ Internships
 Overview
 ~~~~~~~~~~~
 .. image:: ../illustrations/internships.png
-   :align: center
+   :align: left
 
 blik GmbH, Munich
 ~~~~~~~~~~~~~~~~~~
@@ -15,7 +15,7 @@ blik GmbH, Munich
 
 ----------------------------------------
 
-During my research internship at I was responsible for securing the telecommunications between the brokers (Raspberry pi) and the Sensor-tags using various techniques such as symmetric encryption (AES-128), hashing (SHA-256). During the internship I was able to put to test my python skills and improve my C knowledge. Furthermore, I was able to get familiar with Contiki OS and software development in a professional environment.
+During my research internship at blik, I was responsible for securing the telecommunications between the brokers (Raspberry pi) and the Sensor-tags using various techniques such as symmetric encryption (AES-128), hashing (SHA-256). During the internship I was able to put to test my python skills and improve my C knowledge. Furthermore, I was able to get familiar with Contiki OS and software development in a professional environment.
 
 =================================================================================
 

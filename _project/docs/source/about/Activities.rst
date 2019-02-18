@@ -4,7 +4,7 @@ Activities and Leadership
 Overview
 ~~~~~~~~~
 .. image:: ../illustrations/activities.png
-   :align: center
+   :align: left
 
 MIX Program, (TUM)
 ~~~~~~~~~~~~~~~~~~

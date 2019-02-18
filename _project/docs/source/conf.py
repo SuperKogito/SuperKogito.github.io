@@ -55,6 +55,8 @@ extensions = [
     'sphinxcontrib.napoleon',
     'sphinxjp.themes.basicstrap',
     'sphinxcontrib.googleanalytics',
+    'sphinxcontrib.bibtex',
+    'sphinxcontrib.spelling',
     #'sphinxcontrib.disqus',
     'sphinxcontrib.email',
     'sphinx_sitemap',
@@ -67,6 +69,8 @@ import ablog
 # 2a. if `templates_path` is not defined
 templates_path = [ablog.get_html_templates_path()]
 googleanalytics_id = 'UA-133660046-1'
+spelling_lang='en_US'
+spelling_show_suggestions=True
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
 
@@ -251,4 +255,4 @@ texinfo_documents = [
 # -- Options for todo extension ----------------------------------------------
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
-site_url = 'https://superkogito.com/'
+site_url = 'https://superkogito.github.io/'

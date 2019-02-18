@@ -4,7 +4,7 @@ Education
 Overview
 ~~~~~~~~~~~
 .. image:: ../illustrations/education.png
-   :align: center
+   :align: left
 
 
 Bachelor thesis abstract
