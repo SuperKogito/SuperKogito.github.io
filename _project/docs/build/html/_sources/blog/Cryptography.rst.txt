@@ -19,7 +19,7 @@ Cryptographic algorithms can be classified according to various criteria :cite:`
 
     - **Secret Key Cryptography (SKC):** or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality :cite:`Kessler,Tamimi`.
     - **Public Key Cryptography (PKC):** or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption :cite:`Kessler`. It is essentially used for authentication, non-repudiation, and key exchange :cite:`Tamimi`.
-    - **Hash Functions:** Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or  none-corruptness :cite:`Kessler`.
+    - **Hash Functions:** Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness :cite:`Kessler`.
 
 Encryption vs Hashing
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,26 +38,8 @@ Encryption and Decryption
 
 Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called "decryption" :cite:`Kessler`.
 These operations can be explained by the following formulas: :math:`C=E_{k}(P)` and :math:`P=D_{k}(C)`, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key :cite:`Kessler`.
-There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc :cite:`Kessler`. The major differences between those will be explained in the following sections.
-
-Symmetric Encryption
---------------------------
-In secret key cryptography, both parties (a sender and a receiver for example) agree on a single secret (shared) key for encryption and decryption :cite:`Kessler`. The major concern in this case is to securely share the key between the two peers or else the whole system is jeopardized :cite:`Tamimi`.
-The key management for this encryption is troublesome, especially if a unique secret key is used for each peer-to-peer connection, which results in n(n-1)/2 total number of keys for n-nodes :cite:`Ssl,Oak`. Symmetric encryption schemes are generally defined as stream ciphers or block ciphers :cite:`Tamimi`.
-
-Asymmetric Encryption
---------------------------
-It also known as Public Key Cryptography (PKC) :cite:`Kessler`. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:
-
-    - **The public key:** which is used to encrypt data by anyone.
-    - **The private key:** which is kept secret and is used to decrypt data.
-
-This double key feature surmounts the symmetric encryption problem of managing keys, but also makes it mathematically more prone to attacks :cite:`Tamimi`.
-Moreover, this duality provides authentication and non-repudiation with the assumption that the private key is kept secret :cite:`Kessler`.
-However, asymmetric encryption techniques are way slower than symmetric techniques, and they require more computational processing power :cite:`Ssl,Kessler`.\\
-It is obvious that each of these two approaches (symmetric/asymmetric) provide a set of advantages and limitations, therefore a hybrid scheme is the best compromise.
-Such scheme would apply asymmetric encryption for the secret key distribution and symmetric encryption for the generic data exchange.
-
+There exist several types of encryption (**symmetric/asymmetric**) and several ciphering techniques (**block/stream**) and modes etc :cite:`Kessler`.
+The major differences between those will be explained in the following post :ref:`encryption-post-label`.
 
 A summary of cryptographic algorithms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,4 +54,4 @@ The most known algorithms are summarized below:
 
 
 .. toctree::
-   references/CryptographyReferences
+   references/References

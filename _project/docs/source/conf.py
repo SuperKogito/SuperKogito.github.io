@@ -17,6 +17,9 @@ import sys
 sys.path.insert(0, os.path.abspath('../../'))
 print(sys.path)
 
+# def setup(app):
+#     app.add_stylesheet('css/custom.css')
+
 # # Activate the theme.
 # sys.path.append(os.path.abspath('_themes'))
 # html_theme_path = ['_themes']
@@ -57,12 +60,13 @@ extensions = [
     'sphinxcontrib.googleanalytics',
     'sphinxcontrib.bibtex',
     'sphinxcontrib.spelling',
-    #'sphinxcontrib.disqus',
     'sphinxcontrib.email',
     'sphinx_sitemap',
     'ablog',
+    'sphinx.ext.intersphinx',    
 ]
-
+     #'sphinxprettysearchresults',
+    #'sphinxcontrib.disqus',
 # 2. Add ablog templates path
 import ablog
 #disqus_shortname = 'https-superkogito-github-io'

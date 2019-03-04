@@ -2,5 +2,6 @@ Blog
 ====
 
 .. toctree::
-    blog/intro
+    blog/Encryption
     blog/Cryptography
+    blog/Intro

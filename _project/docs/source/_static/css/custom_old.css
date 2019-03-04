@@ -1,0 +1,165 @@
+/*@font-face {
+    font-family: 'acid';
+    src: url('../fonts/acid/acid-medium-webfont.woff2') format('woff2'),
+         url('../fonts/acid/acid-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #0e1111;
+    font-family: 'acid';
+    src: url('../fonts/acid/acid-medium-webfont.woff2') format('woff2'),
+         url('../fonts/acid/acid-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 100%;
+    color:  #AAAAAA ;
+    margin: 0;
+    padding: 0;
+}
+*/
+
+body {
+    color:  #AAAAAA ;
+}
+
+
+.wy-side-nav-search {
+    background-color: #0e1111;
+}
+
+.wy-side-nav-search input[type=text] {
+    border-color: #0e1111;
+}
+
+.wy-nav-side {
+    background: #0e1111
+}
+
+.wy-menu-vertical a {
+    color: inherit;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: #0e1111;
+}
+
+.rst-versions {
+    border-top: solid 10px #0e1111;
+}
+
+.rst-versions .rst-current-version {
+    background-color: #0e1111;
+}
+
+.wy-body-for-nav {
+  background-color: #0e1111;
+}
+
+.wy-nav-content {
+  background-color: #0e1111;
+  max-width: 1500px !important;
+}
+
+
+div.h1 {
+  font-size: 16px;
+}
+div.h2 {
+  font-size: 16px;
+}
+div.h3 {
+  font-size: 16px;
+}
+div.h4 {
+  font-size: 16px;
+}
+div.h5 {
+  font-size: 16px;
+}
+div.h6 {
+  font-size: 16px;
+}
+div.h7 {
+  font-size: 16px;
+}
+
+
+
+div.sphinxsidebar h3 {
+    font-family: {{ theme_headfont }};
+    color: {{ theme_sidebartextcolor }};
+    font-size: 1.9em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+div.sphinxsidebar h3 a {
+    color: {{ theme_sidebartextcolor }};
+}
+
+div.sphinxsidebar h4 {
+    font-family: {{ theme_headfont }};
+    color: {{ theme_sidebartextcolor }};
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+div.sphinxsidebar p {
+    color: {{ theme_sidebartextcolor }};
+}
+
+div.sphinxsidebar p.topless {
+    margin: 5px 10px 10px 10px;
+}
+
+div.sphinxsidebar ul {
+    margin: 10px;
+    padding: 0;
+    color: {{ theme_sidebartextcolor }};
+}
+
+div.sphinxsidebar a {
+    color: {{ theme_sidebarlinkcolor }};
+}
+
+div.sphinxsidebar input {
+    border: 1px solid {{ theme_sidebarlinkcolor }};
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+
+a {
+    color: {{ theme_linkcolor }};
+    text-decoration: none;
+}
+
+a:visited {
+    color: {{ theme_visitedlinkcolor }};
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+{% if theme_externalrefs|tobool %}
+a.external {
+   text-decoration: none;
+   border-bottom: 1px dashed {{ theme_linkcolor }};
+}
+
+a.external:hover {
+   text-decoration: none;
+   border-bottom: none;
+}
+
+a.external:visited {
+    text-decoration: none;
+    border-bottom: 1px dashed {{ theme_visitedlinkcolor }};
+}

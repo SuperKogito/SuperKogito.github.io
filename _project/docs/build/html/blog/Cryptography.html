@@ -56,8 +56,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Ayoub Malek&#39;s blog" href="../index.html"/>
         <link rel="up" title="Blog" href="../blog.html"/>
-        <link rel="next" title="References for cryptography overview" href="references/CryptographyReferences.html"/>
-        <link rel="prev" title="[10.02.2019] Blog intro" href="intro.html"/>
+        <link rel="next" title="[10.02.2019] Blog intro" href="Intro.html"/>
+        <link rel="prev" title="References" href="references/References.html"/>
    
   
   
@@ -124,26 +124,31 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../blog.html">Blog</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intro.html">[10.02.2019] Blog intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="intro.html#who-are-you">1. Who Are You?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="intro.html#why-are-you-blogging">2. Why Are You Blogging?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="intro.html#what-are-you-going-to-be-blogging-about">3. What Are You Going To Be Blogging About?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="intro.html#who-are-you-writing-for">4. Who Are You Writing For?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="intro.html#how-can-we-get-involved">5. How Can We Get Involved?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Encryption.html">[03.03.2019] Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Encryption.html#symmetric-encryption">Symmetric Encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Encryption.html#asymmetric-encryption">Asymmetric Encryption</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Encryption.html#block-ciphers">Block Ciphers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Encryption.html#stream-ciphers">Stream Ciphers</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">[17.02.2019] Cryptography overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#types-of-cryptographic-algorithms">Types of cryptographic algorithms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#encryption-vs-hashing">Encryption vs Hashing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#encryption-and-decryption">Encryption and Decryption</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#symmetric-encryption">Symmetric Encryption</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#asymmetric-encryption">Asymmetric Encryption</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#encryption-and-decryption">Encryption and Decryption</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-summary-of-cryptographic-algorithms">A summary of cryptographic algorithms</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="references/CryptographyReferences.html">References for cryptography overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="references/References.html">References</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Intro.html">[10.02.2019] Blog intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Intro.html#who-am-i">Who Am I?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Intro.html#why-am-i-blogging">Why Am I Blogging?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Intro.html#what-am-i-going-to-be-blogging-about">What AM I Going To Be Blogging About?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Intro.html#who-am-i-writing-for">Who Am I Writing For?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Intro.html#how-can-we-get-involved">How Can We Get Involved?</a></li>
 </ul>
 </li>
 </ul>
@@ -245,55 +250,36 @@
             
   <div class="section" id="cryptography-overview">
 <h1>[17.02.2019] Cryptography overview<a class="headerlink" href="#cryptography-overview" title="Permalink to this headline">¶</a></h1>
-<p>Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See <a class="reference internal" href="references/CryptographyReferences.html#tamimi" id="id1">[Tam06]</a><a class="reference internal" href="references/CryptographyReferences.html#oak" id="id2">[Oak18]</a>.
-It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id3">[Kes17]</a>.
+<p>Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See <a class="reference internal" href="references/References.html#tamimi" id="id1">[Tam06]</a><a class="reference internal" href="references/References.html#oak" id="id2">[Oak18]</a>.
+It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory <a class="reference internal" href="references/References.html#kessler" id="id3">[Kes17]</a>.
 The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.</p>
 <div class="section" id="types-of-cryptographic-algorithms">
 <h2>Types of cryptographic algorithms<a class="headerlink" href="#types-of-cryptographic-algorithms" title="Permalink to this headline">¶</a></h2>
-<p>Cryptographic algorithms can be classified according to various criteria <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id4">[Kes17]</a>. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:</p>
+<p>Cryptographic algorithms can be classified according to various criteria <a class="reference internal" href="references/References.html#kessler" id="id4">[Kes17]</a>. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>Secret Key Cryptography (SKC):</strong> or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id5">[Kes17]</a><a class="reference internal" href="references/CryptographyReferences.html#tamimi" id="id6">[Tam06]</a>.</li>
-<li><strong>Public Key Cryptography (PKC):</strong> or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id7">[Kes17]</a>. It is essentially used for authentication, non-repudiation, and key exchange <a class="reference internal" href="references/CryptographyReferences.html#tamimi" id="id8">[Tam06]</a>.</li>
-<li><strong>Hash Functions:</strong> Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or  none-corruptness <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id9">[Kes17]</a>.</li>
+<li><strong>Secret Key Cryptography (SKC):</strong> or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality <a class="reference internal" href="references/References.html#kessler" id="id5">[Kes17]</a><a class="reference internal" href="references/References.html#tamimi" id="id6">[Tam06]</a>.</li>
+<li><strong>Public Key Cryptography (PKC):</strong> or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption <a class="reference internal" href="references/References.html#kessler" id="id7">[Kes17]</a>. It is essentially used for authentication, non-repudiation, and key exchange <a class="reference internal" href="references/References.html#tamimi" id="id8">[Tam06]</a>.</li>
+<li><strong>Hash Functions:</strong> Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness <a class="reference internal" href="references/References.html#kessler" id="id9">[Kes17]</a>.</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="encryption-vs-hashing">
 <h2>Encryption vs Hashing<a class="headerlink" href="#encryption-vs-hashing" title="Permalink to this headline">¶</a></h2>
-<p><strong>Encryption</strong> transforms a plain-text into something unintelligible called cipher-text using a key. The essential thing about encryption is that it is reversible <a class="reference internal" href="references/CryptographyReferences.html#oak" id="id10">[Oak18]</a>.
+<p><strong>Encryption</strong> transforms a plain-text into something unintelligible called cipher-text using a key. The essential thing about encryption is that it is reversible <a class="reference internal" href="references/References.html#oak" id="id10">[Oak18]</a>.
 A unique cipher-text &amp; plain-text couple can be determined using encryption, decryption and a key. Encryption is used essentially in confidentiality.
-For example, in an electronic exchange, you encrypt messages to prevent a third party lacking the key from reading the messages <a class="reference internal" href="references/CryptographyReferences.html#ssl" id="id11">[ssl2buy18]</a>.</p>
+For example, in an electronic exchange, you encrypt messages to prevent a third party lacking the key from reading the messages <a class="reference internal" href="references/References.html#ssl" id="id11">[ssl2buy18]</a>.</p>
 <p><strong>Hashing</strong>, unlike encryption, transforms the input data into a (usually fixed length) sequence of characters often called checksum/hash-sum or a tag.
 Moreover, hashing is a one-way operation that does not require a key and so the quality of a hashing algorithm depends on the uniqueness of the generated hashes.
-Two different messages with the same hash values are a case of “collision”. Hashing is used to maintain data integrity <a class="reference internal" href="references/CryptographyReferences.html#ssl" id="id12">[ssl2buy18]</a>.
+Two different messages with the same hash values are a case of “collision”. Hashing is used to maintain data integrity <a class="reference internal" href="references/References.html#ssl" id="id12">[ssl2buy18]</a>.
 For example, if a hash sum is generated based on a message text, any future changes on the text would be detected due the mismatch between the previously generated hash and the current one.</p>
 </div>
 <div class="section" id="encryption-and-decryption">
 <h2>Encryption and Decryption<a class="headerlink" href="#encryption-and-decryption" title="Permalink to this headline">¶</a></h2>
-<p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called “decryption” <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id13">[Kes17]</a>.
-These operations can be explained by the following formulas: <span class="math">\(C=E_{k}(P)\)</span> and <span class="math">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id14">[Kes17]</a>.
-There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id15">[Kes17]</a>. The major differences between those will be explained in the following sections.</p>
-<div class="section" id="symmetric-encryption">
-<h3>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Permalink to this headline">¶</a></h3>
-<p>In secret key cryptography, both parties (a sender and a receiver for example) agree on a single secret (shared) key for encryption and decryption <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id16">[Kes17]</a>. The major concern in this case is to securely share the key between the two peers or else the whole system is jeopardized <a class="reference internal" href="references/CryptographyReferences.html#tamimi" id="id17">[Tam06]</a>.
-The key management for this encryption is troublesome, especially if a unique secret key is used for each peer-to-peer connection, which results in n(n-1)/2 total number of keys for n-nodes <a class="reference internal" href="references/CryptographyReferences.html#ssl" id="id18">[ssl2buy18]</a><a class="reference internal" href="references/CryptographyReferences.html#oak" id="id19">[Oak18]</a>. Symmetric encryption schemes are generally defined as stream ciphers or block ciphers <a class="reference internal" href="references/CryptographyReferences.html#tamimi" id="id20">[Tam06]</a>.</p>
-</div>
-<div class="section" id="asymmetric-encryption">
-<h3>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Permalink to this headline">¶</a></h3>
-<p>It also known as Public Key Cryptography (PKC) <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id21">[Kes17]</a>. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:</p>
-<blockquote>
-<div><ul class="simple">
-<li><strong>The public key:</strong> which is used to encrypt data by anyone.</li>
-<li><strong>The private key:</strong> which is kept secret and is used to decrypt data.</li>
-</ul>
-</div></blockquote>
-<p>This double key feature surmounts the symmetric encryption problem of managing keys, but also makes it mathematically more prone to attacks <a class="reference internal" href="references/CryptographyReferences.html#tamimi" id="id22">[Tam06]</a>.
-Moreover, this duality provides authentication and non-repudiation with the assumption that the private key is kept secret <a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id23">[Kes17]</a>.
-However, asymmetric encryption techniques are way slower than symmetric techniques, and they require more computational processing power <a class="reference internal" href="references/CryptographyReferences.html#ssl" id="id24">[ssl2buy18]</a><a class="reference internal" href="references/CryptographyReferences.html#kessler" id="id25">[Kes17]</a>.\
-It is obvious that each of these two approaches (symmetric/asymmetric) provide a set of advantages and limitations, therefore a hybrid scheme is the best compromise.
-Such scheme would apply asymmetric encryption for the secret key distribution and symmetric encryption for the generic data exchange.</p>
-</div>
+<p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called “decryption” <a class="reference internal" href="references/References.html#kessler" id="id13">[Kes17]</a>.
+These operations can be explained by the following formulas: <span class="math">\(C=E_{k}(P)\)</span> and <span class="math">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/References.html#kessler" id="id14">[Kes17]</a>.
+There exist several types of encryption (<strong>symmetric/asymmetric</strong>) and several ciphering techniques (<strong>block/stream</strong>) and modes etc <a class="reference internal" href="references/References.html#kessler" id="id15">[Kes17]</a>.
+The major differences between those will be explained in the following post <a class="reference internal" href="Encryption.html#encryption-post-label"><span class="std std-ref">[03.03.2019] Encryption</span></a>.</p>
 </div>
 <div class="section" id="a-summary-of-cryptographic-algorithms">
 <h2>A summary of cryptographic algorithms<a class="headerlink" href="#a-summary-of-cryptographic-algorithms" title="Permalink to this headline">¶</a></h2>
@@ -303,7 +289,7 @@ The most known algorithms are summarized below:</p>
 <a class="reference internal image-reference" href="../_images/crytoalgsgraph.png"><img alt="../_images/crytoalgsgraph.png" class="align-center" src="../_images/crytoalgsgraph.png" style="width: 512pt; height: 512pt;" /></a>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="references/CryptographyReferences.html">References for cryptography overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references/References.html">References</a></li>
 </ul>
 </div>
 </div>
@@ -318,7 +304,7 @@ The most known algorithms are summarized below:</p>
   <span style="float: left;">
   
   Previous: 
-  <a href="intro.html">
+  <a href="Intro.html">
     
     [10.02.2019] Blog intro
   </a>
@@ -343,10 +329,10 @@ The most known algorithms are summarized below:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="references/CryptographyReferences.html" class="btn btn-neutral float-right" title="References for cryptography overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Intro.html" class="btn btn-neutral float-right" title="[10.02.2019] Blog intro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="intro.html" class="btn btn-neutral" title="[10.02.2019] Blog intro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="references/References.html" class="btn btn-neutral" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
