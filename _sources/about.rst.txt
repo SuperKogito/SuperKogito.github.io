@@ -15,6 +15,7 @@ Since 2013 I live in Munich (Germany) and study electrical engineering at the Te
 
 
 
+
 - More details under:
 
 .. toctree::
@@ -32,3 +33,22 @@ Since 2013 I live in Munich (Germany) and study electrical engineering at the Te
 
    about/Projects
    :maxdepth: 1
+
+   cv
+   :maxdepth: 1
+
+
+
+
+
+|img1| |img2| |img3|
+
+.. |img1| image:: _static/linkedin.png
+   :target: https://www.linkedin.com/in/ayoub-malek-24600a125/
+
+.. |img2| image:: _static/github.png
+  :target: https://github.com/SuperKogito
+
+.. |img3| image:: _static/email.png
+  :target: mailto:superkogito@gmail.com
+  :scale: 75%

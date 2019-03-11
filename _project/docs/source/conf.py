@@ -15,6 +15,8 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
+#sys.path.append(os.path.abspath("_extensions"))
+
 print(sys.path)
 
 # def setup(app):
@@ -63,7 +65,8 @@ extensions = [
     'sphinxcontrib.email',
     'sphinx_sitemap',
     'ablog',
-    'sphinx.ext.intersphinx',    
+    'sphinx.ext.intersphinx',
+    'sphinxcontrib.pdfembed',
 ]
      #'sphinxprettysearchresults',
     #'sphinxcontrib.disqus',
@@ -107,7 +110,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_logo =  '../html_logo.png'
+html_logo =  '../Alogo_dark.png'
 #html_logo =  'me.gif'
 
 #
