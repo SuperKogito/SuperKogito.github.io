@@ -41,7 +41,7 @@ Since 2013 I live in Munich (Germany) and study electrical engineering at the Te
 
 
 
-|img1| |img2| |img3|
+|img1| |img1| |img2| |img3|
 
 .. |img1| image:: _static/img.png
    :target: https://www.linkedin.com/in/ayoub-malek-24600a125/
