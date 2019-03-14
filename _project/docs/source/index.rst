@@ -25,9 +25,28 @@ Welcome3
 
 .. raw:: html
 
-    <div id="wrap">
-    <img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1" alt="Flag Counter" border="0">
+    <div class="container">
+    <img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1">
     </div>
+
+
+.. raw:: html
+
+  <div class="container">
+  <img src="crytoalgsgraph.png" alt="Flag Counter" border="0">
+  </div>
+
+.. raw:: html
+
+  <div class="container">
+  <img src="https://krebsonsecurity.com/wp-content/uploads/2018/11/shoppingonline.jpg" alt="Flag Counter" border="0">
+  </div>
+
+.. raw:: html
+
+  <div class="container">
+  <img src="//krebsonsecurity.com/wp-content/uploads/2018/11/shoppingonline.jpg" alt="Flag Counter" border="0">
+  </div>
 
 Welcome4
 ---------
