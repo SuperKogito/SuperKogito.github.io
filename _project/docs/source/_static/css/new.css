@@ -313,7 +313,7 @@ h6 {
 
 
 
-#wrap {
+.wrap {
     position:relative; /* make this relative to have the inner div absolute without     breaking out */
     width: 700px;  /* fix the width or else it'll be the entire page's width */
     background: silver;
@@ -321,7 +321,7 @@ h6 {
     background-color:#1d1f21;
 }
 
-#text {
+.blockingbox{
     position: absolute;
     width: 200px;
     height: 30px;
