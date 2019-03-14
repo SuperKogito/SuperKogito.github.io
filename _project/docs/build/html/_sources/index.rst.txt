@@ -8,7 +8,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 .. raw:: html
 
     <div id="wrap">
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+    ><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
     </div>
 
 Welcome2
@@ -17,7 +17,7 @@ Welcome2
 .. raw:: html
 
     <div id="wrap">
-    <a href="//info.flagcounter.com/x1rT"><img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+    <img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0">
     </div>
 
 Welcome3
@@ -26,7 +26,7 @@ Welcome3
 .. raw:: html
 
     <div id="wrap">
-    <a href="//info.flagcounter.com/x1rT"><img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1" alt="Flag Counter" border="0"></a>
+    <img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1" alt="Flag Counter" border="0">
     </div>
 
 Welcome4
@@ -35,7 +35,7 @@ Welcome4
 .. raw:: html
 
     <div id="wrap">
-    <a href="http;//info.flagcounter.com/x1rT"><img src="http://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+    <img src="http://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0">
     </div>
 
 Welcome5
@@ -44,7 +44,7 @@ Welcome5
 .. raw:: html
 
     <div id="wrap">
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+    <img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0">
     </div>
 
 .. raw:: html
