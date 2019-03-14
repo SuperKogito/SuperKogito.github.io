@@ -51,7 +51,6 @@ The mixing function is usually a XOR, and the key stream generator is the main u
 There are several types of stream ciphers but only two are worth mentioning here:
 
 - **Self-synchronizing stream cipher** calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors :cite:`Kessler`.
-
 - **Synchronous stream ciphers** generate the key-stream independently and use the same generation function at both sender and receiver :cite:`Tamimi`. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited :cite:`Kessler`.
 
 Padding

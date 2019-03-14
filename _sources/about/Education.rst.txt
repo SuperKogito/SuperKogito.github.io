@@ -3,8 +3,72 @@ Education
 
 Overview
 ~~~~~~~~~~~
-.. image:: ../illustrations/education.png
-   :align: left
+.. raw:: html
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-timeline">
+
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="year">2017-2019</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h6 class="title">Master of science <br> Electrical Engineering and Information Technology </h6>
+                        </div>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="year">2014-2017</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h6 class="title">Bachelor of science <br> Electrical Engineering and Information Technology </h6>
+                        </div>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="year">2012-2013</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h6 class="title">Deutsche Sprachprüfung für den Hochschulzugang (DSH) <br>  &Feststellungspruefung (FSP)</h6>
+                        </div>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="year">2008-2012</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h6 class="title">High-school Graduation Diploma</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 Bachelor thesis abstract

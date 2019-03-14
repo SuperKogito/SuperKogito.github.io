@@ -17,9 +17,9 @@ Types of cryptographic algorithms
 
 Cryptographic algorithms can be classified according to various criteria :cite:`Kessler`. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:
 
-    - **Secret Key Cryptography (SKC):** or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality :cite:`Kessler,Tamimi`.
-    - **Public Key Cryptography (PKC):** or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption :cite:`Kessler`. It is essentially used for authentication, non-repudiation, and key exchange :cite:`Tamimi`.
-    - **Hash Functions:** Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness :cite:`Kessler`.
+- **Secret Key Cryptography (SKC):** or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality :cite:`Kessler,Tamimi`.
+- **Public Key Cryptography (PKC):** or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption :cite:`Kessler`. It is essentially used for authentication, non-repudiation, and key exchange :cite:`Tamimi`.
+- **Hash Functions:** Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness :cite:`Kessler`.
 
 Encryption vs Hashing
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,10 +47,51 @@ There are several practical implementations and algorithms of the aforementioned
 Some of these are widely used standards defined by the National Institute of Standards and Technology (NIST) such the Advanced Encryption Standard (AES) and the Secure Hashing Algorithm (SHA) etc.
 The most known algorithms are summarized below:
 
-.. image:: ../crytoalgsgraph.png
-   :align: center
-   :width: 512pt
-   :height: 512pt
+|
+
+.. raw:: html
+
+    <div class="clt">
+    <ul>
+       Cryptographic algorithms
+            <ul>
+                 <li> Symmetric encryption
+                      <ul>
+                          <li> Block cipher
+                              <ul>
+                                  <li> AES </li>
+                                  <li> DES </li>
+                                  <li> Twofish </li>
+                                  <li> Blowfish </li>
+                              </ul>
+                          </li>
+
+                          <li> Stream cipher
+                              <ul>
+                                  <li> RC4 </li>
+                                  <li> ChaCha </li>
+                              </ul>
+                          </li>
+                     </ul>
+                </li>
+
+                <li> Asymmetric encryption
+                    <ul>
+                        <li> RSA </li>
+                        <li> ECC </li>
+                    </ul>
+                </li>
+
+                <li> Hashing functions
+                    <ul>
+                        <li> RSA </li>
+                        <li> ECC </li>
+                    </ul>
+                </li>
+            </ul>
+    </ul>
+    <center><a href="../_static/figures/fig1.html" >Fig1: Cryptographic algorithms </a> </center>
+    </div>
 
 
 .. toctree::

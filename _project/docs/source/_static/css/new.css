@@ -1,0 +1,311 @@
+/* ************************************* */
+
+/* css for the timeline  graph */
+/* blue color: #008cba         */
+/*green color: c9cacc*/
+/* ************************************* */
+.main-timeline {
+  position : relative;
+  margin   : 20px 0;
+}
+
+.main-timeline:before {
+  content    : "";
+  display    : block;
+  position   : absolute;
+  top        : 0;
+  right      : 0;
+  left       : 0;
+  width      : 2px;
+  height     : 100%;
+  margin     : 0 auto;
+  background : #008cba;
+}
+
+.main-timeline .timeline {
+  position      : relative;
+  margin-bottom : 40px;
+}
+
+.main-timeline .timeline:after {
+  content : "";
+  display : block;
+  clear   : both;
+}
+
+.main-timeline .icon {
+  position    : absolute;
+  top         : 0;
+  right       : 0;
+  bottom      : 0;
+  left        : 0;
+  width       : 18px;
+  height      : 18px;
+  margin      : auto;
+  line-height : 18px;
+}
+
+.main-timeline .icon:after,
+.main-timeline .icon:before {
+  content       : "";
+  position      : absolute;
+  top           : 0;
+  left          : 0;
+  width         : 100%;
+  height        : 100%;
+  border-radius : 50%;
+  transition    : all 0.33s ease-out 0s;
+}
+
+.main-timeline .icon:before {
+  left       : 0px;
+  top        : 0;
+  border     : 2px solid #008cba;
+  background : #fff;
+}
+
+.main-timeline .date-content {
+  position : relative;
+  width    : 50%;
+  float    : left;
+}
+
+.main-timeline .date-content:before {
+  content    : "";
+  position   : absolute;
+  top        : 0;
+  right      : 7px;
+  bottom     : 0;
+  width      : 21%;
+  height     : 2px;
+  margin     : auto 0;
+  background : #008cba;
+}
+
+.main-timeline .date-outer {
+  z-index    : 1;
+  width      : 175px;
+  height     : 175px;
+  margin     : auto;
+  color      : #000;
+  text-align : center;
+  font-size  : 16px;
+}
+
+.main-timeline .date-outer:after,
+.main-timeline .date-outer:before {
+  content       : "";
+  position      : absolute;
+  top           : 0;
+  right         : 0;
+  left          : 0;
+  width         : 175px;
+  height        : 175px;
+  margin        : 0 auto;
+  border-radius : 50%;
+  transition    : all 0.33s ease-out 0s;
+}
+
+.main-timeline .date-outer:after {
+  left   : 6px;
+  border : 2px solid #008cba;
+}
+
+.main-timeline .date {
+  position : absolute;
+  top      : 39%;
+  left     : 0;
+  width    : 100%;
+  margin   : auto;
+}
+
+.main-timeline .month {
+  color       : white;
+  font-size   : 18px;
+  font-weight : 700;
+}
+
+.main-timeline .year {
+  display     : block;
+  color       : white;
+  font-size   : 24px;
+  font-weight : 700;
+  line-height : 36px;
+}
+
+.main-timeline .timeline-content {
+  width   : 50%;
+  float   : right;
+  padding : 20px 0 20px 50px;
+}
+
+.main-timeline .title {
+  margin         : 0 0 15px 0;
+  color          : white;
+  text-transform : uppercase;
+  font-size      : 19px;
+  font-weight    : 700;
+  line-height    : 24px;
+}
+
+.main-timeline .description {
+  margin-bottom : 0;
+  color         : #787878;
+  font-size     : 14px;
+}
+
+.main-timeline .timeline:nth-child(2n) .date-content {
+  float : right;
+}
+
+.main-timeline .timeline:nth-child(2n) .date-content:before {
+  left : 10px;
+}
+
+.main-timeline .timeline:nth-child(2n) .timeline-content {
+  padding    : 20px 50px 20px 0;
+  text-align : right;
+}
+
+@media
+  only screen
+  and (max-width : 990px) {
+  .main-timeline .date-content:before {
+    width : 22.5%;
+  }
+
+  .main-timeline .timeline-content {
+    padding : 10px 0 10px 30px;
+  }
+
+  .main-timeline .title {
+    font-size : 17px;
+  }
+
+  .main-timeline .timeline:nth-child(2n) .timeline-content {
+    padding : 10px 30px 10px 0;
+  }
+}
+
+@media
+  only screen
+  and (max-width : 767px) {
+  .main-timeline:before {
+    left   : 7px;
+    margin : 0;
+  }
+
+  .main-timeline .timeline {
+    margin-bottom : 20px;
+  }
+
+  .main-timeline .icon {
+    margin : auto 0;
+  }
+
+  .main-timeline .date-content {
+    width : 95%;
+    float : right;
+  }
+
+  .main-timeline .date-content:before {
+    display : none;
+  }
+
+  .main-timeline .date-outer,
+  .main-timeline .date-outer:after,
+  .main-timeline .date-outer:before {
+    width  : 130px;
+    height : 130px;
+  }
+
+  .main-timeline .date {
+    top : 30%;
+  }
+
+  .main-timeline .year {
+    font-size : 26px;
+  }
+
+  .main-timeline .timeline-content,
+  .main-timeline .timeline:nth-child(2n) .timeline-content {
+    width      : 95%;
+    padding    : 10px 0;
+    text-align : center;
+  }
+
+  .main-timeline .title {
+    margin-bottom : 10px;
+  }
+}
+
+.navbar-default {
+  border-color     : transparent;
+  background-color : #1d1f21;
+}
+
+/* ************************************* */
+
+/* css for the cryptography tree graph */
+
+/* ************************************* */
+
+.clt,
+.clt li,
+.clt ul {
+  position     : relative;
+  padding-left : 20px;
+}
+
+.clt ul {
+  padding-left : 100px;
+  list-style   : none;
+}
+
+.clt li::after,
+.clt li::before {
+  content  : "";
+  position : absolute;
+  left     : -12px;
+}
+
+.clt li::before {
+  top        : 10px;
+  width      : 25px;
+  height     : 0px;
+  border-top : 1px solid #008cba;
+}
+
+.clt li::after {
+  top         : 2px;
+  width       : 0px;
+  height      : 100%;
+  border-left : 1px solid #008cba;
+}
+
+.clt ul > li:last-child::after {
+  height : 8px;
+}
+
+/* blockquote css */
+blockquote {
+    padding: 10.5px 21px;
+    margin: 0 0 21px;
+    font-size: 12px;
+    border-left: 5px solid #464545;
+}
+
+/* Headersection css */
+Headersection {
+    padding: 10.5px 21px;
+    margin: 0 0 21px;
+    font-size: 12px;
+    border-left: 5px solid #464545;
+
+}
+
+h6 {
+    padding-bottom: 0px;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 9px;
+}

@@ -13,7 +13,7 @@ The code simply iterates through a range of ports targeting a specified IP, trie
 The project can be found under the following link:
 Port_scanner_
 
-=================================================================================
+|
 
 Cryptos
 ~~~~~~~
@@ -27,7 +27,7 @@ The data encryption & decryption is done using AES-128 (Advanced Encryption Stan
 The project can be found under the following link:
 Cryptos_
 
-=================================================================================
+|
 
 Ludwigskollg Website
 ~~~~~~~~~~~~~~~~~~~~
