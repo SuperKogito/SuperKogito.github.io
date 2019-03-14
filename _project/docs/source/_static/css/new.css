@@ -309,3 +309,25 @@ h6 {
     border-bottom: 1px solid #d0d0d0;
     font-size: 9px;
 }
+
+
+
+
+#wrap {
+    position:relative; /* make this relative to have the inner div absolute without     breaking out */
+    width: 700px;  /* fix the width or else it'll be the entire page's width */
+    background: silver;
+    border: 1px solid #1d1f21;
+    background-color:#1d1f21;
+}
+
+#text {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    right: 0;
+    top: 10;
+    bottom: 0;
+    background: #1d1f21;
+    color:#008cba
+}
