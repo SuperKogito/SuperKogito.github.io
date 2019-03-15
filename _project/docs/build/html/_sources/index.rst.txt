@@ -3,7 +3,19 @@
 Welcome
 --------
 
+.. raw::html
+
+    <div class="ascii-art">
+          ______
+         /     ^\
+        ~     ( *\
+        |\  )_ \\_\_/
+       / /\ \/\ \       ptm
+      """"""""""""""""""""""""
+     </div>
+
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
 
 .. raw:: html
 
@@ -41,6 +53,19 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 .. image:: https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1
     :align: center
+
+
+
+
+.. raw:: html
+
+    <img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" class="transparent">
+
+
+.. raw:: html
+
+    <img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" class="transparent">
+
 
 Contents
 ---------

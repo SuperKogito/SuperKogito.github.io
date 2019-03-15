@@ -331,3 +331,8 @@ h6 {
     background: #1d1f21;
     color:#008cba
 }
+
+.ascii-art {
+font-family: monospace;
+white-space: pre;
+}
