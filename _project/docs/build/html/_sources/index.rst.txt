@@ -15,6 +15,33 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <div id="wrap"><img src="//hitcounter.pythonanywhere.com/nocount/tag.svg?url=https%3A%2F%2Fsuperkogito.github.io%2F" alt="Hits"></div>
 
 
+.. raw:: html
+
+  <p> lorem1 </p>
+  <a href="//info.flagcounter.com/x1rT"><img src="//bit.do/flagcounter" alt="Flag Counter" border="0"></a>
+  <div id="blockingbox"></div>
+
+|
+
+.. image:: //bit.do/flagcounter
+    :align: center
+
+|
+
+.. image:: http://bit.do/flagcounter
+    :align: center
+
+|
+
+
+.. image:: //s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1
+    :align: center
+
+|
+
+.. image:: https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1
+    :align: center
+
 Contents
 ---------
 
