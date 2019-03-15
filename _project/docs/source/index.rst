@@ -9,98 +9,10 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
     <div id="wrap">
     <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1.jpg" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="//info.flagcounter.com/x1rT"><img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
     <a href="//info.flagcounter.com/x1rT"><img src="s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
     <div id="blockingbox"></div>
     </div>
 
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="//s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1.jpg" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
-
-.. raw:: html
-
-    <div id="wrap">
-    <p> lorem1 </p>
-    <a href="https;//info.flagcounter.com/x1rT"><img src="https://s01.flagcounter.com/count/x1rT/bg_1D1F21/txt_008CBA/border_1D1F21/columns_7/maxflags_7/viewers_0/labels_1/pageviews_1/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
-    <div id="blockingbox"></div>
-    </div>
 
 Contents
 ---------
