@@ -1,13 +1,12 @@
-About
-=====
+About Me
+========
 
 |
 
 .. image:: me.gif
    :align: left
-   :width: 128pt
-   :height: 130pt
-
+   :width: 96pt
+   :height: 96pt
 
 I was born and raised in Tunisia. I grew up in a small town near Monastir.
 Since an early age I had a passion for breaking down toys and trying to figure them out.
@@ -24,7 +23,6 @@ Since 2013 I live in Munich (Germany) and study electrical engineering at the Te
      :maxdepth: 1
 
      about/Education
-     about/Internships
      about/Experience
      about/Activities
      about/Projects

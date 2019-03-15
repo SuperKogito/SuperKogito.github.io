@@ -540,7 +540,7 @@ body {
 @media (min-width: 480px) {
   p {
     text-align: justify;
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 #header {

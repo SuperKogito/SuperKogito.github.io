@@ -5,7 +5,7 @@
 
 .. post:: Mar 03, 2019
    :tags: [Encryption], [Security]
-   :category: Embedded Security
+   :category: Cybersecurity
    :author: Ayoub Malek
    :location: Munich
    :language: English

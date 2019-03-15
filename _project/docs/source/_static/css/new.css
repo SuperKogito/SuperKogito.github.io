@@ -291,7 +291,7 @@
 blockquote {
     padding: 10.5px 21px;
     margin: 0 0 21px;
-    font-size: 12px;
+    font-size: 14px;
     border-left: 5px solid #464545;
 }
 
@@ -299,7 +299,7 @@ blockquote {
 Headersection {
     padding: 10.5px 21px;
     margin: 0 0 21px;
-    font-size: 12px;
+    font-size: 14px;
     border-left: 5px solid #464545;
 
 }
@@ -314,21 +314,18 @@ h6 {
 /*    background: #1d1f21;
     color:#008cba*/
 
-.wrap {
-    position:relative; /* make this relative to have the inner div absolute without     breaking out */
-    width: 700px;  /* fix the width or else it'll be the entire page's width */
-    background: silver;
-    border: 1px solid #1d1f21;
-    background-color:#1d1f21;
+/* Container holding the image and the text */
+.container {
+ position: relative;
 }
 
-.blockingbox {
-    position: absolute;
-    width: 200px;
-    height: 30px;
-    right: 0;
-    top: 20;
-    bottom: 0;
-    background: white;
-    color: white;
+/* Bottom right text */
+.text-block {
+ position: absolute;
+ bottom: 0px;
+ right: 15px;
+ background-color: #1d1f21;
+ color: #1d1f21;
+ padding-left: 20px;
+ padding-right: 20px;
 }
