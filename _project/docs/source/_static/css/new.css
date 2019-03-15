@@ -320,7 +320,7 @@ h6 {
 }
 
 /* Bottom right text */
-.text-block {
+.boxblock {
  position: absolute;
  bottom: 0px;
  right: 15px;
