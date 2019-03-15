@@ -1443,3 +1443,19 @@ pre code {
 .highlight .line {
   height: 22px;
 }
+
+/* Container holding the image and the text */
+.container {
+ position: relative;
+}
+
+/* Bottom right text */
+.boxblock {
+ position: absolute;
+ bottom: 0px;
+ right: 15px;
+ background-color: #1d1f21;
+ color: #1d1f21;
+ padding-left: 20px;
+ padding-right: 20px;
+}
