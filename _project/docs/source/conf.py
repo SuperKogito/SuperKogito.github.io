@@ -147,7 +147,7 @@ pygments_style = 'sphinx'
 #                       'inner_theme_name': 'bootswatch-slate', #'bootswatch-readable',
 #                       #'theme_preview': True,
 # }
-
+#
 #import sphinxbootstrap4theme
 html_theme = 'basicstrap'
 html_theme_options = {
