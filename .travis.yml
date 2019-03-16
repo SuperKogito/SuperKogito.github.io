@@ -2,6 +2,7 @@ language: bash
 python:
   - "3.6"
 before_script:
+  - sudo pip install --upgrade pip
   - sudo pip install Sphinx
   - sudo pip install sphinxcontrib-packages
   - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
