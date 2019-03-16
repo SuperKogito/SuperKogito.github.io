@@ -62,7 +62,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinxcontrib.napoleon',
     'sphinxjp.themes.basicstrap',
-    'sphinxcontrib.googleanalytics',
+#    'sphinxcontrib.googleanalytics',
     'sphinxcontrib.bibtex',
     'sphinxcontrib.spelling',
     'sphinxcontrib.email',
@@ -148,7 +148,7 @@ pygments_style = 'sphinx'
 #                       #'theme_preview': True,
 # }
 
-#import sphinxbootstrap4theme
+import sphinxbootstrap4theme
 html_theme = 'basicstrap'
 html_theme_options = {
                       #'rightsidebar': True,
