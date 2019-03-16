@@ -1,8 +1,11 @@
 language: bash
 
 before_script:
-  - npm install -g gulp
-  - npm install
+  - sudo pip install Sphinx
+  - sudo pip install sphinxcontrib-packages
+  - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
+  - sudo pip install sphinx-bootstrap-theme
+  - sudo pip install -U ablog
   - cd _project/docs/
 
 script:
@@ -14,11 +17,14 @@ branches:
 
 notifications:
   email: false
-
+    
 deploy:
   provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep-history: true
+  skip_cleanup: true
+  local_dir: public
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  keep-history: true  
   on:
     branch: master
+  repo: SuperKogito/SuperKogito.github.io
+  target_branch: master
