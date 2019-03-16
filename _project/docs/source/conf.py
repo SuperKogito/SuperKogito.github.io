@@ -65,7 +65,7 @@ extensions = [
 #    'sphinxcontrib.googleanalytics',
     'sphinxcontrib.bibtex',
     'sphinxcontrib.spelling',
-    'sphinxcontrib.email',
+#    'sphinxcontrib.email',
     'sphinx_sitemap',
     'ablog',
     'sphinx.ext.intersphinx',
