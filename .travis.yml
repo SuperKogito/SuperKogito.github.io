@@ -1,15 +1,16 @@
 language: bash
 python:
   - "3.6"
+  
 before_script:
   - sudo pip install --upgrade pip
+  - sudo apt-get install python-enchant
   - sudo pip install Sphinx
   - sudo pip install sphinxcontrib-packages
   - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
   - sudo pip install sphinxcontrib-googleanalytics
   - sudo pip install sphinxjp.themes.basicstrap
   - sudo pip install sphinx_bootstrap_theme
-  - sudo apt-get install python-enchant
   - sudo pip install sphinxcontrib-spelling
   - sudo pip install sphinxcontrib-bibtex
   - sudo pip install -U ablog
