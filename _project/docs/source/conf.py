@@ -147,7 +147,7 @@ pygments_style = 'sphinx'
 #                       #'theme_preview': True,
 # }
 
-import sphinxbootstrap4theme
+#import sphinxbootstrap4theme
 html_theme = 'basicstrap'
 html_theme_options = {
                       #'rightsidebar': True,
