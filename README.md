@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/SuperKogito/SuperKogito.github.io.svg?branch=master)](https://travis-ci.com/SuperKogito/SuperKogito.github.io)
+
 # SuperKogito.github.io
 
 This repository contains the source scripts/ files for my github hosted website/blog. 
