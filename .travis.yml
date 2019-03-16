@@ -5,8 +5,11 @@ before_script:
   - sudo pip install Sphinx
   - sudo pip install sphinxcontrib-packages
   - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
+  - sudo pip install sphinxcontrib-googleanalytics
   - sudo pip install sphinxjp.themes.basicstrap
   - sudo pip install sphinx_bootstrap_theme
+  - sudo pip install sphinxcontrib-spelling
+  - sudo pip install sphinxcontrib-bibtex
   - sudo pip install -U ablog
   - sudo pip install sphinxcontrib-napoleon
   - sudo pip install sphinx-sitemap
