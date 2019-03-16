@@ -18,7 +18,6 @@ before_script:
   - sudo pip3 install -U ablog
   - sudo pip3 install sphinxcontrib-napoleon
   - sudo pip3 install sphinx-sitemap
-  - sudo pip3 install git+git://github.com/SuperKogito/sphinx-contrib.git
   - cd _project/docs/
 
 script:
