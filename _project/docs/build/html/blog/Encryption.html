@@ -6,18 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-133660046-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+    
     <title>[03.03.2019] Encryption &mdash; Ayoub Malek&#39;s blog</title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -55,7 +44,8 @@
     <script type="text/javascript" src="../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../_static/js/basicstrap.js"></script>
@@ -160,7 +150,7 @@
   <div class="section" id="encryption">
 <span id="encryption-post-label"></span><h1>[03.03.2019] Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h1>
 <p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called “decryption” <a class="reference internal" href="references/References.html#kessler" id="id1">[Kes17]</a>.
-These operations can be explained by the following formulas: <span class="math">\(C=E_{k}(P)\)</span> and <span class="math">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/References.html#kessler" id="id2">[Kes17]</a>.
+These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/References.html#kessler" id="id2">[Kes17]</a>.
 There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="reference internal" href="references/References.html#kessler" id="id3">[Kes17]</a>.</p>
 <div class="section" id="symmetric-encryption">
 <h2>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Permalink to this headline">¶</a></h2>
@@ -271,7 +261,7 @@ This is further explained in the following post <span class="xref std std-doc">A
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.7.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
       </footer>
       <!-- /footer -->
 
