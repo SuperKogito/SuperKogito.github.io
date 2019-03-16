@@ -6,8 +6,8 @@ before_script:
   - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
   - sudo pip install sphinx_bootstrap_theme
   - sudo pip install -U ablog
-  - pip install sphinxcontrib-napoleon
-  - pip install sphinx-sitemap
+  - sudo pip install sphinxcontrib-napoleon
+  - sudo pip install sphinx-sitemap
   - cd _project/docs/
 
 script:
