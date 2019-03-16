@@ -1,13 +1,24 @@
-language: ruby
-cache: bundler
+language: bash
+
+before_script:
+  - npm install -g gulp
+  - npm install
+  - cd _project/docs/
+
+script:
+  - ./quickBuild.sh
+
 branches:
   only:
-  - master
+    - master
+
+notifications:
+  email: false
+
 deploy:
   provider: pages
-  target-branch: master
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
   on:
     branch: master
