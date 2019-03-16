@@ -1,21 +1,23 @@
 language: bash
-python:
-  - "3.6"
   
 before_script:
-  - sudo pip install --upgrade pip
+  - sudo apt-get update
+  - sudo apt-get install python3
+  - sudo apt-get install python3-pip
+  - sudo pip3 install --upgrade pip
   - sudo apt-get install python-enchant
-  - sudo pip install Sphinx
-  - sudo pip install sphinxcontrib-packages
-  - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
-  - sudo pip install sphinxcontrib-googleanalytics
-  - sudo pip install sphinxjp.themes.basicstrap
-  - sudo pip install sphinx_bootstrap_theme
-  - sudo pip install sphinxcontrib-spelling
-  - sudo pip install sphinxcontrib-bibtex
-  - sudo pip install -U ablog
-  - sudo pip install sphinxcontrib-napoleon
-  - sudo pip install sphinx-sitemap
+  - sudo apt-get update
+  - sudo pip3 install Sphinx
+  - sudo pip3 install sphinxcontrib-packages
+  - sudo pip3 install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
+  - sudo pip3 install sphinxcontrib-googleanalytics
+  - sudo pip3 install sphinxjp.themes.basicstrap
+  - sudo pip3 install sphinx_bootstrap_theme
+  - sudo pip3 install sphinxcontrib-spelling
+  - sudo pip3 install sphinxcontrib-bibtex
+  - sudo pip3 install -U ablog
+  - sudo pip3 install sphinxcontrib-napoleon
+  - sudo pip3 install sphinx-sitemap
   - cd _project/docs/
 
 script:
