@@ -4,7 +4,7 @@ before_script:
   - sudo pip install Sphinx
   - sudo pip install sphinxcontrib-packages
   - sudo pip install git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
-  - sudo pip install sphinx-bootstrap-theme
+  - sudo pip install sphinx_bootstrap_theme
   - sudo pip install -U ablog
   - cd _project/docs/
 
