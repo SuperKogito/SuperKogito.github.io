@@ -38,7 +38,7 @@ html_short_title = 'Ayoub Malek\'s Blog'
 project = 'Ayoub Malek'
 copyright = '2018, SuperKogito'
 author = 'SuperKogito'
-html_favicon = '_static/favicon.png'
+html_favicon = '_static/favicon.ico'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
@@ -114,7 +114,7 @@ exclude_patterns = []
 pygments_style = 'sphinx'
 
 
-# -- Options for HTML output -------------------------------------------------
+# -- Options for HTML output ----------------------------------------	both modified:   ../../searchindex.js
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
