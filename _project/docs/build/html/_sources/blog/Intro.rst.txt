@@ -40,5 +40,6 @@ I value feedback and discussions, so constructive feedback is always welcome. Th
 Although I cannot promise quick responses as I have a life and other responsibilities, but I will take the feedback in consideration and improve the blog accordingly.
 I will also try to answer every question to the best of my knowledge.
 
+.. raw:: html
 
--->  Questions and feedback should be sent to :email:`AyoubMalek's blog <superkogito@gmail.com>`
+   <p> -->  Questions and feedback should be sent to <a href="mailto:superkogito@gmail.com">Ayoub Malek's Blog </a> </p> 
