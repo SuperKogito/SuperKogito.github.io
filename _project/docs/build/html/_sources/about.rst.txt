@@ -27,8 +27,6 @@ Since 2013 I live in Munich (Germany) and study electrical engineering at the Te
      about/Activities
      about/Projects
      cv
-     file
-
 
 
 find me at: |img1| and |img2| or email me at: |img3|

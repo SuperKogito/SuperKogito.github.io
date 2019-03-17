@@ -37,7 +37,7 @@ html_short_title = 'Ayoub Malek\'s Blog'
 project = 'Ayoub Malek'
 copyright = '2018, SuperKogito'
 author = 'SuperKogito'
-
+html_favicon = '_static/favicon.png'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
@@ -147,7 +147,7 @@ pygments_style = 'sphinx'
 #                       #'theme_preview': True,
 # }
 
-import sphinxbootstrap4theme
+#import sphinxbootstrap4theme
 html_theme = 'basicstrap'
 html_theme_options = {
                       #'rightsidebar': True,

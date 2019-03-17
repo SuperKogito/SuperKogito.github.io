@@ -10,7 +10,7 @@
     <div class="boxblock">   What a beautiful sunrise   </div>
     </div>
 
-Contents
+Content
 ---------
 
 .. toctree::
