@@ -17,6 +17,9 @@ Content
    blog
    :maxdepth: 2
 
+.. toctree::
+  games
+  :maxdepth: 2
 
 .. toctree::
    about
