@@ -58,8 +58,15 @@ Padding
 Within the context of classical cryptography, padding aims essentially to prevent any type of predictability that might reveal a plain-text or its exact length.
 Such revelations can be beneficial for an attacker and help in breaking the encryption :cite:`Welchman`.
 For example, Advanced Encryption Standard-128 (AES-128) is a symmetric block cipher that processes data by blocks of 128 bits, which means that additional random data must be added to packages with size different from 128 bits multiples.
-This makes the data generically processable and is called padding. Th
-ere are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N :cite:`Knudsen`.
+This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N :cite:`Knudsen`.
+
+.. image:: ../_static/pkcs5.png
+   :align: center
+
+.. raw:: html
+
+  <center><a href="../_static/figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
+  </div>
 
 **Remark:** When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
 This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack :cite:`Moxie`.

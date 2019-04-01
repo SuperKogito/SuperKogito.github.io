@@ -56,8 +56,8 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Ayoub Malek&#39;s blog" href="../index.html" />
     <link rel="up" title="Blog" href="../blog.html" />
-    <link rel="next" title="References" href="references/References.html" />
-    <link rel="prev" title="Blog" href="../blog.html" />
+    <link rel="next" title="[17.02.2019] Cryptography overview" href="Cryptography.html" />
+    <link rel="prev" title="References" href="references/References.html" />
    
   
   
@@ -108,8 +108,8 @@
 
             
               <li><a class="uplink" href="../index.html">Contents</a></li>
-              <li><a href="../blog.html"><i class="icon icon-double-angle-left"></i>&nbsp;Blog</a></li>
-              <li><a href="references/References.html">References&nbsp;<i class="icon icon-double-angle-right"></i></a></li>
+              <li><a href="references/References.html"><i class="icon icon-double-angle-left"></i>&nbsp;References</a></li>
+              <li><a href="Cryptography.html">[17.02.2019] Cryptography overview&nbsp;<i class="icon icon-double-angle-right"></i></a></li>
             <li class="visible-xs"><a href="../_sources/blog/Encryption.rst.txt" rel="nofollow">Show Source</a></li>
 
             <li class="visible-xs">
@@ -193,9 +193,10 @@ There are several types of stream ciphers but only two are worth mentioning here
 <p>Within the context of classical cryptography, padding aims essentially to prevent any type of predictability that might reveal a plain-text or its exact length.
 Such revelations can be beneficial for an attacker and help in breaking the encryption <a class="reference internal" href="references/References.html#welchman" id="id26">[Wel82]</a>.
 For example, Advanced Encryption Standard-128 (AES-128) is a symmetric block cipher that processes data by blocks of 128 bits, which means that additional random data must be added to packages with size different from 128 bits multiples.
-This makes the data generically processable and is called padding. Th
-ere are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="reference internal" href="references/References.html#knudsen" id="id27">[Knu18]</a>.</p>
-<p><strong>Remark:</strong> When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
+This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="reference internal" href="references/References.html#knudsen" id="id27">[Knu18]</a>.</p>
+<img alt="../_images/pkcs51.png" class="align-center" src="../_images/pkcs51.png" />
+<center><a href="../_static/figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
+</div><p><strong>Remark:</strong> When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
 This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack <a class="reference internal" href="references/References.html#moxie" id="id28">[Mar18]</a>.
 This is further explained in the following post <span class="xref std std-doc">Authenticated Encryption</span> .</p>
 <div class="toctree-wrapper compound">
@@ -226,6 +227,13 @@ This is further explained in the following post <span class="xref std std-doc">A
   <span>&nbsp;</span>
   <span style="float: right;">
   
+  Next: 
+  <a href="AuthenticatedEncryption.html">
+    [01-04-2019] Authenticated Encryption
+    
+  </a>
+  </span>
+  
 </div>
 
   
@@ -249,9 +257,9 @@ This is further explained in the following post <span class="xref std std-doc">A
     </ul>
 <ul class="nav navbar-nav pull-right hidden-xs hidden-sm">
       
-        <li><a href="../blog.html"><i class="icon icon-double-angle-left"></i>&nbsp;Blog</a></li>
+        <li><a href="references/References.html"><i class="icon icon-double-angle-left"></i>&nbsp;References</a></li>
         <li><a class="uplink" href="../index.html">Contents</a></li>
-        <li><a href="references/References.html">References&nbsp;<i class="icon icon-double-angle-right"></i></a></li>
+        <li><a href="Cryptography.html">[17.02.2019] Cryptography overview&nbsp;<i class="icon icon-double-angle-right"></i></a></li>
         <li><a href="#">top</a></li>
     </ul>
   </div>

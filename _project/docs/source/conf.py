@@ -155,7 +155,7 @@ html_theme_options = {
                       'nosidebar': True,
                       'sidebar_span': 2, # 1(min) - 12(max)
                       'content_fixed': True,
-                      'content_width': '700px',
+                      'content_width': '750px',
                       'nav_fixed': False,
                       'googlewebfont': True,
                       'googlewebfont_url': '//fonts.googleapis.com/css?family=Text+Me+One',

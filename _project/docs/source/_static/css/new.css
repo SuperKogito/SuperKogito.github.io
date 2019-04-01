@@ -313,3 +313,73 @@ h6 {
 
 /*    background: #1d1f21;
     color:#008cba*/
+
+
+
+
+
+
+
+@font-face {
+    font-family: 'neon';
+    src: url('../fonts/neon/neon-webfont.woff2') format('woff2'),
+         url('../fonts/neon/neon-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.neon {
+  font-family: neon;
+  color: #FB4264;
+  text-align: center;
+  font-size: 2vw;
+  line-height: 2vw;
+  text-shadow: 0 0 1vw #F40A35;
+}
+
+.flux {
+  font-family: neon;
+  color: #426DFB;
+  text-align: center;
+  font-size: 3vw;
+  line-height: 3vw;
+  text-shadow: 0 0 1vw #2356FF;
+}
+
+.neon {
+  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 .3vw #FA1C16, 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 3vw #FA1C16, 0 0 .15vw #FED128, .15vw .15vw .15vw #806914;
+    color: #FED128;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #800E0B, 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 .1vw #800E0B, .15vw .15vw .15vw #40340A;
+    color: #806914;
+  }
+}
+
+.flux {
+  animation: flux 2s linear infinite;
+  -moz-animation: flux 2s linear infinite;
+  -webkit-animation: flux 2s linear infinite;
+  -o-animation: flux 2s linear infinite;
+}
+
+@keyframes flux {
+  0%,
+  100% {
+    text-shadow: 0 0 .3vw #1041FF, 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 3vw #1041FF, 0 0 .15vw #8BFDFE, .15vw .15vw .15vw #147280;
+    color: #28D7FE;
+  }
+  50% {
+    text-shadow: 0 0 .15vw #082180, 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 1.5vw #082180, 0 0 .1vw #082180, .15vw .15vw .15vw #0A3940;
+    color: #146C80;
+  }
+}
