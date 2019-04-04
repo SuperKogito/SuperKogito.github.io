@@ -1,6 +1,12 @@
 Projects
 ============
 
+.. meta::
+   :description: Projects summary page
+   :keywords: Projects, Ayoub Malek, Ludwigkolleg, Github
+   :author: Ayoub Malek
+
+
 Gui-port scanner
 ~~~~~~~~~~~~~~~~~
 | 03 June, 2018

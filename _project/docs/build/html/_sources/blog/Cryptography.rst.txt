@@ -1,6 +1,11 @@
 [17.02.2019] Cryptography overview
 ===================================
 
+.. meta::
+   :description: Cryptography overview post
+   :keywords: Cryptography overview, Encryption, Hashing, Security, Ayoub Malek, Cybersecurity
+   :author: Ayoub Malek
+
 .. post:: Feb 17, 2019
    :tags: [Cryptography], [Encryption], [Hashing]
    :category: Cybersecurity

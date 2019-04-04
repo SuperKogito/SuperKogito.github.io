@@ -1,6 +1,11 @@
 [10.02.2019] Blog intro
 ========================
 
+.. meta::
+   :description: First post: Blog introduction
+   :keywords: Blog introduction, First post, Ayoub Malek, Blogging 
+   :author: Ayoub Malek
+
 .. post:: Feb 10, 2019
    :tags: [Blog], [First post]
    :category: Blogging
@@ -42,4 +47,4 @@ I will also try to answer every question to the best of my knowledge.
 
 .. raw:: html
 
-   <p> -->  Questions and feedback should be sent to <a href="mailto:superkogito@gmail.com">Ayoub Malek's Blog </a> </p> 
+   <p> -->  Questions and feedback should be sent to <a href="mailto:superkogito@gmail.com">Ayoub Malek's Blog </a> </p>

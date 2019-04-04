@@ -1,6 +1,11 @@
 About Me
 ========
 
+.. meta::
+   :description: This is the about me page of Ayoub Malek's blog and website
+   :keywords: Ayoub Malek, About Ayoub, Malek, Ayoub Malek Blog, Ayoub Malek Website, SuperKogito, Ayoub SuperKogito
+   :author: Ayoub Malek
+
 |
 
 .. image:: me.gif

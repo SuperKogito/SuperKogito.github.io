@@ -1,5 +1,10 @@
 The URL you requested was not found.
 ====================================
 
+.. meta::
+   :description: This is an error page at Ayoub Malek's blog and website
+   :keywords: 404, Not found, No Content Here
+   :author: Ayoub Malek
+
 404 NOT FOUND
 NO CONTENT HERE

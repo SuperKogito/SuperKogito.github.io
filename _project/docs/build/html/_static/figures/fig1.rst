@@ -1,6 +1,11 @@
 Fig1: Cryptographic algorithms
 ===============================
 
+.. meta::
+   :description: Figure of cryptographic algorithms overview
+   :keywords: Figure 1, Fig1, Cryptographic algorithms
+   :author: Ayoub Malek
+
 |
 |
 

@@ -1,6 +1,11 @@
 Education
 ============
 
+.. meta::
+   :description: Education summary
+   :keywords: Education, Education Summary, Ayoub Malek, Bachelor Thesis, Master Thesis, TUM 
+   :author: Ayoub Malek
+
 Overview
 ~~~~~~~~~~~
 .. raw:: html

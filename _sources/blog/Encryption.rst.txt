@@ -3,6 +3,11 @@
 [03.03.2019] Encryption
 ========================
 
+.. meta::
+   :description: Encryption post
+   :keywords: Encryption overview, Encryption, Security, Ayoub Malek, Cybersecurity
+   :author: Ayoub Malek
+
 .. post:: Mar 03, 2019
    :tags: [Encryption], [Security]
    :category: Cybersecurity

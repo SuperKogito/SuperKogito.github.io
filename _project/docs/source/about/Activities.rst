@@ -1,6 +1,11 @@
 Activities and Leadership
 =========================
 
+.. meta::
+   :description: Activities and Leadership pages
+   :keywords: Activities, Leadership, Ayoub Malek, MIX program, TAG Treasurer 
+   :author: Ayoub Malek
+
 Overview
 ~~~~~~~~~
 .. raw:: html

@@ -1,6 +1,11 @@
 Experience and Internships
 ===========================
 
+.. meta::
+   :description: Experience and Internships summary page
+   :keywords: Experience Internships, Yoummday GmbH, blik GmbH, eCARus, Ayoub Malek
+   :author: Ayoub Malek
+
 Overview
 ~~~~~~~~~~~
 .. raw:: html

@@ -1,6 +1,12 @@
 Fig3: SE and MAC combinations
 ===============================
 
+.. meta::
+   :description: Figure of SE and MAC combinations
+   :keywords: Figure 3, Fig3, SE MAC combinations, Symmetric Encryption, Message Authentication Code
+   :author: Ayoub Malek
+
+
 |
 |
 

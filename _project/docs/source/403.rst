@@ -1,4 +1,10 @@
 403 Permission Denied
 =====================
 
+.. meta::
+   :description: This is an error page at Ayoub Malek's blog and website
+   :keywords: 404, Not found, Error, No Content Here
+   :author: Ayoub Malek
+
+
 NO CONTENT HERE

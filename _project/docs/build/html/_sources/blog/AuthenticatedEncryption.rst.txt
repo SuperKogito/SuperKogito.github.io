@@ -1,6 +1,11 @@
 [01-04-2019] Authenticated Encryption
 ======================================
 
+.. meta::
+   :description: Authenticated Encryption post
+   :keywords: Authenticated Encryption, Encryption, Hashing, Security, Ayoub Malek, Cybersecurity
+   :author: Ayoub Malek
+
 .. post:: Mar 25, 2019
    :tags: [Authenticated Encryption],[Encryption],[Hashing],[Security]
    :category: Cybersecurity

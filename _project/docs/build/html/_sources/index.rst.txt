@@ -1,3 +1,10 @@
+Home
+======
+
+.. meta::
+   :description: This is the homepage of Ayoub Malek's blog and website
+   :keywords: Ayoub Malek, Ayoub, Malek, Ayoub Malek Blog, Ayoub Malek Website, SuperKogito, Ayoub SuperKogito
+   :author: Ayoub Malek
 
 .. image:: _static/elephant.png
    :align: center
