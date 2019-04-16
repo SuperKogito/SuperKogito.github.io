@@ -47,7 +47,8 @@
     <script type="text/javascript" src="../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../_static/js/basicstrap.js"></script>
@@ -153,7 +154,7 @@
   <div class="section" id="encryption">
 <span id="encryption-post-label"></span><h1>[03.03.2019] Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h1>
 <p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called “decryption” <a class="reference internal" href="references/References.html#kessler" id="id1">[Kes17]</a>.
-These operations can be explained by the following formulas: <span class="math">\(C=E_{k}(P)\)</span> and <span class="math">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/References.html#kessler" id="id2">[Kes17]</a>.
+These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/References.html#kessler" id="id2">[Kes17]</a>.
 There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="reference internal" href="references/References.html#kessler" id="id3">[Kes17]</a>.</p>
 <div class="section" id="symmetric-encryption">
 <h2>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Permalink to this headline">¶</a></h2>
@@ -197,7 +198,7 @@ There are several types of stream ciphers but only two are worth mentioning here
 Such revelations can be beneficial for an attacker and help in breaking the encryption <a class="reference internal" href="references/References.html#welchman" id="id26">[Wel82]</a>.
 For example, Advanced Encryption Standard-128 (AES-128) is a symmetric block cipher that processes data by blocks of 128 bits, which means that additional random data must be added to packages with size different from 128 bits multiples.
 This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="reference internal" href="references/References.html#knudsen" id="id27">[Knu18]</a>.</p>
-<img alt="../_images/pkcs51.png" class="align-center" src="../_images/pkcs51.png" />
+<img alt="../_images/pkcs5.png" class="align-center" src="../_images/pkcs5.png" />
 <center><a href="../_static/figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
 </div><p><strong>Remark:</strong> When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
 This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack <a class="reference internal" href="references/References.html#moxie" id="id28">[Mar18]</a>.
@@ -272,7 +273,7 @@ This is further explained in the following post <span class="xref std std-doc">A
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.7.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
       </footer>
       <!-- /footer -->
 
