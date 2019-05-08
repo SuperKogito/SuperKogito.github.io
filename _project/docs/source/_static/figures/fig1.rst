@@ -50,5 +50,5 @@ Fig1: Cryptographic algorithms
                 </li>
             </ul>
     </ul>
-    <center><a href="fig1.html" >Fig1: Cryptographic algorithms </a> </center>
+    <center><a href="fig1.html" >Fig 1: Cryptographic algorithms </a> </center>
     </div>

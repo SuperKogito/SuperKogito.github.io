@@ -1,4 +1,4 @@
-[01-04-2019] Authenticated Encryption
+[01-04-2019] Authenticated encryption
 ======================================
 
 .. meta::

@@ -15,5 +15,5 @@ Fig2: PKCS#5 block padding
 .. raw:: html
 
   <div class="clt">
-  <center><a href="fig2.html" >Fig2: PKCS#5 block padding</a> </center>
+  <center><a href="fig2.html" >Fig 2: PKCS#5 block padding</a> </center>
   </div>

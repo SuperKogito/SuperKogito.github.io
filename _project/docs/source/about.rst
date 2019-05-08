@@ -8,7 +8,7 @@ About Me
 
 |
 
-.. image:: me.gif
+.. image:: _static/me.gif
    :align: left
    :width: 96pt
    :height: 96pt

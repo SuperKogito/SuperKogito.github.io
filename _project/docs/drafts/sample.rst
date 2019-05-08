@@ -1,6 +1,20 @@
 sample
 =======
 
+..
+
+    <div class="toctree-wrapper compound">
+    <ul>
+    <li class="toctree-l1"><a class="reference internal" href="blog.html">Blog posts by date</a><ul>
+    <li class="toctree-l2"><a class="reference internal" href="blog/AuthenticatedEncryption.html">[01-04-2019] Authenticated Encryption</a></li>
+    <li class="toctree-l2"><a class="reference internal" href="blog/Encryption.html">[03.03.2019] Encryption</a></li>
+    <li class="toctree-l2"><a class="reference internal" href="blog/Cryptography.html">[17.02.2019] Cryptography overview</a></li>
+    <li class="toctree-l2"><a class="reference internal" href="blog/Intro.html">[10.02.2019] Blog intro</a></li>
+    </ul>
+    </li>
+    </ul>
+    </div>
+
 .. postlist::
    :list-style: circle
    :category: Manual

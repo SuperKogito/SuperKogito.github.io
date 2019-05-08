@@ -16,5 +16,5 @@ Fig3: SE and MAC combinations
 .. raw:: html
 
   <div class="clt">
-  <center><a href="fig3.html" >Fig3: SE and MAC combinations</a> </center>
+  <center><a href="fig3.html" >Fig 3: SE and MAC combinations</a> </center>
   </div>

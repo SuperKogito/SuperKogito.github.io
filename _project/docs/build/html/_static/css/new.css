@@ -1,5 +1,4 @@
 /* ************************************* */
-
 /* css for the timeline  graph */
 /* blue color: #008cba         */
 /*green color: c9cacc*/
@@ -245,9 +244,7 @@
 }
 
 /* ************************************* */
-
 /* css for the cryptography tree graph */
-
 /* ************************************* */
 
 .clt,
@@ -314,12 +311,6 @@ h6 {
 /*    background: #1d1f21;
     color:#008cba*/
 
-
-
-
-
-
-
 @font-face {
     font-family: 'neon';
     src: url('../fonts/neon/neon-webfont.woff2') format('woff2'),
@@ -382,4 +373,57 @@ h6 {
     text-shadow: 0 0 .15vw #082180, 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 1.5vw #082180, 0 0 .1vw #082180, .15vw .15vw .15vw #0A3940;
     color: #146C80;
   }
+}
+
+/*for math eq*/
+.math {
+  font-family: "Menlo", "Meslo LG", monospace;
+  font-size: 12px;
+  color: #008cba;
+}
+
+/* For code highlights
+
+div.highlight {
+    background: none;
+}
+
+.highlight-python {
+    font-family: "Menlo", "Meslo LG", monospace;
+    background: #212326;
+    font-size: 8px;
+}
+.highlight .pre {
+    margin: 1rem 0 1rem 0;
+    padding: 10px 15px;
+    overflow-x: auto;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #212326;
+    font-family: "Menlo", "Meslo LG", monospace;
+    font-size: 8px;
+}
+
+.math {
+  font-family: "Menlo", "Meslo LG", monospace;
+  font-size: 12px;
+  color: #008cba;
+}
+
+.highlight .nn {
+    color: #ffffff;
+    font-size: 8px;
+
+}
+
+.highlight .c1 {
+    color: #8f5902;
+    font-style: italic;
+    font-size: 8px;
+}
+*/
+
+
+h2, h3, h4, h5, h6 {
+    border-bottom: 3px solid #68757c !important;
 }

@@ -29,9 +29,39 @@ Home
 Content
 ---------
 
-.. toctree::
-   blog
-   :maxdepth: 2
+.. raw:: html
+
+  <div class="toctree-wrapper compound">
+  <ul>
+      <li class="toctree-l1"><a class="reference internal" href="blog/category.html">Blog posts by category</a>
+      <br>
+      <br>
+
+      <ul>
+          <li class="toctree-l3"><a class="reference internal" href="blog/category/machine-learning.html">Machine learning</a></li>
+          <ul>
+              <li class="toctree-l3"><a class="reference internal" href="blog/VoiceBasedGenderRecognition.html">[09-05-2019] Voice based gender recognition</a></li>
+          </ul>
+          <br>
+
+          <li class="toctree-l3"><a class="reference internal" href="blog/category/cybersecurity.html">Cybersecurity</a></li>
+          <ul>
+              <li class="toctree-l3"><a class="reference internal" href="blog/AuthenticatedEncryption.html">[01-04-2019] Authenticated Encryption</a></li>
+              <li class="toctree-l3"><a class="reference internal" href="blog/Encryption.html">[03.03.2019] Encryption</a></li>
+              <li class="toctree-l3"><a class="reference internal" href="blog/Cryptography.html">[17.02.2019] Cryptography overview</a></li>
+          </ul>
+          <br>
+
+          <li class="toctree-l3"><a class="reference internal" href="blog/category/blogging.html">Blogging</a></li>
+          <ul>
+              <li class="toctree-l3"><a class="reference internal" href="blog/Intro.html">[10.02.2019] Blog intro</a></li>
+          </ul>
+          <br>
+
+      </ul>
+      </li>
+  </ul>
+  </div>
 
 .. toctree::
   games
@@ -40,6 +70,10 @@ Content
 .. toctree::
    about
    :maxdepth: 1
+
+.. toctree::
+   blog/category/category.html
+  :maxdepth: 2
 
 
 Indices and tables

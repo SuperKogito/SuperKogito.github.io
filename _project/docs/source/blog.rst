@@ -7,6 +7,7 @@ Blog
    :author: Ayoub Malek
 
 .. toctree::
+    blog/VoiceBasedGenderRecognition
     blog/AuthenticatedEncryption
     blog/Encryption
     blog/Cryptography

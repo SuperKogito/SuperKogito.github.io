@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 def setup(app):
     app.add_stylesheet('css/ls.css')
     app.add_stylesheet('css/new.css')
+    app.add_stylesheet('css/custom_pygments.css')
 
 
 # # Activate the theme.
@@ -155,10 +156,10 @@ html_theme_options = {
                       'nosidebar': True,
                       'sidebar_span': 2, # 1(min) - 12(max)
                       'content_fixed': True,
-                      'content_width': '750px',
+                      'content_width': '800px',
                       'nav_fixed': False,
                       'googlewebfont': True,
-                      'googlewebfont_url': '//fonts.googleapis.com/css?family=Text+Me+One',
+                      'googlewebfont_url': 'https://fonts.googleapis.com/css?family=Text+Me+One',
                       'googlewebfont_style': "font-family: 'Text Me One', sans-serif",
                       'inner_theme': True,
                       'inner_theme_name': 'bootswatch-yeti', #'bootswatch-readable',
