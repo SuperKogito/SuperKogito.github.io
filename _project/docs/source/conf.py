@@ -159,7 +159,7 @@ html_theme_options = {
                       'content_width': '800px',
                       'nav_fixed': False,
                       'googlewebfont': True,
-                      'googlewebfont_url': 'https://fonts.googleapis.com/css?family=Text+Me+One',
+                      'googlewebfont_url': '//fonts.googleapis.com/css?family=Text+Me+One',
                       'googlewebfont_style': "font-family: 'Text Me One', sans-serif",
                       'inner_theme': True,
                       'inner_theme_name': 'bootswatch-yeti', #'bootswatch-readable',
