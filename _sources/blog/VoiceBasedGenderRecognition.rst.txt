@@ -274,9 +274,9 @@ The results of the gender recognition tests can be summarized in the following t
 +----------------+-----------------+---------------+
 |                | Female expected | Male expected |
 +----------------+-----------------+---------------+
-| Female guessed |  563            |  21           |
+| Female guessed |  563            |  28           |
 +----------------+-----------------+---------------+
-| Male guessed   |  376            | 28            |
+| Male guessed   |  21             | 376           |
 +----------------+-----------------+---------------+
 .. raw:: html
 
