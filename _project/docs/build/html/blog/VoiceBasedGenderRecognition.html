@@ -48,7 +48,8 @@
     <script type="text/javascript" src="../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../_static/js/basicstrap.js"></script>
@@ -149,7 +150,7 @@
                   
   <div class="section" id="voice-based-gender-recognition">
 <h1>[09-05-2019] Voice based gender recognition<a class="headerlink" href="#voice-based-gender-recognition" title="Permalink to this headline">¶</a></h1>
-<a class="reference internal image-reference" href="../_images/vbgraph1.png"><img alt="../_images/vbgraph1.png" class="align-center" src="../_images/vbgraph1.png" style="width: 482.8px; height: 108.8px;" /></a>
+<a class="reference internal image-reference" href="../_images/vbgraph.png"><img alt="../_images/vbgraph.png" class="align-center" src="../_images/vbgraph.png" style="width: 482.8px; height: 108.8px;" /></a>
 <div class="clt">
 <br>
 <center><a href="../_static/figures/fig4.html" > Fig 4: Voice based gender recognition overview</a> </center>
@@ -204,7 +205,7 @@ In the following table, we summarize the previous main steps, as for a detailed 
 </div></div>
 <div class="section" id="workflow-graph">
 <h2>Workflow graph<a class="headerlink" href="#workflow-graph" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="../_images/genderspeaker1.png"><img alt="../_images/genderspeaker1.png" class="align-center" src="../_images/genderspeaker1.png" style="width: 625.6px; height: 613.6999999999999px;" /></a>
+<a class="reference internal image-reference" href="../_images/genderspeaker.png"><img alt="../_images/genderspeaker.png" class="align-center" src="../_images/genderspeaker.png" style="width: 625.6px; height: 613.6999999999999px;" /></a>
 <div class="clt">
 <br>
 <center><a href="../_static/figures/fig5.html" >Fig 5: Voice based gender recognition</a> </center>
@@ -218,7 +219,7 @@ In the following table, we summarize the previous main steps, as for a detailed 
 </ul>
 <p>I usually use 2/3 of the the data for the training and 1/3 for the testing, but you can adjust that to your needs/ wishes.
 The code provides an option for running the whole cycle using “Run.py” or you can go step by step and for the data management just run the following in your terminal:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>$ python3 Code/DataManager.py
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 Code/DataManager.py
 </pre></div>
 </div>
 </div>
@@ -236,7 +237,7 @@ MFCCs are commonly derived as follows:</p>
 <p>To extract MFCC features I usually use the <a class="reference external" href="https://python-speech-features.readthedocs.io/en/latest/">python_speech_features</a> library, it is simple to use and well documented:</p>
 <div class="literal-block-wrapper docutils container" id="featuresextraction">
 <div class="code-block-caption"><span class="caption-text">FeaturesExtraction.py</span><a class="headerlink" href="#featuresextraction" title="Permalink to this code">¶</a></div>
-<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -293,18 +294,18 @@ MFCCs are commonly derived as follows:</p>
 <blockquote>
 <div>&lt;&lt; A Gaussian Mixture Model (GMM) is a parametric probability density function represented as a weighted sum of Gaussian component densities. GMMs are commonly used as a parametric model of the probability distribution of continuous measurements or features in a biometric system, such as vocal-tract related spectral features in a speaker recognition system. GMM parameters are estimated from training data using the iterative Expectation-Maximization (EM) algorithm or Maximum A Posteriori(MAP) estimation from a well-trained prior model. &gt;&gt;</div></blockquote>
 <p>In a some way, you can consider a Gaussian mixture model as a probabilistic clustering representing a certain data distribution as a sum of Gaussian density functions (check <a class="reference external" href="../_static/figures/fig6.html">Fig_6</a>).
-These densities forming a GMM are also called the components of the GMM. The likelihood of data points (feature vectors) for a model is given by following equation <a class="footnote-reference" href="#id9" id="id1">[6]</a> <span class="math">\(\begin{equation}
+These densities forming a GMM are also called the components of the GMM. The likelihood of data points (feature vectors) for a model is given by following equation <a class="footnote-reference" href="#id9" id="id1">[6]</a> <span class="math notranslate nohighlight">\(\begin{equation}
 P(X | \lambda)=\sum_{k=1}^{K} w_{k} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)
-\end{equation}\)</span>, where <span class="math">\(\begin{equation} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)=\frac{1}{\sqrt{2 \pi\left|\Sigma_{k}\right|}} e^{\frac{1}{2}\left(X-\mu_{k}\right)^{T} \Sigma^{-1}\left(X-\mu_{k}\right)} \end{equation}\)</span>
+\end{equation}\)</span>, where <span class="math notranslate nohighlight">\(\begin{equation} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)=\frac{1}{\sqrt{2 \pi\left|\Sigma_{k}\right|}} e^{\frac{1}{2}\left(X-\mu_{k}\right)^{T} \Sigma^{-1}\left(X-\mu_{k}\right)} \end{equation}\)</span>
 is the Gaussian distribution, with:</p>
 <ul class="simple">
-<li><span class="math">\(\lambda\)</span> represents the training data.</li>
-<li><span class="math">\(\mu\)</span> is the mean.</li>
-<li><span class="math">\(\Sigma\)</span> is co-variance matrices.</li>
-<li><span class="math">\(w_{k}\)</span> represent the weights.</li>
-<li><span class="math">\(k\)</span> refers the index of the GMM components.</li>
+<li><span class="math notranslate nohighlight">\(\lambda\)</span> represents the training data.</li>
+<li><span class="math notranslate nohighlight">\(\mu\)</span> is the mean.</li>
+<li><span class="math notranslate nohighlight">\(\Sigma\)</span> is co-variance matrices.</li>
+<li><span class="math notranslate nohighlight">\(w_{k}\)</span> represent the weights.</li>
+<li><span class="math notranslate nohighlight">\(k\)</span> refers the index of the GMM components.</li>
 </ul>
-<a class="reference internal image-reference" href="../_images/pic1.png"><img alt="../_images/pic1.png" class="align-center" src="../_images/pic1.png" style="width: 612.0px; height: 489.59999999999997px;" /></a>
+<a class="reference internal image-reference" href="../_images/pic.png"><img alt="../_images/pic.png" class="align-center" src="../_images/pic.png" style="width: 612.0px; height: 489.59999999999997px;" /></a>
 <div class="clt">
 <center><a href="../_static/figures/fig6.html" >Fig 6: Gaussian mixture model </a> </center>
 </div><div class="line-block">
@@ -313,7 +314,7 @@ is the Gaussian distribution, with:</p>
 <p>To train a Gaussian mixture models based on some collected features, you can use <a class="reference external" href="https://scikit-learn.org">scikit-learn-library</a> specifically the <a class="reference external" href="https://scikit-learn.org/stable/modules/mixture.html">scikit-learn-gmm</a>:</p>
 <div class="literal-block-wrapper docutils container" id="gmmgeneration">
 <div class="code-block-caption"><span class="caption-text">GmmGeneration.py</span><a class="headerlink" href="#gmmgeneration" title="Permalink to this code">¶</a></div>
-<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -369,19 +370,19 @@ is the Gaussian distribution, with:</p>
 <p>The identification is done over three steps: first you retrieve the voice features, then you compute their likelihood of belonging to a certain gender and finally your compare both scores and make a decision on the probable gender.
 The computation of the scores is done as follows <a class="footnote-reference" href="#id4" id="id2">[1]</a>:</p>
 <blockquote>
-<div><p>Given a speech Y and speaker S, the gender recognition test can be restated into a basic hypothesis test between <span class="math">\(H_{f}\)</span> and <span class="math">\(H_{m}\)</span>, where:</p>
+<div><p>Given a speech Y and speaker S, the gender recognition test can be restated into a basic hypothesis test between <span class="math notranslate nohighlight">\(H_{f}\)</span> and <span class="math notranslate nohighlight">\(H_{m}\)</span>, where:</p>
 <ul class="simple">
-<li><span class="math">\(H_{f}\)</span> : Y is a FEMALE</li>
-<li><span class="math">\(H_{f}\)</span> : Y is a MALE</li>
+<li><span class="math notranslate nohighlight">\(H_{f}\)</span> : Y is a FEMALE</li>
+<li><span class="math notranslate nohighlight">\(H_{f}\)</span> : Y is a MALE</li>
 </ul>
-<div class="math" id="equation-euler">
+<div class="math notranslate nohighlight" id="equation-euler">
 \begin{eqnarray}
     \frac{p\left(Y | H_{f}\right)}{p\left(Y | H_{m}\right)} = \left\{\begin{array}{ll}{ \geq 1} &amp; {\text { accept } H_{f}} \\ {&lt; 1} &amp; {\text { reject } H_{m}}\end{array} \right.
-\end{eqnarray}</div><p>where <span class="math">\(\begin{eqnarray} p\left(Y | H_{i}\right) \end{eqnarray}\)</span>, is the probability density function for the hypothesis <span class="math">\(H_{i}\)</span> evaluated for the observed speech segment Y, also called <em>the likelihood of the hypothesis</em> <span class="math">\(H_{i}\)</span> given the speech segment Y <a class="footnote-reference" href="#id4" id="id3">[1]</a>.</p>
+\end{eqnarray}</div><p>where <span class="math notranslate nohighlight">\(\begin{eqnarray} p\left(Y | H_{i}\right) \end{eqnarray}\)</span>, is the probability density function for the hypothesis <span class="math notranslate nohighlight">\(H_{i}\)</span> evaluated for the observed speech segment Y, also called <em>the likelihood of the hypothesis</em> <span class="math notranslate nohighlight">\(H_{i}\)</span> given the speech segment Y <a class="footnote-reference" href="#id4" id="id3">[1]</a>.</p>
 </div></blockquote>
 <div class="literal-block-wrapper docutils container" id="genderidentification">
 <div class="code-block-caption"><span class="caption-text">GenderIdentification.py</span><a class="headerlink" href="#genderidentification" title="Permalink to this code">¶</a></div>
-<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -600,7 +601,7 @@ Obviously the code provided on GitHub is more structured and advanced than what 
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.7.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
       </footer>
       <!-- /footer -->
 

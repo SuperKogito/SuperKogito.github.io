@@ -48,7 +48,8 @@
     <script type="text/javascript" src="../_static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/js/bootstrap3.min.js"></script>
 <script type="text/javascript" src="../_static/js/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="../_static/js/basicstrap.js"></script>
@@ -173,7 +174,7 @@ This results in the following three different approaches:</p>
 <ul class="simple">
 <li><strong>MAC and Encrypt (M&amp;E):</strong> In this approach the sender computes a MAC of the P, encrypts the P, and then appends the MAC to the C <a class="reference internal" href="references/References.html#moxie" id="id5">[Mar18]</a>.
 This is how SSH works and can be described by:
-<span class="math">\(C = E_{k1}(P) || MAC_{k2}(P)\)</span></li>
+<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(P)\)</span></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -181,7 +182,7 @@ This is how SSH works and can be described by:
 <ul class="simple">
 <li><strong>MAC-then-Encrypt (MtE):</strong> Here the sender computes a MAC of the P, then encrypts both the P and the MAC <a class="reference internal" href="references/References.html#moxie" id="id6">[Mar18]</a>.
 This is approximately how SSL works.
-<span class="math">\(C = E_{k1}(P || MAC_{k2}(P))\)</span></li>
+<span class="math notranslate nohighlight">\(C = E_{k1}(P || MAC_{k2}(P))\)</span></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -189,9 +190,9 @@ This is approximately how SSL works.
 <ul class="simple">
 <li><strong>Encrypt-then-MAC (EtM):</strong> It consists of encrypting the P first and then appending a MAC of the result <a class="reference internal" href="references/References.html#moxie" id="id7">[Mar18]</a>.
 This scheme is used in IPsec and can be summed by:
-<span class="math">\(C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))\)</span></li>
+<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))\)</span></li>
 </ul>
-<img alt="../_images/ae1.png" class="align-center" src="../_images/ae1.png" />
+<img alt="../_images/ae.png" class="align-center" src="../_images/ae.png" />
 <center><a href="../_static/figures/fig3.html" >Fig3: SE and MAC combinations</a> </center>
 </div><div class="section" id="ae-flaws-and-limitations">
 <h3>AE flaws and limitations<a class="headerlink" href="#ae-flaws-and-limitations" title="Permalink to this headline">¶</a></h3>
@@ -206,7 +207,7 @@ When processing the message, the receiver has two possible crypto-related errors
 This revelation of the error can result in the following scenario:</p>
 <blockquote>
 <div><p>The attacker first intercepts a cipher-text of 2 blocks using sniffing for instance. Knowing that CBC-decryption uses the previous block as an Initialization Vector (IV) for the decryption process of the current cipher-text,
-the decryption process can be summarized in the following formula, where D stands for decryption, c is the 2nd block of the cipher-text and p is its associated plain-text block: <span class="math">\(D(c) \oplus IV = p\)</span></p>
+the decryption process can be summarized in the following formula, where D stands for decryption, c is the 2nd block of the cipher-text and p is its associated plain-text block: <span class="math notranslate nohighlight">\(D(c) \oplus IV = p\)</span></p>
 <p>With the help of this combination of MAC and CBC the attacker first sends to the receiver a packet where the L byte of the IV is altered, if a success message is received, then he changes the L-1 byte and so on until he receives an error at L-6 for example.
 This use of a package to interact with the AE is called a padding oracle and would enable the attacker to determine the used padding and the length of the data.
 The attacker then seeks to introduce a higher padding by changing the IV values, while changing the second byte. Once he doesn’t receive a padding error, using some basic math the value of the plain-text second byte is determined as in figure 5.
@@ -289,7 +290,7 @@ Out of those, Encrypt-then-MAC is the recommended approach to authenticated encr
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.7.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
       </footer>
       <!-- /footer -->
 
