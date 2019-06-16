@@ -161,8 +161,8 @@ The key management for this encryption is troublesome, especially if a unique se
 <h2>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Permalink to this headline">¶</a></h2>
 <p>It also known as Public Key Cryptography (PKC) <a class="reference internal" href="references/References.html#kessler" id="id9">[Kes17]</a>. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:</p>
 <ul class="simple">
-<li><strong>The public key:</strong> which is used to encrypt data by anyone.</li>
-<li><strong>The private key:</strong> which is kept secret and is used to decrypt data.</li>
+<li><p><strong>The public key:</strong> which is used to encrypt data by anyone.</p></li>
+<li><p><strong>The private key:</strong> which is kept secret and is used to decrypt data.</p></li>
 </ul>
 <p>This double key feature surmounts the symmetric encryption problem of managing keys, but also makes it mathematically more prone to attacks <a class="reference internal" href="references/References.html#tamimi" id="id10">[Tam06]</a>.
 Moreover, this duality provides authentication and non-repudiation with the assumption that the private key is kept secret <a class="reference internal" href="references/References.html#kessler" id="id11">[Kes17]</a>.
@@ -185,8 +185,8 @@ A stream cipher consists essentially of a key stream generator and a mixing func
 The mixing function is usually a XOR, and the key stream generator is the main unit of the encryption <a class="reference internal" href="references/References.html#kessler" id="id21">[Kes17]</a><a class="reference internal" href="references/References.html#tamimi" id="id22">[Tam06]</a>.
 There are several types of stream ciphers but only two are worth mentioning here:</p>
 <ul class="simple">
-<li><strong>Self-synchronizing stream cipher</strong> calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors <a class="reference internal" href="references/References.html#kessler" id="id23">[Kes17]</a>.</li>
-<li><strong>Synchronous stream ciphers</strong> generate the key-stream independently and use the same generation function at both sender and receiver <a class="reference internal" href="references/References.html#tamimi" id="id24">[Tam06]</a>. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited <a class="reference internal" href="references/References.html#kessler" id="id25">[Kes17]</a>.</li>
+<li><p><strong>Self-synchronizing stream cipher</strong> calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors <a class="reference internal" href="references/References.html#kessler" id="id23">[Kes17]</a>.</p></li>
+<li><p><strong>Synchronous stream ciphers</strong> generate the key-stream independently and use the same generation function at both sender and receiver <a class="reference internal" href="references/References.html#tamimi" id="id24">[Tam06]</a>. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited <a class="reference internal" href="references/References.html#kessler" id="id25">[Kes17]</a>.</p></li>
 </ul>
 <div class="section" id="padding">
 <h4>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h4>
@@ -267,7 +267,7 @@ This is further explained in the following post <span class="xref std std-doc">A
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.1.
       </footer>
       <!-- /footer -->
 

@@ -169,31 +169,31 @@ In the following table, we summarize the previous main steps, as for a detailed 
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="47%" />
-<col width="53%" />
+<col style="width: 47%" />
+<col style="width: 53%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><ol class="first last upperroman simple">
-<li>Training phase:</li>
+<tbody>
+<tr class="row-odd"><td><ol class="upperroman simple">
+<li><p>Training phase:</p></li>
 </ol>
 </td>
-<td><ol class="first last upperroman simple" start="2">
-<li>Testing phase</li>
+<td><ol class="upperroman simple" start="2">
+<li><p>Testing phase</p></li>
 </ol>
 </td>
 </tr>
-<tr class="row-even"><td><ol class="first last arabic simple">
-<li>Data formatting and management</li>
-<li>Extracting MFCC features from the training data</li>
-<li>Training gender GMMs</li>
+<tr class="row-even"><td><ol class="arabic simple">
+<li><p>Data formatting and management</p></li>
+<li><p>Extracting MFCC features from the training data</p></li>
+<li><p>Training gender GMMs</p></li>
 </ol>
 </td>
-<td><ol class="first last arabic simple" start="4">
-<li>Extracting MFCC features from the testing data</li>
-<li>Scoring the extracted MFCCs against the GMMs</li>
-<li>Recognizing the speaker’s gender based on the scores</li>
+<td><ol class="arabic simple" start="4">
+<li><p>Extracting MFCC features from the testing data</p></li>
+<li><p>Scoring the extracted MFCCs against the GMMs</p></li>
+<li><p>Recognizing the speaker’s gender based on the scores</p></li>
 </ol>
 </td>
 </tr>
@@ -214,8 +214,8 @@ In the following table, we summarize the previous main steps, as for a detailed 
 <h2>Data formatting<a class="headerlink" href="#data-formatting" title="Permalink to this headline">¶</a></h2>
 <p>Once you download your data-set, you will need to split it into two different sets:</p>
 <ul class="simple">
-<li>Training set: This set will be used to train the gender models.</li>
-<li>Testing set: This one will serve for testing the accuracy of the gender recognition.</li>
+<li><p>Training set: This set will be used to train the gender models.</p></li>
+<li><p>Testing set: This one will serve for testing the accuracy of the gender recognition.</p></li>
 </ul>
 <p>I usually use 2/3 of the the data for the training and 1/3 for the testing, but you can adjust that to your needs/ wishes.
 The code provides an option for running the whole cycle using “Run.py” or you can go step by step and for the data management just run the following in your terminal:</p>
@@ -228,11 +228,11 @@ The code provides an option for running the whole cycle using “Run.py” or yo
 <p>The Mel-Frequency Cepstrum Coefficients (MFCC) are used here, since they deliver the best results in speaker verification.
 MFCCs are commonly derived as follows:</p>
 <ol class="arabic simple">
-<li>Take the Fourier transform of (a windowed excerpt of) a signal.</li>
-<li>Map the powers of the spectrum obtained above onto the mel scale, using triangular overlapping windows.</li>
-<li>Take the logs of the powers at each of the mel frequencies.</li>
-<li>Take the discrete cosine transform of the list of mel log powers, as if it were a signal.</li>
-<li>The MFCCs are the amplitudes of the resulting spectrum.</li>
+<li><p>Take the Fourier transform of (a windowed excerpt of) a signal.</p></li>
+<li><p>Map the powers of the spectrum obtained above onto the mel scale, using triangular overlapping windows.</p></li>
+<li><p>Take the logs of the powers at each of the mel frequencies.</p></li>
+<li><p>Take the discrete cosine transform of the list of mel log powers, as if it were a signal.</p></li>
+<li><p>The MFCCs are the amplitudes of the resulting spectrum.</p></li>
 </ol>
 <p>To extract MFCC features I usually use the <a class="reference external" href="https://python-speech-features.readthedocs.io/en/latest/">python_speech_features</a> library, it is simple to use and well documented:</p>
 <div class="literal-block-wrapper docutils container" id="featuresextraction">
@@ -292,18 +292,19 @@ MFCCs are commonly derived as follows:</p>
 <h2>Gaussian Mixture Models<a class="headerlink" href="#gaussian-mixture-models" title="Permalink to this headline">¶</a></h2>
 <p>According to D. Reynolds in <a class="reference external" href="https://pdfs.semanticscholar.org/734b/07b53c23f74a3b004d7fe341ae4fce462fc6.pdf">Gaussian_Mixture_Models</a>:</p>
 <blockquote>
-<div>&lt;&lt; A Gaussian Mixture Model (GMM) is a parametric probability density function represented as a weighted sum of Gaussian component densities. GMMs are commonly used as a parametric model of the probability distribution of continuous measurements or features in a biometric system, such as vocal-tract related spectral features in a speaker recognition system. GMM parameters are estimated from training data using the iterative Expectation-Maximization (EM) algorithm or Maximum A Posteriori(MAP) estimation from a well-trained prior model. &gt;&gt;</div></blockquote>
+<div><p>&lt;&lt; A Gaussian Mixture Model (GMM) is a parametric probability density function represented as a weighted sum of Gaussian component densities. GMMs are commonly used as a parametric model of the probability distribution of continuous measurements or features in a biometric system, such as vocal-tract related spectral features in a speaker recognition system. GMM parameters are estimated from training data using the iterative Expectation-Maximization (EM) algorithm or Maximum A Posteriori(MAP) estimation from a well-trained prior model. &gt;&gt;</p>
+</div></blockquote>
 <p>In a some way, you can consider a Gaussian mixture model as a probabilistic clustering representing a certain data distribution as a sum of Gaussian density functions (check <a class="reference external" href="../_static/figures/fig6.html">Fig_6</a>).
-These densities forming a GMM are also called the components of the GMM. The likelihood of data points (feature vectors) for a model is given by following equation <a class="footnote-reference" href="#id9" id="id1">[6]</a> <span class="math notranslate nohighlight">\(\begin{equation}
+These densities forming a GMM are also called the components of the GMM. The likelihood of data points (feature vectors) for a model is given by following equation <a class="footnote-reference brackets" href="#id9" id="id1">6</a> <span class="math notranslate nohighlight">\(\begin{equation}
 P(X | \lambda)=\sum_{k=1}^{K} w_{k} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)
 \end{equation}\)</span>, where <span class="math notranslate nohighlight">\(\begin{equation} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)=\frac{1}{\sqrt{2 \pi\left|\Sigma_{k}\right|}} e^{\frac{1}{2}\left(X-\mu_{k}\right)^{T} \Sigma^{-1}\left(X-\mu_{k}\right)} \end{equation}\)</span>
 is the Gaussian distribution, with:</p>
 <ul class="simple">
-<li><span class="math notranslate nohighlight">\(\lambda\)</span> represents the training data.</li>
-<li><span class="math notranslate nohighlight">\(\mu\)</span> is the mean.</li>
-<li><span class="math notranslate nohighlight">\(\Sigma\)</span> is co-variance matrices.</li>
-<li><span class="math notranslate nohighlight">\(w_{k}\)</span> represent the weights.</li>
-<li><span class="math notranslate nohighlight">\(k\)</span> refers the index of the GMM components.</li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> represents the training data.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the mean.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Sigma\)</span> is co-variance matrices.</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_{k}\)</span> represent the weights.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> refers the index of the GMM components.</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/pic.png"><img alt="../_images/pic.png" class="align-center" src="../_images/pic.png" style="width: 612.0px; height: 489.59999999999997px;" /></a>
 <div class="clt">
@@ -368,17 +369,17 @@ is the Gaussian distribution, with:</p>
 <div class="section" id="gender-identification">
 <h2>Gender identification<a class="headerlink" href="#gender-identification" title="Permalink to this headline">¶</a></h2>
 <p>The identification is done over three steps: first you retrieve the voice features, then you compute their likelihood of belonging to a certain gender and finally your compare both scores and make a decision on the probable gender.
-The computation of the scores is done as follows <a class="footnote-reference" href="#id4" id="id2">[1]</a>:</p>
+The computation of the scores is done as follows <a class="footnote-reference brackets" href="#id4" id="id2">1</a>:</p>
 <blockquote>
 <div><p>Given a speech Y and speaker S, the gender recognition test can be restated into a basic hypothesis test between <span class="math notranslate nohighlight">\(H_{f}\)</span> and <span class="math notranslate nohighlight">\(H_{m}\)</span>, where:</p>
 <ul class="simple">
-<li><span class="math notranslate nohighlight">\(H_{f}\)</span> : Y is a FEMALE</li>
-<li><span class="math notranslate nohighlight">\(H_{f}\)</span> : Y is a MALE</li>
+<li><p><span class="math notranslate nohighlight">\(H_{f}\)</span> : Y is a FEMALE</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_{f}\)</span> : Y is a MALE</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-euler">
 \begin{eqnarray}
     \frac{p\left(Y | H_{f}\right)}{p\left(Y | H_{m}\right)} = \left\{\begin{array}{ll}{ \geq 1} &amp; {\text { accept } H_{f}} \\ {&lt; 1} &amp; {\text { reject } H_{m}}\end{array} \right.
-\end{eqnarray}</div><p>where <span class="math notranslate nohighlight">\(\begin{eqnarray} p\left(Y | H_{i}\right) \end{eqnarray}\)</span>, is the probability density function for the hypothesis <span class="math notranslate nohighlight">\(H_{i}\)</span> evaluated for the observed speech segment Y, also called <em>the likelihood of the hypothesis</em> <span class="math notranslate nohighlight">\(H_{i}\)</span> given the speech segment Y <a class="footnote-reference" href="#id4" id="id3">[1]</a>.</p>
+\end{eqnarray}</div><p>where <span class="math notranslate nohighlight">\(\begin{eqnarray} p\left(Y | H_{i}\right) \end{eqnarray}\)</span>, is the probability density function for the hypothesis <span class="math notranslate nohighlight">\(H_{i}\)</span> evaluated for the observed speech segment Y, also called <em>the likelihood of the hypothesis</em> <span class="math notranslate nohighlight">\(H_{i}\)</span> given the speech segment Y <a class="footnote-reference brackets" href="#id4" id="id3">1</a>.</p>
 </div></blockquote>
 <div class="literal-block-wrapper docutils container" id="genderidentification">
 <div class="code-block-caption"><span class="caption-text">GenderIdentification.py</span><a class="headerlink" href="#genderidentification" title="Permalink to this code">¶</a></div>
@@ -468,24 +469,24 @@ Obviously the code provided on GitHub is more structured and advanced than what 
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="35%" />
-<col width="31%" />
+<col style="width: 33%" />
+<col style="width: 35%" />
+<col style="width: 31%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>&#160;</td>
-<td>Female expected</td>
-<td>Male expected</td>
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p>Female expected</p></td>
+<td><p>Male expected</p></td>
 </tr>
-<tr class="row-even"><td>Female guessed</td>
-<td>563</td>
-<td>28</td>
+<tr class="row-even"><td><p>Female guessed</p></td>
+<td><p>563</p></td>
+<td><p>28</p></td>
 </tr>
-<tr class="row-odd"><td>Male guessed</td>
-<td>21</td>
-<td>376</td>
+<tr class="row-odd"><td><p>Male guessed</p></td>
+<td><p>21</p></td>
+<td><p>376</p></td>
 </tr>
 </tbody>
 </table>
@@ -496,57 +497,41 @@ Obviously the code provided on GitHub is more structured and advanced than what 
 </div>
 <p>Using the previous results we can compute the following system characteristics:</p>
 <ul class="simple">
-<li>Precision for female recognition = 563 / (563 + 28) = 0.95</li>
-<li>Precision for   male recognition = 376 / (376 + 21) = 0.94</li>
-<li>Accuracy  =  939 / 988 = 0.95</li>
+<li><p>Precision for female recognition = 563 / (563 + 28) = 0.95</p></li>
+<li><p>Precision for   male recognition = 376 / (376 + 21) = 0.94</p></li>
+<li><p>Accuracy  =  939 / 988 = 0.95</p></li>
 </ul>
 </div>
 <div class="section" id="conclusions">
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>The system results in a <strong>95%</strong> accuracy of gender detection, but this can be different for other data-sets.</li>
-<li>The code can be further optimized using multi-threading, acceleration libs and multi-processing.</li>
-<li>The accuracy can be further improved using GMM normalization aka a UBM-GMM system.</li>
+<li><p>The system results in a <strong>95%</strong> accuracy of gender detection, but this can be different for other data-sets.</p></li>
+<li><p>The code can be further optimized using multi-threading, acceleration libs and multi-processing.</p></li>
+<li><p>The accuracy can be further improved using GMM normalization aka a UBM-GMM system.</p></li>
 </ul>
 </div>
 <div class="section" id="further-readings">
 <h2>Further readings<a class="headerlink" href="#further-readings" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> Reynolds, Douglas A., Thomas F. Quatieri, and Robert B. Dunn. Speaker Verification Using Adapted Gaussian Mixture Models, Digital signal processing 10.1 (2000): 19-41. <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.117.338&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.117.338&amp;rep=rep1&amp;type=pdf</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td>Sérgio R. F. Vieira, Eduardo M. B. de A. Tenório and Tsang Ing Ren, Speaker Verification Using Adapted Gaussian Mixture Models, August, 2014, <a class="reference external" href="https://github.com/embatbr/speech-verify/blob/master/report/report.pdf">https://github.com/embatbr/speech-verify/blob/master/report/report.pdf</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[3]</td><td>Sina Khanmohammadi, Chun-AnChou, A Gaussian mixture model based discretization algorithm for associative classification of medical data, July, 2015, <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0957417416301440">https://www.sciencedirect.com/science/article/pii/S0957417416301440</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[4]</td><td>Hanilçi, Cemal &amp; Ertas, Figen. (2013). Investigation of the effect of data duration and speaker gender on text-independent speaker recognition. Computers &amp; Electrical Engineering. 39. 10.1016/j.compeleceng.2012.09.014. <a class="reference external" href="https://www.researchgate.net/publication/235995473_Investigation_of_the_effect_of_data_duration_and_speaker_gender_on_text-independent_speaker_recognition">https://www.researchgate.net/publication/235995473_Investigation_of_the_effect_of_data_duration_and_speaker_gender_on_text-independent_speaker_recognition</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[5]</td><td>The present and future of voiceprint based security <a class="reference external" href="http://www.apsipa.org/doc/APSIPA%20Distinguished%20Lecture%20Presentation%20Slides%20-%20Professor%20Eliathamby%20Ambikairajah%2021%20October%202013.pdf">PDF</a> and <a class="reference external" href="https://www.youtube.com/watch?v=mA5nxayMfFs">Lecture-video</a>.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[6]</a></td><td>Machine Learning in Action: Voice Gender Detection using GMMs : A Python Primer, <a class="reference external" href="https://appliedmachinelearning.blog/2017/06/14/voice-gender-detection-using-gmms-a-python-primer/">https://appliedmachinelearning.blog/2017/06/14/voice-gender-detection-using-gmms-a-python-primer/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Reynolds, Douglas A., Thomas F. Quatieri, and Robert B. Dunn. Speaker Verification Using Adapted Gaussian Mixture Models, Digital signal processing 10.1 (2000): 19-41. <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.117.338&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.117.338&amp;rep=rep1&amp;type=pdf</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">2</span></dt>
+<dd><p>Sérgio R. F. Vieira, Eduardo M. B. de A. Tenório and Tsang Ing Ren, Speaker Verification Using Adapted Gaussian Mixture Models, August, 2014, <a class="reference external" href="https://github.com/embatbr/speech-verify/blob/master/report/report.pdf">https://github.com/embatbr/speech-verify/blob/master/report/report.pdf</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">3</span></dt>
+<dd><p>Sina Khanmohammadi, Chun-AnChou, A Gaussian mixture model based discretization algorithm for associative classification of medical data, July, 2015, <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0957417416301440">https://www.sciencedirect.com/science/article/pii/S0957417416301440</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">4</span></dt>
+<dd><p>Hanilçi, Cemal &amp; Ertas, Figen. (2013). Investigation of the effect of data duration and speaker gender on text-independent speaker recognition. Computers &amp; Electrical Engineering. 39. 10.1016/j.compeleceng.2012.09.014. <a class="reference external" href="https://www.researchgate.net/publication/235995473_Investigation_of_the_effect_of_data_duration_and_speaker_gender_on_text-independent_speaker_recognition">https://www.researchgate.net/publication/235995473_Investigation_of_the_effect_of_data_duration_and_speaker_gender_on_text-independent_speaker_recognition</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">5</span></dt>
+<dd><p>The present and future of voiceprint based security <a class="reference external" href="http://www.apsipa.org/doc/APSIPA%20Distinguished%20Lecture%20Presentation%20Slides%20-%20Professor%20Eliathamby%20Ambikairajah%2021%20October%202013.pdf">PDF</a> and <a class="reference external" href="https://www.youtube.com/watch?v=mA5nxayMfFs">Lecture-video</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id1">6</a></span></dt>
+<dd><p>Machine Learning in Action: Voice Gender Detection using GMMs : A Python Primer, <a class="reference external" href="https://appliedmachinelearning.blog/2017/06/14/voice-gender-detection-using-gmms-a-python-primer/">https://appliedmachinelearning.blog/2017/06/14/voice-gender-detection-using-gmms-a-python-primer/</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -601,7 +586,7 @@ Obviously the code provided on GitHub is more structured and advanced than what 
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.1.
       </footer>
       <!-- /footer -->
 
