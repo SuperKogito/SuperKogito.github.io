@@ -5,6 +5,12 @@
 		"GMM",
 		"MFCC",
 		"MFCCs",
-		"cepstrum"
+		"cepstrum",
+		"dataset",
+		"decrypting",
+		"dimensionality",
+		"href",
+		"html",
+		"toctree"
 	]
 }

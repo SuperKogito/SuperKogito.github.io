@@ -13,6 +13,8 @@
    :location: Munich
    :language: English
 
+-----------------------
+
 .. image:: ../_static/vbgraph.png
   :align: center
   :scale: 85%
@@ -21,12 +23,30 @@
 
   <div class="clt">
   <br>
-  <center><a href="../_static/figures/fig4.html" > Fig 4: Voice based gender recognition overview</a> </center>
+  <center><a href="../figures/fig4.html" > Fig 4: Voice based gender recognition overview</a> </center>
   <br>
   </div>
 
 This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
-The post provides an explanation of the following GitHub-project Voice-based-gender-recognition_.
+The post provides an explanation of the following GitHub-project |img1| Voice-based-gender-recognition_.
+
+.. |img1| image:: ../_static/github.png
+   :target: https://github.com/SuperKogito/Voice-based-gender-recognition
+   :scale: 65%
+
+.. raw:: html
+
+  <table align="center" style="width:100%">
+    <tr>
+        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/subscription" data-size="large" data-show-count="true" aria-label="Watch SuperKogito/Voice-based-gender-recognition on GitHub">Watch</a> </th>
+        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition" data-size="large" data-show-count="true" aria-label="Star SuperKogito/Voice-based-gender-recognition on GitHub">Star</a> </th>
+        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/fork" data-size="large" data-show-count="true" aria-label="Fork SuperKogito/Voice-based-gender-recognition on GitHub">Fork</a> </th>
+        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/archive/master.zip" data-size="large" aria-label="Download SuperKogito/Voice-based-gender-recognition on GitHub">Download</a> </th>
+        <th> <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a> </th>
+    </tr>
+  </table>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 The aforementioned implementation, uses The Free ST American English Corpus data-set (SLR45_), which is a free American English corpus by Surfingtech_, containing utterances from 10 speakers (5 females and 5 males).
 
 
@@ -54,7 +74,7 @@ In the following table, we summarize the previous main steps, as for a detailed 
 
   <div class="clt">
   <br>
-  <center><a href="../_static/tables/table1.html" >Table 1: Main steps of the voice based gender recognition</a> </center>
+  <center><a href="../tables/table1.html" >Table 1: Main steps of the voice based gender recognition</a> </center>
   </div>
 
 Workflow graph
@@ -68,7 +88,7 @@ Workflow graph
 
   <div class="clt">
   <br>
-  <center><a href="../_static/figures/fig5.html" >Fig 5: Voice based gender recognition</a> </center>
+  <center><a href="../figures/fig5.html" >Fig 5: Voice based gender recognition</a> </center>
   </div>
 
 
@@ -156,7 +176,7 @@ is the Gaussian distribution, with:
 .. raw:: html
 
   <div class="clt">
-  <center><a href="../_static/figures/fig6.html" >Fig 6: Gaussian mixture model </a> </center>
+  <center><a href="../figures/fig6.html" >Fig 6: Gaussian mixture model </a> </center>
   </div>
 
 |
@@ -262,7 +282,7 @@ The computation of the scores is done as follows [1]_:
 
 Code & scripts
 ---------------
-The full code for this approach to voice based gender identification can be found on GitHub under Voice-based-gender-recognition_
+The full code for this approach to voice based gender identification can be found on GitHub under |img1| Voice-based-gender-recognition_
 Obviously the code provided on GitHub is more structured and advanced than what provided here since it is used to process multiple files,and to compute the accuracy level
 
 Results summary
@@ -278,10 +298,11 @@ The results of the gender recognition tests can be summarized in the following t
 +----------------+-----------------+---------------+
 | Male guessed   |  21             | 376           |
 +----------------+-----------------+---------------+
+
 .. raw:: html
 
   <div class="clt">
-  <center><a href="../_static/tables/table2.html" >Table 2: Gender recognition results summary (confusion matrix) </a> </center>
+  <center><a href="../tables/table2.html" >Table 2: Gender recognition results summary (confusion matrix) </a> </center>
   </div>
 
 |
@@ -299,8 +320,8 @@ Conclusions
 - The code can be further optimized using multi-threading, acceleration libs and multi-processing.
 - The accuracy can be further improved using GMM normalization aka a UBM-GMM system.
 
-Further readings
------------------
+References and Further readings
+--------------------------------
 
 .. [1] Reynolds, Douglas A., Thomas F. Quatieri, and Robert B. Dunn. Speaker Verification Using Adapted Gaussian Mixture Models, Digital signal processing 10.1 (2000): 19-41. http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.117.338&rep=rep1&type=pdf
 .. [2] Sérgio R. F. Vieira, Eduardo M. B. de A. Tenório and Tsang Ing Ren, Speaker Verification Using Adapted Gaussian Mixture Models, August, 2014, https://github.com/embatbr/speech-verify/blob/master/report/report.pdf
@@ -319,5 +340,10 @@ Further readings
 .. _python_speech_features: https://python-speech-features.readthedocs.io/en/latest/
 .. _scikit-learn-gmm: https://scikit-learn.org/stable/modules/mixture.html
 .. _scikit-learn-library: https://scikit-learn.org
-..  _Fig_5: ../_static/figures/fig5.html
-..  _Fig_6: ../_static/figures/fig6.html
+..  _Fig_5: ../figures/fig5.html
+..  _Fig_6: ../figures/fig6.html
+
+
+.. |img1| image:: ../_static/github.png
+   :target: https://github.com/SuperKogito/Voice-based-gender-recognition
+   :scale: 65%

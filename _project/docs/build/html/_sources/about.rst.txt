@@ -8,6 +8,8 @@ About Me
 
 |
 
+-----------------------
+
 .. image:: _static/me.gif
    :align: left
    :width: 96pt

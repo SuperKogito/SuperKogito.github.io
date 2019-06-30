@@ -15,6 +15,7 @@
    :location: Munich
    :language: English
 
+-----------------------
 
 Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called "decryption" :cite:`Kessler`.
 These operations can be explained by the following formulas: :math:`C=E_{k}(P)` and :math:`P=D_{k}(C)`, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key :cite:`Kessler`.
@@ -70,13 +71,20 @@ This makes the data generically processable and is called padding. There are var
 
 .. raw:: html
 
-  <center><a href="../_static/figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
+  <center><a href="../figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
   </div>
 
 **Remark:** When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
 This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack :cite:`Moxie`.
-This is further explained in the following post :doc:`Authenticated Encryption <AuthenticatedEncryption.rst>` .
+This is further explained in the following post Authenticated_Encryption_ .
 
 
-.. toctree::
-   references/References
+References and Further readings
+--------------------------------
+
+.. bibliography:: references/refs.bib
+   :cited:
+
+
+
+.. _Authenticated_Encryption : AuthenticatedEncryption.html

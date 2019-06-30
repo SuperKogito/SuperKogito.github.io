@@ -6,12 +6,14 @@
    :keywords: Authenticated Encryption, Encryption, Hashing, Security, Ayoub Malek, Cybersecurity
    :author: Ayoub Malek
 
-.. post:: Mar 25, 2019
+.. post:: May 1, 2019
    :tags: [Authenticated Encryption],[Encryption],[Hashing],[Security]
    :category: Cybersecurity
    :author: Ayoub Malek
    :location: Munich
    :language: English
+
+-----------------------
 
 With growing dependency on information technology and more at stake, the security aspect has become more vital than ever.
 Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data :cite:`bellare`.
@@ -43,11 +45,11 @@ This results in the following three different approaches:
 - **MAC and Encrypt (M\&E):** In this approach the sender computes a MAC of the P, encrypts the P, and then appends the MAC to the C :cite:`Moxie`.
   This is how SSH works and can be described by:
   :math:`C = E_{k1}(P) || MAC_{k2}(P)`
-|
+
 - **MAC-then-Encrypt (MtE):** Here the sender computes a MAC of the P, then encrypts both the P and the MAC :cite:`Moxie`.
   This is approximately how SSL works.
   :math:`C = E_{k1}(P || MAC_{k2}(P))`
-|
+
 - **Encrypt-then-MAC (EtM):** It consists of encrypting the P first and then appending a MAC of the result :cite:`Moxie`.
   This scheme is used in IPsec and can be summed by:
   :math:`C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))`
@@ -58,7 +60,7 @@ This results in the following three different approaches:
 
 .. raw:: html
 
-  <center><a href="../_static/figures/fig3.html" >Fig3: SE and MAC combinations</a> </center>
+  <center><a href="../figures/fig3.html" >Figure 3: SE and MAC combinations</a> </center>
   </div>
 
 
@@ -94,5 +96,9 @@ To summarize, AE is a combination of SE and MAC that ensures integrity, authenti
 Out of those, Encrypt-then-MAC is the recommended approach to authenticated encryption. However, MAC-then-encrypt is still a safe and fast approach under certain tight conditions (the case of SSL for instance).
 
 
-.. toctree::
-   references/References
+
+References and Further readings
+--------------------------------
+
+.. bibliography:: references/refs.bib
+   :cited:

@@ -13,6 +13,8 @@
    :location: Munich
    :language: English
 
+-----------------------
+
 Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See :cite:`Tamimi,Oak`.
 It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory :cite:`Kessler`.
 The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.
@@ -95,9 +97,12 @@ The most known algorithms are summarized below:
                 </li>
             </ul>
     </ul>
-    <center><a href="../_static/figures/fig1.html" >Fig1: Cryptographic algorithms </a> </center>
+    <center><a href="../figures/fig1.html" >Figure 1: Cryptographic algorithms </a> </center>
     </div>
 
 
-.. toctree::
-   references/References
+References and Further readings
+--------------------------------
+
+.. bibliography:: references/refs.bib
+   :cited:

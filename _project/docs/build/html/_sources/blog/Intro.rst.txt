@@ -3,7 +3,7 @@
 
 .. meta::
    :description: First post: Blog introduction
-   :keywords: Blog introduction, First post, Ayoub Malek, Blogging 
+   :keywords: Blog introduction, First post, Ayoub Malek, Blogging
    :author: Ayoub Malek
 
 .. post:: Feb 10, 2019
@@ -12,6 +12,8 @@
    :author: Ayoub Malek
    :location: Munich
    :language: English
+
+-----------------------
 
 This first blog is a quick introduction of my profile, and motives to start a blog.
 In this post I will be answering the following questions:

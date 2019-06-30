@@ -95,7 +95,10 @@
 <li><a class="reference internal" href="#types-of-cryptographic-algorithms">Types of cryptographic algorithms</a></li>
 <li><a class="reference internal" href="#encryption-vs-hashing">Encryption vs Hashing</a></li>
 <li><a class="reference internal" href="#encryption-and-decryption">Encryption and Decryption</a></li>
-<li><a class="reference internal" href="#a-summary-of-cryptographic-algorithms">A summary of cryptographic algorithms</a></li>
+<li><a class="reference internal" href="#a-summary-of-cryptographic-algorithms">A summary of cryptographic algorithms</a><ul>
+<li><a class="reference internal" href="#references-and-further-readings">References and Further readings</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -144,6 +147,7 @@
                   
   <div class="section" id="cryptography-overview">
 <h1>[17.02.2019] Cryptography overview<a class="headerlink" href="#cryptography-overview" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
 <p>Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See <a class="reference internal" href="references/References.html#tamimi" id="id1">[Tam06]</a><a class="reference internal" href="references/References.html#oak" id="id2">[Oak18]</a>.
 It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory <a class="reference internal" href="references/References.html#kessler" id="id3">[Kes17]</a>.
 The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.</p>
@@ -151,9 +155,9 @@ The following post provides a quick overview of various cryptography concepts su
 <h2>Types of cryptographic algorithms<a class="headerlink" href="#types-of-cryptographic-algorithms" title="Permalink to this headline">¶</a></h2>
 <p>Cryptographic algorithms can be classified according to various criteria <a class="reference internal" href="references/References.html#kessler" id="id4">[Kes17]</a>. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:</p>
 <ul class="simple">
-<li><strong>Secret Key Cryptography (SKC):</strong> or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality <a class="reference internal" href="references/References.html#kessler" id="id5">[Kes17]</a><a class="reference internal" href="references/References.html#tamimi" id="id6">[Tam06]</a>.</li>
-<li><strong>Public Key Cryptography (PKC):</strong> or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption <a class="reference internal" href="references/References.html#kessler" id="id7">[Kes17]</a>. It is essentially used for authentication, non-repudiation, and key exchange <a class="reference internal" href="references/References.html#tamimi" id="id8">[Tam06]</a>.</li>
-<li><strong>Hash Functions:</strong> Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness <a class="reference internal" href="references/References.html#kessler" id="id9">[Kes17]</a>.</li>
+<li><p><strong>Secret Key Cryptography (SKC):</strong> or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality <a class="reference internal" href="references/References.html#kessler" id="id5">[Kes17]</a><a class="reference internal" href="references/References.html#tamimi" id="id6">[Tam06]</a>.</p></li>
+<li><p><strong>Public Key Cryptography (PKC):</strong> or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption <a class="reference internal" href="references/References.html#kessler" id="id7">[Kes17]</a>. It is essentially used for authentication, non-repudiation, and key exchange <a class="reference internal" href="references/References.html#tamimi" id="id8">[Tam06]</a>.</p></li>
+<li><p><strong>Hash Functions:</strong> Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness <a class="reference internal" href="references/References.html#kessler" id="id9">[Kes17]</a>.</p></li>
 </ul>
 </div>
 <div class="section" id="encryption-vs-hashing">
@@ -220,11 +224,36 @@ The most known algorithms are summarized below:</p>
             </li>
         </ul>
 </ul>
-<center><a href="../_static/figures/fig1.html" >Fig1: Cryptographic algorithms </a> </center>
-</div><div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="references/References.html">References</a></li>
-</ul>
+<center><a href="../figures/fig1.html" >Figure 1: Cryptographic algorithms </a> </center>
+</div><div class="section" id="references-and-further-readings">
+<h3>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h3>
+<p id="bibtex-bibliography-blog/Cryptography-0"><dl class="citation">
+<dt class="label" id="nampere"><span class="brackets">CNS14</span></dt>
+<dd><p>P. Rogaway C. Namprempre and T. Shrimpton. Reconsidering generic composition. 2014.</p>
+</dd>
+<dt class="label" id="kessler"><span class="brackets">Kes17</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id5">3</a>,<a href="#id7">4</a>,<a href="#id9">5</a>,<a href="#id13">6</a>,<a href="#id14">7</a>,<a href="#id15">8</a>)</span></dt>
+<dd><p>Gary C. Kessler. An Overview of Cryptography. 2017.</p>
+</dd>
+<dt class="label" id="hugo"><span class="brackets">Kra01</span></dt>
+<dd><p>H. Krawczyk. The order of encryption and authentication for protecting communications (or: how secure is ssl?). 2001.</p>
+</dd>
+<dt class="label" id="bellare"><span class="brackets">MB07</span></dt>
+<dd><p>C. Nampremere M. Bellare. Authenticated encryption: relations among notions and analysis of the generic composition paradigm. 2007.</p>
+</dd>
+<dt class="label" id="moxie"><span class="brackets">Mar18</span></dt>
+<dd><p>M. Marlinspike. blog: The Cryptographic Doom Principle,. <span><a class="reference external" href="#"></a></span>https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017, 05.01.2018.</p>
+</dd>
+<dt class="label" id="oak"><span class="brackets">Oak18</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id10">2</a>)</span></dt>
+<dd><p>Madhura Oak. Symmetric Cryptography. <span><a class="reference external" href="#"></a></span>https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/, 05.01.2018.</p>
+</dd>
+<dt class="label" id="ssl"><span class="brackets">ssl2buy18</span><span class="fn-backref">(<a href="#id11">1</a>,<a href="#id12">2</a>)</span></dt>
+<dd><p>ssl2buy. Difference Between Hashing and Encryption. <span><a class="reference external" href="#"></a></span>https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption, 05.01.2018.</p>
+</dd>
+<dt class="label" id="tamimi"><span class="brackets">Tam06</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>,<a href="#id8">3</a>)</span></dt>
+<dd><p>Abdel-Karim Al Tamimi. Performance Analysis of Data Encryption Algorithms. 2006.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 </div>
@@ -287,7 +316,7 @@ The most known algorithms are summarized below:</p>
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.0.
       </footer>
       <!-- /footer -->
 

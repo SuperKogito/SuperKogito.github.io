@@ -7,6 +7,8 @@ Games
    :author: Ayoub Malek
 
 
+-----------------------
+
 .. toctree::
    games/snake
    :maxdepth: 1

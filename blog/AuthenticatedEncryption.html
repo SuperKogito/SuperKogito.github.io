@@ -98,6 +98,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+<li><a class="reference internal" href="#references-and-further-readings">References and Further readings</a></li>
 </ul>
 </li>
 </ul>
@@ -146,6 +147,7 @@
                   
   <div class="section" id="authenticated-encryption">
 <h1>[01-04-2019] Authenticated encryption<a class="headerlink" href="#authenticated-encryption" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
 <p>With growing dependency on information technology and more at stake, the security aspect has become more vital than ever.
 Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data <a class="reference internal" href="references/References.html#bellare" id="id1">[MB07]</a>.
 AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders <a class="reference internal" href="references/References.html#nampere" id="id2">[CNS14]</a>.
@@ -172,35 +174,25 @@ The authenticated encryption combination of MAC and SE provides Integrity and Au
 To describe these three methods effectively, we consider P as Plain-text, C as Cipher-text, SE is a symmetric encryption function, K stands for Key, MAC is a message authentication code, T is the generated tag and || denotes concatenation.
 This results in the following three different approaches:</p>
 <ul class="simple">
-<li><strong>MAC and Encrypt (M&amp;E):</strong> In this approach the sender computes a MAC of the P, encrypts the P, and then appends the MAC to the C <a class="reference internal" href="references/References.html#moxie" id="id5">[Mar18]</a>.
+<li><p><strong>MAC and Encrypt (M&amp;E):</strong> In this approach the sender computes a MAC of the P, encrypts the P, and then appends the MAC to the C <a class="reference internal" href="references/References.html#moxie" id="id5">[Mar18]</a>.
 This is how SSH works and can be described by:
-<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(P)\)</span></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><strong>MAC-then-Encrypt (MtE):</strong> Here the sender computes a MAC of the P, then encrypts both the P and the MAC <a class="reference internal" href="references/References.html#moxie" id="id6">[Mar18]</a>.
+<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(P)\)</span></p></li>
+<li><p><strong>MAC-then-Encrypt (MtE):</strong> Here the sender computes a MAC of the P, then encrypts both the P and the MAC <a class="reference internal" href="references/References.html#moxie" id="id6">[Mar18]</a>.
 This is approximately how SSL works.
-<span class="math notranslate nohighlight">\(C = E_{k1}(P || MAC_{k2}(P))\)</span></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><strong>Encrypt-then-MAC (EtM):</strong> It consists of encrypting the P first and then appending a MAC of the result <a class="reference internal" href="references/References.html#moxie" id="id7">[Mar18]</a>.
+<span class="math notranslate nohighlight">\(C = E_{k1}(P || MAC_{k2}(P))\)</span></p></li>
+<li><p><strong>Encrypt-then-MAC (EtM):</strong> It consists of encrypting the P first and then appending a MAC of the result <a class="reference internal" href="references/References.html#moxie" id="id7">[Mar18]</a>.
 This scheme is used in IPsec and can be summed by:
-<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))\)</span></li>
+<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))\)</span></p></li>
 </ul>
 <img alt="../_images/ae.png" class="align-center" src="../_images/ae.png" />
-<center><a href="../_static/figures/fig3.html" >Fig3: SE and MAC combinations</a> </center>
+<center><a href="../figures/fig3.html" >Figure 3: SE and MAC combinations</a> </center>
 </div><div class="section" id="ae-flaws-and-limitations">
 <h3>AE flaws and limitations<a class="headerlink" href="#ae-flaws-and-limitations" title="Permalink to this headline">¶</a></h3>
 <p>Although SE and the MAC can be independently secure, their combination is not necessarily unbreakable. For example, when using MtE, one needs to remove the padding that was originally introduced during the encryption process before decrypting <a class="reference internal" href="references/References.html#moxie" id="id8">[Mar18]</a>.
 This un-padding before decryption reveals a huge vulnerability since the receiver throws two distinct errors with different delays:</p>
 <ul class="simple">
-<li>Padding error if the padding is incorrect.</li>
-<li>Decryption error in case of faulty decryption.</li>
+<li><p>Padding error if the padding is incorrect.</p></li>
+<li><p>Decryption error in case of faulty decryption.</p></li>
 </ul>
 <p>Knowing that the receiver always checks the last byte first to process padding, an attacker can build a cipher-text to be decrypted arbitrarily by modifying the last byte of the second to last cipher-text block <a class="reference internal" href="references/References.html#moxie" id="id9">[Mar18]</a>.
 When processing the message, the receiver has two possible crypto-related errors: a padding error, or a MAC error <a class="reference internal" href="references/References.html#moxie" id="id10">[Mar18]</a>.
@@ -224,11 +216,24 @@ This is known as a <strong>timing attack</strong>. These type of attacks are par
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>To summarize, AE is a combination of SE and MAC that ensures integrity, authenticity and secrecy. Depending on the combination order of SE and MAC, we have 3 types of AE.
 Out of those, Encrypt-then-MAC is the recommended approach to authenticated encryption. However, MAC-then-encrypt is still a safe and fast approach under certain tight conditions (the case of SSL for instance).</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="references/References.html">References</a></li>
-</ul>
 </div>
+<div class="section" id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<p id="bibtex-bibliography-blog/AuthenticatedEncryption-0"><dl class="citation">
+<dt class="label" id="nampere"><span class="brackets"><a class="fn-backref" href="#id2">CNS14</a></span></dt>
+<dd><p>P. Rogaway C. Namprempre and T. Shrimpton. Reconsidering generic composition. 2014.</p>
+</dd>
+<dt class="label" id="hugo"><span class="brackets">Kra01</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>H. Krawczyk. The order of encryption and authentication for protecting communications (or: how secure is ssl?). 2001.</p>
+</dd>
+<dt class="label" id="bellare"><span class="brackets"><a class="fn-backref" href="#id1">MB07</a></span></dt>
+<dd><p>C. Nampremere M. Bellare. Authenticated encryption: relations among notions and analysis of the generic composition paradigm. 2007.</p>
+</dd>
+<dt class="label" id="moxie"><span class="brackets">Mar18</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>,<a href="#id7">3</a>,<a href="#id8">4</a>,<a href="#id9">5</a>,<a href="#id10">6</a>,<a href="#id11">7</a>)</span></dt>
+<dd><p>M. Marlinspike. blog: The Cryptographic Doom Principle,. <span><a class="reference external" href="#"></a></span>https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017, 05.01.2018.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 
@@ -290,7 +295,7 @@ Out of those, Encrypt-then-MAC is the recommended approach to authenticated encr
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.0.
       </footer>
       <!-- /footer -->
 

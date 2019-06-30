@@ -101,6 +101,7 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#references-and-further-readings">References and Further readings</a></li>
 </ul>
 </li>
 </ul>
@@ -149,6 +150,7 @@
                   
   <div class="section" id="encryption">
 <span id="encryption-post-label"></span><h1>[03.03.2019] Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
 <p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called “decryption” <a class="reference internal" href="references/References.html#kessler" id="id1">[Kes17]</a>.
 These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="reference internal" href="references/References.html#kessler" id="id2">[Kes17]</a>.
 There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="reference internal" href="references/References.html#kessler" id="id3">[Kes17]</a>.</p>
@@ -161,8 +163,8 @@ The key management for this encryption is troublesome, especially if a unique se
 <h2>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Permalink to this headline">¶</a></h2>
 <p>It also known as Public Key Cryptography (PKC) <a class="reference internal" href="references/References.html#kessler" id="id9">[Kes17]</a>. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:</p>
 <ul class="simple">
-<li><strong>The public key:</strong> which is used to encrypt data by anyone.</li>
-<li><strong>The private key:</strong> which is kept secret and is used to decrypt data.</li>
+<li><p><strong>The public key:</strong> which is used to encrypt data by anyone.</p></li>
+<li><p><strong>The private key:</strong> which is kept secret and is used to decrypt data.</p></li>
 </ul>
 <p>This double key feature surmounts the symmetric encryption problem of managing keys, but also makes it mathematically more prone to attacks <a class="reference internal" href="references/References.html#tamimi" id="id10">[Tam06]</a>.
 Moreover, this duality provides authentication and non-repudiation with the assumption that the private key is kept secret <a class="reference internal" href="references/References.html#kessler" id="id11">[Kes17]</a>.
@@ -185,8 +187,8 @@ A stream cipher consists essentially of a key stream generator and a mixing func
 The mixing function is usually a XOR, and the key stream generator is the main unit of the encryption <a class="reference internal" href="references/References.html#kessler" id="id21">[Kes17]</a><a class="reference internal" href="references/References.html#tamimi" id="id22">[Tam06]</a>.
 There are several types of stream ciphers but only two are worth mentioning here:</p>
 <ul class="simple">
-<li><strong>Self-synchronizing stream cipher</strong> calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors <a class="reference internal" href="references/References.html#kessler" id="id23">[Kes17]</a>.</li>
-<li><strong>Synchronous stream ciphers</strong> generate the key-stream independently and use the same generation function at both sender and receiver <a class="reference internal" href="references/References.html#tamimi" id="id24">[Tam06]</a>. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited <a class="reference internal" href="references/References.html#kessler" id="id25">[Kes17]</a>.</li>
+<li><p><strong>Self-synchronizing stream cipher</strong> calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors <a class="reference internal" href="references/References.html#kessler" id="id23">[Kes17]</a>.</p></li>
+<li><p><strong>Synchronous stream ciphers</strong> generate the key-stream independently and use the same generation function at both sender and receiver <a class="reference internal" href="references/References.html#tamimi" id="id24">[Tam06]</a>. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited <a class="reference internal" href="references/References.html#kessler" id="id25">[Kes17]</a>.</p></li>
 </ul>
 <div class="section" id="padding">
 <h4>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h4>
@@ -195,17 +197,48 @@ Such revelations can be beneficial for an attacker and help in breaking the encr
 For example, Advanced Encryption Standard-128 (AES-128) is a symmetric block cipher that processes data by blocks of 128 bits, which means that additional random data must be added to packages with size different from 128 bits multiples.
 This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="reference internal" href="references/References.html#knudsen" id="id27">[Knu18]</a>.</p>
 <img alt="../_images/pkcs5.png" class="align-center" src="../_images/pkcs5.png" />
-<center><a href="../_static/figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
+<center><a href="../figures/fig2.html" >Fig2: PKCS#5 block padding</a> </center>
 </div><p><strong>Remark:</strong> When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
 This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack <a class="reference internal" href="references/References.html#moxie" id="id28">[Mar18]</a>.
-This is further explained in the following post <span class="xref std std-doc">Authenticated Encryption</span> .</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="references/References.html">References</a></li>
-</ul>
+This is further explained in the following post <a class="reference external" href="AuthenticatedEncryption.html">Authenticated_Encryption</a> .</p>
 </div>
 </div>
 </div>
+<div class="section" id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<p id="bibtex-bibliography-blog/Encryption-0"><dl class="citation">
+<dt class="label" id="nampere"><span class="brackets">CNS14</span></dt>
+<dd><p>P. Rogaway C. Namprempre and T. Shrimpton. Reconsidering generic composition. 2014.</p>
+</dd>
+<dt class="label" id="kessler"><span class="brackets">Kes17</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id9">5</a>,<a href="#id11">6</a>,<a href="#id13">7</a>,<a href="#id16">8</a>,<a href="#id17">9</a>,<a href="#id18">10</a>,<a href="#id20">11</a>,<a href="#id21">12</a>,<a href="#id23">13</a>,<a href="#id25">14</a>)</span></dt>
+<dd><p>Gary C. Kessler. An Overview of Cryptography. 2017.</p>
+</dd>
+<dt class="label" id="knudsen"><span class="brackets"><a class="fn-backref" href="#id27">Knu18</a></span></dt>
+<dd><p>Jonathan Knudsen. Java cryptography. <span><a class="reference external" href="#"></a></span>https://www.safaribooksonline.com/library/view/java-cryptography/1565924029/ch07s02.html, 05.01.2018.</p>
+</dd>
+<dt class="label" id="hugo"><span class="brackets">Kra01</span></dt>
+<dd><p>H. Krawczyk. The order of encryption and authentication for protecting communications (or: how secure is ssl?). 2001.</p>
+</dd>
+<dt class="label" id="bellare"><span class="brackets">MB07</span></dt>
+<dd><p>C. Nampremere M. Bellare. Authenticated encryption: relations among notions and analysis of the generic composition paradigm. 2007.</p>
+</dd>
+<dt class="label" id="moxie"><span class="brackets"><a class="fn-backref" href="#id28">Mar18</a></span></dt>
+<dd><p>M. Marlinspike. blog: The Cryptographic Doom Principle,. <span><a class="reference external" href="#"></a></span>https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017, 05.01.2018.</p>
+</dd>
+<dt class="label" id="oak"><span class="brackets">Oak18</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id14">2</a>)</span></dt>
+<dd><p>Madhura Oak. Symmetric Cryptography. <span><a class="reference external" href="#"></a></span>https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/, 05.01.2018.</p>
+</dd>
+<dt class="label" id="ssl"><span class="brackets">ssl2buy18</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id12">2</a>)</span></dt>
+<dd><p>ssl2buy. Difference Between Hashing and Encryption. <span><a class="reference external" href="#"></a></span>https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption, 05.01.2018.</p>
+</dd>
+<dt class="label" id="tamimi"><span class="brackets">Tam06</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id8">2</a>,<a href="#id10">3</a>,<a href="#id15">4</a>,<a href="#id19">5</a>,<a href="#id22">6</a>,<a href="#id24">7</a>)</span></dt>
+<dd><p>Abdel-Karim Al Tamimi. Performance Analysis of Data Encryption Algorithms. 2006.</p>
+</dd>
+<dt class="label" id="welchman"><span class="brackets"><a class="fn-backref" href="#id26">Wel82</a></span></dt>
+<dd><p>Gordon Welchman. <em>The Hut Six Story: Breaking the Enigma Codes</em>. 1982.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 
@@ -267,7 +300,7 @@ This is further explained in the following post <span class="xref std std-doc">A
       <!-- footer -->
       <footer role="contentinfo">
           &copy; Copyright 2018, SuperKogito.
-        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.0.
       </footer>
       <!-- /footer -->
 

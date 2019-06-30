@@ -169,3 +169,8 @@ Conclusion
 To summarize, Encrypt-then-MAC is the recommended approach to authenticated encryption. However, MAC-then-encrypt is still a safe and fast approach under certain conditions.
 These conditions are in some cases with little tolerance and so the error probability is relatively high, yet one can still build a secure system using MAC-then-Encrypt.
 In the case of SSL for instance, the use of MAC does not jeopardize the communications, since it is relatively safe when using certain encryption modes such CBC or OTP as for chosen text attacks they are countered by restarting a new session once a padding/ authentication error is thrown.
+
+
+
+.. toctree::
+   references/References

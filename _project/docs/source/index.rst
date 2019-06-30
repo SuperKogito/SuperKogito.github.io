@@ -40,6 +40,9 @@ Content
       <ul>
           <li class="toctree-l3"><a class="reference internal" href="blog/category/machine-learning.html">Machine learning</a></li>
           <ul>
+              <li class="toctree-l3"><a class="reference internal" href="blog/diabetesML2.html">[30-06-2019] Diabetes detection using machine learning (part II)</a></li>
+              <li class="toctree-l3"><a class="reference internal" href="blog/diabetesML1.html">[30-06-2019] Diabetes detection using machine learning (part I)</a></li>
+
               <li class="toctree-l3"><a class="reference internal" href="blog/VoiceBasedGenderRecognition.html">[09-05-2019] Voice based gender recognition</a></li>
           </ul>
           <br>
@@ -78,7 +81,12 @@ Content
 
 Indices and tables
 -------------------
+.. toctree::
+  listoffigures
+  :maxdepth: 1
 
-* :ref:`genindex`
-* :ref:`modindex`
+.. toctree::
+   listoftables
+   :maxdepth: 1
+
 * :ref:`search`
