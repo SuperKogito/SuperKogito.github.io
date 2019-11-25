@@ -1,0 +1,5 @@
+- [NII-SRC Corpora list](http://research.nii.ac.jp/src/en/list.html)
+- [Schachi language resource search](http://shachi.org/resources)
+- [Prosodically annotated corpora](https://corplinguistics.wordpress.com/tag/mandarin/)
+- [Corpus finder](http://www.helsinki.fi/varieng/CoRD/corpora/corpusfinder/)
+- [Man-Machine-Interaction by coordinated analysis and generation of multiple models](https://www.bas.uni-muenchen.de/forschung/SmartKom/SmartKom_LMU_eng.html)
