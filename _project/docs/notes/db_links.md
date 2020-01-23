@@ -22,6 +22,9 @@
 - [python-speedups](https://pythonfiles.wordpress.com/2017/06/01/hunting-performance-in-python-code-part-3/)
 - [python-monitor](https://stackoverflow.com/questions/49197916/how-to-profile-cpu-usage-of-a-python-script)
 - [performance](https://scikit-learn.org/stable/developers/performance.html)
+- [cpu-usage](http://www.marinamele.com/7-tips-to-time-python-scripts-and-control-memory-and-cpu-usage)
+- [optimization](https://toucantoco.com/en/tech-blog/tech/python-performance-optimization)
+- [json-python](https://stackabuse.com/reading-and-writing-json-to-a-file-in-python/)
 
 ## Papers 
 - [librosa-paper](https://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf)
