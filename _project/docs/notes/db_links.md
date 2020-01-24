@@ -7,7 +7,7 @@
 - [Corpus finder](http://www.helsinki.fi/varieng/CoRD/corpora/corpusfinder/)
 - [Man-Machine-Interaction by coordinated analysis and generation of multiple models](https://www.bas.uni-muenchen.de/forschung/SmartKom/SmartKom_LMU_eng.html)
 - [CMU-sphinx language models](https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/)
-
+- [The M-AILABS Speech Dataset](http://www.caito.de/2019/01/the-m-ailabs-speech-dataset/)
 ## Code
 - [vad-example](https://github.com/marsbroshok/VAD-python/blob/d74033aa08fbbbcdbd491f6e52a1dfdbbb388eea/vad.py#L64)
 - [C Speech Features](https://github.com/Cwiiis/c_speech_features/tree/95ccc83256e97bcebcd1fdca30fe0cb2d40a7cea)
