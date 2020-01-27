@@ -42,10 +42,13 @@ For which we test the following classifiers:
 
 Code and implementation
 -------------------------
-The code for this section is to be found in this script_.
-However, the whole project is available in the following |img1| Diabetes_detection_using_machine_learning_.
 
 .. raw:: html
+
+  <p>
+  The code for this section is to be found in this script_.
+  However, the whole project is available in the following  <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i>Diabetes detection</a>.
+  </p>
 
   <table align="center" style="width:100%">
     <tr>
@@ -57,8 +60,6 @@ However, the whole project is available in the following |img1| Diabetes_detecti
     </tr>
   </table>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-|
 
 The dataset can be Downloaded from here_.
 
@@ -136,7 +137,7 @@ Data transformations influence on results
 In the previous post, the utility of some data transformations has been discussed as a method to improve the data quality and consequently improve the classification.
 the following plots, confirm this as we can clearly see that employing these data transformations (scaling, equalization and outliers removal) results overall in better accuracy, sensitivity and specificity.
 
-.. image:: ../_static/dataTrafos.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/dataTrafos.png
    :align: center
    :scale: 100%
 
@@ -152,7 +153,7 @@ In this section, we examine the performances of the aforementioned machine learn
 The plots and the results summary prove that the Support Vector Classifiers clearly results in the best prediction rates.
 In this case, we prioritize True Positives detection (sensitivity over simplicity) as we want to detect all of those having diabetes even if it means getting some False Positives (healthy patients diagnosed as diabetics) as that can be dismissed with some extra tests.
 
-.. image:: ../_static/scaled_and_equalized_data_without_outliers-BAR.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/scaled_and_equalized_data_without_outliers-BAR.png
   :align: center
   :scale: 75%
 
@@ -164,7 +165,7 @@ In this case, we prioritize True Positives detection (sensitivity over simplicit
 
 |
 
-.. image:: ../_static/scaled_and_equalized_data_without_outliers-CM.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/scaled_and_equalized_data_without_outliers-CM.png
    :align: center
    :scale: 75%
 

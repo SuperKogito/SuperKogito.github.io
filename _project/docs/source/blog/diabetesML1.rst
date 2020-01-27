@@ -19,12 +19,14 @@ Diabetes is one of the most serious health challenges today.
 The publicly available Pima Indian diabetic database (PIDD_) have become a popular approach for testing the efficiency of machine learning algorithms [1]_.
 Within this context, this blog post is part of 2 posts providing an in depth introduction to diabetes detection using various machine learning approaches.
 In this first post in particular, we focus on exploring the data at hand and preparing it for machine learning related processing.
-|
 
-- The dataset can be Downloaded from here_.
-- The code related to this blog can be found under |img1| Diabetes_detection_using_machine_learning_.
 
 .. raw:: html
+
+  <ul>
+  <li>The dataset can be Downloaded from   <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-database"></i>here</a>. </li>
+  <li> The code related to this blog can be found under <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i>Diabetes detection</a>. </li>
+
 
   <table align="center" style="width:100%">
     <tr>
@@ -36,6 +38,7 @@ In this first post in particular, we focus on exploring the data at hand and pre
     </tr>
   </table>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </ul>
 
 The Pima Indian diabetic database
 ----------------------------------
@@ -54,7 +57,7 @@ The database includes the following information [3]_ [4]_ :
 (9) Outcome: Diabetes onset within 5 years (0 = No diabetes: green, 1 = diabetic: red).
 
 
-  The goal is to predict the diabetic diagnosis (#9) using the available 8 features (#1-#8).
+>>> The goal is to predict the diabetic diagnosis (#9) using the available 8 features (#1-#8).
 
 
 Data exploration
@@ -158,7 +161,6 @@ The previous pre-processing is done using the following code:
    max      17.000000  198.000000      110.000000       63.000000  846.000000
 
                  Bmi  Diabetes_Pedigree_Function         Age     Outcome
-   count  392.000000                  392.000000  392.000000  392.000000
    mean    33.086224                    0.523046   30.864796    0.331633
    std      7.027659                    0.345488   10.200777    0.471401
    min     18.200000                    0.085000   21.000000    0.000000
@@ -166,6 +168,8 @@ The previous pre-processing is done using the following code:
    50%     33.200000                    0.449500   27.000000    0.000000
    75%     37.100000                    0.687000   36.000000    1.000000
    max     67.100000                    2.420000   81.000000    1.000000
+
+
 
 
 Now that only correct data values are available, we notice the presence of various outliers.
@@ -217,7 +221,7 @@ In code this looks like the following:
 
 The effects of the aforementioned transformations can be seen in the following box-plots (Box_plot_):
 
-.. image:: ../_static/data_manipulations.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/data_manipulations.png
    :align: center
    :scale: 80%
 
@@ -254,7 +258,7 @@ These manipulations though improved the data but it also limited the dataset. Th
   plot_overview(data)
 
 
-.. image:: ../_static/samples_overview.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/samples_overview.png
    :align: center
    :scale: 80%
 
@@ -274,7 +278,7 @@ Features overview
 Now that we cleaned the data, let us examine the available features closely. For that, we look at the bars and densities charts generated using DfPlotter.py (Github link to come later).
 This should help build some intuitions and observations related to the features interactions.
 
-.. image:: ../_static/bars.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/bars.png
    :align: center
    :scale: 80%
 
@@ -285,7 +289,7 @@ This should help build some intuitions and observations related to the features 
    </div>
 
 
-.. image:: ../_static/densities.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/densities.png
   :align: center
   :scale: 80%
 
@@ -311,7 +315,7 @@ In many systems, not all the features are relevant or at least some are redundan
 Think of it as a similarity metric: if two features are highly correlated so they embody the same information and consequently you can drop one of them.
 Using the DfPlotter.py (Github link to come later) script, we compute & visualize the correlations matrix and the the pai-plots related to the data.
 
-.. image:: ../_static/corr.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/corr.png
     :align: center
     :scale: 50%
 
@@ -329,7 +333,7 @@ In our example, we can conclude from the last row that the outcome is mostly dep
 However, if we are settling only for 3 features; choosing the first 3 might not be the best option since Glucose and Insulin are highly correlated (0.59).
 Therefore, a better choice would be to take:  Glucose (0.52), Age (0.38) and Bmi (0.28). This will be further discussed in [insert knn post name].
 
-.. image:: ../_static/pairplot.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/pairplot.png
   :align: center
   :scale: 50%
 
@@ -353,13 +357,14 @@ We will explore all these results to build a robust detection system in the next
 References and Further readings
 --------------------------------
 
-.. [1] Rahmat Zolfaghari, Diagnosis of Diabetes in Female Population of Pima Indian Heritage with Ensemble of BP Neural Network and SVM, IJCEM International Journal of Computational Engineering & Management, Vol. 15 Issue 4, July 2012. https://www.ijcem.org/papers072012/ijcem_072012_22.pdf
-.. [2] Pima Indians Diabetes Database, https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names
-.. [3] Igor Shvartser, Jason Brownlee, Case Study: Predicting the Onset of Diabetes Within Five Years (part 1 of 3), March 2014 , https://machinelearningmastery.com/case-study-predicting-the-onset-of-diabetes-within-five-years-part-1-of-3/
+.. [1] Rahmat Zolfaghari, Diagnosis of Diabetes in Female Population of Pima Indian Heritage with Ensemble of BP Neural Network and SVM, IJCEM International Journal of Computational Engineering & Management, Vol. 15 Issue 4, July 2012, paper_
+.. [2] Pima Indians Diabetes Database, PIMA_DB_
+.. [3] Igor Shvartser, Jason Brownlee, Case Study: Predicting the Onset of Diabetes Within Five Years (part 1 of 3), March 2014, case_study_predicting_the_onset_of_diabetes_within_five_years_part_1_of_3_
 .. [4] Kaggle, Pima Indians Diabetes Database: Predict the onset of diabetes based on diagnostic measures, https://www.kaggle.com/uciml/pima-indians-diabetes-database
 .. [5] Kaggle kernals, Pima Indians Diabetes Database: Predict the onset of diabetes based on diagnostic measures, https://www.kaggle.com/uciml/pima-indians-diabetes-database/kernels
 
 
+.. _case_study_predicting_the_onset_of_diabetes_within_five_years_part_1_of_3 : https://machinelearningmastery.com/case-study-predicting-the-onset-of-diabetes-within-five-years-part-1-of-3/
 .. _here : https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/blob/master/diabetes.csv
 .. _pandas.DataFrame.describe : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html
 .. _PIDD : https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names
@@ -369,6 +374,9 @@ References and Further readings
 .. _Box_plot : https://en.wikipedia.org/wiki/Box_plot
 .. _Correlation : https://en.wikipedia.org/wiki/Correlation_and_dependence
 .. _Diabetes_detection_using_machine_learning : https://github.com/SuperKogito/Diabetes-detection-using-machine-learning
+.. _PIMA_DB : https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names
+.. _paper : https://www.ijcem.org/papers072012/ijcem_072012_22.pdf
+
 
 .. |img1| image:: ../_static/github.png
    :target: https://github.com/SuperKogito/Diabetes-detection-using-machine-learning

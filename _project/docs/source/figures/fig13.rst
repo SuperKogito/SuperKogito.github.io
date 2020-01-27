@@ -5,7 +5,7 @@ Figure 13: Influence of data transformations
 
 |
 
-.. image:: ../_static/dataTrafos.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/dataTrafos.png
    :align: center
    :scale: 100%
 

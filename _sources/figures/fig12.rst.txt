@@ -5,7 +5,7 @@ Figure 12: Distributions scatter-plots
 
 |
 
-.. image:: ../_static/pairplot.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/pairplot.png
    :align: center
    :scale: 50%
 

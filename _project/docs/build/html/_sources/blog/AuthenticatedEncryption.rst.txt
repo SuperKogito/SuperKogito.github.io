@@ -20,9 +20,7 @@ Within this context acts authenticated encryption(AE) as a shared-key based tran
 AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders :cite:`nampere`.
 This article introduces the different combinations of authenticated encryption and their applications.
 
-|
-
-Keywords: Authenticated Encryption, Symmetric Encryption, Message Authentication Code.
+| **Keywords**: Authenticated Encryption, Symmetric Encryption, Message Authentication Code.
 
 What is an AE?
 ------------------------------------

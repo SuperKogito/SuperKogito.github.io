@@ -3,7 +3,7 @@ Figure 9: Bar-plots for the different features
 
 -----------------------
 
-.. image:: ../_static/bars.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/bars.png
    :align: center
    :scale: 80%
 

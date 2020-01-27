@@ -7,7 +7,7 @@
    :author: Ayoub Malek
 
 .. post:: May 09, 2019
-   :tags: [Voice],[Recognition],[Gender]
+   :tags: [Voice],[Gender recognition]
    :category: Machine learning
    :author: Ayoub Malek
    :location: Munich
@@ -26,16 +26,10 @@
   <center><a href="../figures/fig4.html" > Fig 4: Voice based gender recognition overview</a> </center>
   <br>
   </div>
-
-This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
-The post provides an explanation of the following GitHub-project |img1| Voice-based-gender-recognition_.
-
-.. |img1| image:: ../_static/github.png
-   :target: https://github.com/SuperKogito/Voice-based-gender-recognition
-   :scale: 65%
-
-.. raw:: html
-
+  <p>
+  This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
+  The post provides an explanation of the following GitHub-project <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i>Voice-based-gender-recognition</a>.
+  </p>
   <table align="center" style="width:100%">
     <tr>
         <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/subscription" data-size="large" data-show-count="true" aria-label="Watch SuperKogito/Voice-based-gender-recognition on GitHub">Watch</a> </th>
@@ -169,7 +163,7 @@ is the Gaussian distribution, with:
 - :math:`k` refers the index of the GMM components.
 
 
-.. image:: ../_static/pic.png
+.. image:: ../_static/blog-plots/voice-based-gender-recognition/gmm.png
    :align: center
    :scale: 85%
 
@@ -282,7 +276,12 @@ The computation of the scores is done as follows [1]_:
 
 Code & scripts
 ---------------
-The full code for this approach to voice based gender identification can be found on GitHub under |img1| Voice-based-gender-recognition_
+
+.. raw:: html
+  <p>
+  The full code for this approach to voice based gender identification can be found on GitHub under <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i>Voice-based-gender-recognition</a>.
+  </p>
+
 Obviously the code provided on GitHub is more structured and advanced than what provided here since it is used to process multiple files,and to compute the accuracy level
 
 Results summary

@@ -3,7 +3,7 @@ Figure 8: Data overview
 
 -----------------------
 
-.. image:: ../_static/samples_overview.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/samples_overview.png
    :align: center
    :scale: 80%
 

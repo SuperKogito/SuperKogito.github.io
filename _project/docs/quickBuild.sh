@@ -8,6 +8,7 @@ rm -R about blog _images _sources _static
 cd _project/docs/
 make clean
 make html
+python ../src/postprocessing.py
 
 # copy files to front folder
 cp -r build/html/*  ../../

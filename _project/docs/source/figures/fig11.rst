@@ -5,7 +5,7 @@ Figure 11: Correlation matrix
 
 |
 
-.. image:: ../_static/corr.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/corr.png
    :align: center
    :scale: 50%
 

@@ -5,7 +5,7 @@ Figure 10: Densities of the different features
 
 |
 
-.. image::  ../_static/densities.png
+.. image::  ../_static/blog-plots/diabetes-ml/original/densities.png
   :align: center
   :scale: 80%
 

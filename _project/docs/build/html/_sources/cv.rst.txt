@@ -7,4 +7,5 @@ Curriculum vitae
    :author: Ayoub Malek
 
 
-:pdfembed:`src:_static/cv.pdf#zoom=Page Fit, height:970, width:700, align:middle`
+
+:pdfembed:`src:_static/cv.pdf#zoom=Page Fit, height:907px, width:99.5%, align:middle`

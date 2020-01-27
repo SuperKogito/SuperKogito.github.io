@@ -4,7 +4,7 @@ Figure 6: Gaussian mixture model
 
 -----------------------
 
-.. image:: ../_static/pic.png
+.. image:: ../_static/blog-plots/voice-based-gender-recognition/gmm.png
    :align: center
    :scale: 85%
 

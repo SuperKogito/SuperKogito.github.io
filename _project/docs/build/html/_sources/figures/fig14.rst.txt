@@ -3,7 +3,7 @@ Figure 14: Performance comparison for different classifiers
 
 ----------------------
 
-.. image:: ../_static/scaled_and_equalized_data_without_outliers-BAR.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/scaled_and_equalized_data_without_outliers-BAR.png
   :align: center
   :scale: 75%
 

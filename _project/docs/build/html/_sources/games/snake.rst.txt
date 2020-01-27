@@ -8,7 +8,7 @@ Snake
     <form id="form1" runat="server">
       <p> Use the "Arrows" to change movement directions, "Space" to pause & resume and "Enter" to restart the game. Enjoy! </p>
       <div>
-        <canvas id="drawCanvas" width="700" height="450"></canvas>
+        <canvas id="drawCanvas" width="950" height="450"></canvas>
       </div>
     </form>
     <script>

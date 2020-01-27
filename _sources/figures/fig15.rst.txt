@@ -5,7 +5,7 @@ Figure 15: Distributions scatter-plots
 
 |
 
-.. image:: ../_static/scaled_and_equalized_data_without_outliers-CM.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/scaled_and_equalized_data_without_outliers-CM.png
    :align: center
    :scale: 75%
 

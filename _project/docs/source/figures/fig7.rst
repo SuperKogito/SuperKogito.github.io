@@ -3,7 +3,7 @@ Figure 7: Box-plots for data transformation
 
 -----------------------
 
-.. image:: ../_static/data_manipulations.png
+.. image:: ../_static/blog-plots/diabetes-ml/original/data_manipulations.png
    :align: center
    :scale: 80%
 
