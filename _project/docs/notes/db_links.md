@@ -37,6 +37,7 @@
 - [A review on Deep Learning approaches in Speaker Identification](https://www.researchgate.net/publication/312520074_A_review_on_Deep_Learning_approaches_in_Speaker_Identification)
 - [Attention Based CLDNNs for Short-Duration Acoustic Scene Classification](https://www.researchgate.net/publication/319185650_Attention_Based_CLDNNs_for_Short-Duration_Acoustic_Scene_Classification)
 - [Tone Classification in Mandarin Chinese Using Convolutional Neural Networks](https://www.researchgate.net/publication/307887298_Tone_Classification_in_Mandarin_Chinese_Using_Convolutional_Neural_Networks)
+- [A Convolutional Neural Network Approach forAcoustic Scene Classification](http://www.cs.tut.fi/~tuomasv/papers/ijcnn_paper_valenti_extended.pdf)
 
 ## Presentations 
 - [short-time-analysis](http://www.xavieranguera.com/tdp_2011/5b-short-time_analysis.pdf)
@@ -50,5 +51,17 @@
 - [sound classification](https://medium.com/@mikesmales/sound-classification-using-deep-learning-8bc2aa1990b7)
 - [music2vec](https://medium.com/@rajatheb/music2vec-generating-vector-embedding-for-genre-classification-task-411187a20820)
 
+## ASR blog
+- [wav2vec](https://ai.facebook.com/blog/wav2vec-state-of-the-art-speech-recognition-through-self-supervision/)
+
+
 ## Challenges and workshops
-[interesting challenge](https://github.com/fgnt/pb_chime5)
+- [interesting challenge](https://github.com/fgnt/pb_chime5)
+
+# conferences
+- [conferences](http://www.guide2research.com/topconf/computational-linguistics-speech-processing)
+- [Conferences and Meetings on Natural Language Processing, Computational Linguistics](https://www.conference-service.com/conferences/natural-language-processing.html)
+
+
+- [conference acoustic scene detection and classification](http://dcase.community/)
+- [isca-speech](https://www.isca-speech.org/iscaweb/index.php)
