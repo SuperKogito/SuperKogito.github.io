@@ -671,3 +671,8 @@ dt.label {margin-bottom: 0em;}
     font-family: "neon";
     font-size: 16px;
 }
+
+table.docutils th.centeredth,
+table.docutils td.centeredth {
+  text-align: center;
+}

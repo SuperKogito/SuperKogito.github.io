@@ -1,5 +1,5 @@
 language: bash
-  
+
 before_script:
   - sudo apt-get update
   - sudo apt-get install python3
@@ -21,7 +21,7 @@ before_script:
   - cd _project/docs/
 
 script:
-  - ./quickBuild.sh
+  - make clean; make html; python3 ../src/postprocessing.py
 
 branches:
   only:
@@ -29,12 +29,12 @@ branches:
 
 notifications:
   email: false
-    
+
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  keep-history: true  
+  keep-history: true
   on:
     branch: master
   repo: SuperKogito/SuperKogito.github.io

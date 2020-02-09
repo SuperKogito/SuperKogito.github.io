@@ -1,9 +1,9 @@
-[09-05-2019] Voice based gender recognition
-============================================
+[09-05-2019] Voice based gender recognition using Gaussian mixture models
+===========================================================================
 
 .. meta::
    :description: Voice based gender recognition post
-   :keywords: Gender recognition by voice, Voice based gender recognition, gender classification, Ayoub Malek
+   :keywords: Gender recognition by voice, Voice based gender recognition, Gaussian mixture model, gender classification, Ayoub Malek
    :author: Ayoub Malek
 
 .. post:: May 09, 2019
