@@ -281,7 +281,7 @@ The resulting plots clearly show a good performance of this simple and fast VAD.
 
 
 |
-I already tested the VAD using the following sample_ that can be downloaded from here_.
+I already tested the VAD using the following sample_ that can be downloaded from `Open Speech Repository`_.
 The difference between the input and output shows that the VAD is functional.
 
 .. raw:: html
@@ -326,5 +326,5 @@ References and Further readings
 .. _Signal_framing : SignalFraming.html
 .. _Parseval's_theorem : https://en.wikipedia.org/wiki/Parseval%27s_theorem
 .. _`Parseval's theorem` : https://en.wikipedia.org/wiki/Discrete_Fourier_transform
-.. _here : https://www.voiptroubleshooter.com/open_speech/american.html
+.. _`Open Speech Repository` : https://www.voiptroubleshooter.com/open_speech/american.html
 .. _sample : https://www.voiptroubleshooter.com/open_speech/american/OSR_us_000_0060_8k.wav
