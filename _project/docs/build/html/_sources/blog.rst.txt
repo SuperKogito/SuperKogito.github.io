@@ -17,6 +17,11 @@ Blog
 
 
 .. toctree::
+    blog/SpectralLeakageWindowing
+    blog/SignalFraming
+    blog/NaiveVad
+    blog/diabetesML2
+    blog/diabetesML1
     blog/VoiceBasedGenderRecognition
     blog/AuthenticatedEncryption
     blog/Encryption

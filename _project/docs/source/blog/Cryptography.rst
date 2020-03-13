@@ -1,4 +1,4 @@
-[17.02.2019] Cryptography overview
+[17-02-2019] Cryptography overview
 ===================================
 
 .. meta::
