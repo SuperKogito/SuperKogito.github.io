@@ -54,7 +54,7 @@ Why do we do need framing?
 Speech is a non-stationary signal, consequently its statistical properties are not constant over time.
 Therefore, its spectral features and other characteristic properties (for example: short-time energy, MFCC etc.) should be extracted from small blocks of the signal.
 This is based on the assumption that is the signal is stationary (i.e.  its  statistical properties  are  constant  within this region) in this small frame :cite:`deller`.
-On top of it all, frame blocking is often used in real-time systems as it maximizes the efficiency of the system by distributing the fixed process overhead across many samples :cite:``.
+On top of it all, frame blocking is often used in real-time systems as it maximizes the efficiency of the system by distributing the fixed process overhead across many samples.
 
 
 How to implement it?

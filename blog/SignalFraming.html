@@ -60,7 +60,6 @@
 <a href="../about.html" title="About"><i class="fa fa-user-circle"></i>About</a>
 <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i><text id="theme-toggle">DARK MODE</text></a>
 </div>
-
 <hr class="docutils"/>
 <p>When it comes to non-stationary signals, spectral features in short parts/ sequences are of great use.
 Therefore, decomposing the signal into multiple ranges is the way to go about this type of features extraction.
@@ -93,7 +92,7 @@ Overlapping the frames help avoiding information loss in between adjacent frames
 <p>Speech is a non-stationary signal, consequently its statistical properties are not constant over time.
 Therefore, its spectral features and other characteristic properties (for example: short-time energy, MFCC etc.) should be extracted from small blocks of the signal.
 This is based on the assumption that is the signal is stationary (i.e.  its  statistical properties  are  constant  within this region) in this small frame <a class="reference internal" href="#deller" id="id1">[JRJD87]</a>.
-On top of it all, frame blocking is often used in real-time systems as it maximizes the efficiency of the system by distributing the fixed process overhead across many samples :cite:<a href="#id2"><span class="problematic" id="id3">``</span></a>.</p>
+On top of it all, frame blocking is often used in real-time systems as it maximizes the efficiency of the system by distributing the fixed process overhead across many samples.</p>
 </div>
 <div class="section" id="how-to-implement-it">
 <h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">¶</a></h2>
@@ -150,8 +149,8 @@ There are various ways to do this, but once you have the number frames and their
 <div class="section" id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <p>The previously listed steps, can be implemented in Python as follows:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">Framing 1</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Framing 1</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -263,8 +262,8 @@ There are various ways to do this, but once you have the number frames and their
 </div>
 <p>Alternatively, one can use the stride trick and use a sliding window technique that is
 already implemented in matlab to get a much faster framing. This is done like the following.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">Framing 2</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Framing 2</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

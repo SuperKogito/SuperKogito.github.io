@@ -62,7 +62,7 @@ html[theme=dark] {
 }
 
 body {
-  width: 950px;
+  width: 1050px;
   margin: auto auto auto auto;
   color: var(--main-text-color);
   background-color: var(--main-background-color);
@@ -110,7 +110,7 @@ div.sub-title-menu {
 }
 
 div.body {
-  width: 950px;
+  width: 1050px;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   color: var(--main-text-color);
@@ -424,7 +424,7 @@ div.sub-title-menu a {
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: .05em;
-  margin-left: .6em;
+  margin-left: 1.5em;
 }
 .sub-title-menu p {
   margin: 0 2% 0 0;
@@ -626,7 +626,7 @@ div.highlight > pre {
 }
 
 table.docutils {
-    width: 950px;
+    width: 1050px;
     border: 1px solid #888;
     box-shadow: none;
 }
@@ -675,4 +675,21 @@ dt.label {margin-bottom: 0em;}
 table.docutils th.centeredth,
 table.docutils td.centeredth {
   text-align: center;
+}
+
+
+/* style the wave table */
+table.wav {
+    width: 1050px;
+    border: 1px solid #888;
+    box-shadow: none;
+    border: 1px solid #888;
+    border: 0;
+    border-collapse: collapse;
+}
+
+table.wav td, table.wav th {
+    border: 1px solid #888;
+    padding: 0.25em 0.7em;
+    text-align: left;
 }

@@ -293,14 +293,14 @@ The difference between the input and output shows that the VAD is functional.
    </tr>
    <tr>
      <td class="centeredth">
-     <audio controls>
+     <audio controls style="width: 450px;">
        <source src="../_static/audio/OSR_us_000_0060_8k.wav" type="audio/wav">
        Your browser does not support the audio element.
      </audio>
      </td>
 
      <td class="centeredth">
-     <audio controls>
+     <audio controls style="width: 450px;">
        <source src="../_static/audio/naive_frame_energy_vad_no_silence_OSR_us_000_0060_8k.wav" type="audio/wav">
        Your browser does not support the audio element.
      </audio>

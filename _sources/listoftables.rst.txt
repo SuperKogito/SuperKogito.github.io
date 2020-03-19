@@ -13,4 +13,5 @@ List of tables
   tables/table1
   tables/table2
   tables/table3
+  tables/table4
   :maxdepth: 2
