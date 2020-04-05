@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/><meta content="Introducing urlstechie and urls checking tools" name="description"/>
+<meta content="urlstechie, urlchecker, check urls, Ayoub Malek" name="keywords"/>
+<meta content="Ayoub Malek" name="author"/>
+<script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-133660046-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+<title>[04-04-2020] Introducing urlstechie and its urls checking tools — Ayoub Malek's blog</title>
+<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/css/code_style.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/css/tree_graph.css" rel="stylesheet" type="text/css"/>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
+<script src="../_static/jquery.js" type="text/javascript"></script>
+<script src="../_static/underscore.js" type="text/javascript"></script>
+<script src="../_static/doctools.js" type="text/javascript"></script>
+<script src="../_static/language_data.js" type="text/javascript"></script>
+<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<link href="../_static/favicon.ico" rel="shortcut icon"/>
+<link href="../about.html" rel="author" title="About these documents"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
+<style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+</head><body>
+<div class="document">
+<div class="documentwrapper">
+<div class="body" role="main">
+<div class="section" id="introducing-urlstechie-and-its-urls-checking-tools">
+<h1>[04-04-2020] Introducing urlstechie and its urls checking tools<a class="headerlink" href="#introducing-urlstechie-and-its-urls-checking-tools" title="Permalink to this headline">¶</a></h1>
+<div class="sub-title-menu">
+<a href="../index.html" title="Home"><i class="fa fa-home"></i>Home</a>
+<a href="../blog.html" title="Posts"><i class="fa fa-bars"></i>Posts</a>
+<a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i>Publications</a>
+<a href="../projects.html" title="projects"><i class="fa fa-code"></i>Projects</a>
+<a href="../games.html" title="Games"><i class="fa fa-gamepad"></i>Games</a>
+<a href="../about.html" title="About"><i class="fa fa-user-circle"></i>About</a>
+<a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i><text id="theme-toggle">DARK MODE</text></a>
+</div>
+<hr class="docutils"/>
+<p>Continuous testing is a vital part of any healthy software development process.
+Urls must always be tested and broken links must be fixed to guarantee a high quality product.
+Unfortunately, this is not always trivial and can be tedious.
+Moreover, most tools available out there cannot handle in-code urls and lack many other needed features.
+A while back, I ran across this particular Problem and I quickly saw the great automation opportunity this was, and how can Python and Regex help me solve this.
+This was the start of the urlchecker-action … from there and with the amazing <a class="reference external" href="https://github.com/vsoch">@vsoch</a> joining, the tools expanded and this was the start of the urlstechie organization.</p>
+<div class="section" id="what-is-urlstechie">
+<h2>What is urlstechie?<a class="headerlink" href="#what-is-urlstechie" title="Permalink to this headline">¶</a></h2>
+<p>urlstechie is a small organization and an online project that started on March 2020.
+The goal for this project is to provide urls checking tools as part of continuous testing practices.
+The urlstechie organization currently provides two main tools:</p>
+<ul>
+<li>
+<a href="https://github.com/urlstechie/urlchecker-action" title="github"> <i class="fa fa-github"></i> urlchecker-action</a> :
+        A GitHub action to collect and check urls in a project (code and documentation).
+        The action aims at detecting and reporting broken links.
+    </li>
+<li>
+<a href="https://github.com/urlstechie/urlchecker-python" title="github"> <i class="fa fa-github"></i> urlchecker-python</a> :
+        A Python module to collect urls over static files (code and documentation), test them and then report broken links.
+    </li>
+</ul><p>For more please refer to:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://urlstechie.github.io/index.html">urlstechie_website</a></p></li>
+<li><p><a class="reference external" href="https://github.com/urlstechie">urlstechie_github_repository</a></p></li>
+</ul>
+</div>
+<div class="section" id="how-to-use-the-urlstechie-tools">
+<h2>How to use the urlstechie tools?<a class="headerlink" href="#how-to-use-the-urlstechie-tools" title="Permalink to this headline">¶</a></h2>
+<p>The urlstechie tools, as you will notice, are very intuitive and simple to use.
+It also provides various features to customize the run, white-list urls and files etc.
+The GitHub action can be set-up as a GitHub workflow like the following:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">GitHub workflow</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Check URLs</span>
+
+ <span class="l l-Scalar l-Scalar-Plain">on</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span>
+
+ <span class="l l-Scalar l-Scalar-Plain">jobs</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">runs-on</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+     <span class="l l-Scalar l-Scalar-Plain">steps</span><span class="p p-Indicator">:</span>
+     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">uses</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">urls-checker</span>
+       <span class="l l-Scalar l-Scalar-Plain">uses</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">urlstechie/urlchecker-action@0.1.7</span>
+       <span class="l l-Scalar l-Scalar-Plain">with</span><span class="p p-Indicator">:</span>
+         <span class="c1"># A subfolder or path to navigate to in the present or cloned repository</span>
+         <span class="l l-Scalar l-Scalar-Plain">subfolder</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docs</span>
+
+         <span class="c1"># A comma-separated list of file types to cover in the URL checks</span>
+         <span class="l l-Scalar l-Scalar-Plain">file_types</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.md,.py,.rst</span>
+
+         <span class="c1"># Choose whether to include file with no URLs in the prints.</span>
+         <span class="l l-Scalar l-Scalar-Plain">print_all</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+         <span class="c1"># The timeout seconds to provide to requests, defaults to 5 seconds</span>
+         <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+
+         <span class="c1"># How many times to retry a failed request (each is logged, defaults to 1)</span>
+         <span class="l l-Scalar l-Scalar-Plain">retry_count</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+
+         <span class="c1"># A comma separated links to exclude during URL checks</span>
+         <span class="l l-Scalar l-Scalar-Plain">white_listed_urls</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/SuperKogito/URLs-checker/issues/2</span>
+
+         <span class="c1"># A comma separated patterns to exclude during URL checks</span>
+         <span class="l l-Scalar l-Scalar-Plain">white_listed_patterns</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/SuperKogito/Voice-based-gender-recognition/issues</span>
+
+         <span class="c1"># choose if the force pass or not</span>
+         <span class="l l-Scalar l-Scalar-Plain">force_pass</span> <span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>As for the python urlchecker module, it can be used locally to run the same checks.
+The urlchecker can be installed from <a class="reference external" href="https://pypi.org/">pypi</a> using <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">urlchecker</span></code> or from <a class="reference external" href="https://anaconda.org/">conda</a> using <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">urlchecker</span></code>.
+Here is a small demo by <a class="reference external" href="https://github.com/vsoch">@vsoch</a> displaying a couple of uses of the tool.</p>
+<div align="center" name="demo-video">
+<iframe allowfullscreen="true" id="asciicast-iframe-312533" name="asciicast-iframe-312533" scrolling="no" src="https://asciinema.org/a/312533/embed?speed=2" style="overflow: hidden; margin: 0px; border: 0px none; display: inline-block; width: 900px; float: none; visibility: visible; height: 692px;"></iframe>
+</div><p>For more on the tools please refer to:</p>
+<ul>
+<li>
+<a href="https://github.com/urlstechie/urlchecker-action" title="github"> <i class="fa fa-github"></i> urlchecker-action</a>
+</li>
+<li>
+<a href="https://github.com/urlstechie/urlchecker-python" title="github"> <i class="fa fa-github"></i> urlchecker-python</a>
+</li>
+</ul></div>
+<div class="section" id="how-to-contribute">
+<h2>How to contribute?<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>We aim to provide an open welcoming environment at urlstechie.
+That’s the foundation to a flourishing project and so all contributions are welcome.
+Just open an issue and come talk to us, help us improve the code by providing test cases, feedback, suggestions and bug reports.
+If you have a fix, that’s even better, send us a pull request and join us on this coding ride ;)</p>
+</div>
+<div class="section" id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://urlstechie.github.io/index.html">urlstechie_website</a></p></li>
+<li><p><a class="reference external" href="https://vsoch.github.io/2020/urlchecker/">Checking static links with urlchecker by vsoch</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section">
+<div class="section">
+<span style="float: left;">
+  
+  Previous: 
+  <a href="ffmpegpipe.html">
+    
+    [19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?
+  </a>
+</span>
+<span> </span>
+<span style="float: right;">
+</span></div>
+</div>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="footer">
+      ©2020, Ayoub Malek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="../_sources/blog/urlstechie.rst.txt" rel="nofollow">Page source</a>
+</div><script src="../_static/js/mode-switcher.js"></script>
+</body>
+</html>

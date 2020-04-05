@@ -24,8 +24,8 @@ In this first post in particular, we focus on exploring the data at hand and pre
 .. raw:: html
 
   <ul>
-  <li>The dataset can be Downloaded from   <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-database"></i>here</a>. </li>
-  <li> The code related to this blog can be found under <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i>Diabetes detection</a>. </li>
+  <li>The dataset can be Downloaded from   <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-database"></i> here</a>. </li>
+  <li> The code related to this blog can be found under <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i> Diabetes detection</a>. </li>
 
 
   <table align="center" style="width:100%">

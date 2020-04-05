@@ -28,7 +28,7 @@
   </div>
   <p>
   This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
-  The post provides an explanation of the following GitHub-project <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i>Voice-based-gender-recognition</a>.
+  The post provides an explanation of the following GitHub-project <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i> Voice-based-gender-recognition</a>.
   </p>
   <table align="center" style="width:100%">
     <tr>
@@ -279,7 +279,7 @@ Code & scripts
 
 .. raw:: html
   <p>
-  The full code for this approach to voice based gender identification can be found on GitHub under <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i>Voice-based-gender-recognition</a>.
+  The full code for this approach to voice based gender identification can be found on GitHub under <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i> Voice-based-gender-recognition</a>.
   </p>
 
 Obviously the code provided on GitHub is more structured and advanced than what provided here since it is used to process multiple files,and to compute the accuracy level

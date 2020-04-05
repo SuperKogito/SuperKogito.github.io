@@ -47,7 +47,7 @@ Code and implementation
 
   <p>
   The code for this section is to be found in this script_.
-  However, the whole project is available in the following  <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i>Diabetes detection</a>.
+  However, the whole project is available in the following  <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i> Diabetes detection</a>.
   </p>
 
   <table align="center" style="width:100%">
