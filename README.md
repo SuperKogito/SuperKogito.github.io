@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/SuperKogito/SuperKogito.github.io.svg?branch=master)](https://travis-ci.com/SuperKogito/SuperKogito.github.io)
+![Check URLs](https://github.com/SuperKogito/SuperKogito.github.io/workflows/Check%20URLs/badge.svg)
 
 # SuperKogito.github.io
 
