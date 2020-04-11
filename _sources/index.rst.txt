@@ -13,16 +13,26 @@ Latest posts
 .. raw:: html
 
   <div class="latest-posts">
-    <ul>
-      <li class="toctree-l3"><a class="reference internal" href="blog/urlstechie.html">[04-04-2020] Introducing urlstechie and its urls checking tools</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/ffmpegpipe.html">[19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/SpectralLeakageWindowing.html">[13-03-2020] Spectral leakage and windowing</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/NaiveVad.html">[09-02-2020] Naive voice activity detection using short time energy</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/SignalFraming.html">[25-01-2020] Signal framing</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/diabetesML2.html">[30-06-2019] Diabetes detection using machine learning (part II)</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/diabetesML1.html">[30-06-2019] Diabetes detection using machine learning (part I)</a></li>
-    </ul>
-  </div>
+  <table style="width:100%">
+   <tr>
+     <td>
+       <ul>
+         <li class="toctree-l3"><a class="reference internal" href="blog/urlstechie.html">[04-04-2020] Introducing urlstechie and its urls checking tools</a></li>
+         <li class="toctree-l3"><a class="reference internal" href="blog/ffmpegpipe.html">[19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?</a></li>
+         <li class="toctree-l3"><a class="reference internal" href="blog/SpectralLeakageWindowing.html">[13-03-2020] Spectral leakage and windowing</a></li>
+         <li class="toctree-l3"><a class="reference internal" href="blog/NaiveVad.html">[09-02-2020] Naive voice activity detection using short time energy</a></li>
+         <li class="toctree-l3"><a class="reference internal" href="blog/SignalFraming.html">[25-01-2020] Signal framing</a></li>
+         <li class="toctree-l3"><a class="reference internal" href="blog/diabetesML2.html">[30-06-2019] Diabetes detection using machine learning (part II)</a></li>
+         <li class="toctree-l3"><a class="reference internal" href="blog/diabetesML1.html">[30-06-2019] Diabetes detection using machine learning (part I)</a></li>
+       </ul>
+     </td>
+
+     <td>
+     <img class="cloud" src="_static/meta_ws_img.png" style="width: 256pt; height: 256pt;">
+     </td>
+   </tr>
+ </table>
+ </div>
 
 
 Posts categories

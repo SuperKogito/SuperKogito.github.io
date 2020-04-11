@@ -400,7 +400,7 @@ figcaption {
 
 div.body h1 {
   display: flex;
-  margin: 5em 0 0.25em 0;
+  margin: 1em 0 0.25em 0;
   font-family: "neon";
   font-size: 180%;
 }
@@ -692,4 +692,8 @@ table.wav td, table.wav th {
     border: 1px solid #888;
     padding: 0.25em 0.7em;
     text-align: left;
+}
+
+img.badge {
+  display: inline;
 }
