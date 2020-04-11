@@ -4,7 +4,6 @@ Ayoub Malek's Blog
 .. meta::
    :description: This is the homepage of Ayoub Malek's blog and website
    :keywords: Ayoub Malek, Ayoub, Malek, Ayoub Malek Blog, Ayoub Malek Website, SuperKogito, Ayoub SuperKogito
-   :image: _static/meta_ws_img.png
    :author: Ayoub Malek
 
 
