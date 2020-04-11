@@ -12,3 +12,7 @@ python ../src/postprocessing.py
 
 # copy files to front folder
 cp -r build/html/*  ../../
+
+
+# open page
+firefox ../../index.html
