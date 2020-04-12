@@ -26,6 +26,10 @@ This was the start of the urlchecker-action ... from there and with the amazing 
 
 What is urlstechie?
 -------------------
+
+.. image:: ../_static/logos/urlstechie_logo.png
+   :align: center
+
 urlstechie is a small organization and an online project that started on March 2020.
 The goal for this project is to provide urls checking tools as part of continuous testing practices.
 The urlstechie organization currently provides two main tools:

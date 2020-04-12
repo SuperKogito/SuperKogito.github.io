@@ -21,7 +21,7 @@ def write_html_file(html_file, soup):
 
 def post_process(html_files):
     for html_file in html_files:
-            
+
         try:
             print("Processing ", html_file)
             html_code = read_html_file(html_file)
@@ -58,15 +58,15 @@ def post_process(html_files):
             # add meta img
             if "index.html" in html_file:
                 metatag = soup.new_tag('meta')
+                metatag.attrs['content'] = 'https://superkogito.github.io/_static/meta_ws_img.png'
                 metatag.attrs['property'] = 'og:image'
-                metatag.attrs['content'] = '_static/meta_ws_img.png'
-
+                
                 # define menu code
                 soup.head.append(metatag)
-            
+
             # overwrite file
             write_html_file(html_file, soup)
-            
+
         except Exception as e:
             print(e, "while processing ", html_file)
 
