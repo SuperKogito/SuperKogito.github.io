@@ -20,9 +20,6 @@ before_script:
   - sudo pip3 install sphinx-sitemap
   - cd _project/docs/
 
-script:
-  - make clean; make html; python3 ../src/postprocessing.py
-
 branches:
   only:
     - master
