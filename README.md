@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/SuperKogito/SuperKogito.github.io.svg?branch=master)](https://travis-ci.com/SuperKogito/SuperKogito.github.io)
-![Check URLs](https://github.com/SuperKogito/SuperKogito.github.io/workflows/Check%20URLs/badge.svg)
+[![Check URLs](https://github.com/SuperKogito/SuperKogito.github.io/workflows/Check%20URLs/badge.svg)](https://github.com/SuperKogito/SuperKogito.github.io/runs/597903033?check_suite_focus=true)
 
 # SuperKogito.github.io
 
@@ -13,6 +13,7 @@ The blog is built using the following resources:
 
 - 2020
 
+  - [[04-04-2020] Introducing urlstechie and its urls checking tools](https://superkogito.github.io/blog/urlstechie.html)
   - [[19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?](https://superKogito.github.io/blog/ffmpegpipe.html)
   - [[13-03-2020] Spectral leakage and windowing](https://superkogito.github.io/blog/SpectralLeakageWindowing.html)
   - [[09-02-2020] Naive voice activity detection using short time energy](https://superkogito.github.io/blog/NaiveVad.html)
