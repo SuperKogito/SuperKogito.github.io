@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: URLs-checker
-      uses: urlstechie/URLs-checker@master
+      uses: urlstechie/urlchecker-action@latest
       with:
         # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/SuperKogito/SuperKogito.github.io
