@@ -51,8 +51,10 @@ def post_process(html_files):
             # add script
             footer =  soup.find('div', class_="footer")
             script = f"""<script src="{prefix}_static/js/mode-switcher.js"></script>"""
-            print(script)
+            gh_script = f"""<script async defer src="https://buttons.github.io/buttons.js"></script>"""
+            # debug: print(script)
             footer.insert_after(Soup(script))
+            footer.insert_after(Soup(gh_script))
 
 
             # add meta img
@@ -60,7 +62,7 @@ def post_process(html_files):
                 metatag = soup.new_tag('meta')
                 metatag.attrs['content'] = 'https://superkogito.github.io/_static/meta_ws_img.png'
                 metatag.attrs['property'] = 'og:image'
-                
+
                 # define menu code
                 soup.head.append(metatag)
 

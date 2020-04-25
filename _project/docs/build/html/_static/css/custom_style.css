@@ -697,3 +697,8 @@ table.wav td, table.wav th {
 img.badge {
   display: inline;
 }
+
+div.gh-buttons {
+  text-align: center;
+  padding: 2em 0 0 0
+}

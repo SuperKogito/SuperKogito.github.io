@@ -7,6 +7,16 @@ Ayoub Malek's Blog
    :author: Ayoub Malek
 
 
+
+.. raw:: html
+
+  <div class="gh-buttons">
+        <a class="github-button" href="https://github.com/SuperKogito/SuperKogito.github.io" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star SuperKogito/SuperKogito.github.io on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a>
+  </div>
+
+
+
 Latest posts
 -------------
 
