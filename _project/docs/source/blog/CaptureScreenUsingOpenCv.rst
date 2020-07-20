@@ -1,4 +1,4 @@
-[20-07-2019] Capturing the screen on Windows in C++ using OpenCV
+[20-07-2020] Capturing the screen on Windows in C++ using OpenCV
 ================================================================
 
 .. meta::
@@ -6,9 +6,9 @@
    :keywords: Screen capture, OpenCV
    :author: Ayoub Malek
 
-.. post:: May 1, 2019
-   :tags: [C++],[OpenCV],[Screen Capture]
-   :category: OpenCV
+.. post:: July 20, 2019
+   :tags:[OpenCV],[Screen Capture]
+   :category:C++
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -111,8 +111,8 @@ The previously described steps looks as follows in c++:
   }
 
 
-The wholesome version
----------------------
+The whole thing
+---------------
 In order to test this, and for you to have an idea on how to use the previous code. Let call it in the main function, encode the output as a PNG and save the screenshot to the hard drive.
 In code this looks like this:
 
@@ -142,7 +142,8 @@ Just in case you need, in memory png data then just copy the data in the Mat obj
   std::vector<uchar> buf;
   cv::imencode(".png", src, buf);
 
-In case you prefer having JPEG data, then just replicate all the previous steps while replacing ".png" with ".jpg"
+The full code can be found in this gist (https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51).
+*In case you prefer having JPEG data, then just replicate all the previous steps while replacing ".png" with ".jpg"
 
 Limitations
 -----------
@@ -165,6 +166,6 @@ This option will be explored in my next posts, so stay tuned.
 
 References and Further readings
 --------------------------------
-
-.. bibliography:: references/refs.bib
-   :cited:
+http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx
+https://stackoverflow.com/questions/34466993/opencv-desktop-capture
+https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
