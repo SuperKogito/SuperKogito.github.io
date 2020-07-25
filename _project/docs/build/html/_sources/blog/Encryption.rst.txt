@@ -1,6 +1,6 @@
 .. _encryption-post-label:
 
-[03.03.2019] Encryption
+[03-03-2019] Encryption
 ========================
 
 .. meta::

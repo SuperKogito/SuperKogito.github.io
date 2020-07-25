@@ -13,6 +13,9 @@ All Posts
 
   <div class="latest-posts">
     <ul>
+      <li class="toctree-l3"><a class="reference internal" href="blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/rmsnormalization.html">[30-04-2020] Root mean square normalization in Python</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/urlstechie.html">[04-04-2020] Introducing urlstechie and its urls checking tools</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/ffmpegpipe.html">[19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/SpectralLeakageWindowing.html">[13-03-2020] Spectral leakage and windowing</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/NaiveVad.html">[09-02-2020] Naive voice activity detection using short time energy</a></li>

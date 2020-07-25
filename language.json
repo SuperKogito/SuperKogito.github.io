@@ -5,6 +5,7 @@
 		"GMM",
 		"MFCC",
 		"MFCCs",
+		"OpenCV",
 		"cepstrum",
 		"dataset",
 		"decrypting",

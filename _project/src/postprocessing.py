@@ -37,7 +37,7 @@ def post_process(html_files):
             menu = f"""
                     <div class="sub-title-menu">
                       <a href="{prefix}index.html"         title="Home"    ><i class="fa fa-home"        ></i>Home</a>
-                      <a href="{prefix}blog.html"          title="Posts"   ><i class="fa fa-bars"        ></i>Posts</a>
+                      <a href="{prefix}posts.html"         title="Posts"   ><i class="fa fa-bars"        ></i>Posts</a>
                       <a href="{prefix}publications.html"  title="pubs"    ><i class="fa  fa-file-text"  ></i>Publications</a>
                       <a href="{prefix}projects.html"      title="projects"><i class="fa  fa-code"       ></i>Projects</a>
                       <a href="{prefix}games.html"         title="Games"   ><i class="fa fa-gamepad"     ></i>Games</a>

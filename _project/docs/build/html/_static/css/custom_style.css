@@ -609,7 +609,7 @@ div.body blockquote {
 
 div.highlight {
     background-color: var(--main-background-color);
-    width: 100%
+    width: 975px;
 }
 
 div.highlight > pre {
@@ -669,7 +669,7 @@ dt.label {margin-bottom: 0em;}
 .math {
     color: var(--link-color);
     font-family: "neon";
-    font-size: 16px;
+    font-size: 18px;
 }
 
 table.docutils th.centeredth,
