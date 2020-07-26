@@ -156,7 +156,7 @@ Limitations
 
 - Furthermore, in a multi-monitors setup, if you play with the DPI and the scaling settings of the screens, you will notice that the resulting screenshots can be cropped. This can be solved by setting the C++ project DPI-awareness to `True`. In Visual Studio 2019, this can be done under: :code:`Project > Project-Name Properties > Manifest Tool > Input and Output > DPI Awareness`
 
-- Another limitations is that this code only allows for one screenshot of all screens, which is not always the best option. Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height used in the capture function.
+- Another limitations is that this code only allows for one screenshot of all screens, which is not always the best option. Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height variables used in the capture function.
 
 Conclusion
 ----------

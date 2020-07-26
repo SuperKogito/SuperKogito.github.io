@@ -27,6 +27,7 @@ Latest posts
    <tr>
      <td>
        <ul>
+         <li class="toctree-l3"><a class="reference internal" href="blog/CaptureScreenUsingGdiplus.html">[26-07-2020] Capturing the screen on Windows in C++ using GDI+</a></li>
          <li class="toctree-l3"><a class="reference internal" href="blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a></li>
          <li class="toctree-l3"><a class="reference internal" href="blog/rmsnormalization.html">[30-04-2020] Root mean square normalization in Python</a></li>
          <li class="toctree-l3"><a class="reference internal" href="blog/urlstechie.html">[04-04-2020] Introducing urlstechie and its urls checking tools</a></li>

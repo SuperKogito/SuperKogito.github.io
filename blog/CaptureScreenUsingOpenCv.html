@@ -257,7 +257,7 @@ In code this looks like this:</p>
 <ul class="simple">
 <li><p>The previous implementation is a bit limited. As it is somewhat slow comparing to the screen capture windows function associated with the capture screen button. This can be explained by the fact that unlike the windows function, OpenCV was not built for such a basic task.</p></li>
 <li><p>Furthermore, in a multi-monitors setup, if you play with the DPI and the scaling settings of the screens, you will notice that the resulting screenshots can be cropped. This can be solved by setting the C++ project DPI-awareness to <cite>True</cite>. In Visual Studio 2019, this can be done under: <code class="code docutils literal notranslate"><span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">Project-Name</span> <span class="pre">Properties</span> <span class="pre">&gt;</span> <span class="pre">Manifest</span> <span class="pre">Tool</span> <span class="pre">&gt;</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output</span> <span class="pre">&gt;</span> <span class="pre">DPI</span> <span class="pre">Awareness</span></code></p></li>
-<li><p>Another limitations is that this code only allows for one screenshot of all screens, which is not always the best option. Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height used in the capture function.</p></li>
+<li><p>Another limitations is that this code only allows for one screenshot of all screens, which is not always the best option. Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height variables used in the capture function.</p></li>
 </ul>
 </div>
 <div class="section" id="conclusion">
@@ -287,14 +287,21 @@ This option will be explored in my next posts, so stay tuned.</p>
 <span style="float: left;">
   
   Previous: 
-  <a href="CaptureScreenUsingGdiplus.html">
+  <a href="rmsnormalization.html">
     
-    [25-07-2020] Capturing the screen on Windows in C++ using GDI+
+    [30-04-2020] Root mean square normalization in Python
   </a>
 </span>
 <span> </span>
 <span style="float: right;">
-</span></div>
+  
+  Next: 
+  <a href="CaptureScreenUsingGdiplus.html">
+    [26-07-2020] Capturing the screen on Windows in C++ using GDI+
+    
+  </a>
+</span>
+</div>
 </div>
 </div>
 </div>

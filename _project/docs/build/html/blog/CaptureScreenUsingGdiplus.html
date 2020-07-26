@@ -18,7 +18,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-<title>[25-07-2020] Capturing the screen on Windows in C++ using GDI+ — Ayoub Malek's blog</title>
+<title>[26-07-2020] Capturing the screen on Windows in C++ using GDI+ — Ayoub Malek's blog</title>
 <link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
 <link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -50,7 +50,7 @@
 <div class="documentwrapper">
 <div class="body" role="main">
 <div class="section" id="capturing-the-screen-on-windows-in-c-using-gdi">
-<h1>[25-07-2020] Capturing the screen on Windows in C++ using GDI+<a class="headerlink" href="#capturing-the-screen-on-windows-in-c-using-gdi" title="Permalink to this headline">¶</a></h1>
+<h1>[26-07-2020] Capturing the screen on Windows in C++ using GDI+<a class="headerlink" href="#capturing-the-screen-on-windows-in-c-using-gdi" title="Permalink to this headline">¶</a></h1>
 <div class="sub-title-menu">
 <a href="../index.html" title="Home"><i class="fa fa-home"></i>Home</a>
 <a href="../posts.html" title="Posts"><i class="fa fa-bars"></i>Posts</a>
@@ -61,24 +61,25 @@
 <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i><text id="theme-toggle">DARK MODE</text></a>
 </div>
 <hr class="docutils"/>
-<p>GDI+/ Gdiplus is part of the Win32 API, that helps c/C++ programmers with various graphics related tasks on Windows.
-In this blog about, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.</p>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+/ Gdiplus</a> is part of the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a>, that helps C/C++ programmers with graphics related tasks on Windows.
+In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.</p>
 <div class="line-block">
 <div class="line"><strong>*Keywords*</strong>: GDI+, Screen capture, Screenshots</div>
 </div>
 <div class="section" id="gdi-gdiplus-introduction">
 <h2>GDI+ / Gdiplus introduction<a class="headerlink" href="#gdi-gdiplus-introduction" title="Permalink to this headline">¶</a></h2>
-<p>Gdiplus is part of the Win32 API, so we don’t have to do any additional actions to be able to use the library.
+<p>Gdiplus is part of the <cite>Win32 API</cite>, so we don’t have to do any additional actions to be able to use the library.
 A simple <code class="code docutils literal notranslate"><span class="pre">#include</span> <span class="pre">"Gdiplus.h"</span></code> should be sufficient.
-Furthermore, as hinted in the previous blog, we will notice a notable difference in run-times between this implementation and the OpenCV variant, since GDI+ is built on top of the Windows Graphics Device Interface (GDI).</p>
+Moreover, as hinted in the previous blog, we will notice a notable difference in run-times between this implementation and the OpenCV variant, since GDI+ is built on top of the Windows Graphics Device Interface (GDI).</p>
 </div>
 <div class="section" id="capture-screenshot">
 <h2>Capture screenshot<a class="headerlink" href="#capture-screenshot" title="Permalink to this headline">¶</a></h2>
-<p>now let’s write the main capture function, which will take a window handle to get its associated contextual device and return a <cite>HBITMAP</cite> object with the screenshot information.
+<p>Now let’s write the main capture function, which will take a window handle to get its associated contextual device and return a <cite>HBITMAP</cite> object with the screenshot information.
 The function first defines handles to the device context and the associated Region of interest (defined using start-x, start-y, width and height).
-The bitmap and its header are then created and the screen pixel data are passed to them. Finally the device contexts are deleted and deleted to avoid memory leaks.
-For aesthetic and simplicity reason, I chose to initialize the bitmap header in a separate function.
-The previously described steps looks as follows in c++:</p>
+The bitmap and its header are then created and the screen pixel data are passed to them.
+Finally the device contexts are deleted to avoid memory leaks.
+For aesthetic and simplicity reasons, I chose to initialize the bitmap header in a separate function.
+The previously described steps looks as follows in C++:</p>
 <div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -197,9 +198,9 @@ The previously described steps looks as follows in c++:</p>
 </div>
 <div class="section" id="save-screenshot-to-memory">
 <h2>Save Screenshot to memory<a class="headerlink" href="#save-screenshot-to-memory" title="Permalink to this headline">¶</a></h2>
-<p>Unlike the case of OpenCV, in order to save the captured bitmap to the memory as a <cite>PNG</cite> or <cite>JPEG</cite> etc. we must write some code for that.
+<p>Unlike the case of OpenCV, in order to <strong>save the captured bitmap to the memory</strong> as a <cite>PNG</cite> or <cite>JPEG</cite> etc. we must write some code for that.
 This can be done using the following Boolean function:</p>
-<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -269,9 +270,9 @@ This can be done using the following Boolean function:</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="the-whole-thing">
-<h2>The whole thing<a class="headerlink" href="#the-whole-thing" title="Permalink to this headline">¶</a></h2>
-<p>Let’s bind everything together inside the <code class="code docutils literal notranslate"><span class="pre">main()</span></code> and test this, so you can also have an idea on how to use the previous code.
+<div class="section" id="the-main-call">
+<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
+<p>Let’s bind everything together inside the <code class="code docutils literal notranslate"><span class="pre">main()</span></code> function and test this, so you can also have an idea on how to use the previous code.
 In code this looks like this:</p>
 <div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -344,21 +345,21 @@ In code this looks like this:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>A cleaner version of this code can be found in this <a class="reference external" href="https://gist.github.com/SuperKogito/00e0ad0d5b2b567d74a10fe18c048776">gist</a> .</p>
+<p><strong>The full code can be found in this</strong> <a class="reference external" href="https://gist.github.com/SuperKogito/00e0ad0d5b2b567d74a10fe18c048776">gist: CaptureScreenUsingGdiplus.cpp</a>.</p>
 </div>
 <div class="section" id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
-<p>Similar to the OpenCV version, this implementation is a bit limited; In a multi-monitors setup, if you play with the DPI and the scaling settings of the screens, you will notice that the resulting screenshots can be cropped.
+<p>Similar to the OpenCV variant, this implementation is a bit limited; In a multi-monitors setups, if you play with the DPI and the scaling settings of the screens, you will notice that the resulting screenshots can be cropped.
 This can be solved by setting the C++ project DPI-awareness to True.
-In Visual Studio 2019, this can be done under: <code class="code docutils literal notranslate"><span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">ProjectName</span> <span class="pre">Properties</span> <span class="pre">&gt;</span> <span class="pre">Manifest</span> <span class="pre">Tool</span> <span class="pre">&gt;</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output</span> <span class="pre">&gt;</span> <span class="pre">DPI</span> <span class="pre">Awareness</span></code></p>
-<p>Another limitations is that this code only allows for one screenshot of all screens, which is not always the best option.
-Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height.</p>
+In Visual Studio 2019, this can be done under: <code class="code docutils literal notranslate"><span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">Project-Name</span> <span class="pre">Properties</span> <span class="pre">&gt;</span> <span class="pre">Manifest</span> <span class="pre">Tool</span> <span class="pre">&gt;</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output</span> <span class="pre">&gt;</span> <span class="pre">DPI</span> <span class="pre">Awareness</span></code></p>
+<p>Another limitations is that this code only allows for one screenshot to be captured, which is not always the best option.
+Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height variables.</p>
 </div>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
-<p>To summarize, in this post we introduced a small example of how to capture the screen content using the Win32 API : GDI+ also known as Gdiplus.
-We also went through saving the captured screenshot to the hard drive or to memory.
-The code is fairly simple and supports both <cite>PNG</cite> and <cite>JPEG</cite> and seems to be faster than the OpenCV version, but is it really? This will be explored in details in my next post, so stay tuned.</p>
+<p>To summarize, in this post we introduced a small example of how to capture the screen content using the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a> : GDI+ also known as Gdiplus.
+We also went through saving the captured screenshot to the hard drive or to memory in order to use it in the code again.
+The code is fairly simple and supports both <cite>PNG</cite> &amp; <cite>JPEG</cite> and seems to be faster than the OpenCV version, but is it really? This will be explored in details in my next post, so stay tuned.</p>
 </div>
 <div class="section" id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
@@ -383,21 +384,14 @@ The code is fairly simple and supports both <cite>PNG</cite> and <cite>JPEG</cit
 <span style="float: left;">
   
   Previous: 
-  <a href="rmsnormalization.html">
+  <a href="CaptureScreenUsingOpenCv.html">
     
-    [30-04-2020] Root mean square normalization in Python
+    [25-07-2020] Capturing the screen on Windows in C++ using OpenCV
   </a>
 </span>
 <span> </span>
 <span style="float: right;">
-  
-  Next: 
-  <a href="CaptureScreenUsingOpenCv.html">
-    [25-07-2020] Capturing the screen on Windows in C++ using OpenCV
-    
-  </a>
-</span>
-</div>
+</span></div>
 </div>
 </div>
 </div>
