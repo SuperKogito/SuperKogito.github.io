@@ -13,6 +13,7 @@ Ayoub Malek's Blog
   <div class="gh-buttons">
         <a class="github-button" href="https://github.com/SuperKogito/SuperKogito.github.io" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star SuperKogito/SuperKogito.github.io on GitHub">Star</a>
         <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a>
+        <br><iframe src="https://github.com/sponsors/SuperKogito/button" title="Sponsor SuperKogito" height="35" width="107" style="border: 0;"></iframe>
   </div>
 
 

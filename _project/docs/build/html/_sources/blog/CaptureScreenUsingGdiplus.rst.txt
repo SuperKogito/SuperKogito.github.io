@@ -196,6 +196,8 @@ In Visual Studio 2019, this can be done under: :code:`Project > Project-Name Pro
 Another limitations is that this code only allows for one screenshot to be captured, which is not always the best option.
 Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height variables.
 
+Moreover, since GDI+ is part of the Windows API, this implementation is not portable for other operating systems.
+
 Conclusion
 ----------
 To summarize, in this post we introduced a small example of how to capture the screen content using the `Win32 API`_ : GDI+ also known as Gdiplus.

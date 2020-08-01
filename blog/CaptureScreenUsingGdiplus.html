@@ -354,6 +354,7 @@ This can be solved by setting the C++ project DPI-awareness to True.
 In Visual Studio 2019, this can be done under: <code class="code docutils literal notranslate"><span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">Project-Name</span> <span class="pre">Properties</span> <span class="pre">&gt;</span> <span class="pre">Manifest</span> <span class="pre">Tool</span> <span class="pre">&gt;</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output</span> <span class="pre">&gt;</span> <span class="pre">DPI</span> <span class="pre">Awareness</span></code></p>
 <p>Another limitations is that this code only allows for one screenshot to be captured, which is not always the best option.
 Some users might want to only capture a specific screen. This can be solved -as we will see in future posts- by manipulating the start-x, start-y, width and the height variables.</p>
+<p>Moreover, since GDI+ is part of the Windows API, this implementation is not portable for other operating systems.</p>
 </div>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
@@ -391,7 +392,14 @@ The code is fairly simple and supports both <cite>PNG</cite> &amp; <cite>JPEG</c
 </span>
 <span> </span>
 <span style="float: right;">
-</span></div>
+  
+  Next: 
+  <a href="CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">
+    [28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++
+    
+  </a>
+</span>
+</div>
 </div>
 </div>
 </div>
