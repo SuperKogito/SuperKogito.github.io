@@ -13,6 +13,10 @@ The blog is built using the following resources:
 
 - 2020
 
+  - [[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++](https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html)
+  - [[26-07-2020] Capturing the screen on Windows in C++ using GDI+](https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html)
+  - [[25-07-2020] Capturing the screen on Windows in C++ using OpenCV](https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html)
+  - [[30-04-2020] Root mean square normalization in Python](https://superkogito.github.io/blog/rmsnormalization.html)
   - [[04-04-2020] Introducing urlstechie and its urls checking tools](https://superkogito.github.io/blog/urlstechie.html)
   - [[19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?](https://superKogito.github.io/blog/ffmpegpipe.html)
   - [[13-03-2020] Spectral leakage and windowing](https://superkogito.github.io/blog/SpectralLeakageWindowing.html)
@@ -35,4 +39,5 @@ The blog is built using the following resources:
 1. Pre-emphasis
 2. MFCC
 3. vad using energie, zero crossings and correlation coefficient
-4. Rms normlaization.
+
+- Work on Mobile compatibility.
