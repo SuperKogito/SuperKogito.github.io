@@ -113,6 +113,7 @@ We already have all the components ready in the last two posts, so all we need i
 Benchmarking results
 --------------------
 The testing results confirms the previously mentioned intuition that screen shooting using GDI+ is faster than the OpenCV variant.
+However, upon examining the results in details, we realize that the right answer to the question of **which library is better?** is a complex one (as it is the case, almost always).
 
 .. code-block:: C++
 
