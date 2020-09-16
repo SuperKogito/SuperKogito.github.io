@@ -7,7 +7,7 @@ This repository contains the source scripts/ files for my Github hosted website/
 The blog is built using the following resources:
 * [Python3](https://www.python.org/download/releases/3.0/)
 * [Sphinx](http://www.sphinx-doc.org/en/master/)
-* [Github](https://github.com/)
+* [Github-pages](https://pages.github.com/)
 
 ### Exisiting articles:
 
