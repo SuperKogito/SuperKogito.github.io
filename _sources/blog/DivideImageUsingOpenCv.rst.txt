@@ -1,0 +1,145 @@
+[28-09-2020] Divide an image into blocks using OpenCV in C++
+=============================================================
+
+.. meta::
+  :description: Divide an image into multiple blocks with fixed height and width using OpenCV in C++
+  :keywords: Image divide, C++, OpenCV
+  :author: Ayoub Malek
+
+.. post:: September 29, 2020
+  :tags: [C++], [OpenCV]
+  :category: C++
+  :author: Ayoub Malek
+  :location: Munich
+  :language: English
+
+-----------------------
+
+Often you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
+This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.
+
+| ***Keywords***:  OpenCV, Divide image into blocks
+
+Approach
+--------
+
+There are various ways of approaching this problem, most approaches out there compute the number of blocks in xy-directions and use for loops to cut the blocks.
+In this blog, the dimensions of the blocks are prioritized.
+However, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.
+To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -> we will get 512 / 128 = 4 blocks.
+However if the image width = 576 px and the block width = 128 px -> we should get 4 blocks with 128 px and 1 block with width 64 px.
+Therefore on each loop we need to check/ compute the block dimensions.
+To keep the code fast and optimal, we will use a while loop, that will loop over the y-coordinates (Top to bottom) then the x-coordinates (left to right).
+The previously described steps can are implemented in the following snippet:
+
+
+.. code-block:: C++
+  :linenos:
+
+  int divideImage(const cv::Mat& img, const int blockWidth, const int blockHeight, std::vector<cv::Mat>& blocks)
+  {
+   // Checking if the image was passed correctly
+   if (!img.data || img.empty())
+   {
+  		std::wcout << "Image Error: Cannot load image to divide." << std::endl;
+    	return EXIT_FAILURE;
+   }
+
+   // init image dimensions
+   int imgWidth = img.cols;
+   int imgHeight = img.rows;
+   std::wcout << "IMAGE SIZE: " << "(" << imgWidth << "," << imgHeight << ")" << std::endl;
+
+   // init block dimensions
+   int bwSize;
+   int bhSize;
+
+   int y0 = 0;
+   while (y0 < imgHeight)
+   {
+     // compute the block height
+     bhSize = ((y0 + blockHeight) > imgHeight) * (blockHeight - (y0 + blockHeight - imgHeight)) + ((y0 + blockHeight) <= imgHeight) * blockHeight;
+
+  	 int x0 = 0;
+  	 while (x0 < imgWidth)
+  	 {
+       // compute the block height
+  	   bwSize = ((x0 + blockWidth) > imgWidth) * (blockWidth - (x0 + blockWidth - imgWidth)) + ((x0 + blockWidth) <= imgWidth) * blockWidth;
+
+  		 // crop block
+  		 blocks.push_back(img(cv::Rect(x0, y0, bwSize, bhSize)).clone());
+
+  		 // update x-coordinate
+  		 x0 = x0 + blockWidth;
+  	 }
+
+  	 // update y-coordinate
+  	 y0 = y0 + blockHeight;
+   }
+   return EXIT_SUCCESS;
+  }
+
+The previous snippet represents a small function with an integer output reflecting the run status of the function.
+divideImage() takes in 4 inputs which are the image to divide, the blocks width, the blocks height and a vector variable to store the cropped blocks in.
+
+
+The main call
+-------------
+Let's call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to.
+For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from here_.
+In code this can be done as follows:
+
+.. code-block:: C++
+  :linenos:
+
+  int main()
+  {
+   // init vars
+   const int blockw = 128;
+   const int blockh = 128;
+   std::vector<cv::Mat> blocks;
+
+   // read png image
+   Mat image = cv::imread("Lenna.png", IMREAD_UNCHANGED);
+   cv::imshow("Display window", image);
+
+   // divide image into multiple blocks
+   int divideStatus = divideImage(image, blockw, blockh, blocks);
+
+   // debug: save blocks
+   cv::utils::fs::createDirectory("blocksFolder");
+   for (int j = 0; j < blocks.size(); j++)
+   {
+     std::string blockId = std::to_string(j);
+  	 std::string blockImgName = "blocksFolder/block#" + blockId + ".png";
+  	 imwrite(blockImgName, blocks[j]);
+   }
+
+   return 0;
+  }
+
+Limitations
+-----------
+In some case the user might want to have equally sized blocks, that case the dimensions of the blocks should be pre-computed in case the user want to use this snippet.
+However, tweaking the code for such use-case should be simple to do.
+
+Conclusion
+----------
+To summarize, in this post we introduced a small example of how to divide an image into multiple blocks with predefined height and width using OpenCV in C++.
+We also went through saving the resulting blocks to the hard drive in order to verify that the code is functional.
+The code is fairly simple and supports various image encoding types(`PNG`, `JPEG` etc.) but do we need OpenCV to achieve this? can this be done differently?
+The next blog should provide an answer for this.
+
+References and Further readings
+--------------------------------
+.. [1] Capturing an Image, Microsoft, http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx
+.. [2] OPENCV Desktop Capture, Stackoverflow, https://stackoverflow.com/questions/34466993/opencv-desktop-capture
+.. [3] How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
+
+https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures
+https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks
+https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/
+
+.. _`cv::Mat object`: https://docs.opencv.org/trunk/d3/d63/classcv_1_1Mat.html
+.. _`gist: CaptureSceenshotUsingOpenCV.cpp`: https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51
+.. _`OpenCV 4 Building with CMake & Visual Studio 2017 Setup`: https://youtu.be/By-PKbWDZNk

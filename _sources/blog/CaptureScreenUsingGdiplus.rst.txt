@@ -207,11 +207,10 @@ The code is fairly simple and supports both `PNG` \& `JPEG` and seems to be fast
 
 References and Further readings
 --------------------------------
-.. [1] : GDI+, Microsoft, https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start
-.. [2] : About GDI+, Microsoft, https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-about-gdi--about
-.. [3] : Does GDI+ have standard image encoder CLSIDs?, Stackoverflow, https://stackoverflow.com/questions/5345803/does-gdi-have-standard-image-encoder-clsids
-.. [4] : GDI+ Bitmap Save problem, Stackoverflow, https://stackoverflow.com/questions/1584202/gdi-bitmap-save-problem
+.. [1] Capturing an Image, Microsoft, http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx
+.. [2] OPENCV Desktop Capture, Stackoverflow, https://stackoverflow.com/questions/34466993/opencv-desktop-capture
+.. [3] How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
 
-.. _`gist: CaptureScreenUsingGdiplus.cpp` : https://gist.github.com/SuperKogito/00e0ad0d5b2b567d74a10fe18c048776
-.. _`GDI+/ Gdiplus` : https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start
-.. _`Win32 API` : https://docs.microsoft.com/en-us/windows/win32/
+.. _`cv::Mat object`: https://docs.opencv.org/trunk/d3/d63/classcv_1_1Mat.html
+.. _`gist: CaptureSceenshotUsingOpenCV.cpp`: https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51
+.. _`OpenCV 4 Building with CMake & Visual Studio 2017 Setup`: https://youtu.be/By-PKbWDZNk
