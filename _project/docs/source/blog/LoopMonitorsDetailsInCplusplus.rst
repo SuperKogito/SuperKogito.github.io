@@ -3,10 +3,10 @@
 
 .. meta::
   :description: Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows.
-  :keywords:  multiple monitors setup, multi-monitors, loop, C++, monitor coordinates
+  :keywords:  multiple monitors setup, multi-monitors, monitors dimensions, C++, monitor coordinates
   :author: Ayoub Malek
 
-.. post:: September 27, 2020
+.. post:: September 28, 2020
   :tags: [C++]
   :category: C++
   :author: Ayoub Malek
@@ -15,15 +15,16 @@
 
 -----------------------
 
-The previous three blogs (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_ and `[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++`_) only described capturing a screenshot in a one monitor setup.
-However, often today we use multiple monitors setup and capturing the content of all of them or a specific 2 or three of them you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
-This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.
+The previous three blogs (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_ and `[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++`_) described capturing a screenshot of only *one* monitor.
+However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
+Therefore, we will need to retrieve the coordinates of the targeted monitors.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.
 
 | ***Keywords***:  multiple monitors, multi-monitors dimensions, monitor coordinates, C++
 
 Approach and implementation
 ----------------------------
-The trick for looping the screens dimensions is to use the :code:`EnumDisplayMonitors(NULL, NULL, MyInfoEnumProc, 0)` available as part of the `Win32 API`.
+The trick for looping the screens dimensions is to use the function :code:`EnumDisplayMonitors(NULL, NULL, MyInfoEnumProc, 0)`, which is available as part of the `Win32 API`_.
 A nice approach to this, is to pack the enumeration code in a structure that can be looped to retrieve the information related to each monitor.
 This can be done as in the following:
 
@@ -80,33 +81,22 @@ This can be done as in the following:
   	}
   }
 
+The previous code can be also found under here_.
 
 Conclusion
 ----------
-To summarize, in this post we introduced a small example of how to divide an image into multiple blocks with predefined height and width using OpenCV in C++.
-We also went through saving the resulting blocks to the hard drive in order to verify that the code is functional.
-The code is fairly simple and supports various image encoding types(`PNG`, `JPEG` etc.) but do we need OpenCV to achieve this? can this be done differently?
-The next blog should provide an answer for this.
+This post introduced a small example of how to retrieve the coordinates and dimensions of the connected monitors using C++ on Windows in the case of a multi-monitors setup.
+The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs  (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_)
 
 References and Further readings
 --------------------------------
-.. [1] Capturing an Image, Microsoft, http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx
-.. [2] OPENCV Desktop Capture, Stackoverflow, https://stackoverflow.com/questions/34466993/opencv-desktop-capture
-.. [3] How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
+.. [1] EnumDisplayMonitors function (winuser.h), Microsoft, https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors
+.. [2] Enumeration and Display Control, Microsoft, https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control
+.. [3] Multi-monitor Screenshots only 2 monitors in C++ with WinApi, Stackoverflow, https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi
 
 
 .. _`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV` : https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html
 .. _`[26-07-2020] Capturing the screen on Windows in C++ using GDI+` : https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html
 .. _`[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++` : https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html
 .. _`Win32 API` : https://docs.microsoft.com/en-us/windows/win32/
-.. _here : https://gist.github.com/yfzhang/ecad60e24eb1e08cf4c733ace3fee174
-
-https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors
-https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control
-
-https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks
-https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/
-
-https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi
-https://stackoverflow.com/questions/20060584/get-the-name-of-a-monitor
-https://www.datasciencecentral.com/profiles/blogs/22-great-articles-about-statistics-for-data-scientists
+.. _here : https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1

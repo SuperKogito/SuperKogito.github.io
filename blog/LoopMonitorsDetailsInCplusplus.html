@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows." name="description"/>
-<meta content="multiple monitors setup, multi-monitors, loop, C++, monitor coordinates" name="keywords"/>
+<meta content="multiple monitors setup, multi-monitors, monitors dimensions, C++, monitor coordinates" name="keywords"/>
 <meta content="Ayoub Malek" name="author"/>
 <script type="text/javascript">
 
@@ -61,15 +61,16 @@
 <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i><text id="theme-toggle">DARK MODE</text></a>
 </div>
 <hr class="docutils"/>
-<p>The previous three blogs (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">[26-07-2020] Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) only described capturing a screenshot in a one monitor setup.
-However, often today we use multiple monitors setup and capturing the content of all of them or a specific 2 or three of them you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
-This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.</p>
+<p>The previous three blogs (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">[26-07-2020] Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) described capturing a screenshot of only <em>one</em> monitor.
+However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
+Therefore, we will need to retrieve the coordinates of the targeted monitors.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.</p>
 <div class="line-block">
 <div class="line"><strong>*Keywords*</strong>:  multiple monitors, multi-monitors dimensions, monitor coordinates, C++</div>
 </div>
 <div class="section" id="approach-and-implementation">
 <h2>Approach and implementation<a class="headerlink" href="#approach-and-implementation" title="Permalink to this headline">¶</a></h2>
-<p>The trick for looping the screens dimensions is to use the <code class="code docutils literal notranslate"><span class="pre">EnumDisplayMonitors(NULL,</span> <span class="pre">NULL,</span> <span class="pre">MyInfoEnumProc,</span> <span class="pre">0)</span></code> available as part of the Win32 standard api/library.
+<p>The trick for looping the screens dimensions is to use the function <code class="code docutils literal notranslate"><span class="pre">EnumDisplayMonitors(NULL,</span> <span class="pre">NULL,</span> <span class="pre">MyInfoEnumProc,</span> <span class="pre">0)</span></code>, which is available as part of the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a>.
 A nice approach to this, is to pack the enumeration code in a structure that can be looped to retrieve the information related to each monitor.
 This can be done as in the following:</p>
 <div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -171,34 +172,26 @@ This can be done as in the following:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<p>The previous code can be also found under <a class="reference external" href="https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1">here</a>.</p>
 </div>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
-<p>To summarize, in this post we introduced a small example of how to divide an image into multiple blocks with predefined height and width using OpenCV in C++.
-We also went through saving the resulting blocks to the hard drive in order to verify that the code is functional.
-The code is fairly simple and supports various image encoding types(<cite>PNG</cite>, <cite>JPEG</cite> etc.) but do we need OpenCV to achieve this? can this be done differently?
-The next blog should provide an answer for this.</p>
+<p>This post introduced a small example of how to retrieve the coordinates and dimensions of the connected monitors using C++ on Windows in the case of a multi-monitors setup.
+The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs  (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">[26-07-2020] Capturing the screen on Windows in C++ using GDI+</a>)</p>
 </div>
 <div class="section" id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
-<dd><p>Capturing an Image, Microsoft, <a class="reference external" href="http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx">http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx</a></p>
+<dd><p>EnumDisplayMonitors function (winuser.h), Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors">https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors</a></p>
 </dd>
 <dt class="label" id="id2"><span class="brackets">2</span></dt>
-<dd><p>OPENCV Desktop Capture, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/34466993/opencv-desktop-capture">https://stackoverflow.com/questions/34466993/opencv-desktop-capture</a></p>
+<dd><p>Enumeration and Display Control, Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control">https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control</a></p>
 </dd>
 <dt class="label" id="id3"><span class="brackets">3</span></dt>
-<dd><p>How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat">https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat</a></p>
+<dd><p>Multi-monitor Screenshots only 2 monitors in C++ with WinApi, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi">https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi</a></p>
 </dd>
 </dl>
-<p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors">https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors</a>
-<a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control">https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control</a></p>
-<p><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks">https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks</a>
-<a class="reference external" href="https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/">https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/</a></p>
-<p><a class="reference external" href="https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi">https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi</a>
-<a class="reference external" href="https://stackoverflow.com/questions/20060584/get-the-name-of-a-monitor">https://stackoverflow.com/questions/20060584/get-the-name-of-a-monitor</a>
-<a class="reference external" href="https://www.datasciencecentral.com/profiles/blogs/22-great-articles-about-statistics-for-data-scientists">https://www.datasciencecentral.com/profiles/blogs/22-great-articles-about-statistics-for-data-scientists</a></p>
 </div>
 </div>
 <div class="section">
@@ -206,9 +199,9 @@ The next blog should provide an answer for this.</p>
 <span style="float: left;">
   
   Previous: 
-  <a href="VoiceBasedGenderRecognitionUsingSVM.html">
+  <a href="CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">
     
-    [01-09-2020] Voice based gender recognition using Support Vector Machines
+    [28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++
   </a>
 </span>
 <span> </span>

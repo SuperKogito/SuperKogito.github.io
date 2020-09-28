@@ -69,7 +69,7 @@
 <ul class="ablog-archive">
 <li>
       
-        27 September 2020
+        28 September 2020
       
       </li>
 <li id="author"><span>Author:</span>
@@ -88,9 +88,10 @@
 <a href="../tag/c.html">[C++]</a>
 </li>
 </ul>
-<p>The previous three blogs (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">[26-07-2020] Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) only described capturing a screenshot in a one monitor setup.
-However, often today we use multiple monitors setup and capturing the content of all of them or a specific 2 or three of them you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
-This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.</p>
+<p>The previous three blogs (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">[25-07-2020] Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">[26-07-2020] Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) described capturing a screenshot of only <em>one</em> monitor.
+However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
+Therefore, we will need to retrieve the coordinates of the targeted monitors.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.</p>
 <p><a href="../LoopMonitorsDetailsInCplusplus.html">Read more ...</a></p>
 <hr/>
 </div>

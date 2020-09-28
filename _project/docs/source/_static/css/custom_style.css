@@ -62,7 +62,7 @@ html[theme=dark] {
 }
 
 body {
-  width: 1050px;
+  width: 1090px;
   margin: auto auto auto auto;
   color: var(--main-text-color);
   background-color: var(--main-background-color);
