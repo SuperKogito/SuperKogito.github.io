@@ -18,7 +18,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-<title>[28-09-2020] Divide an image into blocks using OpenCV in C++ — Ayoub Malek's blog</title>
+<title>[01-10-2020] Divide an image into blocks using OpenCV in C++ — Ayoub Malek's blog</title>
 <link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
 <link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -50,7 +50,7 @@
 <div class="documentwrapper">
 <div class="body" role="main">
 <div class="section" id="divide-an-image-into-blocks-using-opencv-in-c">
-<h1>[28-09-2020] Divide an image into blocks using OpenCV in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-opencv-in-c" title="Permalink to this headline">¶</a></h1>
+<h1>[01-10-2020] Divide an image into blocks using OpenCV in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-opencv-in-c" title="Permalink to this headline">¶</a></h1>
 <div class="sub-title-menu">
 <a href="../index.html" title="Home"><i class="fa fa-home"></i>Home</a>
 <a href="../posts.html" title="Posts"><i class="fa fa-bars"></i>Posts</a>
@@ -68,14 +68,13 @@ This blog will provide a short explanation and a C++ implementation for how to d
 </div>
 <div class="section" id="approach">
 <h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
-<p>There are various ways of approaching this problem, most approaches out there compute the number of blocks in xy-directions and use for loops to cut the blocks.
-In this blog, the dimensions of the blocks are prioritized.
-However, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.
-To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -&gt; we will get 512 / 128 = 4 blocks.
+<p>There are various ways of approaching this problem; most approaches out there compute the number of blocks in xy-directions and use for loops to cut the blocks.
+In this blog, the dimensions of the blocks are prioritized, therefore, we will need to make sure to crop the side blocks and lower blocks correctly even if their dimensions are different from the other blocks.</p>
+<p>To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -&gt; we will get 512 / 128 = 4 blocks.
 However if the image width = 576 px and the block width = 128 px -&gt; we should get 4 blocks with 128 px and 1 block with width 64 px.
 Therefore on each loop we need to check/ compute the block dimensions.
-To keep the code fast and optimal, we will use a while loop, that will loop over the y-coordinates (Top to bottom) then the x-coordinates (left to right).
-The previously described steps can are implemented in the following snippet:</p>
+Moreover, to keep the code fast and optimal, we will use while loops, that will iterate over the y-coordinates (Top to bottom) then the x-coordinates (left to right).</p>
+<p>–&gt; The previously described steps are implemented in the following snippet:</p>
 <div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -117,7 +116,21 @@ The previously described steps can are implemented in the following snippet:</p>
 39
 40
 41
-42</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">divideImage</span><span class="p">(</span><span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span> <span class="n">img</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockWidth</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockHeight</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span> <span class="n">blocks</span><span class="p">)</span>
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"opencv2/imgproc.hpp"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"opencv2/highgui.hpp"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/core/utils/filesystem.hpp&gt;</span><span class="cp"></span>
+
+
+<span class="kt">int</span> <span class="nf">divideImage</span><span class="p">(</span><span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span> <span class="n">img</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockWidth</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockHeight</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span> <span class="n">blocks</span><span class="p">)</span>
 <span class="p">{</span>
  <span class="c1">// Checking if the image was passed correctly</span>
  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">img</span><span class="p">.</span><span class="n">data</span> <span class="o">||</span> <span class="n">img</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
@@ -162,12 +175,12 @@ The previously described steps can are implemented in the following snippet:</p>
 </pre></div>
 </td></tr></table></div>
 <p>The previous snippet represents a small function with an integer output reflecting the run status of the function.
-divideImage() takes in 4 inputs which are the image to divide, the blocks width, the blocks height and a vector variable to store the cropped blocks in.</p>
+<code class="code docutils literal notranslate"><span class="pre">divideImage()</span></code> takes in 4 inputs which are the image to divide, the blocks width, the blocks height and a vector variable to store the cropped blocks in.</p>
 </div>
 <div class="section" id="the-main-call">
 <h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
-<p>Let’s call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to.
-For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from <a href="#id4"><span class="problematic" id="id5">here_</span></a>.
+<p>Let’s call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to do.
+For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from <a class="reference external" href="https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png">here</a>.
 In code this can be done as follows:</p>
 <div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -220,11 +233,21 @@ In code this can be done as follows:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<p>The full code can be found in this <a class="reference external" href="https://gist.github.com/SuperKogito/0d6f839a04f17999aad8e4eac87f2411">gist: DivideImageUsingOpenCv.cpp</a>.</p>
 </div>
+<div class="section" id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h2>
+<p>The resulting blocks should look something like this:</p>
+<a class="reference internal image-reference" href="../_images/divided_lenna.png"><img alt="../_images/divided_lenna.png" class="align-center" src="../_images/divided_lenna.png" style="width: 1108.0px; height: 794.4000000000001px;"/></a>
+<div class="clt">
+<center><a href="../figures/fig19.html">Figure 19: divided image into multiple blocks </a> </center>
+</div></div>
 <div class="section" id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
-<p>In some case the user might want to have equally sized blocks, that case the dimensions of the blocks should be pre-computed in case the user want to use this snippet.
-However, tweaking the code for such use-case should be simple to do.</p>
+<ul class="simple">
+<li><p>In some cases the user might want to have equally sized blocks or a predefined number of blocks. Therefore, in such case, the dimensions of the blocks should be pre-computed if the user want to use this snippet. However, tweaking the code for such use-case should be simple to do.</p></li>
+<li><p>NB: This code has only tested on Windows 10.</p></li>
+</ul>
 </div>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
@@ -237,21 +260,30 @@ The next blog should provide an answer for this.</p>
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id1"><span class="brackets">1</span></dt>
-<dd><p>Capturing an Image, Microsoft, <a class="reference external" href="http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx">http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx</a></p>
+<dd><p>Crop a big picture into several small size pictures, Graphic design, <a class="reference external" href="https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures">https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures</a></p>
 </dd>
 <dt class="label" id="id2"><span class="brackets">2</span></dt>
-<dd><p>OPENCV Desktop Capture, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/34466993/opencv-desktop-capture">https://stackoverflow.com/questions/34466993/opencv-desktop-capture</a></p>
+<dd><p>Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, <a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks">https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks</a></p>
 </dd>
 <dt class="label" id="id3"><span class="brackets">3</span></dt>
-<dd><p>How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat">https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat</a></p>
+<dd><p>Divide an image into lower regions, OpenCV, <a class="reference external" href="https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/">https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/</a></p>
 </dd>
 </dl>
-<p><a class="reference external" href="https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures">https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures</a>
-<a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks">https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks</a>
-<a class="reference external" href="https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/">https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/</a></p>
 </div>
 </div>
 <div class="section">
+<div class="section">
+<span style="float: left;">
+  
+  Previous: 
+  <a href="LoopMonitorsDetailsInCplusplus.html">
+    
+    [28-09-2020] How to loop over monitors and get their coordinates on Windows in C++?
+  </a>
+</span>
+<span> </span>
+<span style="float: right;">
+</span></div>
 </div>
 </div>
 </div>

@@ -1,4 +1,4 @@
-[28-09-2020] Divide an image into blocks using OpenCV in C++
+[01-10-2020] Divide an image into blocks using OpenCV in C++
 =============================================================
 
 .. meta::
@@ -6,7 +6,7 @@
   :keywords: Image divide, C++, OpenCV
   :author: Ayoub Malek
 
-.. post:: September 29, 2020
+.. post:: October 01, 2020
   :tags: [C++], [OpenCV]
   :category: C++
   :author: Ayoub Malek
@@ -23,18 +23,27 @@ This blog will provide a short explanation and a C++ implementation for how to d
 Approach
 --------
 
-There are various ways of approaching this problem, most approaches out there compute the number of blocks in xy-directions and use for loops to cut the blocks.
-In this blog, the dimensions of the blocks are prioritized.
-However, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.
+There are various ways of approaching this problem; most approaches out there compute the number of blocks in xy-directions and use for loops to cut the blocks.
+In this blog, the dimensions of the blocks are prioritized, therefore, we will need to make sure to crop the side blocks and lower blocks correctly even if their dimensions are different from the other blocks.
+
 To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -> we will get 512 / 128 = 4 blocks.
 However if the image width = 576 px and the block width = 128 px -> we should get 4 blocks with 128 px and 1 block with width 64 px.
 Therefore on each loop we need to check/ compute the block dimensions.
-To keep the code fast and optimal, we will use a while loop, that will loop over the y-coordinates (Top to bottom) then the x-coordinates (left to right).
-The previously described steps can are implemented in the following snippet:
+Moreover, to keep the code fast and optimal, we will use while loops, that will iterate over the y-coordinates (Top to bottom) then the x-coordinates (left to right).
+
+
+--> The previously described steps are implemented in the following snippet:
 
 
 .. code-block:: C++
   :linenos:
+
+  #include <Windows.h>
+  #include <opencv2/opencv.hpp>
+  #include "opencv2/imgproc.hpp"
+  #include "opencv2/highgui.hpp"
+  #include <opencv2/core/utils/filesystem.hpp>
+
 
   int divideImage(const cv::Mat& img, const int blockWidth, const int blockHeight, std::vector<cv::Mat>& blocks)
   {
@@ -80,12 +89,12 @@ The previously described steps can are implemented in the following snippet:
   }
 
 The previous snippet represents a small function with an integer output reflecting the run status of the function.
-divideImage() takes in 4 inputs which are the image to divide, the blocks width, the blocks height and a vector variable to store the cropped blocks in.
+:code:`divideImage()` takes in 4 inputs which are the image to divide, the blocks width, the blocks height and a vector variable to store the cropped blocks in.
 
 
 The main call
 -------------
-Let's call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to.
+Let's call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to do.
 For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from here_.
 In code this can be done as follows:
 
@@ -118,10 +127,26 @@ In code this can be done as follows:
    return 0;
   }
 
+The full code can be found in this `gist: DivideImageUsingOpenCv.cpp`_.
+
+Result
+--------
+The resulting blocks should look something like this:
+
+.. image:: ../_static/blog-plots/opencv/divided_lenna.png
+   :align: center
+   :scale: 80%
+
+.. raw:: html
+
+   <div class="clt">
+   <center><a href="../figures/fig19.html" >Figure 19: divided image into multiple blocks </a> </center>
+   </div>
+
 Limitations
 -----------
-In some case the user might want to have equally sized blocks, that case the dimensions of the blocks should be pre-computed in case the user want to use this snippet.
-However, tweaking the code for such use-case should be simple to do.
+- In some cases the user might want to have equally sized blocks or a predefined number of blocks. Therefore, in such case, the dimensions of the blocks should be pre-computed if the user want to use this snippet. However, tweaking the code for such use-case should be simple to do.
+- NB: This code has only tested on Windows 10.
 
 Conclusion
 ----------
@@ -132,14 +157,10 @@ The next blog should provide an answer for this.
 
 References and Further readings
 --------------------------------
-.. [1] Capturing an Image, Microsoft, http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx
-.. [2] OPENCV Desktop Capture, Stackoverflow, https://stackoverflow.com/questions/34466993/opencv-desktop-capture
-.. [3] How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
+.. [1] Crop a big picture into several small size pictures, Graphic design, https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures
+.. [2] Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks
+.. [3] Divide an image into lower regions, OpenCV, https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/
 
-https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures
-https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks
-https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/
 
-.. _`cv::Mat object`: https://docs.opencv.org/trunk/d3/d63/classcv_1_1Mat.html
-.. _`gist: CaptureSceenshotUsingOpenCV.cpp`: https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51
-.. _`OpenCV 4 Building with CMake & Visual Studio 2017 Setup`: https://youtu.be/By-PKbWDZNk
+.. _`gist: DivideImageUsingOpenCv.cpp` : https://gist.github.com/SuperKogito/0d6f839a04f17999aad8e4eac87f2411
+.. _here : https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png

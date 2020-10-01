@@ -24,4 +24,8 @@ List of figures
   figures/fig13
   figures/fig14
   figures/fig15
+  figures/fig16
+  figures/fig17
+  figures/fig18
+  figures/fig19
   :maxdepth: 2
