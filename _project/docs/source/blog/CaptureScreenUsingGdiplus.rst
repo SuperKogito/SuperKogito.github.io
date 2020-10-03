@@ -3,11 +3,11 @@
 
 .. meta::
   :description: Capturing the screen using Gdiplus
-  :keywords: Screen capture, Gdiplus
+  :keywords: Screen capture, Gdiplus, GDI+, C++, Win32, Windows
   :author: Ayoub Malek
 
 .. post:: July 26, 2020
-  :tags: [Win32],[Gdiplus],[Screen Capture]
+  :tags: [Win32], [Gdiplus], [Windows], [C++]
   :category: C++
   :author: Ayoub Malek
   :location: Munich
@@ -18,7 +18,7 @@
 `GDI+/ Gdiplus`_ is part of the `Win32 API`_, that helps C/C++ programmers with graphics related tasks on Windows.
 In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.
 
-| ***Keywords***: GDI+, Screen capture, Screenshots
+| ***Keywords***: GDI+, Gdiplus, C++, Windows, Screen capture, Screenshots
 
 
 GDI+ / Gdiplus introduction
@@ -208,9 +208,7 @@ The code is fairly simple and supports both `PNG` \& `JPEG` and seems to be fast
 References and Further readings
 --------------------------------
 .. [1] Capturing an Image, Microsoft, http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx
-.. [2] OPENCV Desktop Capture, Stackoverflow, https://stackoverflow.com/questions/34466993/opencv-desktop-capture
-.. [3] How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
+.. [2] Gdi+ Take Screenshot multiple monitors, Stackoverflow, https://stackoverflow.com/questions/34444865/gdi-take-screenshot-multiple-monitors
+.. [3] Capturing an Image, Microsoft, https://docs.microsoft.com/en-us/windows/win32/gdi/capturing-an-image
 
-.. _`cv::Mat object`: https://docs.opencv.org/trunk/d3/d63/classcv_1_1Mat.html
 .. _`gist: CaptureSceenshotUsingOpenCV.cpp`: https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51
-.. _`OpenCV 4 Building with CMake & Visual Studio 2017 Setup`: https://youtu.be/By-PKbWDZNk

@@ -7,7 +7,7 @@
   :author: Ayoub Malek
 
 .. post:: October 01, 2020
-  :tags: [C++], [OpenCV]
+  :tags: [C++], [OpenCV], [Windows]
   :category: C++
   :author: Ayoub Malek
   :location: Munich
@@ -18,7 +18,7 @@
 Often you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
 This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.
 
-| ***Keywords***:  OpenCV, Divide image into blocks
+| ***Keywords***:  OpenCV, C++, Windows, Divide image into blocks
 
 Approach
 --------
@@ -145,7 +145,7 @@ The resulting blocks should look something like this:
 
 Limitations
 -----------
-- In some cases the user might want to have equally sized blocks or a predefined number of blocks. Therefore, in such case, the dimensions of the blocks should be pre-computed if the user want to use this snippet. However, tweaking the code for such use-case should be simple to do.
+- In some cases the user might want to have equally sized blocks or a predefined number of blocks. Therefore, in such case, the dimensions of the blocks should be pre-computed if the user wants to use this snippet. However, tweaking the code for such use-case should be simple to do.
 - NB: This code has only tested on Windows 10.
 
 Conclusion
@@ -160,7 +160,6 @@ References and Further readings
 .. [1] Crop a big picture into several small size pictures, Graphic design, https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures
 .. [2] Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks
 .. [3] Divide an image into lower regions, OpenCV, https://answers.opencv.org/question/53694/divide-an-image-into-lower-regions/
-
 
 .. _`gist: DivideImageUsingOpenCv.cpp` : https://gist.github.com/SuperKogito/0d6f839a04f17999aad8e4eac87f2411
 .. _here : https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png

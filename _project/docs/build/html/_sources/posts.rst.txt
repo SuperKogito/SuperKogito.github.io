@@ -13,6 +13,7 @@ All Posts
 
   <div class="latest-posts">
     <ul>
+      <li class="toctree-l3"><a class="reference internal" href="blog/DivideImageUsingGdiplus.html">[03-10-2020] Divide an image into blocks using Gdiplus in C++</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/DivideImageUsingOpenCv.html">[01-10-2020] Divide an image into blocks using OpenCV in C++</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/LoopMonitorsDetailsInCplusplus.html">[28-09-2020] How to loop over monitors and get their coordinates on Windows in C++?</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a></li>

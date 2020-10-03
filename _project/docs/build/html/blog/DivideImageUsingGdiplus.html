@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/><meta content="Divide an image into multiple blocks with fixed height and width using Gdiplus in C++" name="description"/>
+<meta content="Image divide, C++, Gdiplus, GDI+, Win32" name="keywords"/>
+<meta content="Ayoub Malek" name="author"/>
+<script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-133660046-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+<title>[03-10-2020] Divide an image into blocks using Gdiplus in C++ — Ayoub Malek's blog</title>
+<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/css/code_style.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/css/tree_graph.css" rel="stylesheet" type="text/css"/>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
+<script src="../_static/jquery.js" type="text/javascript"></script>
+<script src="../_static/underscore.js" type="text/javascript"></script>
+<script src="../_static/doctools.js" type="text/javascript"></script>
+<script src="../_static/language_data.js" type="text/javascript"></script>
+<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<link href="../_static/favicon.ico" rel="shortcut icon"/>
+<link href="../about.html" rel="author" title="About these documents"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
+<style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+</head><body>
+<div class="document">
+<div class="documentwrapper">
+<div class="body" role="main">
+<div class="section" id="divide-an-image-into-blocks-using-gdiplus-in-c">
+<h1>[03-10-2020] Divide an image into blocks using Gdiplus in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-gdiplus-in-c" title="Permalink to this headline">¶</a></h1>
+<div class="sub-title-menu">
+<a href="../index.html" title="Home"><i class="fa fa-home"></i>Home</a>
+<a href="../posts.html" title="Posts"><i class="fa fa-bars"></i>Posts</a>
+<a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i>Publications</a>
+<a href="../projects.html" title="projects"><i class="fa fa-code"></i>Projects</a>
+<a href="../games.html" title="Games"><i class="fa fa-gamepad"></i>Games</a>
+<a href="../about.html" title="About"><i class="fa fa-user-circle"></i>About</a>
+<a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i><text id="theme-toggle">DARK MODE</text></a>
+</div>
+<hr class="docutils"/>
+<p>In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
+This blog will provide an alternative implementation using the Windows api, sepecifally the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+</a> library.</p>
+<div class="line-block">
+<div class="line"><strong>*Keywords*</strong>:  GDI+, Gdiplus, C++, Windows, Divide image into blocks</div>
+</div>
+<div class="section" id="approach">
+<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
+<p>Similarly to the approach introduced in the previous blog (<a class="reference external" href="DivideImageUsingOpenCv.html">[01-10-2020] Divide an image into blocks using OpenCV in C++</a>) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
+At the same time, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.</p>
+<blockquote>
+<div><p>From <a class="reference external" href="DivideImageUsingOpenCv.html">[01-10-2020] Divide an image into blocks using OpenCV in C++</a>:</p>
+<p><em>To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -&gt; we will get 512 / 128 = 4 blocks.
+However if the image width = 576 px and the block width = 128 px -&gt; we should get 4 blocks with 128 px and 1 block with width 64 px.
+Therefore on each loop we need to check/ compute the block dimensions.</em></p>
+</div></blockquote>
+<p>Similarly, we also use while loops in this alternative to keep the code fast and optimal.
+The previously described code is implemented in the following snippet:</p>
+<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;minmax.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;gdiplus.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;SDKDDKVer.h&gt;</span><span class="cp"></span>
+<span class="cp">#pragma comment(lib,"gdiplus.lib")</span>
+<span class="cp">#include</span> <span class="cpf">"atlimage.h"</span><span class="cp"></span>
+
+
+<span class="kt">bool</span> <span class="nf">saveToMemory</span><span class="p">(</span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span> <span class="n">tile</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&amp;</span> <span class="n">data</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">dataFormat</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// write to IStream</span>
+  <span class="n">IStream</span><span class="o">*</span> <span class="n">istream</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="n">CreateStreamOnHGlobal</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">istream</span><span class="p">);</span>
+
+  <span class="c1">// define encoding</span>
+  <span class="n">CLSID</span> <span class="n">clsid</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dataFormat</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"bmp"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">CLSIDFromString</span><span class="p">(</span><span class="sa">L</span><span class="s">"{557cf400-1a04-11d3-9a73-0000f81ef32e}"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clsid</span><span class="p">);</span>
+    <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">tile</span><span class="o">-&gt;</span><span class="n">Save</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clsid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="o">::</span><span class="n">Ok</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">dataFormat</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"jpg"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">CLSIDFromString</span><span class="p">(</span><span class="sa">L</span><span class="s">"{557cf401-1a04-11d3-9a73-0000f81ef32e}"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clsid</span><span class="p">);</span>
+    <span class="c1">// Before we call Image::Save, we must initialize an EncoderParameters object.</span>
+    <span class="c1">// The EncoderParameters object has an array of EncoderParameter objects.</span>
+    <span class="c1">// In this case, there is only one EncoderParameter object in the array.</span>
+    <span class="c1">// The one EncoderParameter object has an array of values.</span>
+    <span class="c1">// In this case, there is only one value (of type ULONG)</span>
+    <span class="n">Gdiplus</span><span class="o">::</span><span class="n">EncoderParameters</span> <span class="n">encoderParameters</span><span class="p">;</span>
+    <span class="n">encoderParameters</span><span class="p">.</span><span class="n">Count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Guid</span> <span class="o">=</span> <span class="n">Gdiplus</span><span class="o">::</span><span class="n">EncoderQuality</span><span class="p">;</span>
+    <span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Type</span> <span class="o">=</span> <span class="n">Gdiplus</span><span class="o">::</span><span class="n">EncoderParameterValueTypeLong</span><span class="p">;</span>
+    <span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">NumberOfValues</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// Save the image as a JPEG with quality level 0.</span>
+    <span class="kt">int</span> <span class="n">quality</span> <span class="o">=</span> <span class="mi">70</span><span class="p">;</span>
+    <span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Value</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">quality</span><span class="p">;</span>
+
+    <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">tile</span><span class="o">-&gt;</span><span class="n">Save</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clsid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">encoderParameters</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="o">::</span><span class="n">Ok</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">dataFormat</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"png"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">CLSIDFromString</span><span class="p">(</span><span class="sa">L</span><span class="s">"{557cf406-1a04-11d3-9a73-0000f81ef32e}"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clsid</span><span class="p">);</span>
+    <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">tile</span><span class="o">-&gt;</span><span class="n">Save</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clsid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="o">::</span><span class="n">Ok</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// get memory handle associated with istream</span>
+  <span class="n">HGLOBAL</span> <span class="n">hg</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">GetHGlobalFromStream</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hg</span><span class="p">);</span>
+
+  <span class="c1">// copy IStream to buffer</span>
+  <span class="kt">int</span> <span class="n">bufsize</span> <span class="o">=</span> <span class="n">GlobalSize</span><span class="p">(</span><span class="n">hg</span><span class="p">);</span>
+  <span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">bufsize</span><span class="p">);</span>
+
+  <span class="c1">// lock &amp; unlock memory</span>
+  <span class="n">LPVOID</span> <span class="n">pimage</span> <span class="o">=</span> <span class="n">GlobalLock</span><span class="p">(</span><span class="n">hg</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pimage</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pimage</span><span class="p">,</span> <span class="n">bufsize</span><span class="p">);</span>
+
+  <span class="n">GlobalUnlock</span><span class="p">(</span><span class="n">hg</span><span class="p">);</span>
+  <span class="n">istream</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">gdiplusDivideImage</span><span class="p">(</span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span> <span class="n">img</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockWidth</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockHeight</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&gt;&amp;</span> <span class="n">blocks</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">imgWidth</span> <span class="o">=</span> <span class="n">img</span><span class="o">-&gt;</span><span class="n">GetWidth</span><span class="p">();</span>
+  <span class="kt">int</span> <span class="n">imgHeight</span> <span class="o">=</span> <span class="n">img</span><span class="o">-&gt;</span><span class="n">GetHeight</span><span class="p">();</span>
+
+  <span class="kt">int</span> <span class="n">bhSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">bwSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">blockId</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">y0</span> <span class="o">&lt;</span> <span class="n">imgHeight</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">bhSize</span> <span class="o">=</span> <span class="p">((</span><span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">imgHeight</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">blockHeight</span> <span class="o">-</span> <span class="p">(</span><span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span> <span class="o">-</span> <span class="n">imgHeight</span><span class="p">))</span> <span class="o">+</span> <span class="p">((</span><span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">imgHeight</span><span class="p">)</span> <span class="o">*</span> <span class="n">blockHeight</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">x0</span> <span class="o">&lt;</span> <span class="n">imgWidth</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">bwSize</span> <span class="o">=</span> <span class="p">((</span><span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">imgWidth</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">blockWidth</span> <span class="o">-</span> <span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span> <span class="o">-</span> <span class="n">imgWidth</span><span class="p">))</span> <span class="o">+</span> <span class="p">((</span><span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">imgWidth</span><span class="p">)</span> <span class="o">*</span> <span class="n">blockWidth</span><span class="p">;</span>
+      <span class="n">blockId</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span> <span class="n">bmp</span> <span class="o">=</span> <span class="n">img</span><span class="o">-&gt;</span><span class="n">Clone</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">bwSize</span><span class="p">,</span> <span class="n">bhSize</span><span class="p">,</span> <span class="n">PixelFormat24bppRGB</span><span class="p">);</span>
+
+      <span class="c1">// encode block</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;</span> <span class="n">pngbytes</span><span class="p">;</span>
+
+      <span class="c1">// encode block</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">saveToMemory</span><span class="p">(</span><span class="n">bmp</span><span class="p">,</span> <span class="n">pngbytes</span><span class="p">,</span> <span class="s">"png"</span><span class="p">)))</span>
+      <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Cannot save block_"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"_"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"to png"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="c1">// update starting coordinates</span>
+      <span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span><span class="p">;</span>
+
+      <span class="c1">// append to vec</span>
+      <span class="n">blocks</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pngbytes</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// update starting coordinates</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The previous snippet includes two main functions:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">saveToMemory()</span></code> : used to save the image bytes to the memory using a specific encoding.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">gdiplusDivideImage()</span></code> : divides an input image into blocks with an integer output reflecting the run status of the function.</p></li>
+</ul>
+</div>
+<div class="section" id="the-main-call">
+<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
+<p>Let’s call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to.
+For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from <a class="reference external" href="https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png">here</a>.
+In code this can be done as follows:</p>
+<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// initilialize GDI+</span>
+  <span class="n">CoInitialize</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">ULONG_PTR</span> <span class="n">token</span><span class="p">;</span>
+  <span class="n">Gdiplus</span><span class="o">::</span><span class="n">GdiplusStartupInput</span> <span class="n">tmp</span><span class="p">;</span>
+  <span class="n">Gdiplus</span><span class="o">::</span><span class="n">GdiplusStartup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">token</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+  <span class="c1">// init vars</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&gt;</span> <span class="n">imgblocks</span><span class="p">;</span>
+
+  <span class="c1">// load img</span>
+  <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">::</span><span class="n">FromFile</span><span class="p">(</span><span class="sa">L</span><span class="s">"Lenna.png"</span><span class="p">);</span>
+
+  <span class="c1">// divide img</span>
+  <span class="kt">int</span> <span class="n">divstatus</span> <span class="o">=</span> <span class="n">gdiplusDivideImage</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span> <span class="n">blockw</span><span class="p">,</span> <span class="n">blockh</span><span class="p">,</span> <span class="n">imgblocks</span><span class="p">);</span>
+
+  <span class="c1">// create repository for blocks</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">CreateDirectory</span><span class="p">(</span><span class="sa">L</span><span class="s">"blocksFolder"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"Directory Error: Cannot create directory for blocks."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// save blocks</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">imgblocks</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">blockImgName</span> <span class="o">=</span> <span class="s">"blocksFolder/block#"</span> <span class="o">+</span> <span class="n">blockId</span> <span class="o">+</span> <span class="s">".png"</span><span class="p">;</span>
+
+    <span class="c1">// write from memory to file for testing:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">fout</span><span class="p">(</span><span class="n">blockImgName</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">binary</span><span class="p">);</span>
+    <span class="n">fout</span><span class="p">.</span><span class="n">write</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">imgblocks</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">data</span><span class="p">(),</span> <span class="n">imgblocks</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">size</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The full code can be found in this <a class="reference external" href="https://gist.github.com/SuperKogito/434ac8489f8b99aa10377966180e3a35">gist: DivideImageUsingGdiplus.cpp</a>.</p>
+</div>
+<div class="section" id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h2>
+<p>The resulting blocks should look something like this:</p>
+<a class="reference internal image-reference" href="../_images/divided_lenna.png"><img alt="../_images/divided_lenna.png" class="align-center" src="../_images/divided_lenna.png" style="width: 1108.0px; height: 794.4000000000001px;"/></a>
+<div class="clt">
+<center><a href="../figures/fig19.html">Figure 19: divided image into multiple blocks </a> </center>
+</div></div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This code is practical and simple to use on Windows but unfortunately, on the contrary to the OpenCV variant, it does not support different operating systems like Linux for example.</p></li>
+<li><p>In some cases the user might want to have equally sized blocks; in that case the dimensions of the blocks should be pre-computed if the user wants to use this snippet.</p></li>
+</ul>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>This post provided an alternative C++ implementation to the previous OpenCV code used to divide an image into multiple blocks with predefined height and width.
+Similarly, we also saved the resulting blocks to the hard drive in order to verify that the code is functional.
+The code is fairly simple and supports various image encoding types(<cite>PNG</cite>, <cite>JPEG</cite> etc.) but unlike the OpenCV implementation, it only supports Windows since it is based in part on the Win32 API, specifically the GDI+ library.</p>
+</div>
+<div class="section" id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p>Image class (gdiplusheaders.h), Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/gdiplusheaders/nl-gdiplusheaders-image">https://docs.microsoft.com/en-us/windows/win32/api/gdiplusheaders/nl-gdiplusheaders-image</a></p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">2</span></dt>
+<dd><p>GDI+, Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/_gdiplus/">https://docs.microsoft.com/en-us/windows/win32/api/_gdiplus/</a></p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">3</span></dt>
+<dd><p>Crop a big picture into several small size pictures, Graphic design, <a class="reference external" href="https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures">https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">4</span></dt>
+<dd><p>Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, <a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks">https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks</a></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section">
+<div class="section">
+<span style="float: left;">
+  
+  Previous: 
+  <a href="DivideImageUsingOpenCv.html">
+    
+    [01-10-2020] Divide an image into blocks using OpenCV in C++
+  </a>
+</span>
+<span> </span>
+<span style="float: right;">
+</span></div>
+</div>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="footer">
+      ©2020, Ayoub Malek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="../_sources/blog/DivideImageUsingGdiplus.rst.txt" rel="nofollow">Page source</a>
+</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+</body>
+</html>
