@@ -135,7 +135,6 @@ The resulting blocks should look something like this:
 
 .. image:: ../_static/blog-plots/opencv/divided_lenna.png
    :align: center
-   :scale: 80%
 
 .. raw:: html
 

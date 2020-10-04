@@ -419,7 +419,7 @@ div.body.section {
 
 div.sub-title-menu a {
   font-weight: bold;
-  margin: 0 0.75% 0 0;
+  margin: 0 0.75% 0 0
   color: var(--light-text-color);
   text-transform: uppercase;
   font-size: 16px;
@@ -503,6 +503,28 @@ div.sub-title-menu a {
   margin-top: .25em;
 }
 
+@media screen and (max-width : 70%) {
+  body {
+    margin: 0 5%;
+    font-size: 1.0rem;
+  }
+
+  .tag-nav span {
+    flex-basis: 50%;
+  }
+
+  .sub-title-menu a:hover {
+    color: var(--light-text-color);
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width : 70%) {
+  body {
+    font-size: .9rem;
+  }
+}
+
 hr {
   border: 0px
 }
@@ -524,6 +546,17 @@ hr {
   margin-right: 16px;
   color: #666;
   font-size: 14px;
+}
+
+@media (min-width : 480px) {
+  .post-list .post-item {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .post-list .post-item .meta {
+    text-align: left;
+  }
 }
 
 .article-title {
@@ -550,15 +583,17 @@ div.code-block-caption span.caption-text {
   color=var(--link-color-visited);
 }
 
-.highlight .n {
-  color : var(--main-text-color);
-}
+.highlight .n { color : var(--main-text-color); }
+
+
+
 
 div.sub-title-menu .fa {
   font-weight: bold;
   padding: 0em 0.25em 0em 1.2em;
   padding-bottom: 0.25em;
-}
+
+  }
 
 div.body blockquote {
   width: 850px;
@@ -598,7 +633,6 @@ table.docutils {
 
 div.body canvas {
   margin: 0 0 0 0;
-  max-width: inherit;
 }
 
 .citation {
@@ -667,158 +701,4 @@ img.badge {
 div.gh-buttons {
   text-align: center;
   padding: 2em 0 0 0
-}
-
-img.align-center {
-  width : auto;
-  height : auto;
-}
-
-@media only screen and (max-width: 600px) {
-  /* For tablets: */
-  body {
-    width: 500px;
-    margin: auto auto auto auto;
-    color: var(--main-text-color);
-    background-color: var(--main-background-color);
-    font-feature-settings: "kern";
-    font-family: "neon";
-    font-size: 14px;
-  }
-  img.cloud {
-    display: contents;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-    border: 0px solid var(--light-border-color);
-  }
-}
-
-
-
-@media only screen and (max-width: 400px) {
-  /* For smartphones */
-
-
-  html,
-  html[theme=light] {
-    --box-background-color: hsl(0, 0%, 90%);
-    --highlight-color: hsl(0, 0%, 80%);
-    --light-border-color: hsl(0, 0%, 80%);
-    --light-text-color: hsl(0, 0%, 35%);
-    --link-color: hsl(200, 81%, 35%);
-    --link-color-visited: hsl(250, 100%, 37%);
-    --main-background-color: hsl(0, 5%, 95%);
-    --main-text-color: hsl(0, 0%, 0%);
-    --sidebar-color: hsl(0, 0%, 90%);
-  }
-
-  html[theme=dark] {
-    --box-background-color: hsl(0, 0%, 20%);
-    --highlight-color: hsl(0, 0%, 60%);
-    --light-border-color: hsl(0, 0%, 30%);
-    --light-text-color: hsl(0, 0%, 60%);
-    --link-color: hsl(200, 81%, 60%);
-    --link-color-visited: hsl(250, 100%, 60%);
-    --main-background-color: hsl(0, 0%, 10%);
-    --main-text-color: hsl(0, 10%, 80%);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    html[theme=dark] {
-      --box-background-color: hsl(0, 0%, 20%);
-      --highlight-color: hsl(0, 0%, 60%);
-      --light-border-color: hsl(0, 0%, 30%);
-      --light-text-color: hsl(0, 0%, 60%);
-      --link-color: hsl(200, 81%, 60%);
-      --link-color-visited: hsl(250, 100%, 60%);
-      --main-background-color: hsl(0, 0%, 10%);
-      --main-text-color: hsl(0, 10%, 80%);
-    }
-
-    html[theme=light] {
-      --box-background-color: hsl(0, 0%, 90%);
-      --highlight-color: hsl(0, 0%, 80%);
-      --light-border-color: hsl(0, 0%, 80%);
-      --light-text-color: hsl(0, 0%, 35%);
-      --link-color: hsl(200, 81%, 35%);
-      --link-color-visited: hsl(250, 100%, 37%);
-      --main-background-color: hsl(0, 5%, 95%);
-      --main-text-color: hsl(0, 0%, 0%);
-      --sidebar-color: hsl(0, 0%, 90%);
-    }
-  }
-
-  body {
-    width: 320px;
-    margin: auto auto auto auto;
-    color: var(--main-text-color);
-    background-color: var(--main-background-color);
-    font-feature-settings: "kern";
-    font-family: "neon";
-    font-size: 14px;
-  }
-  div {
-      width: 100%;
-      margin: 0 0 0 0;
-      padding: 0 0 0 0;
-      color: var(--main-text-color);
-      background-color: var(--main-background-color);
-      font-feature-settings: "kern"on;
-      font-family: "neon";
-      font-size: 14px;
-      min-width: 5px;
-      max-width: 300px;
-  }
-  div.sub-title-menu {
-    width: 100%;
-    margin: 0 0% 0 0%;
-    padding: 0 0 0 0;
-    color: var(--main-text-color);
-    background-color: var(--main-background-color);
-    font-feature-settings: "kern"on;
-    font-family: "neon";
-    font-size: 14px;
-    max-width: 100%;
-    border-bottom-color: var(--main-text-color);
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-  }
-  table.highlighttable {
-      margin-left: 0.005em;
-      width: 97%;
-  }
-  div.highlight {
-      background-color: var(--main-background-color);
-      width: 250px;
-  }
-  div.sub-title-menu a {
-    font-weight: bold;
-    margin: 0 80px 0px 0px;
-    color: var(--light-text-color);
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: .05em;
-  }
-  div.sub-title-menu .fa {
-    font-weight: bold;
-    padding: 0px 5px 0px 85px;
-    padding-bottom: 0.25em;
-  }
-  img.align-center {
-    width : auto;
-    height : auto;
-  }
-  div.body blockquote {
-      width: 270px;
-      background-color: var(--main-background-color);
-      border-left: 5px solid var(--box-background-color);
-  }
-  img.cloud {
-    display: contents;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-    border: 0px solid var(--light-border-color);
-  }
 }
