@@ -13,6 +13,9 @@ The blog is built using the following resources:
 
 - 2020
 
+  - [[03-10-2020] Divide an image into blocks using Gdiplus in C++](https://superkogito.github.io/blog/DivideImageUsingGdiplus.html)
+  - [[01-10-2020] Divide an image into blocks using OpenCV in C++](https://superkogito.github.io/blog/DivideImageUsingOpenCv.html)
+  - [[28-09-2020] How to loop over monitors and get their coordinates on Windows in C++?](https://superkogito.github.io/blog/LoopMonitorsDetailsInCplusplus.html)
   - [[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++](https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html)
   - [[26-07-2020] Capturing the screen on Windows in C++ using GDI+](https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html)
   - [[25-07-2020] Capturing the screen on Windows in C++ using OpenCV](https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html)
