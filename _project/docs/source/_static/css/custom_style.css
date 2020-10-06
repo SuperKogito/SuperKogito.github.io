@@ -17,6 +17,7 @@ html[theme=light] {
   --main-background-color: hsl(0, 5%, 95%);
   --main-text-color: hsl(0, 0%, 0%);
   --sidebar-color: hsl(0, 0%, 90%);
+  --tag-color: hsl(0, 10%, 90%);
 }
 
 html[theme=dark] {
@@ -28,6 +29,7 @@ html[theme=dark] {
   --link-color-visited: hsl(250, 100%, 60%);
   --main-background-color: hsl(0, 0%, 10%);
   --main-text-color: hsl(0, 10%, 80%);
+  --tag-color: hsl(0, 10%, 0%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +42,7 @@ html[theme=dark] {
     --link-color-visited: hsl(250, 100%, 60%);
     --main-background-color: hsl(0, 0%, 10%);
     --main-text-color: hsl(0, 10%, 80%);
+    --tag-color: hsl(0, 10%, 0%);
   }
 
   html[theme=light] {
@@ -52,6 +55,7 @@ html[theme=dark] {
     --main-background-color: hsl(0, 5%, 95%);
     --main-text-color: hsl(0, 0%, 0%);
     --sidebar-color: hsl(0, 0%, 90%);
+    --tag-color: hsl(0, 10%, 90%);
   }
 }
 
@@ -283,8 +287,7 @@ pre {
 }
 
 code {
-  font-family: Courier,
-    monospace;
+  font-family: 'neon';
   font-style: 1em;
 }
 
@@ -583,6 +586,7 @@ div.highlight > pre {
   overflow: none;
   line-height: 1.2;
   margin: 1em 2.75% 1em 2.9%;
+  border-radius: 10px;
 }
 
 .simple {
@@ -672,6 +676,55 @@ div.gh-buttons {
 img.align-center {
   width : auto;
   height : auto;
+}
+
+
+
+.post-tags {
+  margin: 0 1px;
+  padding: 3px 10px;
+  color: var(--link-color);
+  background: var(--tag-color);
+  font-size: 80%;
+  font-family: sans-serif;
+  text-decoration: none;
+  border-radius:25px;
+}
+.blog-post-tags {
+    margin-top: 1px;
+    border-bottom: 1px solid var(--light-text-color);
+}
+.blog-posts-details {
+  list-style: none;
+  overflow: auto;
+  margin-left: 0px;
+  display : flex;
+  font-size: small;
+  margin-bottom: 2px;
+}
+span.pre {
+  color: var(--link-color);
+  background-color: var(--box-background-color);
+}
+#tags a {
+  margin: 0 1px;
+  padding: 3px 10px;
+  color: var(--link-color);
+  background: var(--tag-color);
+  font-size: 80%;
+  font-family: sans-serif;
+  text-decoration: none;
+  border-radius:25px;
+}
+img.cloud {
+  display: none;
+}
+
+ul.github-buttons {
+  display : flex;
+}
+ul.github-buttons li {
+  display: block;
 }
 
 @media only screen and (max-width: 600px) {
