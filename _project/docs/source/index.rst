@@ -58,11 +58,14 @@ Posts categories
 
 .. raw:: html
 
-  <div class="latest-posts">
+  <div class="posts-categories">
     <ul>
+      <li class="toctree-l3"><a class="reference internal" href="blog/category/automation.html">Automation</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/category/blogging.html">Blogging</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/category/cplusplus.html">C++</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/category/cybersecurity.html">Cybersecurity</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/category/machine-learning.html">Machine learning</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/category/python.html">Python</a></li>
       <li class="toctree-l3"><a class="reference internal" href="blog/category/signal-processing.html">Signal processing</a></li>
     </ul>
   </div>
@@ -74,21 +77,21 @@ Posts tags
 .. raw:: html
 
 
-  <div class="latest-posts">
-    <p>
-      <a class="reference internal" href="blog/tag/authenticated-encryption.html">authenticated-encryption</a>,
-      <a class="reference internal" href="blog/tag/blog.html">blog</a>,
-      <a class="reference internal" href="blog/tag/cryptography.html">cryptography</a>,
-      <a class="reference internal" href="blog/tag/data-processing.html">data-processing</a>,
-      <a class="reference internal" href="blog/tag/encryption.html">encryption</a>,
-      <a class="reference internal" href="blog/tag/first-post.html">first-post</a>,
-      <a class="reference internal" href="blog/tag/gender-recognition.html">gender-recognition</a>,
-      <a class="reference internal" href="blog/tag/hashing.html">hashing</a>,
-      <a class="reference internal" href="blog/tag/security.html">security</a>,
-      <a class="reference internal" href="blog/tag/signal-processing.html">signal-processing</a>,
-      <a class="reference internal" href="blog/tag/visualization.html">visualization</a>,
-      <a class="reference internal" href="blog/tag/voice.html">voice</a>,
-    </p>
+  <div class="posts-tags">
+    <ul>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/authenticated-encryption.html">authenticated-encryption</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/blog.html">blog</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/cryptography.html">cryptography</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/data-processing.html">data-processing</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/encryption.html">encryption</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/first-post.html">first-post</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/gender-recognition.html">gender-recognition</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/hashing.html">hashing</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/security.html">security</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/signal-processing.html">signal-processing</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/visualization.html">visualization</a></li>
+      <li class="toctree-l3"><a class="reference internal" href="blog/tag/voice.html">voice</a></li>
+    </ul>
   </div>
 
 

@@ -45,21 +45,61 @@
     ul.postlist-style-none {list-style-type: none;}
     ul.postlist-style-circle {list-style-type: circle;}
   </style>
-</head><body>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
 <div class="section" id="divide-an-image-into-blocks-using-gdiplus-in-c">
 <h1>[03-10-2020] Divide an image into blocks using Gdiplus in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-gdiplus-in-c" title="Permalink to this headline">¶</a></h1>
 <div class="sub-title-menu">
-<a href="../index.html" title="Home"><i class="fa fa-home"></i>Home</a>
-<a href="../posts.html" title="Posts"><i class="fa fa-bars"></i>Posts</a>
-<a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i>Publications</a>
-<a href="../projects.html" title="projects"><i class="fa fa-code"></i>Projects</a>
-<a href="../games.html" title="Games"><i class="fa fa-gamepad"></i>Games</a>
-<a href="../about.html" title="About"><i class="fa fa-user-circle"></i>About</a>
-<a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i><text id="theme-toggle">DARK MODE</text></a>
+<table class="menu-table" id="menuTable" style="border:hidden;">
+<tr>
+<th>
+<th>
+<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+<th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
+</th>
+</th>
+<th>
+<th>
+<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+<th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
+</th>
+</th>
+<th>
+<th>
+<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+<th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
+</th>
+</th>
+<th>
+<th>
+<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+<th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
+</th>
+</th>
+<th>
+<th>
+<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
+<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
+</th>
+</th>
+<th>
+<th>
+<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+<th class="menu-label"><a href="../about.html" title="About">About</a></th>
+</th>
+</th>
+<th>
+<th>
+<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+<th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
+</th>
+</th>
+</tr>
+</table>
 </div>
+
 <hr class="docutils"/>
 <p>In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
 This blog will provide an alternative implementation using the Windows api, sepecifally the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+</a> library.</p>

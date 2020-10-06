@@ -28,6 +28,11 @@ def post_process(html_files):
             soup = Soup(html_code)
             title = soup.find('div', class_="section").h1
 
+            metatag = soup.new_tag('meta')
+            metatag.attrs['name'] = "viewport"
+            metatag.attrs['content'] = "width=device-width, initial-scale=1.0"
+            soup.head.append(metatag)
+
             # build menu html code
             menu = soup.new_tag("div", class_="sub-title-menu")
             path_to_file_in_html_folder = html_file.split("/html/")[1]
@@ -35,6 +40,62 @@ def post_process(html_files):
 
             # define menu code
             menu = f"""
+             <div class="sub-title-menu">
+             <table class="menu-table" id="menuTable" style="border:hidden;">
+              <tr>
+                <th>
+                    <th>
+                        <th class="icon"> <a href="{prefix}index.html"         title="Home"    ><i class="fa fa-home"        ></i></a> </th>
+                        <th class="menu-label"> <a href="{prefix}index.html"         title="Home"    >Home</a> </th>
+                    </th>
+               </th>
+
+                <th>
+                    <th>
+                        <th class="icon"><a href="{prefix}posts.html"         title="Posts"   ><i class="fa fa-bars"        ></i></a></th>
+                        <th class="menu-label"><a href="{prefix}posts.html"         title="Posts"   >Posts</a></th>
+                    </th>
+               </th>
+
+               <th>
+                  <th>
+                       <th class="icon"> <a href="{prefix}publications.html"  title="pubs"    ><i class="fa  fa-file-text"  ></i></a></th>
+                       <th class="menu-label"> <a href="{prefix}publications.html"  title="pubs"    >Publications</a></th>
+                    </th>
+               </th>
+
+                <th>
+                    <th>
+                        <th class="icon"> <a href="{prefix}projects.html"      title="projects"><i class="fa  fa-code"       ></i></a></th>
+                        <th class="menu-label"> <a href="{prefix}projects.html"      title="projects">Projects</a></th>
+                    </th>
+                </th>
+
+                <th>
+                    <th>
+                        <th class="icon"> <a href="{prefix}games.html"         title="Games"   ><i class="fa fa-gamepad"     ></i></a></th>
+                        <th class="menu-label"> <a href="{prefix}games.html"         title="Games"   >Games</a></th>
+                    </th>
+               </th>
+
+                <th>
+                    <th>
+                        <th class="icon"><a href="{prefix}about.html"         title="About"   ><i class="fa fa-user-circle" ></i></a></th>
+                        <th class="menu-label"><a href="{prefix}about.html"         title="About"   >About</a></th>
+                    </th>
+               </th>
+
+               <th>
+                    <th>
+                        <th class="icon"> <a href="#"                  onclick="modeSwitcher()"><i class="fa fa-adjust"      ></i></a></th>
+                        <th class="menu-label"> <a href="#"                  onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
+                    </th>
+               </th>
+               </tr>
+            </table>
+            </div>
+            """
+            xa = """
                     <div class="sub-title-menu">
                       <a href="{prefix}index.html"         title="Home"    ><i class="fa fa-home"        ></i>Home</a>
                       <a href="{prefix}posts.html"         title="Posts"   ><i class="fa fa-bars"        ></i>Posts</a>
