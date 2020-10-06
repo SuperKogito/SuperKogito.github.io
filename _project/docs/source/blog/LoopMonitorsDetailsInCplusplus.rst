@@ -1,5 +1,23 @@
-[28-09-2020] How to loop over monitors and get their coordinates on Windows in C++?
-======================================================================================
+How to loop over monitors and get their coordinates on Windows in C++?
+======================================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 28 September 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/cplusplus.html">C++</a>
+          <a class="post-tags" href="tag/windows.html">Windows</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
   :description: Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows.
@@ -7,8 +25,8 @@
   :author: Ayoub Malek
 
 .. post:: September 28, 2020
-  :tags: [C++]
-  :category: C++
+  :tags: Cplusplus
+  :category: Image processing, 2020
   :author: Ayoub Malek
   :location: Munich
   :language: English

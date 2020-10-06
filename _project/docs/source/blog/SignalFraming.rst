@@ -1,15 +1,34 @@
-[25-01-2020] Signal framing
-============================
+Signal framing
+==============
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 25 January 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/signal-processing.html">Signal Processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/audio.html">Audio</a>
+          <a class="post-tags" href="tag/framing.html">Framing</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Audio signal framing/ frame blocking
-   :keywords: framing, frame blocking, Ayoub Malek, Blogging
+   :keywords: framing, frame blocking, python
    :author: Ayoub Malek
 
 
-.. post:: Jan 25, 2020
-   :tags: [Signal processing]
-   :category: Signal processing
+.. post:: January 25, 2020
+   :tags: Python, Framing, Audio
+   :category: Signal processing, 2020
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -19,8 +38,6 @@
 When it comes to non-stationary signals, spectral features in short parts/ sequences are of great use.
 Therefore, decomposing the signal into multiple ranges is the way to go about this type of features extraction.
 This technique is known as frame blocking or framing. The following blog explains why do we need framing and how to do it in python.
-
-| *** keywords:  *** Framing, Frame blocking
 
 What is framing ?
 -----------------
