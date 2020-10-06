@@ -33,7 +33,7 @@ How to loop over monitors and get their coordinates on Windows in C++?
 
 -----------------------
 
-The previous three blogs (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_ and `[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++`_) described capturing a screenshot of only *one* monitor.
+The previous three blogs (`Capturing the screen on Windows in C++ using OpenCV`_ \& `Capturing the screen on Windows in C++ using GDI+`_ and `Comparing screen capturing using GDI+ and OpenCV on Windows in C++`_) described capturing a screenshot of only *one* monitor.
 However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
 Therefore, we will need to retrieve the coordinates of the targeted monitors.
 This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.
@@ -104,7 +104,7 @@ The previous code can be also found under here_.
 Conclusion
 ----------
 This post introduced a small example of how to retrieve the coordinates and dimensions of the connected monitors using C++ on Windows in the case of a multi-monitors setup.
-The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs  (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_)
+The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs  (`Capturing the screen on Windows in C++ using OpenCV`_ \& `Capturing the screen on Windows in C++ using GDI+`_)
 
 References and Further readings
 --------------------------------
@@ -113,8 +113,8 @@ References and Further readings
 .. [3] Multi-monitor Screenshots only 2 monitors in C++ with WinApi, Stackoverflow, https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi
 
 
-.. _`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV` : https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html
-.. _`[26-07-2020] Capturing the screen on Windows in C++ using GDI+` : https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html
-.. _`[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++` : https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html
+.. _`Capturing the screen on Windows in C++ using OpenCV` : https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html
+.. _`Capturing the screen on Windows in C++ using GDI+` : https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html
+.. _`Comparing screen capturing using GDI+ and OpenCV on Windows in C++` : https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html
 .. _`Win32 API` : https://docs.microsoft.com/en-us/windows/win32/
 .. _here : https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1

@@ -1,3 +1,58 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+
+
+
 @font-face {
 	font-family: 'neon';
 	font-style: normal;
@@ -74,7 +129,7 @@ div {
 	padding: 0 0 0 0;
 	color: var(--main-text-color);
 	background-color: var(--main-background-color);
-	font-feature-settings: "kern"on;
+	font-feature-settings: "kern";
 	font-family: "neon";
 	font-size: 16px;
 	min-width: 5px;
@@ -86,11 +141,11 @@ div {
 	padding: 0 0 0 0;
 	color: var(--main-text-color);
 	background-color: var(--main-background-color);
-	font-feature-settings: "kern"on;
+	font-feature-settings: "kern";
 	font-family: "neon";
 	font-size: 16px;
 	min-width: 5px;
-	max-width: 100%;
+	max-width: inherit;
 }
 div.document {
 	width: inherit;
@@ -126,7 +181,7 @@ div.sub-title-menu {
 	padding: 0 0 0 0;
 	color: var(--main-text-color);
 	background-color: var(--main-background-color);
-	font-feature-settings: "kern"on;
+	font-feature-settings: "kern";
 	font-family: "neon";
 	font-size: 14px;
 	min-width: 35%;
@@ -546,12 +601,19 @@ table.highlighttable tr {
 	display: block ruby;
 }
 td.linenos {
-	width: 100%;
+	width: auto;
 	display: revert;
 }
 td.code {
 	width: 100%;
 	display: inherit;
+}
+/* saf3+, chrome1+ */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  td.code {
+  	width: auto;
+  	display: inline-grid;
+  }
 }
 div.highlight {
 	width: 100%;
@@ -570,7 +632,7 @@ div.lineodiv {
 	padding: 0 0 0 0;
 	color: var(--main-text-color);
 	background-color: var(--main-background-color);
-	font-feature-settings: "kern"on;
+	font-feature-settings: "kern";
 	font-family: "neon";
 	font-size: 16px;
 	min-width: 5px;
@@ -678,7 +740,7 @@ ul.github-buttons li {
 		padding: 0 0 0 0;
 		color: var(--main-text-color);
 		background-color: var(--main-background-color);
-		font-feature-settings: "kern"on;
+		font-feature-settings: "kern";
 		font-family: "neon";
 		font-size: 14px;
 		max-width: inherit;
@@ -745,7 +807,7 @@ ul.github-buttons li {
 		padding: 0 0 0 0;
 		color: var(--main-text-color);
 		background-color: var(--main-background-color);
-		font-feature-settings: "kern"on;
+		font-feature-settings: "kern";
 		font-family: "neon";
 		font-size: 14px;
 		max-width: inherit;
@@ -874,5 +936,5 @@ ul.github-buttons li {
   th {
     text-align: left;
     padding-right: 3px;
-}
+  }
 }

@@ -229,3 +229,5 @@ References and Further readings
 .. [3] Capturing an Image, Microsoft, https://docs.microsoft.com/en-us/windows/win32/gdi/capturing-an-image
 
 .. _`gist: CaptureSceenshotUsingOpenCV.cpp`: https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51
+.. _`Win32 API` : https://docs.microsoft.com/en-us/windows/win32/
+.. _`GDI+/ Gdiplus` : https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start

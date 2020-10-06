@@ -38,7 +38,7 @@ Comparing screen capturing using GDI+ and OpenCV on Windows in C++
 
 -----------------------
 
-To follow up on my last two blogs (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_ ), we compare in this post both approaches.
+To follow up on my last two blogs (`Capturing the screen on Windows in C++ using OpenCV`_ \& `Capturing the screen on Windows in C++ using GDI+`_ ), we compare in this post both approaches.
 In order to compare both approaches, we examines their run-times and CPU usages.
 
 Benchmarking Code
@@ -174,7 +174,7 @@ References and Further readings
 .. [6] OPENCV Desktop Capture, Stackoverflow, https://stackoverflow.com/questions/34466993/opencv-desktop-capture
 .. [7] How to capture the desktop in OpenCV (ie. turn a bitmap into a Mat)?, Stackoverflow, https://stackoverflow.com/questions/14148758/how-to-capture-the-desktop-in-opencv-ie-turn-a-bitmap-into-a-mat
 
-.. _`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV` : https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html
-.. _`[26-07-2020] Capturing the screen on Windows in C++ using GDI+` : https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html
+.. _`Capturing the screen on Windows in C++ using OpenCV` : https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html
+.. _`Capturing the screen on Windows in C++ using GDI+` : https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html
 .. _`Win32 API` : https://docs.microsoft.com/en-us/windows/win32/
 .. _here : https://gist.github.com/yfzhang/ecad60e24eb1e08cf4c733ace3fee174

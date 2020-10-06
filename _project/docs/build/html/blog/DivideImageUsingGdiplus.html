@@ -117,13 +117,13 @@
 </ul>
 </div><hr class="docutils"/>
 <p>In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
-This blog will provide an alternative implementation using the Windows api, sepecifally the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+</a> library.</p>
+This blog will provide an alternative implementation using the Windows API, specifically the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+</a> library.</p>
 <div class="section" id="approach">
 <h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
-<p>Similarly to the approach introduced in the previous blog (<a class="reference external" href="DivideImageUsingOpenCv.html">[01-10-2020] Divide an image into blocks using OpenCV in C++</a>) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
+<p>Similarly to the approach introduced in the previous blog (<a class="reference external" href="DivideImageUsingOpenCv.html">Divide an image into blocks using OpenCV in C++</a>) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
 At the same time, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.</p>
 <blockquote>
-<div><p>From <a class="reference external" href="DivideImageUsingOpenCv.html">[01-10-2020] Divide an image into blocks using OpenCV in C++</a>:</p>
+<div><p>From <a class="reference external" href="DivideImageUsingOpenCv.html">Divide an image into blocks using OpenCV in C++</a>:</p>
 <p><em>To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -&gt; we will get 512 / 128 = 4 blocks.
 However if the image width = 576 px and the block width = 128 px -&gt; we should get 4 blocks with 128 px and 1 block with width 64 px.
 Therefore on each loop we need to check/ compute the block dimensions.</em></p>

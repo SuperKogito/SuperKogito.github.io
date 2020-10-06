@@ -35,14 +35,14 @@ Divide an image into blocks using GDI+ in C++
 -----------------------
 
 In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
-This blog will provide an alternative implementation using the Windows api, sepecifally the `GDI+`_ library.
+This blog will provide an alternative implementation using the Windows API, specifically the `GDI+`_ library.
 
 Approach
 --------
-Similarly to the approach introduced in the previous blog (`[01-10-2020] Divide an image into blocks using OpenCV in C++`_) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
+Similarly to the approach introduced in the previous blog (`Divide an image into blocks using OpenCV in C++`_) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
 At the same time, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.
 
-  From `[01-10-2020] Divide an image into blocks using OpenCV in C++`_:
+  From `Divide an image into blocks using OpenCV in C++`_:
 
   *To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -> we will get 512 / 128 = 4 blocks.
   However if the image width = 576 px and the block width = 128 px -> we should get 4 blocks with 128 px and 1 block with width 64 px.
@@ -258,7 +258,7 @@ References and Further readings
 .. [3] Crop a big picture into several small size pictures, Graphic design, https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures
 .. [4] Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks
 
-.. _`[01-10-2020] Divide an image into blocks using OpenCV in C++` : DivideImageUsingOpenCv.html
+.. _`Divide an image into blocks using OpenCV in C++` : DivideImageUsingOpenCv.html
 .. _`GDI+` : https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start
 .. _`gist: DivideImageUsingGdiplus.cpp`: https://gist.github.com/SuperKogito/434ac8489f8b99aa10377966180e3a35
 .. _here : https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png
