@@ -1,5 +1,24 @@
-[03-10-2020] Divide an image into blocks using Gdiplus in C++
-=============================================================
+Divide an image into blocks using GDI+ in C++
+=============================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 03 October 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/cplusplus.html">C++</a>
+          <a class="post-tags" href="tag/windows.html">Windows</a>
+          <a class="post-tags" href="tag/gdiplus.html">GDI++</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
   :description: Divide an image into multiple blocks with fixed height and width using Gdiplus in C++
@@ -7,8 +26,8 @@
   :author: Ayoub Malek
 
 .. post:: October 03, 2020
-  :tags: [C++], [Gdiplus], [Windows], [Win32]
-  :category: C++
+  :tags: Cplusplus, Gdiplus, Windows
+  :category: Image processing, 2020
   :author: Ayoub Malek
   :location: Munich
   :language: English
@@ -17,8 +36,6 @@
 
 In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
 This blog will provide an alternative implementation using the Windows api, sepecifally the `GDI+`_ library.
-
-| ***Keywords***:  GDI+, Gdiplus, C++, Windows, Divide image into blocks
 
 Approach
 --------

@@ -18,7 +18,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-<title>[03-10-2020] Divide an image into blocks using Gdiplus in C++ — Ayoub Malek's blog</title>
+<title>Divide an image into blocks using GDI+ in C++ — Ayoub Malek's blog</title>
 <link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
 <link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -49,8 +49,8 @@
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
-<div class="section" id="divide-an-image-into-blocks-using-gdiplus-in-c">
-<h1>[03-10-2020] Divide an image into blocks using Gdiplus in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-gdiplus-in-c" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="divide-an-image-into-blocks-using-gdi-in-c">
+<h1>Divide an image into blocks using GDI+ in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-gdi-in-c" title="Permalink to this headline">¶</a></h1>
 <div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
@@ -100,12 +100,24 @@
 </table>
 </div>
 
-<hr class="docutils"/>
+<div class="blog-post-tags">
+<ul class="blog-posts-details">
+<li id="Date"><span>Date:</span>                 03 October 2020 </li>
+<li id="author"><span>Author:</span> <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+<li id="location"><span>Location:</span> <a href="location/munich.html">Munich</a>
+</li> <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+</li> <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
+</li>
+<li id="tags"><span>Tags:
+        </span>
+<a class="post-tags" href="tag/cplusplus.html">C++</a>
+<a class="post-tags" href="tag/windows.html">Windows</a>
+<a class="post-tags" href="tag/gdiplus.html">GDI++</a>
+</li>
+</ul>
+</div><hr class="docutils"/>
 <p>In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
 This blog will provide an alternative implementation using the Windows api, sepecifally the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+</a> library.</p>
-<div class="line-block">
-<div class="line"><strong>*Keywords*</strong>:  GDI+, Gdiplus, C++, Windows, Divide image into blocks</div>
-</div>
 <div class="section" id="approach">
 <h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
 <p>Similarly to the approach introduced in the previous blog (<a class="reference external" href="DivideImageUsingOpenCv.html">[01-10-2020] Divide an image into blocks using OpenCV in C++</a>) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
@@ -476,7 +488,7 @@ The code is fairly simple and supports various image encoding types(<cite>PNG</c
   Previous: 
   <a href="DivideImageUsingOpenCv.html">
     
-    [01-10-2020] Divide an image into blocks using OpenCV in C++
+    Divide an image into blocks using OpenCV in C++
   </a>
 </span>
 <span> </span>

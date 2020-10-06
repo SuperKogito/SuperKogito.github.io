@@ -1,5 +1,24 @@
-[17-02-2019] Cryptography overview
-===================================
+Cryptography overview
+=====================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 17 February 2019 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/cybersecurity.html">Cybersecurity</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/cryptography.html">cryptography</a>
+          <a class="post-tags" href="tag/encryption.html">encryption</a>
+          <a class="post-tags" href="tag/hashing.html">hashing</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Cryptography overview post
@@ -7,8 +26,8 @@
    :author: Ayoub Malek
 
 .. post:: Feb 17, 2019
-   :tags: [Cryptography], [Encryption], [Hashing]
-   :category: Cybersecurity
+   :tags: Cryptography, Encryption, Hashing
+   :category: Cybersecurity, 2019
    :author: Ayoub Malek
    :location: Munich
    :language: English

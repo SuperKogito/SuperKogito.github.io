@@ -1,7 +1,24 @@
 .. _encryption-post-label:
 
-[03-03-2019] Encryption
-========================
+Encryption
+===========
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 03 Mars 2019 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/cybersecurity.html">Cybersecurity</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/encryption.html">encryption</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Encryption post
@@ -9,8 +26,8 @@
    :author: Ayoub Malek
 
 .. post:: Mar 03, 2019
-   :tags: [Encryption], [Security]
-   :category: Cybersecurity
+   :tags: Encryption
+   :category: Cybersecurity, 2019
    :author: Ayoub Malek
    :location: Munich
    :language: English

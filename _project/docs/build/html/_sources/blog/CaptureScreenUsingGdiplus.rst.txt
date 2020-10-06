@@ -1,5 +1,25 @@
-[26-07-2020] Capturing the screen on Windows in C++ using GDI+
-=================================================================
+Capturing the screen on Windows in C++ using GDI+
+=================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 26 July 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/cplusplus.html">C++</a>
+          <a class="post-tags" href="tag/Windows.html">Windows</a>
+          <a class="post-tags" href="tag/gdiplus.html">GDI+</a>
+          <a class="post-tags" href="tag/screenshot.html">Screenshot</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
   :description: Capturing the screen using Gdiplus
@@ -7,8 +27,8 @@
   :author: Ayoub Malek
 
 .. post:: July 26, 2020
-  :tags: [Win32], [Gdiplus], [Windows], [C++]
-  :category: C++
+  :tags: Cplusplus, Gdiplus, Windows, Screenshot
+  :category: Image processing, 2020
   :author: Ayoub Malek
   :location: Munich
   :language: English
@@ -17,9 +37,6 @@
 
 `GDI+/ Gdiplus`_ is part of the `Win32 API`_, that helps C/C++ programmers with graphics related tasks on Windows.
 In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.
-
-| ***Keywords***: GDI+, Gdiplus, C++, Windows, Screen capture, Screenshots
-
 
 GDI+ / Gdiplus introduction
 ---------------------------

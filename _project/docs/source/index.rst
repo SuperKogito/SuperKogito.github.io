@@ -68,20 +68,31 @@ Posts tags
 
 
   <div class="posts-tags">
-    <ul>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/authenticated-encryption.html">authenticated-encryption</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/blog.html">blog</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/cryptography.html">cryptography</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/data-processing.html">data-processing</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/encryption.html">encryption</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/first-post.html">first-post</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/gender-recognition.html">gender-recognition</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/hashing.html">hashing</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/security.html">security</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/signal-processing.html">signal-processing</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/visualization.html">visualization</a></li>
-      <li class="toctree-l3"><a class="reference internal" href="blog/tag/voice.html">voice</a></li>
-    </ul>
+  <p>
+    <a class="post-tags" href="blog/tag/audio.html">audio</a>
+    <a class="post-tags" href="blog/tag/augmentation.html">augmentation</a>
+    <a class="post-tags" href="blog/tag/authenticated-encryption.html">authenticated-encryption</a>
+    <a class="post-tags" href="blog/tag/continuous-integration.html">continuous-integration</a>
+    <a class="post-tags" href="blog/tag/cplusplus.html">C++</a>
+    <a class="post-tags" href="blog/tag/cryptography.html">cryptography</a>
+    <a class="post-tags" href="blog/tag/data-processing.html">data-processing</a>
+    <a class="post-tags" href="blog/tag/encryption.html">encryption</a>
+    <a class="post-tags" href="blog/tag/ffmpeg.html">ffmpeg</a>
+    <a class="post-tags" href="blog/tag/first-post.html">first-post</a>
+    <a class="post-tags" href="blog/tag/framing.html">framing</a>
+    <a class="post-tags" href="blog/tag/gdiplus.html">GDI+</a>
+    <a class="post-tags" href="blog/tag/gender-recognition.html">gender-recognition</a>
+    <a class="post-tags" href="blog/tag/gmm.html">GMM</a>
+    <a class="post-tags" href="blog/tag/hashing.html">hashing</a>
+    <a class="post-tags" href="blog/tag/opencv.html">OpenCV</a>
+    <a class="post-tags" href="blog/tag/python.html">Python</a>
+    <a class="post-tags" href="blog/tag/screenshot.html">screenshot</a>
+    <a class="post-tags" href="blog/tag/urlstechie.html">urlstechie</a>
+    <a class="post-tags" href="blog/tag/vad.html">VAD</a>
+    <a class="post-tags" href="blog/tag/visualization.html">visualization</a>
+    <a class="post-tags" href="blog/tag/voice.html">voice</a>
+    <a class="post-tags" href="blog/tag/windows.html">windows</a>
+  </p>
   </div>
 
 

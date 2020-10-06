@@ -1,5 +1,26 @@
-[25-07-2020] Capturing the screen on Windows in C++ using OpenCV
-================================================================
+Capturing the screen on Windows in C++ using OpenCV
+===================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 25 July 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/cplusplus.html">C++</a>
+          <a class="post-tags" href="tag/windows.html">Windows</a>
+          <a class="post-tags" href="tag/opencv.html">OpenCV+</a>
+          <a class="post-tags" href="tag/screenshot.html">Screenshot</a>
+
+    </li>
+    </ul>
+  </div>
 
 .. meta::
   :description: Capturing the screen using OpenCV
@@ -7,8 +28,8 @@
   :author: Ayoub Malek
 
 .. post:: July 25, 2020
-  :tags: [OpenCV],[Screen Capture]
-  :category: C++
+  :tags: Cplusplus, Windows, OpenCV, Screenshot
+  :category: Image processing, 2020
   :author: Ayoub Malek
   :location: Munich
   :language: English
@@ -17,9 +38,6 @@
 
 OpenCV is just a great computer vision tool with a wide variety of capabilities, that is available in both C++ and Python.
 In this first blog about OpenCV, I will be introducing a simple algorithm to capture the content of the screen on Windows using OpenCV in C++.
-
-| ***Keywords***: OpenCV, Screen capture, Screenshots
-
 
 Build library and Includes
 ---------------------------

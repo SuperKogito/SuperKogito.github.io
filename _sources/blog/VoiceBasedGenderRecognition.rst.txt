@@ -1,5 +1,27 @@
-[09-05-2019] Voice based gender recognition using Gaussian mixture models
-===========================================================================
+Voice based gender recognition using Gaussian mixture models
+============================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                09 May 2019 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/machine-learning.html">Machine learning</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/gender-recognition.html">Gender recognition</a>
+          <a class="post-tags" href="tag/voice.html">Voice</a>
+          <a class="post-tags" href="tag/audio.html">audio</a>
+          <a class="post-tags" href="tag/gmm.html">GMM</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Voice based gender recognition post
@@ -7,8 +29,8 @@
    :author: Ayoub Malek
 
 .. post:: May 09, 2019
-   :tags: [Voice],[Gender recognition]
-   :category: Machine learning
+   :tags: Audio, Voice, Gender recognition, GMM, Python
+   :category: Machine learning, 2019
    :author: Ayoub Malek
    :location: Munich
    :language: English

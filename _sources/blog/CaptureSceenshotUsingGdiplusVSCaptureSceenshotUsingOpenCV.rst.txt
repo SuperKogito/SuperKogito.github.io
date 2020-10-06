@@ -1,5 +1,28 @@
-[28-07-2020] Comparing screen capturing using GDI+ and OpenCV on Windows in C++
-================================================================================
+Comparing screen capturing using GDI+ and OpenCV on Windows in C++
+==================================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 28 July 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/cplusplus.html">C++</a>
+          <a class="post-tags" href="tag/windows.html">Windows</a>
+          <a class="post-tags" href="tag/gdiplus.html">GDI+</a>
+          <a class="post-tags" href="tag/screenshot.html">Screenshot</a>
+          <a class="post-tags" href="tag/benchmarking.html">Benchmarking</a>
+
+    </li>
+    </ul>
+  </div>
+
 
 .. meta::
   :description: Compare screen shooting using Gdiplus and OpenCV
@@ -7,8 +30,8 @@
   :author: Ayoub Malek
 
 .. post:: July 28, 2020
-  :tags: [Win32],[Gdiplus], [OpenCV], [Screen Capture]
-  :category: C++
+  :tags: Cplusplus, Windows, Gdiplus, OpenCV, Screenshot
+  :category: Image processing, 2020
   :author: Ayoub Malek
   :location: Munich
   :language: English
@@ -17,8 +40,6 @@
 
 To follow up on my last two blogs (`[25-07-2020] Capturing the screen on Windows in C++ using OpenCV`_ \& `[26-07-2020] Capturing the screen on Windows in C++ using GDI+`_ ), we compare in this post both approaches.
 In order to compare both approaches, we examines their run-times and CPU usages.
-
-| ***Keywords***: GDI+, OpenCV, Screen capture, Screenshots, Comparison
 
 Benchmarking Code
 -----------------

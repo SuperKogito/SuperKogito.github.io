@@ -1,15 +1,34 @@
-[19-03-2020] How to pipe an FFmpeg output and pass it to a Python variable?
-===========================================================================
+How to pipe an FFmpeg output and pass it to a Python variable?
+==============================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 19 Mars 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/signal-processing.html"> Signal processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/audio.html">Audio</a>
+          <a class="post-tags" href="tag/ffmpeg.html">Ffmpeg</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Audio signal FFmpeg piping + pass it a Python variable
-   :keywords: framing, frame blocking, Ayoub Malek, Blogging
+   :keywords: ffmpeg, pipe, python, audio, Ayoub Malek
    :author: Ayoub Malek
 
 
 .. post:: Mar 19, 2020
-   :tags: [Signal processing]
-   :category: Signal processing
+   :tags: Python, Ffmpeg, Audio
+   :category: Signal processing, 2020
    :author: Ayoub Malek
    :location: Munich
    :language: English

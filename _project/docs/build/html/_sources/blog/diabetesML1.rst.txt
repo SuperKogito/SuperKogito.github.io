@@ -1,5 +1,24 @@
-[30-06-2019] Diabetes detection using machine learning (part I)
-================================================================
+Diabetes detection using machine learning (part I)
+==================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 30 June 2019 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/machine-learning.html"> Machine learning</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/data-processing.html">Data processing</a>
+          <a class="post-tags" href="tag/visualization.html">Visualization</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: applied machine learning to diabetics detection
@@ -7,8 +26,8 @@
    :author: Ayoub Malek
 
 .. post:: Jun 30, 2019
-   :tags: [Machine learning],[Data processing],[Visualization]
-   :category: Machine learning
+   :tags: Python, Data processing, Visualization
+   :category: Machine learning, 2019
    :author: Ayoub Malek
    :location: Munich
    :language: English
