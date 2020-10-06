@@ -1,15 +1,34 @@
-[13-03-2020] Spectral leakage and windowing
-============================================
+Spectral leakage and windowing
+==============================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                13 Mars 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/signal-processing.html">Signal Processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/audio.html">Audio</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
+
 
 .. meta::
    :description: Audio signal windowing and spectral leakage
-   :keywords: windowing, spectral leakage, Ayoub Malek, Blogging
+   :keywords: windowing, spectral leakage, python
    :author: Ayoub Malek
 
 
 .. post:: Mar 13, 2020
-   :tags: [Signal processing]
-   :category: Signal processing
+   :tags: Audio, Python
+   :category: Signal processing, 2020
    :author: Ayoub Malek
    :location: Munich
    :language: English

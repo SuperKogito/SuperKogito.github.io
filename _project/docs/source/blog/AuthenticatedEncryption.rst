@@ -1,5 +1,25 @@
-[01-04-2019] Authenticated encryption
-======================================
+Authenticated encryption
+========================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 01 Mai 2019 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/cybersecurity.html">Cybersecurity</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/authenticated-encryption.html">authenticated-encryption</a>
+          <a class="post-tags" href="tag/cryptography.html">cryptography</a>
+          <a class="post-tags" href="tag/encryption.html">encryption</a>
+          <a class="post-tags" href="tag/hashing.html">hashing</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Authenticated Encryption post
@@ -7,8 +27,8 @@
    :author: Ayoub Malek
 
 .. post:: May 1, 2019
-   :tags: [Authenticated Encryption],[Encryption],[Hashing],[Security]
-   :category: Cybersecurity
+   :tags: Authenticated Encryption, Cryptography, Encryption, Hashing
+   :category: Cybersecurity, 2019
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -19,8 +39,6 @@ With growing dependency on information technology and more at stake, the securit
 Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data :cite:`bellare`.
 AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders :cite:`nampere`.
 This article introduces the different combinations of authenticated encryption and their applications.
-
-| **Keywords**: Authenticated Encryption, Symmetric Encryption, Message Authentication Code.
 
 What is an AE?
 ------------------------------------

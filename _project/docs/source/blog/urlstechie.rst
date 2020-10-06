@@ -1,5 +1,24 @@
-[04-04-2020] Introducing urlstechie and its urls checking tools
-===============================================================
+Introducing urlstechie and its urls checking tools
+==================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                04 April 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/Automation.html">Automation</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/continuous-integration.html">Continuous integration</a>
+          <a class="post-tags" href="tag/urlstechie.html">urlstechie</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Introducing urlstechie and urls checking tools
@@ -8,8 +27,8 @@
 
 
 .. post:: Apr 04, 2020
-   :tags: [Continuous Integration]
-   :category: Automation
+   :tags: Continuous integration, urlstechie, Python
+   :category: Automation, 2020
    :author: Ayoub Malek
    :location: Munich
    :language: English

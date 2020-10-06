@@ -1,5 +1,22 @@
-[10-02-2019] Blog intro
-========================
+Blog intro
+===========
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 10 February 2019 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/blogging.html">Blogging</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/first-post.html">First post</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: First post: Blog introduction
@@ -7,9 +24,9 @@
    :author: Ayoub Malek
 
 
-.. post:: Feb 10, 2019
-   :tags: [Blog], [First post]
-   :category: Blogging
+.. post:: February 10, 2019
+   :tags: First post
+   :category: Blogging, 2019
    :author: Ayoub Malek
    :location: Munich
    :language: English

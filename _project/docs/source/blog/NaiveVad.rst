@@ -1,15 +1,34 @@
-[09-02-2020] Naive voice activity detection using short time energy
-=====================================================================
+Naive voice activity detection using short time energy
+======================================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 09 February 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/signal-processing.html"> Signal processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/audio.html">Audio</a>
+          <a class="post-tags" href="tag/vad.html">VAD</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: voice activity detection using short time energy
-   :keywords: voice activity detection, vad, short time energy , Ayoub Malek
+   :keywords: voice activity detection, vad, short time energy
    :author: Ayoub Malek
 
 
 .. post:: Feb 09, 2020
-   :tags: [Signal processing]
-   :category: Signal processing
+   :tags: Python, VAD, Audio
+   :category: Signal processing, 2020
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -20,7 +39,6 @@ An important part of speech/speaker recognition tasks is distinction of voiced s
 This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy.
 This problem is known as Voice Activity Detection (VAD). This blog aims to introduce voice activity detection and present simple short time energy based VAD implementation.
 
-| *** keywords:  *** Voice activity detection, Short time energy
 
 What is voice activity detection ?
 -----------------------------------

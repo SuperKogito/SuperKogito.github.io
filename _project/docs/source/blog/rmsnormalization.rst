@@ -1,15 +1,34 @@
-[30-04-2020] Root mean square normalization in Python
-=====================================================
+Root mean square normalization in Python
+========================================
+
+.. raw:: html
+
+  <div class="blog-post-tags">
+    <ul class="blog-posts-details">
+    <li id="Date"><span>Date:</span>                 30 May 2020 </li>
+    <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+    <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+    </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+    </li>  <li id="category"><span>Category:</span> <a href="category/signal-processing.html"> Signal processing</a>
+    </li>
+    <li id="tags"><span>Tags:
+          </span>
+          <a class="post-tags" href="tag/audio.html">Audio</a>
+          <a class="post-tags" href="tag/augmentation.html">Augmentation</a>
+          <a class="post-tags" href="tag/python.html">Python</a>
+    </li>
+    </ul>
+  </div>
 
 .. meta::
    :description: Audio signal RMS normalization in Python
-   :keywords: framing, frame blocking, Ayoub Malek, Blogging
+   :keywords: root mean square, signal normalization, python, Audio normalization, RMS normalization
    :author: Ayoub Malek
 
 
 .. post:: Apr 30, 2020
-   :tags: [Signal processing]
-   :category: Signal processing
+   :tags: Python, Augmentation, Audio
+   :category: Signal processing, 2020
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -18,8 +37,6 @@
 
 Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
 A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.
-
-| *** keywords:  *** Audio normalization, RMS normalization, Python
 
 
 What is RMS normalization?
