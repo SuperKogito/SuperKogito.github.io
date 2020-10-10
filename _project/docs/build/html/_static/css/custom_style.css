@@ -591,7 +591,14 @@ dt.label {
 .math {
 	color: var(--link-color);
 	font-family: "neon";
-	font-size: 18px;
+	font-size: 35px;
+}
+@supports (-moz-appearance:none) {
+	.math {
+		color: var(--link-color);
+		font-family: "neon";
+		font-size: 18px;
+	}
 }
 table.docutils th.centeredth,table.docutils td.centeredth {
 	text-align: center;
@@ -629,9 +636,8 @@ th.menu-label {
 	color: var(--link-color);
 	background: var(--tag-color);
 	font-size: 80%;
-	font-family: sans-serif;
 	text-decoration: none;
-	border-radius: 25px;
+	border-radius: 5px;
 }
 .blog-post-tags {
 	margin-top: 1px;
@@ -657,7 +663,7 @@ span.pre {
 	font-size: 80%;
 	font-family: sans-serif;
 	text-decoration: none;
-	border-radius: 25px;
+	border-radius: 5px;
 }
 img.cloud {
 	display: none;
@@ -689,10 +695,13 @@ div.posts-categories {
 	  font-size: 16px;
 	}
 }
+a.reference {
+	word-wrap: break-word;
+}
 
 @media only screen and (max-width: 1090px) {
 	body {
-		width: inherit;
+		width: auto;
 		margin: 1% auto 0 auto;
 		color: var(--main-text-color);
 		background-color: var(--main-background-color);
@@ -723,7 +732,7 @@ div.posts-categories {
 	}
 	div.highlight {
 		background-color: var(--main-background-color);
-		width: auto;
+		width: inherit;
 	}
 	img.align-center {
 		width : auto;
@@ -759,7 +768,7 @@ div.posts-categories {
 }
 @media only screen and (max-width: 600px) {
 	body {
-		width: inherit;
+		width: auto;
 		margin: 1% auto 0 auto;
 		color: var(--main-text-color);
 		background-color: var(--main-background-color);
@@ -790,7 +799,7 @@ div.posts-categories {
 	}
 	div.highlight {
 		background-color: var(--main-background-color);
-		width: 650px;
+		width: inherit;
 	}
 	img.align-center {
 		width : auto;
@@ -817,7 +826,7 @@ div.posts-categories {
 }
 @media only screen and (max-width: 480px) {
 	body {
-		width: 100%;
+		width: auto;
 		margin: 0 auto 0 auto;
 		color: var(--main-text-color);
 		background-color: var(--main-background-color);
@@ -865,7 +874,7 @@ div.posts-categories {
 	}
 	div.highlight {
 		background-color: var(--main-background-color);
-		width: auto;
+		width: inherit;
 	}
 	img.align-center {
 		width : auto;
@@ -905,4 +914,10 @@ div.posts-categories {
     text-align: left;
     padding-right: 3px;
   }
+}
+
+@media only screen and (max-width: 350px) {
+div.sub-title-menu .fa {
+    font-size: large;
+	}
 }
