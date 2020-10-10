@@ -6,7 +6,9 @@ Projects
    :keywords: Ayoub Malek, Ayoub Blog, Malek, Ayoub Malek Blog, Ayoub Malek Website, SuperKogito Articles
    :author: Ayoub Malek
 
-|
+
+Libraries
+---------
 
 .. image:: _static/logos/spafe_logo.png
    :align: left
@@ -59,3 +61,21 @@ Projects
   Pydiogment aims to simplify audio augmentation.
   It generates multiple audio files based on a starting mono audio file.
   The library can generates files with higher speed, slower, and different tones etc.
+
+|
+
+Scripts
+--------
+
+- `CoinMarketCap Scraper`_
+
+Dataset collections
+-------------------
+
+- `Spoken Emotion Datasets`_
+
+
+
+
+.. _`Spoken Emotion Datasets` : https://superkogito.github.io/SER-datasets/#
+.. _`CoinMarketCap Scraper` : https://superkogito.github.io/CoinMarketCapScraper/#

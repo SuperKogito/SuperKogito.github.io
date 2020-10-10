@@ -54,11 +54,11 @@ Voice based gender recognition using Gaussian mixture models
   </p>
   <table align="center" style="width:100%">
     <tr>
-        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/subscription" data-size="large" data-show-count="true" aria-label="Watch SuperKogito/Voice-based-gender-recognition on GitHub">Watch</a> </th>
-        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition" data-size="large" data-show-count="true" aria-label="Star SuperKogito/Voice-based-gender-recognition on GitHub">Star</a> </th>
-        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/fork" data-size="large" data-show-count="true" aria-label="Fork SuperKogito/Voice-based-gender-recognition on GitHub">Fork</a> </th>
-        <th> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/archive/master.zip" data-size="large" aria-label="Download SuperKogito/Voice-based-gender-recognition on GitHub">Download</a> </th>
-        <th> <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a> </th>
+        <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/subscription" data-size="large" data-show-count="true" aria-label="Watch SuperKogito/Voice-based-gender-recognition on GitHub">Watch</a> </th>
+        <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition" data-size="large" data-show-count="true" aria-label="Star SuperKogito/Voice-based-gender-recognition on GitHub">Star</a> </th>
+        <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/fork" data-size="large" data-show-count="true" aria-label="Fork SuperKogito/Voice-based-gender-recognition on GitHub">Fork</a> </th>
+        <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/archive/master.zip" data-size="large" aria-label="Download SuperKogito/Voice-based-gender-recognition on GitHub">Download</a> </th>
+        <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a> </th>
     </tr>
   </table>
   <script async defer src="https://buttons.github.io/buttons.js"></script>

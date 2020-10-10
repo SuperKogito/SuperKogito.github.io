@@ -65,7 +65,7 @@ body {
 	font-feature-settings: "kern";
 	font-family: "neon";
 	font-size: 12px;
-	min-width: 1090px;
+	min-width: 5px;
 	max-width: 1090px;
 }
 div {
@@ -506,11 +506,11 @@ div.highlight > pre {
 	border-radius: 10px;
 }
 .simple {
-	width: 90%;
+	width: auto;
 	padding: 0 10% 0 5%;
 }
 table.docutils {
-	width: 1050px;
+	width: auto;
 	border: 1px solid #888;
 	box-shadow: none;
 }
@@ -537,15 +537,15 @@ dl.citation.dd > p {
 }
 table.highlighttable {
 	margin-left: 0.05em;
-	width: 100%;
+	width: inherit;
 	display: block;
 }
 table.highlighttable tbody {
-	width: 100%;
+	width: inherit;
 	display: block;
 }
 table.highlighttable tr {
-	width: 90%;
+	width: auto;
 	display: block ruby;
 }
 td.linenos {
@@ -553,26 +553,36 @@ td.linenos {
 	display: revert;
 }
 td.code {
-	width: 100%;
+	width: inherit;
 	display: inline-grid;
 }
 @supports (-moz-appearance:none) {
 	td.code {
-		width: 100%;
+		width: inherit;
 		display: inherit;
 	}
 }
 div.highlight {
-	width: 100%;
+	width: inherit;
 	display: block;
 }
 div.highlight > pre {
-	width : auto;
+	width : 95%;
 	background-color: var(--box-background-color);
 	padding: 1em;
 	line-height: 1.2;
 	margin: 10px 0 0 0;
 	padding-right: inherit;
+}
+@supports (-moz-appearance:none) {
+	div.highlight > pre {
+		width : 80%;
+		background-color: var(--box-background-color);
+		padding: 1em;
+		line-height: 1.2;
+		margin: 10px 0 0 0;
+		padding-right: inherit;
+	}
 }
 div.lineodiv {
 	margin: 0 0 0 0;
@@ -676,8 +686,8 @@ ul.github-buttons li {
 	display: block;
 }
 div.posts-categories {
-	width: 100%;
-	max-width: 100%;
+	width: auto;
+	max-width: auto;
 	height: 100;
 	color: var(--main-text-color);
 	background-color: var(--main-background-color);
@@ -686,8 +696,8 @@ div.posts-categories {
 }
 @supports (-moz-appearance:none) {
 	div.posts-categories {
-	  width: 100%;
-	  max-width: 100%;
+	  width: auto;
+	  max-width: auto;
 	  height: 100;
 	  color: var(--main-text-color);
 	  background-color: var(--main-background-color);
@@ -727,12 +737,12 @@ a.reference {
 	}
 	table.highlighttable {
 		margin-left: 0.005em;
-		width: inherit%;
+		width: inherit;
 		display : block;
 	}
 	div.highlight {
 		background-color: var(--main-background-color);
-		width: inherit;
+		width: 100%;
 	}
 	img.align-center {
 		width : auto;
@@ -779,7 +789,7 @@ a.reference {
 		max-width: 650px;
 	}
 	div.sub-title-menu {
-		width: 100%;
+		width: inherit;
 		margin: 0 0% 0 0%;
 		padding: 0 0 0 0;
 		color: var(--main-text-color);
@@ -799,7 +809,7 @@ a.reference {
 	}
 	div.highlight {
 		background-color: var(--main-background-color);
-		width: inherit;
+		width: 100%;
 	}
 	img.align-center {
 		width : auto;
@@ -812,7 +822,7 @@ a.reference {
 	}
 	img.cloud {
 		display: contents;
-		max-width: 100%;
+		max-width: inherit;
 		height: auto;
 		margin: 0 auto;
 		border: 0px solid var(--light-border-color);
@@ -822,6 +832,9 @@ a.reference {
 	}
   div.sub-title-menu .fa {
 		font-size: xx-large;
+	}
+	th.github-badge {
+		display: contents;
 	}
 }
 @media only screen and (max-width: 480px) {
@@ -872,9 +885,14 @@ a.reference {
 		margin-left: 0.005em;
 		width: inherit;
 	}
+	@supports (-moz-appearance:none) {
+		table.highlighttable {
+			width: -moz-available;
+		}
+	}
 	div.highlight {
 		background-color: var(--main-background-color);
-		width: inherit;
+		width: 100%;
 	}
 	img.align-center {
 		width : auto;
@@ -914,10 +932,19 @@ a.reference {
     text-align: left;
     padding-right: 3px;
   }
+	th.github-badge {
+		display: contents;
+	}
+	.math {
+		font-size: 14px;
+	}
 }
 
 @media only screen and (max-width: 350px) {
-div.sub-title-menu .fa {
+	div.sub-title-menu .fa {
     font-size: large;
+	}
+	th.github-badge {
+		display: contents;
 	}
 }
