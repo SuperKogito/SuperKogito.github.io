@@ -708,7 +708,7 @@ a.reference {
 		font-feature-settings: "kern";
 		font-family: "neon";
 		font-size: 16px;
-		min-width: 600px;
+		min-width: auto;
 		max-width: 750px;
 	}
 	div.sub-title-menu {
