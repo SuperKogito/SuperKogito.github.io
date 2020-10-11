@@ -131,7 +131,7 @@ Here is a small demo by `@vsoch`_ displaying a couple of uses of the tool.
 
 
   <div name="demo-video" align="center">
-      <iframe src="https://asciinema.org/a/312533/embed?speed=2" id="asciicast-iframe-312533" name="asciicast-iframe-312533" scrolling="no" allowfullscreen="true" style="overflow: hidden; margin: 0px; border: 0px none; display: inline-block; width: 900px; float: none; visibility: visible; height: 692px;"></iframe>
+      <iframe src="https://asciinema.org/a/312533/embed?speed=2" id="asciicast-iframe-312533" name="asciicast-iframe-312533" scrolling="no" allowfullscreen="true" style="overflow: hidden;margin: 0px;border: 0px none;display: inline-block;width: 100%;float: none;visibility: visible;height: 700px;""></iframe>
   </div>
 
 For more on the tools please refer to:

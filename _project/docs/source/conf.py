@@ -24,8 +24,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 def setup(app):
     app.add_stylesheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     app.add_stylesheet("css/custom_style.css")
-    app.add_stylesheet('css/code_style.css')
-    app.add_stylesheet('css/tree_graph.css')
+    #app.add_stylesheet('css/code_style.css')
+    #app.add_stylesheet('css/tree_graph.css')
 
 # # Activate the theme.
 # sys.path.append(os.path.abspath('_themes'))
