@@ -563,20 +563,24 @@ td.code {
 	}
 }
 div.highlight {
-	width: inherit;
+	width: 93%;
 	display: block;
 }
 div.highlight > pre {
-	width : 95%;
+	width : 100%;
 	background-color: var(--box-background-color);
 	padding: 1em;
 	line-height: 1.2;
 	margin: 10px 0 0 0;
 	padding-right: inherit;
 }
+table.highlighttable td.code {
+    padding: 0 0.5em 0 0.5em;
+    width: 100%;
+}
 @supports (-moz-appearance:none) {
 	div.highlight > pre {
-		width : 80%;
+		width : 99%;
 		background-color: var(--box-background-color);
 		padding: 1em;
 		line-height: 1.2;
@@ -614,7 +618,7 @@ table.docutils th.centeredth,table.docutils td.centeredth {
 	text-align: center;
 }
 table.wav {
-	width: 1050px;
+	width: 100%;
 	border: 1px solid #888;
 	box-shadow: none;
 	border: 1px solid #888;
@@ -775,6 +779,9 @@ a.reference {
 	div.sub-title-menu .fa {
 		font-size: xxx-large;
 	}
+	div.highlight > pre {
+		width: 90%;
+	}
 }
 @media only screen and (max-width: 600px) {
 	body {
@@ -786,7 +793,7 @@ a.reference {
 		font-family: "neon";
 		font-size: 16px;
 		min-width: 400px;
-		max-width: 650px;
+		max-width: 550px;
 	}
 	div.sub-title-menu {
 		width: inherit;
@@ -836,6 +843,9 @@ a.reference {
 	th.github-badge {
 		display: contents;
 	}
+	div.highlight > pre {
+		width: 90%;
+	}
 }
 @media only screen and (max-width: 480px) {
 	body {
@@ -847,7 +857,7 @@ a.reference {
 		font-family: "neon";
 		font-size: 16px;
 		min-width: 250px;
-		max-width: min-content;
+		max-width: 450px;
 	}
 	div.latest-posts img {
 		display: none;
@@ -859,7 +869,7 @@ a.reference {
 	th.menu-label {
 		display: none;
 	}
-	table.highlighttable td {
+	table.highlighttable td.code {
 		padding: 0 0.05em 0 0.05em;
 	}
 	div.posts-categories ul {
@@ -937,6 +947,12 @@ a.reference {
 	}
 	.math {
 		font-size: 14px;
+	}
+	div.highlight > pre {
+    width: 80%;
+	}
+	table.wav {
+    font-size: 9px;
 	}
 }
 
