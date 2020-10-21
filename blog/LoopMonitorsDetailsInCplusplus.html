@@ -1,131 +1,11 @@
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/><meta content="Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows." name="description"/>
-<meta content="multiple monitors setup, multi-monitors, monitors dimensions, C++, monitor coordinates" name="keywords"/>
-<meta content="Ayoub Malek" name="author"/>
-<script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-133660046-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-<title>How to loop over monitors and get their coordinates on Windows in C++? — Ayoub Malek's blog</title>
-<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
-<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
-<script src="../_static/jquery.js" type="text/javascript"></script>
-<script src="../_static/underscore.js" type="text/javascript"></script>
-<script src="../_static/doctools.js" type="text/javascript"></script>
-<script src="../_static/language_data.js" type="text/javascript"></script>
-<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<link href="../_static/favicon.ico" rel="shortcut icon"/>
-<link href="../about.html" rel="author" title="About these documents"/>
-<link href="../genindex.html" rel="index" title="Index"/>
-<link href="../search.html" rel="search" title="Search"/>
-<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
-<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
-<style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
-<div class="document">
-<div class="documentwrapper">
-<div class="body" role="main">
-<div class="section" id="how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c">
-<h1>How to loop over monitors and get their coordinates on Windows in C++?<a class="headerlink" href="#how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
-<table class="menu-table" id="menuTable" style="border:hidden;">
-<tr>
-<th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
-<th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
-<th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
-<th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
-<th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
-<th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
-<th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
-</tr>
-</table>
-</div>
-
-<div class="blog-post-tags">
-<ul class="blog-posts-details">
-<li id="Date"><span>Date:</span>                 28 September 2020 </li>
-<li id="author"><span>Author:</span> <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
-<li id="location"><span>Location:</span> <a href="location/munich.html">Munich</a>
-</li> <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
-</li> <li id="category"><span>Category:</span> <a href="category/image-processing.html">Image processing</a>
-</li>
-<li id="tags"><span>Tags:
-        </span>
-<a class="post-tags" href="tag/cplusplus.html">C++</a>
-<a class="post-tags" href="tag/windows.html">Windows</a>
-</li>
-</ul>
-</div><hr class="docutils"/>
-<p>The previous three blogs (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) described capturing a screenshot of only <em>one</em> monitor.
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml><meta charset=utf-8><meta content="Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows." name=description><meta content="multiple monitors setup,multi-monitors,monitors dimensions,C++,monitor coordinates" name=keywords><meta content="Ayoub Malek" name=author><script>var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-133660046-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script><title>How to loop over monitors and get their coordinates on Windows in C++? — Ayoub Malek's blog</title><link href=../_static/alabaster.css rel=stylesheet><link href=../_static/pygments.css rel=stylesheet><link href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet><link href=../_static/css/custom_style.css rel=stylesheet><script data-url_root=../ id=documentation_options src=../_static/documentation_options.js></script><script src=../_static/jquery.js></script><script src=../_static/underscore.js></script><script src=../_static/doctools.js></script><script src=../_static/language_data.js></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><link href=../_static/favicon.ico rel="shortcut icon"><link href=../about.html rel=author title="About these documents"><link href=../genindex.html rel=index title=Index><link href=../search.html rel=search title=Search><link href=../_static/custom.css rel=stylesheet><meta content="width=device-width,initial-scale=.9,maximum-scale=.9" name=viewport><style>ul.ablog-archive{list-style:none;overflow:auto;margin-left:0}ul.ablog-archive li{float:left;margin-right:5px;font-size:80%}ul.postlist a{font-style:italic}ul.postlist-style-disc{list-style-type:disc}ul.postlist-style-none{list-style-type:none}ul.postlist-style-circle{list-style-type:circle}</style><meta content="width=device-width,initial-scale=1" name=viewport><div class=document><div class=documentwrapper><div class=body role=main><div class=section id=how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c><h1>How to loop over monitors and get their coordinates on Windows in C++?<a class=headerlink href=#how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c title="Permalink to this headline">¶</a></h1><div class=sub-title-menu><table class=menu-table id=menuTable style=border:hidden><tr><th><th><th class=icon><a href=../index.html title=Home><i class="fa fa-home"></i></a><th class=menu-label><a href=../index.html title=Home>Home</a><th><th><th class=icon><a href=../posts.html title=Posts><i class="fa fa-bars"></i></a><th class=menu-label><a href=../posts.html title=Posts>Posts</a><th><th><th class=icon><a href=../publications.html title=pubs><i class="fa fa-file-text"></i></a><th class=menu-label><a href=../publications.html title=pubs>Publications</a><th><th><th class=icon><a href=../projects.html title=projects><i class="fa fa-code"></i></a><th class=menu-label><a href=../projects.html title=projects>Projects</a><th><th><th class=icon><a href=../games.html title=Games><i class="fa fa-gamepad"></i></a><th class=menu-label><a href=../games.html title=Games>Games</a><th><th><th class=icon><a href=../about.html title=About><i class="fa fa-user-circle"></i></a><th class=menu-label><a href=../about.html title=About>About</a><th><th><th class=icon><a href=# onclick=modeSwitcher()><i class="fa fa-adjust"></i></a><th class=menu-label><a href=# onclick=modeSwitcher()><text id=theme-toggle>DARK MODE</text></a></table></div><div class=blog-post-tags><ul class=blog-posts-details><li id=Date><span>Date:</span> 28 September 2020<li id=author><span>Author:</span> <a href=author/ayoub-malek.html>Ayoub Malek</a><li id=location><span>Location:</span> <a href=location/munich.html>Munich</a><li id=language><span>Language:</span> <a href=language/english.html>English</a><li id=category><span>Category:</span> <a href=category/image-processing.html>Image processing</a><li id=tags><span>Tags:</span>
+<a class=post-tags href=tag/cplusplus.html>C++</a>
+<a class=post-tags href=tag/windows.html>Windows</a></ul></div><hr class=docutils><p>The previous three blogs (<a class="reference external" href=https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html>Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href=https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html>Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href=https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html>Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) described capturing a screenshot of only <em>one</em> monitor.
 However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
 Therefore, we will need to retrieve the coordinates of the targeted monitors.
-This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.</p>
-<div class="line-block">
-<div class="line"><strong>*Keywords*</strong>:  multiple monitors, multi-monitors dimensions, monitor coordinates, C++</div>
-</div>
-<div class="section" id="approach-and-implementation">
-<h2>Approach and implementation<a class="headerlink" href="#approach-and-implementation" title="Permalink to this headline">¶</a></h2>
-<p>The trick for looping the screens dimensions is to use the function <code class="code docutils literal notranslate"><span class="pre">EnumDisplayMonitors(NULL,</span> <span class="pre">NULL,</span> <span class="pre">MyInfoEnumProc,</span> <span class="pre">0)</span></code>, which is available as part of the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a>.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.<div class=line-block><div class=line><strong>*Keywords*</strong>: multiple monitors, multi-monitors dimensions, monitor coordinates, C++</div></div><div class=section id=approach-and-implementation><h2>Approach and implementation<a class=headerlink href=#approach-and-implementation title="Permalink to this headline">¶</a></h2><p>The trick for looping the screens dimensions is to use the function <code class="code docutils literal notranslate"><span class=pre>EnumDisplayMonitors(NULL,</span> <span class=pre>NULL,</span> <span class=pre>MyInfoEnumProc,</span> <span class=pre>0)</span></code>, which is available as part of the <a class="reference external" href=https://docs.microsoft.com/en-us/windows/win32/>Win32 API</a>.
 A nice approach to this, is to pack the enumeration code in a structure that can be looped to retrieve the information related to each monitor.
-This can be done as in the following:</p>
-<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+This can be done as in the following:<div class="highlight-C++ notranslate"><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -173,113 +53,63 @@ This can be done as in the following:</p>
 46
 47
 48
-49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+49</pre></div><td class=code><div class=highlight><pre><span></span><span class=cp>#include</span> <span class=cpf>&lt;windows.h&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp></span>
+<span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp></span>
 
 
-<span class="c1">// Structure that includes all screen hanldes and rectangles</span>
-<span class="k">struct</span> <span class="n">cMonitorsVec</span>
-<span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>       <span class="n">iMonitors</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HMONITOR</span><span class="o">&gt;</span>  <span class="n">hMonitors</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HDC</span><span class="o">&gt;</span>       <span class="n">hdcMonitors</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RECT</span><span class="o">&gt;</span>      <span class="n">rcMonitors</span><span class="p">;</span>
+<span class=c1>// Structure that includes all screen hanldes and rectangles</span>
+<span class=k>struct</span> <span class=n>cMonitorsVec</span>
+<span class=p>{</span>
+      <span class=n>std</span><span class=o>::</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span>       <span class=n>iMonitors</span><span class=p>;</span>
+      <span class=n>std</span><span class=o>::</span><span class=n>vector</span><span class=o>&lt;</span><span class=n>HMONITOR</span><span class=o>&gt;</span>  <span class=n>hMonitors</span><span class=p>;</span>
+      <span class=n>std</span><span class=o>::</span><span class=n>vector</span><span class=o>&lt;</span><span class=n>HDC</span><span class=o>&gt;</span>       <span class=n>hdcMonitors</span><span class=p>;</span>
+      <span class=n>std</span><span class=o>::</span><span class=n>vector</span><span class=o>&lt;</span><span class=n>RECT</span><span class=o>&gt;</span>      <span class=n>rcMonitors</span><span class=p>;</span>
 
-      <span class="k">static</span> <span class="n">BOOL</span> <span class="n">CALLBACK</span> <span class="nf">MonitorEnum</span><span class="p">(</span><span class="n">HMONITOR</span> <span class="n">hMon</span><span class="p">,</span> <span class="n">HDC</span> <span class="n">hdc</span><span class="p">,</span> <span class="n">LPRECT</span> <span class="n">lprcMonitor</span><span class="p">,</span> <span class="n">LPARAM</span> <span class="n">pData</span><span class="p">)</span>
-      <span class="p">{</span>
-              <span class="n">cMonitorsVec</span><span class="o">*</span> <span class="n">pThis</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">cMonitorsVec</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pData</span><span class="p">);</span>
+      <span class=k>static</span> <span class=n>BOOL</span> <span class=n>CALLBACK</span> <span class=nf>MonitorEnum</span><span class=p>(</span><span class=n>HMONITOR</span> <span class=n>hMon</span><span class=p>,</span> <span class=n>HDC</span> <span class=n>hdc</span><span class=p>,</span> <span class=n>LPRECT</span> <span class=n>lprcMonitor</span><span class=p>,</span> <span class=n>LPARAM</span> <span class=n>pData</span><span class=p>)</span>
+      <span class=p>{</span>
+              <span class=n>cMonitorsVec</span><span class=o>*</span> <span class=n>pThis</span> <span class=o>=</span> <span class=k>reinterpret_cast</span><span class=o>&lt;</span><span class=n>cMonitorsVec</span><span class=o>*&gt;</span><span class=p>(</span><span class=n>pData</span><span class=p>);</span>
 
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hMon</span><span class="p">);</span>
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hdc</span><span class="p">);</span>
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">rcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">lprcMonitor</span><span class="p">);</span>
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-              <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
-      <span class="p">}</span>
+              <span class=n>pThis</span><span class=o>-&gt;</span><span class=n>hMonitors</span><span class=p>.</span><span class=n>push_back</span><span class=p>(</span><span class=n>hMon</span><span class=p>);</span>
+              <span class=n>pThis</span><span class=o>-&gt;</span><span class=n>hdcMonitors</span><span class=p>.</span><span class=n>push_back</span><span class=p>(</span><span class=n>hdc</span><span class=p>);</span>
+              <span class=n>pThis</span><span class=o>-&gt;</span><span class=n>rcMonitors</span><span class=p>.</span><span class=n>push_back</span><span class=p>(</span><span class=o>*</span><span class=n>lprcMonitor</span><span class=p>);</span>
+              <span class=n>pThis</span><span class=o>-&gt;</span><span class=n>iMonitors</span><span class=p>.</span><span class=n>push_back</span><span class=p>(</span><span class=n>pThis</span><span class=o>-&gt;</span><span class=n>hdcMonitors</span><span class=p>.</span><span class=n>size</span><span class=p>());</span>
+              <span class=k>return</span> <span class=n>TRUE</span><span class=p>;</span>
+      <span class=p>}</span>
 
-      <span class="n">cMonitorsVec</span><span class="p">()</span>
-      <span class="p">{</span>
-              <span class="n">EnumDisplayMonitors</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MonitorEnum</span><span class="p">,</span> <span class="p">(</span><span class="n">LPARAM</span><span class="p">)</span><span class="k">this</span><span class="p">);</span>
-      <span class="p">}</span>
-<span class="p">};</span>
+      <span class=n>cMonitorsVec</span><span class=p>()</span>
+      <span class=p>{</span>
+              <span class=n>EnumDisplayMonitors</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>MonitorEnum</span><span class=p>,</span> <span class=p>(</span><span class=n>LPARAM</span><span class=p>)</span><span class=k>this</span><span class=p>);</span>
+      <span class=p>}</span>
+<span class=p>};</span>
 
 
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-      <span class="n">cMonitorsVec</span> <span class="n">Monitors</span><span class="p">;</span>
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=p>{</span>
+      <span class=n>cMonitorsVec</span> <span class=n>Monitors</span><span class=p>;</span>
 
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">monitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  <span class="n">monitorIndex</span> <span class="o">&lt;</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">monitorIndex</span><span class="o">++</span><span class="p">)</span>
-      <span class="p">{</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"Screen id: "</span> <span class="o">&lt;&lt;</span> <span class="n">monitorIndex</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"-----------------------------------------------------"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">" - screen left-top corner coordinates : ("</span> <span class="o">&lt;&lt;</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">")"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">" - screen dimensions (width x height) : ("</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">right</span> <span class="o">-</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span><span class="p">)</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span> <span class="o">-</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">bottom</span><span class="p">)</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">")"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"-----------------------------------------------------"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-      <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table></div>
-<p>The previous code can be also found under <a class="reference external" href="https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1">here</a>.</p>
-</div>
-<div class="section" id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
-<p>This post introduced a small example of how to retrieve the coordinates and dimensions of the connected monitors using C++ on Windows in the case of a multi-monitors setup.
-The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs  (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">Capturing the screen on Windows in C++ using GDI+</a>)</p>
-</div>
-<div class="section" id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
-<dl class="footnote brackets">
-<dt class="label" id="id1"><span class="brackets">1</span></dt>
-<dd><p>EnumDisplayMonitors function (winuser.h), Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors">https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors</a></p>
-</dd>
-<dt class="label" id="id2"><span class="brackets">2</span></dt>
-<dd><p>Enumeration and Display Control, Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control">https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control</a></p>
-</dd>
-<dt class="label" id="id3"><span class="brackets">3</span></dt>
-<dd><p>Multi-monitor Screenshots only 2 monitors in C++ with WinApi, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi">https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi</a></p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section">
-<div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">
-    
-    Comparing screen capturing using GDI+ and OpenCV on Windows in C++
-  </a>
-</span>
+      <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>monitorIndex</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span>  <span class=n>monitorIndex</span> <span class=o>&lt;</span> <span class=n>Monitors</span><span class=p>.</span><span class=n>iMonitors</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>monitorIndex</span><span class=o>++</span><span class=p>)</span>
+      <span class=p>{</span>
+              <span class=n>std</span><span class=o>::</span><span class=n>wcout</span> <span class=o>&lt;&lt;</span> <span class=s>"Screen id: "</span> <span class=o>&lt;&lt;</span> <span class=n>monitorIndex</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+              <span class=n>std</span><span class=o>::</span><span class=n>wcout</span> <span class=o>&lt;&lt;</span> <span class=s>"-----------------------------------------------------"</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+              <span class=n>std</span><span class=o>::</span><span class=n>wcout</span> <span class=o>&lt;&lt;</span> <span class=s>" - screen left-top corner coordinates : ("</span> <span class=o>&lt;&lt;</span> <span class=n>Monitors</span><span class=p>.</span><span class=n>rcMonitors</span><span class=p>[</span><span class=n>monitorIndex</span><span class=p>].</span><span class=n>left</span>
+                                                                 <span class=o>&lt;&lt;</span> <span class=s>","</span> <span class=o>&lt;&lt;</span> <span class=n>Monitors</span><span class=p>.</span><span class=n>rcMonitors</span><span class=p>[</span><span class=n>monitorIndex</span><span class=p>].</span><span class=n>top</span>
+                                                                 <span class=o>&lt;&lt;</span> <span class=s>")"</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+              <span class=n>std</span><span class=o>::</span><span class=n>wcout</span> <span class=o>&lt;&lt;</span> <span class=s>" - screen dimensions (width x height) : ("</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>abs</span><span class=p>(</span><span class=n>Monitors</span><span class=p>.</span><span class=n>rcMonitors</span><span class=p>[</span><span class=n>monitorIndex</span><span class=p>].</span><span class=n>right</span> <span class=o>-</span> <span class=n>Monitors</span><span class=p>.</span><span class=n>rcMonitors</span><span class=p>[</span><span class=n>monitorIndex</span><span class=p>].</span><span class=n>left</span><span class=p>)</span>
+                                                                 <span class=o>&lt;&lt;</span> <span class=s>","</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>abs</span><span class=p>(</span><span class=n>Monitors</span><span class=p>.</span><span class=n>rcMonitors</span><span class=p>[</span><span class=n>monitorIndex</span><span class=p>].</span><span class=n>top</span> <span class=o>-</span> <span class=n>Monitors</span><span class=p>.</span><span class=n>rcMonitors</span><span class=p>[</span><span class=n>monitorIndex</span><span class=p>].</span><span class=n>bottom</span><span class=p>)</span>
+                                                                 <span class=o>&lt;&lt;</span> <span class=s>")"</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+              <span class=n>std</span><span class=o>::</span><span class=n>wcout</span> <span class=o>&lt;&lt;</span> <span class=s>"-----------------------------------------------------"</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+      <span class=p>}</span>
+<span class=p>}</span>
+</pre></div></table></div><p>The previous code can be also found under <a class="reference external" href=https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1>here</a>.</div><div class=section id=conclusion><h2>Conclusion<a class=headerlink href=#conclusion title="Permalink to this headline">¶</a></h2><p>This post introduced a small example of how to retrieve the coordinates and dimensions of the connected monitors using C++ on Windows in the case of a multi-monitors setup.
+The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs (<a class="reference external" href=https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html>Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href=https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html>Capturing the screen on Windows in C++ using GDI+</a>)</div><div class=section id=references-and-further-readings><h2>References and Further readings<a class=headerlink href=#references-and-further-readings title="Permalink to this headline">¶</a></h2><dl class="footnote brackets"><dt class=label id=id1><span class=brackets>1</span><dd><p>EnumDisplayMonitors function (winuser.h), Microsoft, <a class="reference external" href=https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors>https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors</a><dt class=label id=id2><span class=brackets>2</span><dd><p>Enumeration and Display Control, Microsoft, <a class="reference external" href=https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control>https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control</a><dt class=label id=id3><span class=brackets>3</span><dd><p>Multi-monitor Screenshots only 2 monitors in C++ with WinApi, Stackoverflow, <a class="reference external" href=https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi>https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi</a></dl></div></div><div class=section><div class=section><span style=float:left>Previous:
+<a href=CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html>Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a></span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="DivideImageUsingOpenCv.html">
-    Divide an image into blocks using OpenCV in C++
-    
-  </a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<div class="clearer"></div>
-</div>
-<div class="footer">
-      ©2020, Ayoub Malek.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-      
-      |
-      <a href="../_sources/blog/LoopMonitorsDetailsInCplusplus.rst.txt" rel="nofollow">Page source</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
-</body>
-</html>
+<span style=float:right>Next:
+<a href=DivideImageUsingOpenCv.html>Divide an image into blocks using OpenCV in C++</a></span></div></div></div></div><div class=clearer></div></div><div class=footer>©2020, Ayoub Malek.
+|
+Powered by <a href=http://sphinx-doc.org/>Sphinx 2.3.1</a>
+&amp; <a href=https://github.com/bitprophet/alabaster>Alabaster 0.7.11</a>
+|
+<a href=../_sources/blog/LoopMonitorsDetailsInCplusplus.rst.txt rel=nofollow>Page source</a></div><script async defer src=https://buttons.github.io/buttons.js></script><script src=../_static/js/mode-switcher.js></script>

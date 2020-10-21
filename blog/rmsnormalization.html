@@ -1,153 +1,13 @@
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/><meta content="Audio signal RMS normalization in Python" name="description"/>
-<meta content="root mean square, signal normalization, python, Audio normalization, RMS normalization" name="keywords"/>
-<meta content="Ayoub Malek" name="author"/>
-<script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-133660046-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-<title>Root mean square normalization in Python — Ayoub Malek's blog</title>
-<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
-<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
-<script src="../_static/jquery.js" type="text/javascript"></script>
-<script src="../_static/underscore.js" type="text/javascript"></script>
-<script src="../_static/doctools.js" type="text/javascript"></script>
-<script src="../_static/language_data.js" type="text/javascript"></script>
-<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<link href="../_static/favicon.ico" rel="shortcut icon"/>
-<link href="../about.html" rel="author" title="About these documents"/>
-<link href="../genindex.html" rel="index" title="Index"/>
-<link href="../search.html" rel="search" title="Search"/>
-<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
-<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
-<style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
-<div class="document">
-<div class="documentwrapper">
-<div class="body" role="main">
-<div class="section" id="root-mean-square-normalization-in-python">
-<h1>Root mean square normalization in Python<a class="headerlink" href="#root-mean-square-normalization-in-python" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
-<table class="menu-table" id="menuTable" style="border:hidden;">
-<tr>
-<th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
-<th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
-<th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
-<th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
-<th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
-<th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
-<th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
-</tr>
-</table>
-</div>
-
-<div class="blog-post-tags">
-<ul class="blog-posts-details">
-<li id="Date"><span>Date:</span>                 30 May 2020 </li>
-<li id="author"><span>Author:</span> <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
-<li id="location"><span>Location:</span> <a href="location/munich.html">Munich</a>
-</li> <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
-</li> <li id="category"><span>Category:</span> <a href="category/signal-processing.html"> Signal processing</a>
-</li>
-<li id="tags"><span>Tags:
-        </span>
-<a class="post-tags" href="tag/audio.html">Audio</a>
-<a class="post-tags" href="tag/augmentation.html">Augmentation</a>
-<a class="post-tags" href="tag/python.html">Python</a>
-</li>
-</ul>
-</div><hr class="docutils"/>
-<p>Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
-A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.</p>
-<div class="section" id="what-is-rms-normalization">
-<h2>What is RMS normalization?<a class="headerlink" href="#what-is-rms-normalization" title="Permalink to this headline">¶</a></h2>
-<p>In general there are two principal types of audio normalization:</p>
-<ul class="simple">
-<li><p>Peak normalization which adjusts the recording based on its highest signal level.</p></li>
-<li><p>Loudness normalization which adjusts the recording based its perceived loudness.</p></li>
-</ul>
-<p>RMS normalization falls under the latter, where the perceived loudness level is determined using the root mean square of the signal.
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml><meta charset=utf-8><meta content="Audio signal RMS normalization in Python" name=description><meta content="root mean square,signal normalization,python,Audio normalization,RMS normalization" name=keywords><meta content="Ayoub Malek" name=author><script>var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-133660046-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script><title>Root mean square normalization in Python — Ayoub Malek's blog</title><link href=../_static/alabaster.css rel=stylesheet><link href=../_static/pygments.css rel=stylesheet><link href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet><link href=../_static/css/custom_style.css rel=stylesheet><script data-url_root=../ id=documentation_options src=../_static/documentation_options.js></script><script src=../_static/jquery.js></script><script src=../_static/underscore.js></script><script src=../_static/doctools.js></script><script src=../_static/language_data.js></script><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><link href=../_static/favicon.ico rel="shortcut icon"><link href=../about.html rel=author title="About these documents"><link href=../genindex.html rel=index title=Index><link href=../search.html rel=search title=Search><link href=../_static/custom.css rel=stylesheet><meta content="width=device-width,initial-scale=.9,maximum-scale=.9" name=viewport><style>ul.ablog-archive{list-style:none;overflow:auto;margin-left:0}ul.ablog-archive li{float:left;margin-right:5px;font-size:80%}ul.postlist a{font-style:italic}ul.postlist-style-disc{list-style-type:disc}ul.postlist-style-none{list-style-type:none}ul.postlist-style-circle{list-style-type:circle}</style><meta content="width=device-width,initial-scale=1" name=viewport><div class=document><div class=documentwrapper><div class=body role=main><div class=section id=root-mean-square-normalization-in-python><h1>Root mean square normalization in Python<a class=headerlink href=#root-mean-square-normalization-in-python title="Permalink to this headline">¶</a></h1><div class=sub-title-menu><table class=menu-table id=menuTable style=border:hidden><tr><th><th><th class=icon><a href=../index.html title=Home><i class="fa fa-home"></i></a><th class=menu-label><a href=../index.html title=Home>Home</a><th><th><th class=icon><a href=../posts.html title=Posts><i class="fa fa-bars"></i></a><th class=menu-label><a href=../posts.html title=Posts>Posts</a><th><th><th class=icon><a href=../publications.html title=pubs><i class="fa fa-file-text"></i></a><th class=menu-label><a href=../publications.html title=pubs>Publications</a><th><th><th class=icon><a href=../projects.html title=projects><i class="fa fa-code"></i></a><th class=menu-label><a href=../projects.html title=projects>Projects</a><th><th><th class=icon><a href=../games.html title=Games><i class="fa fa-gamepad"></i></a><th class=menu-label><a href=../games.html title=Games>Games</a><th><th><th class=icon><a href=../about.html title=About><i class="fa fa-user-circle"></i></a><th class=menu-label><a href=../about.html title=About>About</a><th><th><th class=icon><a href=# onclick=modeSwitcher()><i class="fa fa-adjust"></i></a><th class=menu-label><a href=# onclick=modeSwitcher()><text id=theme-toggle>DARK MODE</text></a></table></div><div class=blog-post-tags><ul class=blog-posts-details><li id=Date><span>Date:</span> 30 May 2020<li id=author><span>Author:</span> <a href=author/ayoub-malek.html>Ayoub Malek</a><li id=location><span>Location:</span> <a href=location/munich.html>Munich</a><li id=language><span>Language:</span> <a href=language/english.html>English</a><li id=category><span>Category:</span> <a href=category/signal-processing.html>Signal processing</a><li id=tags><span>Tags:</span>
+<a class=post-tags href=tag/audio.html>Audio</a>
+<a class=post-tags href=tag/augmentation.html>Augmentation</a>
+<a class=post-tags href=tag/python.html>Python</a></ul></div><hr class=docutils><p>Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
+A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.<div class=section id=what-is-rms-normalization><h2>What is RMS normalization?<a class=headerlink href=#what-is-rms-normalization title="Permalink to this headline">¶</a></h2><p>In general there are two principal types of audio normalization:<ul class=simple><li><p>Peak normalization which adjusts the recording based on its highest signal level.<li><p>Loudness normalization which adjusts the recording based its perceived loudness.</ul><p>RMS normalization falls under the latter, where the perceived loudness level is determined using the root mean square of the signal.
 The result is then used to compute the gain value used in the normalization.
-Since the gain value is constant and applied across the entire recording, the normalization does not affect the signal-to-noise ratio and the relative dynamics <a class="reference internal" href="#shelvock" id="id1">[She12]</a>.
-The approach to RMS normalization can be summarized in the following mathematical formula <a class="reference internal" href="#malek" id="id2">[MM20]</a>:</p>
-<div class="math notranslate nohighlight" id="equation-rms">
-\begin{equation}
-    y[n]=\sqrt{\frac{N-10\left(\frac{r}{20}\right)}{\sum_{i=0}^{N-1} x^{2} \left[ i\right]}} \cdot x[n]
-\end{equation}</div><p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x[n]\)</span> is the original signal.</p></li>
-<li><p><span class="math notranslate nohighlight">\(y[n]\)</span> is the normalized signal.</p></li>
-<li><p><span class="math notranslate nohighlight">\(N\)</span> is the length of <span class="math notranslate nohighlight">\(x[n]\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(r\)</span> is the input RMS level in dB.</p></li>
-</ul>
-</div>
-<div class="section" id="how-to-implement-it-in-python">
-<h2>How to implement it in Python?<a class="headerlink" href="#how-to-implement-it-in-python" title="Permalink to this headline">¶</a></h2>
-<p>Implementing the RMS normalization is fairly simple in Python and the algorithm can be summarized in the following steps:</p>
-<ul class="simple">
-<li><p>Read audio as an array.</p></li>
-<li><p>Compute the linear RMS level and its scaling factor</p></li>
-<li><p>Normalize using the scaling factor.</p></li>
-<li><p>Write the resulting array as an audio.</p></li>
-</ul>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+Since the gain value is constant and applied across the entire recording, the normalization does not affect the signal-to-noise ratio and the relative dynamics <a class="reference internal" href=#shelvock id=id1>[She12]</a>.
+The approach to RMS normalization can be summarized in the following mathematical formula <a class="reference internal" href=#malek id=id2>[MM20]</a>:<div class="math notranslate nohighlight" id=equation-rms>\begin{equation}
+y[n]=\sqrt{\frac{N-10\left(\frac{r}{20}\right)}{\sum_{i=0}^{N-1} x^{2} \left[ i\right]}} \cdot x[n]
+\end{equation}</div><p>where:<ul class=simple><li><p><span class="math notranslate nohighlight">\(x[n]\)</span> is the original signal.<li><p><span class="math notranslate nohighlight">\(y[n]\)</span> is the normalized signal.<li><p><span class="math notranslate nohighlight">\(N\)</span> is the length of <span class="math notranslate nohighlight">\(x[n]\)</span>.<li><p><span class="math notranslate nohighlight">\(r\)</span> is the input RMS level in dB.</ul></div><div class=section id=how-to-implement-it-in-python><h2>How to implement it in Python?<a class=headerlink href=#how-to-implement-it-in-python title="Permalink to this headline">¶</a></h2><p>Implementing the RMS normalization is fairly simple in Python and the algorithm can be summarized in the following steps:<ul class=simple><li><p>Read audio as an array.<li><p>Compute the linear RMS level and its scaling factor<li><p>Normalize using the scaling factor.<li><p>Write the resulting array as an audio.</ul><div class="highlight-python notranslate"><table class=highlighttable><tr><td class=linenos><div class=linenodiv><pre> 1
  2
  3
  4
@@ -173,89 +33,41 @@ The approach to RMS normalization can be summarized in the following mathematica
 24
 25
 26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">rms_level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">"""</span>
-<span class="sd">    Normalize the signal given a certain technique (peak or rms).</span>
-<span class="sd">    Args:</span>
-<span class="sd">        - infile    (str) : input filename/path.</span>
-<span class="sd">        - rms_level (int) : rms level in dB.</span>
-<span class="sd">    """</span>
-    <span class="c1"># read input file</span>
-    <span class="n">fs</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span>
+27</pre></div><td class=code><div class=highlight><pre><span></span><span class=k>def</span> <span class=nf>normalize</span><span class=p>(</span><span class=n>infile</span><span class=p>,</span> <span class=n>rms_level</span><span class=o>=</span><span class=mi>0</span><span class=p>):</span>
+    <span class=sd>"""</span>
+<span class=sd>    Normalize the signal given a certain technique (peak or rms).</span>
+<span class=sd>    Args:</span>
+<span class=sd>        - infile    (str) : input filename/path.</span>
+<span class=sd>        - rms_level (int) : rms level in dB.</span>
+<span class=sd>    """</span>
+    <span class=c1># read input file</span>
+    <span class=n>fs</span><span class=p>,</span> <span class=n>sig</span> <span class=o>=</span> <span class=n>read_file</span><span class=p>(</span><span class=n>filename</span><span class=o>=</span><span class=n>infile</span><span class=p>)</span>
 
-    <span class="c1"># linear rms level and scaling factor</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">rms_level</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sig</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+    <span class=c1># linear rms level and scaling factor</span>
+    <span class=n>r</span> <span class=o>=</span> <span class=mi>10</span><span class=o>**</span><span class=p>(</span><span class=n>rms_level</span> <span class=o>/</span> <span class=mf>10.0</span><span class=p>)</span>
+    <span class=n>a</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>sqrt</span><span class=p>(</span> <span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>sig</span><span class=p>)</span> <span class=o>*</span> <span class=n>r</span><span class=o>**</span><span class=mi>2</span><span class=p>)</span> <span class=o>/</span> <span class=n>np</span><span class=o>.</span><span class=n>sum</span><span class=p>(</span><span class=n>sig</span><span class=o>**</span><span class=mi>2</span><span class=p>)</span> <span class=p>)</span>
 
-    <span class="c1"># normalize</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">sig</span> <span class="o">*</span> <span class="n">a</span>
+    <span class=c1># normalize</span>
+    <span class=n>y</span> <span class=o>=</span> <span class=n>sig</span> <span class=o>*</span> <span class=n>a</span>
 
-    <span class="c1"># construct file names</span>
-    <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
-    <span class="n">name_attribute</span> <span class="o">=</span> <span class="s2">"output_file.wav"</span>
+    <span class=c1># construct file names</span>
+    <span class=n>output_file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=n>infile</span><span class=p>)</span>
+    <span class=n>name_attribute</span> <span class=o>=</span> <span class=s2>"output_file.wav"</span>
 
-    <span class="c1"># export data to file</span>
-    <span class="n">write_file</span><span class="p">(</span><span class="n">output_file_path</span><span class="o">=</span><span class="n">output_file_path</span><span class="p">,</span>
-               <span class="n">input_file_name</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
-               <span class="n">name_attribute</span><span class="o">=</span><span class="n">name_attribute</span><span class="p">,</span>
-               <span class="n">sig</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
-               <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-</pre></div>
-</td></tr></table></div>
-<p>This implementation is available as part of the <a class="reference external" href="https://github.com/SuperKogito/pydiogment/">Pydiogment_library</a></p>
-</div>
-<div class="section" id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
-<p>This blog post provided a small introduction of the RMS normalization technique, which is commonly used in speech processing to improve the quality of recordings.
-We also provided a small implementation of the approach that is part of the <a class="reference external" href="https://github.com/SuperKogito/pydiogment/">Pydiogment_library</a>.</p>
-</div>
-<div class="section" id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-blog/rmsnormalization-0"><dl class="citation">
-<dt class="label" id="malek"><span class="brackets"><a class="fn-backref" href="#id2">MM20</a></span></dt>
-<dd><p>Ayoub Malek and Hasna Marwa Malek. Pydiogment: A Python package for audio augmentation. 2020. [Online; accessed 30.04.2020]. URL: <a class="reference external" href="https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf">https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf</a>.</p>
-</dd>
-<dt class="label" id="shelvock"><span class="brackets"><a class="fn-backref" href="#id1">She12</a></span></dt>
-<dd><p>Matt Shelvock. Audio Mastering as Musical Practice. Master’s thesis, The University of Western Ontario: The School of Graduate and Postdoctoral Studies, London, Ontario, Canada, 2012. URL: <a class="reference external" href="https://ir.lib.uwo.ca/etd/530">https://ir.lib.uwo.ca/etd/530</a>.</p>
-</dd>
-</dl>
-</p>
-</div>
-</div>
-<div class="section">
-<div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="urlstechie.html">
-    
-    Introducing urlstechie and its urls checking tools
-  </a>
-</span>
+    <span class=c1># export data to file</span>
+    <span class=n>write_file</span><span class=p>(</span><span class=n>output_file_path</span><span class=o>=</span><span class=n>output_file_path</span><span class=p>,</span>
+               <span class=n>input_file_name</span><span class=o>=</span><span class=n>infile</span><span class=p>,</span>
+               <span class=n>name_attribute</span><span class=o>=</span><span class=n>name_attribute</span><span class=p>,</span>
+               <span class=n>sig</span><span class=o>=</span><span class=n>y</span><span class=p>,</span>
+               <span class=n>fs</span><span class=o>=</span><span class=n>fs</span><span class=p>)</span>
+</pre></div></table></div><p>This implementation is available as part of the <a class="reference external" href=https://github.com/SuperKogito/pydiogment/>Pydiogment_library</a></div><div class=section id=conclusion><h2>Conclusion<a class=headerlink href=#conclusion title="Permalink to this headline">¶</a></h2><p>This blog post provided a small introduction of the RMS normalization technique, which is commonly used in speech processing to improve the quality of recordings.
+We also provided a small implementation of the approach that is part of the <a class="reference external" href=https://github.com/SuperKogito/pydiogment/>Pydiogment_library</a>.</div><div class=section id=references-and-further-readings><h2>References and Further readings<a class=headerlink href=#references-and-further-readings title="Permalink to this headline">¶</a></h2><p id=bibtex-bibliography-blog/rmsnormalization-0><dl class=citation><dt class=label id=malek><span class=brackets><a class=fn-backref href=#id2>MM20</a></span><dd><p>Ayoub Malek and Hasna Marwa Malek. Pydiogment: A Python package for audio augmentation. 2020. [Online; accessed 30.04.2020]. URL: <a class="reference external" href=https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf>https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf</a>.<dt class=label id=shelvock><span class=brackets><a class=fn-backref href=#id1>She12</a></span><dd><p>Matt Shelvock. Audio Mastering as Musical Practice. Master’s thesis, The University of Western Ontario: The School of Graduate and Postdoctoral Studies, London, Ontario, Canada, 2012. URL: <a class="reference external" href=https://ir.lib.uwo.ca/etd/530>https://ir.lib.uwo.ca/etd/530</a>.</dl></div></div><div class=section><div class=section><span style=float:left>Previous:
+<a href=urlstechie.html>Introducing urlstechie and its urls checking tools</a></span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="CaptureScreenUsingOpenCv.html">
-    Capturing the screen on Windows in C++ using OpenCV
-    
-  </a>
-</span>
-</div>
-</div>
-</div>
-</div>
-<div class="clearer"></div>
-</div>
-<div class="footer">
-      ©2020, Ayoub Malek.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-      
-      |
-      <a href="../_sources/blog/rmsnormalization.rst.txt" rel="nofollow">Page source</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
-</body>
-</html>
+<span style=float:right>Next:
+<a href=CaptureScreenUsingOpenCv.html>Capturing the screen on Windows in C++ using OpenCV</a></span></div></div></div></div><div class=clearer></div></div><div class=footer>©2020, Ayoub Malek.
+|
+Powered by <a href=http://sphinx-doc.org/>Sphinx 2.3.1</a>
+&amp; <a href=https://github.com/bitprophet/alabaster>Alabaster 0.7.11</a>
+|
+<a href=../_sources/blog/rmsnormalization.rst.txt rel=nofollow>Page source</a></div><script async defer src=https://buttons.github.io/buttons.js></script><script src=../_static/js/mode-switcher.js></script>
