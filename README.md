@@ -38,9 +38,13 @@ The blog is built using the following resources:
   - [[10.02.2019] Blog intro](https://superkogito.github.io/blog/Intro.html)
 
 
+
 ### To dos:
+0. chmod post
 1. Pre-emphasis
 2. MFCC
 3. vad using energie, zero crossings and correlation coefficient
 
 - Work on Mobile compatibility.
+- optimize the pages/ minify
+- better meta and seo
