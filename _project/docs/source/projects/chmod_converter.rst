@@ -4,8 +4,9 @@ Chmod modes Converter
 -------------
 
 This is a small chmod modes converter, to convert from octal/ numeric modes to symbolic and vice versa.
-The converter is written in Javascript and its source code can be found under `chmod-converter.js`_.
+The converter is written in Javascript and its source code can be found under `chmod-converter.js`_
 
+|
 
 .. raw:: html
 
@@ -56,4 +57,6 @@ The converter is written in Javascript and its source code can be found under `c
   </div>
   <br>
 
-  .. _`chmod-converter.js` : https://github.com/SuperKogito/SuperKogito.github.io/blob/master/_static/js/chmod-converter.js
+
+
+.. _`chmod-converter.js` : https://gist.github.com/SuperKogito/a67e15a7057a754dc20af42bf4f860cb

@@ -95,8 +95,6 @@ the :math:`\textbf{-}` stands for not defined so in a way, you can use: :math:`\
 
 The following converter tool can be used to compute the symbolic/ octal code to describe a certain set of rules/ permissions:
 
-|
-
 .. raw:: html
 
   <div class="chmod-converter">
