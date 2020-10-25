@@ -59,7 +59,7 @@ release = ''
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
-    'sphinx.ext.todo',
+#    'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinxcontrib.napoleon',
@@ -80,6 +80,7 @@ import ablog
 
 html_theme = 'alabaster'
 templates_path = [ablog.get_html_templates_path()]
+print(templates_path)
 googleanalytics_id = 'UA-133660046-1'
 spelling_lang='en_US'
 spelling_show_suggestions=True
@@ -200,3 +201,5 @@ texinfo_documents = [
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 site_url = 'https://superkogito.github.io/'
+
+html_show_sourcelink = False

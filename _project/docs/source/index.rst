@@ -21,7 +21,7 @@ Ayoub Malek's Blog
 
 
 
-Latest posts
+Recent posts
 -------------
 
 .. raw:: html
@@ -36,7 +36,7 @@ Latest posts
  </table>
  </div>
 
-.. postlist:: 15
+.. postlist:: 10
    :date: %d-%m-%Y
    :format: {date}  {title}
 
