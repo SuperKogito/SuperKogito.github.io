@@ -113,9 +113,13 @@ def post_process(html_files):
             footer =  soup.find('div', class_="footer")
             script = f"""<script src="{prefix}_static/js/mode-switcher.js"></script>"""
             gh_script = f"""<script async defer src="https://buttons.github.io/buttons.js"></script>"""
+            chmod_converter = f"""<script src="{prefix}_static/js/chmod-converter.js"></script>"""
             # debug: print(script)
             footer.insert_after(Soup(script))
             footer.insert_after(Soup(gh_script))
+
+            if ("chmodmodes.html" in html_file or "chmod_converter.html" in html_file):
+                footer.insert_after(Soup(chmod_converter))
 
 
             # add meta img
