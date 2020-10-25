@@ -292,6 +292,8 @@ code {
 	font-family: 'neon';
 	font-style: 1em;
 	background-color: var(--box-background-color);
+	padding: 1px 5px 1px 5px;
+	border-radius: 7px;
 }
 img {
 	display: block;
@@ -645,13 +647,13 @@ th.menu-label {
 	display: ruby;
 }
 .post-tags {
-	margin: 0 1px;
-	padding: 3px 10px;
+	margin: 0px 1px;
+	padding: 1px 5px;
 	color: var(--link-color);
 	background: var(--tag-color);
-	font-size: 80%;
+	font-size: 90%;
 	text-decoration: none;
-	border-radius: 5px;
+	border-radius: 9px;
 }
 .blog-post-tags {
 	margin-top: 1px;
@@ -664,6 +666,7 @@ th.menu-label {
 	display : flex;
 	font-size: small;
 	margin-bottom: 2px;
+	margin: 3px 0 1px 30px;
 }
 span.pre {
 	color: var(--link-color);
@@ -671,13 +674,13 @@ span.pre {
 }
 #tags a {
 	margin: 0 1px;
-	padding: 3px 10px;
+	padding: 0px 7px;
 	color: var(--link-color);
 	background: var(--tag-color);
-	font-size: 80%;
+	font-size: 90%;
 	font-family: sans-serif;
 	text-decoration: none;
-	border-radius: 5px;
+	border-radius: 7px;
 }
 img.cloud {
 	display: none;
@@ -712,7 +715,13 @@ div.posts-categories {
 a.reference {
 	word-wrap: break-word;
 }
-
+div .chmod-converter {
+	display: "flex";
+}
+form > table {
+	border: 2px solid var(--link-color);
+	border-radius: 7px;
+}
 @media only screen and (max-width: 1090px) {
 	body {
 		width: auto;

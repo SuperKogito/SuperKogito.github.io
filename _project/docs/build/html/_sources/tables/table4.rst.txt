@@ -1,4 +1,4 @@
-Table 3: Wave file structure and content
+Table 4: Wave file structure and content
 ========================================
 
 -----------------------

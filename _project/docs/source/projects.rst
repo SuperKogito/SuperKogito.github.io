@@ -68,6 +68,7 @@ Scripts
 --------
 
 - `CoinMarketCap Scraper`_
+- `Chmod converter`_
 
 Dataset collections
 -------------------
@@ -76,6 +77,6 @@ Dataset collections
 
 
 
-
+.. _`Chmod converter` : projects/chmod_converter.html
 .. _`Spoken Emotion Datasets` : https://superkogito.github.io/SER-datasets/#
 .. _`CoinMarketCap Scraper` : https://superkogito.github.io/CoinMarketCapScraper/#
