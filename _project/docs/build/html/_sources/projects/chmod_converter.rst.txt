@@ -3,8 +3,10 @@ Chmod modes Converter
 
 -------------
 
-This is a small chmod modes converter, to convert from octal/ numeric modes to symbolic and vice-vers.
-The converter is written in Javascript and its source coude can be found here:
+This is a small chmod modes converter, to convert from octal/ numeric modes to symbolic and vice versa.
+The converter is written in Javascript and its source code can be found under `chmod-converter.js`_
+
+|
 
 .. raw:: html
 
@@ -54,3 +56,7 @@ The converter is written in Javascript and its source coude can be found here:
   <center><a href="#" >chmod modes converter and interpreter</a> </center>
   </div>
   <br>
+
+
+
+.. _`chmod-converter.js` : https://gist.github.com/SuperKogito/a67e15a7057a754dc20af42bf4f860cb

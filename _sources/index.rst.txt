@@ -43,7 +43,7 @@ Recent posts
 
 
 
-Posts categories
+Post categories
 -----------------
 
 .. raw:: html
@@ -61,7 +61,7 @@ Posts categories
   </div>
 
 
-Posts tags
+Post tags
 ----------
 
 .. raw:: html
@@ -96,8 +96,8 @@ Posts tags
   </div>
 
 
-Indices and tables
--------------------
+Indices, figures and tables
+---------------------------
 
 .. raw:: html
 
