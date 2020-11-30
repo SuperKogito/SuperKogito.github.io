@@ -116,7 +116,7 @@ def post_process(html_files):
             gh_script       = f"""<script async defer src="https://buttons.github.io/buttons.js"></script>"""
             chmod_converter = f"""<script src="{prefix}_static/js/chmod-converter.js"></script>"""
             jquerry         = f"""<script src="{prefix}_static/js/jquery.csv.min.js"></script><script src="{prefix}_static/js/jquery.csv.js"></script>"""
-            d3_lib          = f"""<script src="http://d3js.org/d3.v3.min.js"></script>"""
+            d3_lib          = f"""<script src="https://d3js.org/d3.v3.min.js"></script>"""
             moment          = f"""<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>"""
             btc_visualizer  = f"""<script src="{prefix}_static/js/visualize-btc.js"></script>"""
 
