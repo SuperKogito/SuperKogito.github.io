@@ -74,9 +74,10 @@ Dataset collections
 -------------------
 
 - `Spoken Emotion Datasets`_
-
+- `BTC performace change visualization`_
 
 
 .. _`Chmod converter` : projects/chmod_converter.html
 .. _`Spoken Emotion Datasets` : https://superkogito.github.io/SER-datasets/#
 .. _`CoinMarketCap Scraper` : https://superkogito.github.io/CoinMarketCapScraper/#
+.. _`BTC performace change visualization` : projects/btc_performance_heatmap_visualization.html

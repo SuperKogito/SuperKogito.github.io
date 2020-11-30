@@ -111,9 +111,15 @@ def post_process(html_files):
 
             # add script
             footer =  soup.find('div', class_="footer")
-            script = f"""<script src="{prefix}_static/js/mode-switcher.js"></script>"""
-            gh_script = f"""<script async defer src="https://buttons.github.io/buttons.js"></script>"""
+
+            script          = f"""<script src="{prefix}_static/js/mode-switcher.js"></script>"""
+            gh_script       = f"""<script async defer src="https://buttons.github.io/buttons.js"></script>"""
             chmod_converter = f"""<script src="{prefix}_static/js/chmod-converter.js"></script>"""
+            jquerry         = f"""<script src="{prefix}_static/js/jquery.csv.min.js"></script><script src="{prefix}_static/js/jquery.csv.js"></script>"""
+            d3_lib          = f"""<script src="http://d3js.org/d3.v3.min.js"></script>"""
+            moment          = f"""<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>"""
+            btc_visualizer  = f"""<script src="{prefix}_static/js/visualize-btc.js"></script>"""
+
             # debug: print(script)
             footer.insert_after(Soup(script))
             footer.insert_after(Soup(gh_script))
@@ -121,6 +127,11 @@ def post_process(html_files):
             if ("chmodmodes.html" in html_file or "chmod_converter.html" in html_file):
                 footer.insert_after(Soup(chmod_converter))
 
+            if ("btc_performance_heatmap_visualization.html" in html_file):
+                footer.insert_after(Soup(jquerry))
+                footer.insert_after(Soup(d3_lib))
+                footer.insert_after(Soup(moment))
+                footer.insert_after(Soup(btc_visualizer))
 
             # add meta img
             if "index.html" in html_file:
