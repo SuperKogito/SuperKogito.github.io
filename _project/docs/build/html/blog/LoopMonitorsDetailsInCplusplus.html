@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows." name="description"/>
@@ -36,68 +34,80 @@
 <link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
 <style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+<div class="cookiesContainer">
+<b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                    I agree
+                </button>
+</div>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
 <div class="section" id="how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c">
-<h1>How to loop over monitors and get their coordinates on Windows in C++?<a class="headerlink" href="#how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
+<h1>How to loop over monitors and get their coordinates on Windows in C++?<a class="headerlink" href="#how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
 <th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+</th><th>
+</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
 <th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
 <th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
 <th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
 <th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
 <th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
 <th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
 </tr>
 </table>
 </div>
-
+</body></html>
 <div class="blog-post-tags">
 <ul class="blog-posts-details">
 <li id="Date"><span>Date:</span>                 28 September 2020 </li>
@@ -125,103 +135,103 @@ This blog will provide a short explanation and a C++ implementation for how to l
 <p>The trick for looping the screens dimensions is to use the function <code class="code docutils literal notranslate"><span class="pre">EnumDisplayMonitors(NULL,</span> <span class="pre">NULL,</span> <span class="pre">MyInfoEnumProc,</span> <span class="pre">0)</span></code>, which is available as part of the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a>.
 A nice approach to this, is to pack the enumeration code in a structure that can be looped to retrieve the information related to each monitor.
 This can be done as in the following:</p>
-<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 
 <span class="c1">// Structure that includes all screen hanldes and rectangles</span>
-<span class="k">struct</span> <span class="n">cMonitorsVec</span>
-<span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>       <span class="n">iMonitors</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HMONITOR</span><span class="o">&gt;</span>  <span class="n">hMonitors</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HDC</span><span class="o">&gt;</span>       <span class="n">hdcMonitors</span><span class="p">;</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RECT</span><span class="o">&gt;</span>      <span class="n">rcMonitors</span><span class="p">;</span>
+<span class="k">struct</span> <span class="nc">cMonitorsVec</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">       </span><span class="n">iMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HMONITOR</span><span class="o">&gt;</span><span class="w">  </span><span class="n">hMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HDC</span><span class="o">&gt;</span><span class="w">       </span><span class="n">hdcMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RECT</span><span class="o">&gt;</span><span class="w">      </span><span class="n">rcMonitors</span><span class="p">;</span><span class="w"></span>
 
-      <span class="k">static</span> <span class="n">BOOL</span> <span class="n">CALLBACK</span> <span class="nf">MonitorEnum</span><span class="p">(</span><span class="n">HMONITOR</span> <span class="n">hMon</span><span class="p">,</span> <span class="n">HDC</span> <span class="n">hdc</span><span class="p">,</span> <span class="n">LPRECT</span> <span class="n">lprcMonitor</span><span class="p">,</span> <span class="n">LPARAM</span> <span class="n">pData</span><span class="p">)</span>
-      <span class="p">{</span>
-              <span class="n">cMonitorsVec</span><span class="o">*</span> <span class="n">pThis</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">cMonitorsVec</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pData</span><span class="p">);</span>
+<span class="w">      </span><span class="k">static</span><span class="w"> </span><span class="n">BOOL</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">MonitorEnum</span><span class="p">(</span><span class="n">HMONITOR</span><span class="w"> </span><span class="n">hMon</span><span class="p">,</span><span class="w"> </span><span class="n">HDC</span><span class="w"> </span><span class="n">hdc</span><span class="p">,</span><span class="w"> </span><span class="n">LPRECT</span><span class="w"> </span><span class="n">lprcMonitor</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">pData</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">cMonitorsVec</span><span class="o">*</span><span class="w"> </span><span class="n">pThis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">cMonitorsVec</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
 
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hMon</span><span class="p">);</span>
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hdc</span><span class="p">);</span>
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">rcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">lprcMonitor</span><span class="p">);</span>
-              <span class="n">pThis</span><span class="o">-&gt;</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-              <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
-      <span class="p">}</span>
+<span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hMon</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hdc</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">rcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">lprcMonitor</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+<span class="w">              </span><span class="k">return</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
 
-      <span class="n">cMonitorsVec</span><span class="p">()</span>
-      <span class="p">{</span>
-              <span class="n">EnumDisplayMonitors</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MonitorEnum</span><span class="p">,</span> <span class="p">(</span><span class="n">LPARAM</span><span class="p">)</span><span class="k">this</span><span class="p">);</span>
-      <span class="p">}</span>
-<span class="p">};</span>
+<span class="w">      </span><span class="n">cMonitorsVec</span><span class="p">()</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">EnumDisplayMonitors</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MonitorEnum</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">LPARAM</span><span class="p">)</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
 
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-      <span class="n">cMonitorsVec</span> <span class="n">Monitors</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">cMonitorsVec</span><span class="w"> </span><span class="n">Monitors</span><span class="p">;</span><span class="w"></span>
 
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">monitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  <span class="n">monitorIndex</span> <span class="o">&lt;</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">monitorIndex</span><span class="o">++</span><span class="p">)</span>
-      <span class="p">{</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"Screen id: "</span> <span class="o">&lt;&lt;</span> <span class="n">monitorIndex</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"-----------------------------------------------------"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">" - screen left-top corner coordinates : ("</span> <span class="o">&lt;&lt;</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">")"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">" - screen dimensions (width x height) : ("</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">right</span> <span class="o">-</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span><span class="p">)</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span> <span class="o">-</span> <span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">bottom</span><span class="p">)</span>
-                                                                 <span class="o">&lt;&lt;</span> <span class="s">")"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"-----------------------------------------------------"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-      <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">monitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="n">monitorIndex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">monitorIndex</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Screen id: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">monitorIndex</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"-----------------------------------------------------"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" - screen left-top corner coordinates : ("</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span><span class="w"></span>
+<span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">","</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span><span class="w"></span>
+<span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" - screen dimensions (width x height) : ("</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span><span class="p">)</span><span class="w"></span>
+<span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">","</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">bottom</span><span class="p">)</span><span class="w"></span>
+<span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"-----------------------------------------------------"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </td></tr></table></div>
 <p>The previous code can be also found under <a class="reference external" href="https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1">here</a>.</p>
@@ -248,22 +258,19 @@ The retrieved coordinates can then be used in capturing the screens content usin
 </div>
 <div class="section">
 <div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">
+<span style="float: left">
+     Previous:
     
-    Comparing screen capturing using GDI+ and OpenCV on Windows in C++
-  </a>
+    <a href="CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">
+       Comparing screen capturing using GDI+ and OpenCV on Windows in C++
+    </a>
 </span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="DivideImageUsingOpenCv.html">
-    Divide an image into blocks using OpenCV in C++
-    
-  </a>
+<span style="float: right">
+     Next: 
+    <a href="DivideImageUsingOpenCv.html">
+      Divide an image into blocks using OpenCV in C++ 
+    </a>
 </span>
 </div>
 </div>
@@ -272,11 +279,17 @@ The retrieved coordinates can then be used in capturing the screens content usin
 <div class="clearer"></div>
 </div>
 <div class="footer">
-      ©2020, Ayoub Malek.
+      ©2019-2021, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+<script src="_static/js/share-buttons.js"></script>
 </body>
 </html>

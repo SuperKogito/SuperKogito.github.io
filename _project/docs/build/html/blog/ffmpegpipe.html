@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="Audio signal FFmpeg piping + pass it a Python variable" name="description"/>
@@ -36,68 +34,80 @@
 <link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
 <style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+<div class="cookiesContainer">
+<b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                    I agree
+                </button>
+</div>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
 <div class="section" id="how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable">
-<h1>How to pipe an FFmpeg output and pass it to a Python variable?<a class="headerlink" href="#how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
+<h1>How to pipe an FFmpeg output and pass it to a Python variable?<a class="headerlink" href="#how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
 <th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+</th><th>
+</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
 <th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
 <th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
 <th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
 <th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
 <th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
 <th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
 </tr>
 </table>
 </div>
-
+</body></html>
 <div class="blog-post-tags">
 <ul class="blog-posts-details">
 <li id="Date"><span>Date:</span>                 19 Mars 2020 </li>
@@ -141,28 +151,28 @@ This can be done using the following shell command:</p>
 <h2>Reading the FFmpeg output in Python as a numpy variable?<a class="headerlink" href="#reading-the-ffmpeg-output-in-python-as-a-numpy-variable" title="Permalink to this headline">¶</a></h2>
 <p>FFmpeg shell commands can be executed in python with the help of the subprocess package and the resulting output can read from the subprocess pipe.
 The following code snippet shows how is this done.</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">subprocess</span>
- <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">subprocess</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
  <span class="c1"># init command</span>
  <span class="n">ffmpeg_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ffmpeg"</span><span class="p">,</span> <span class="s2">"-i"</span><span class="p">,</span> <span class="n">mp3_path</span><span class="p">,</span>
@@ -177,18 +187,18 @@ The following code snippet shows how is this done.</p>
                        <span class="n">bufsize</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">)</span>
 
  <span class="c1"># debug</span>
- <span class="k">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">pipe</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">pipe</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
  <span class="c1"># read signal as numpy array and assign sampling rate</span>
- <span class="n">audio_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="nb">buffer</span><span class="o">=</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">44</span><span class="p">)</span>
+ <span class="n">audio_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">buffer</span><span class="o">=</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">44</span><span class="p">)</span>
  <span class="n">sig</span><span class="p">,</span> <span class="n">fs</span>  <span class="o">=</span> <span class="n">audio_np</span><span class="p">,</span> <span class="n">target_fs</span>
 </pre></div>
 </td></tr></table></div>
 <p>Note that the used FFmpeg command is slightly changed, to define the channel of choice and the encoding to use.
-For more on that you can refer either to <a class="reference internal" href="#zulko" id="id1">[zulkogithubio]</a> or <a class="reference internal" href="#ffmpeg" id="id2">[FFmpegDevelopers19]</a>.
+For more on that you can refer either to <a class="bibtex reference internal" href="#zulko" id="id1">[zulkogithubio]</a> or <a class="bibtex reference internal" href="#ffmpeg" id="id2">[FFmpegDevelopers19]</a>.
 We also define a buffer size to receive the read data.
 The read data is essentially a wave file data including the header which must be ignored when passing the data to the
-numpy variable. In order to know how many bytes to ignore, we need to examine the following table <a class="reference internal" href="#digaud" id="id3">[topherleecom]</a> of the wave data:</p>
+numpy variable. In order to know how many bytes to ignore, we need to examine the following table <a class="bibtex reference internal" href="#digaud" id="id3">[topherleecom]</a> of the wave data:</p>
 <div class="line-block">
 <div class="line"><br/></div>
 </div>
@@ -282,38 +292,34 @@ This approach is a simpler and faster alternative to the classical convert, save
 </div>
 <div class="section" id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-blog/ffmpegpipe-0"><dl class="citation">
-<dt class="label" id="digaud"><span class="brackets"><a class="fn-backref" href="#id3">topherleecom</a></span></dt>
+<p id="bibtex-bibliography-blog/ffmpegpipe-0"></p><dl class="citation">
+<dt class="bibtex label" id="digaud"><span class="brackets"><a class="fn-backref" href="#id3">topherleecom</a></span></dt>
 <dd><p>topherlee.com. Digital Audio - Creating a WAV (RIFF) file. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://www.topherlee.com/software/pcm-tut-wavformat.html">http://www.topherlee.com/software/pcm-tut-wavformat.html</a>.</p>
 </dd>
-<dt class="label" id="zulko"><span class="brackets"><a class="fn-backref" href="#id1">zulkogithubio</a></span></dt>
+<dt class="bibtex label" id="zulko"><span class="brackets"><a class="fn-backref" href="#id1">zulkogithubio</a></span></dt>
 <dd><p>zulko.github.io/. Read and Write Audio Files in Python Using FFMPEG. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://zulko.github.io/blog/2013/10/04/read-and-write-audio-files-in-python-using-ffmpeg/">http://zulko.github.io/blog/2013/10/04/read-and-write-audio-files-in-python-using-ffmpeg/</a>.</p>
 </dd>
-<dt class="label" id="ffmpeg"><span class="brackets"><a class="fn-backref" href="#id2">FFmpegDevelopers19</a></span></dt>
+<dt class="bibtex label" id="ffmpeg"><span class="brackets"><a class="fn-backref" href="#id2">FFmpegDevelopers19</a></span></dt>
 <dd><p>FFmpeg Developers. FFmpeg tool (Version 4.2.2). 2019. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://ffmpeg.org/">http://ffmpeg.org/</a>.</p>
 </dd>
 </dl>
-</p>
 </div>
 </div>
 <div class="section">
 <div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="SpectralLeakageWindowing.html">
+<span style="float: left">
+     Previous:
     
-    Spectral leakage and windowing
-  </a>
+    <a href="SpectralLeakageWindowing.html">
+       Spectral leakage and windowing
+    </a>
 </span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="urlstechie.html">
-    Introducing urlstechie and its urls checking tools
-    
-  </a>
+<span style="float: right">
+     Next: 
+    <a href="urlstechie.html">
+      Introducing urlstechie and its urls checking tools 
+    </a>
 </span>
 </div>
 </div>
@@ -322,11 +328,17 @@ This approach is a simpler and faster alternative to the classical convert, save
 <div class="clearer"></div>
 </div>
 <div class="footer">
-      ©2020, Ayoub Malek.
+      ©2019-2021, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+<script src="_static/js/share-buttons.js"></script>
 </body>
 </html>

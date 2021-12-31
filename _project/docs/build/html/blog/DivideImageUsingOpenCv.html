@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="Divide an image into multiple blocks with fixed height and width using OpenCV in C++" name="description"/>
@@ -36,68 +34,80 @@
 <link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
 <style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+<div class="cookiesContainer">
+<b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                    I agree
+                </button>
+</div>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
 <div class="section" id="divide-an-image-into-blocks-using-opencv-in-c">
-<h1>Divide an image into blocks using OpenCV in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-opencv-in-c" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
+<h1>Divide an image into blocks using OpenCV in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-opencv-in-c" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
 <th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+</th><th>
+</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
 <th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
 <th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
 <th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
 <th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
 <th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
 <th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
 </tr>
 </table>
 </div>
-
+</body></html>
 <div class="blog-post-tags">
 <ul class="blog-posts-details">
 <li id="Date"><span>Date:</span>                 01 October 2020 </li>
@@ -125,103 +135,103 @@ However if the image width = 576 px and the block width = 128 px -&gt; we should
 Therefore on each loop we need to check/ compute the block dimensions.
 Moreover, to keep the code fast and optimal, we will use while loops, that will iterate over the y-coordinates (Top to bottom) then the x-coordinates (left to right).</p>
 <p>–&gt; The previously described steps are implemented in the following snippet:</p>
-<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"opencv2/imgproc.hpp"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"opencv2/highgui.hpp"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;opencv2/core/utils/filesystem.hpp&gt;</span><span class="cp"></span>
+<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"opencv2/imgproc.hpp"</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"opencv2/highgui.hpp"</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;opencv2/core/utils/filesystem.hpp&gt;</span><span class="cp"></span>
 
 
-<span class="kt">int</span> <span class="nf">divideImage</span><span class="p">(</span><span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span> <span class="n">img</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockWidth</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">blockHeight</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span> <span class="n">blocks</span><span class="p">)</span>
-<span class="p">{</span>
- <span class="c1">// Checking if the image was passed correctly</span>
- <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">img</span><span class="p">.</span><span class="n">data</span> <span class="o">||</span> <span class="n">img</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
- <span class="p">{</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"Image Error: Cannot load image to divide."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-      <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
- <span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">divideImage</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">blocks</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="c1">// Checking if the image was passed correctly</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">img</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Image Error: Cannot load image to divide."</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
 
- <span class="c1">// init image dimensions</span>
- <span class="kt">int</span> <span class="n">imgWidth</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span>
- <span class="kt">int</span> <span class="n">imgHeight</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
- <span class="n">std</span><span class="o">::</span><span class="n">wcout</span> <span class="o">&lt;&lt;</span> <span class="s">"IMAGE SIZE: "</span> <span class="o">&lt;&lt;</span> <span class="s">"("</span> <span class="o">&lt;&lt;</span> <span class="n">imgWidth</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">imgHeight</span> <span class="o">&lt;&lt;</span> <span class="s">")"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w"> </span><span class="c1">// init image dimensions</span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imgWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imgHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"IMAGE SIZE: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"("</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">imgWidth</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">","</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">imgHeight</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
- <span class="c1">// init block dimensions</span>
- <span class="kt">int</span> <span class="n">bwSize</span><span class="p">;</span>
- <span class="kt">int</span> <span class="n">bhSize</span><span class="p">;</span>
+<span class="w"> </span><span class="c1">// init block dimensions</span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bwSize</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bhSize</span><span class="p">;</span><span class="w"></span>
 
- <span class="kt">int</span> <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
- <span class="k">while</span> <span class="p">(</span><span class="n">y0</span> <span class="o">&lt;</span> <span class="n">imgHeight</span><span class="p">)</span>
- <span class="p">{</span>
-   <span class="c1">// compute the block height</span>
-   <span class="n">bhSize</span> <span class="o">=</span> <span class="p">((</span><span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">imgHeight</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">blockHeight</span> <span class="o">-</span> <span class="p">(</span><span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span> <span class="o">-</span> <span class="n">imgHeight</span><span class="p">))</span> <span class="o">+</span> <span class="p">((</span><span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">imgHeight</span><span class="p">)</span> <span class="o">*</span> <span class="n">blockHeight</span><span class="p">;</span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">y0</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// compute the block height</span>
+<span class="w">   </span><span class="n">bhSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">blockHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">;</span><span class="w"></span>
 
-       <span class="kt">int</span> <span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-       <span class="k">while</span> <span class="p">(</span><span class="n">x0</span> <span class="o">&lt;</span> <span class="n">imgWidth</span><span class="p">)</span>
-       <span class="p">{</span>
-     <span class="c1">// compute the block height</span>
-         <span class="n">bwSize</span> <span class="o">=</span> <span class="p">((</span><span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">imgWidth</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">blockWidth</span> <span class="o">-</span> <span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span> <span class="o">-</span> <span class="n">imgWidth</span><span class="p">))</span> <span class="o">+</span> <span class="p">((</span><span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">imgWidth</span><span class="p">)</span> <span class="o">*</span> <span class="n">blockWidth</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">int</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="c1">// compute the block height</span>
+<span class="w">         </span><span class="n">bwSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">blockWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">;</span><span class="w"></span>
 
-               <span class="c1">// crop block</span>
-               <span class="n">blocks</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">img</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">bwSize</span><span class="p">,</span> <span class="n">bhSize</span><span class="p">)).</span><span class="n">clone</span><span class="p">());</span>
+<span class="w">               </span><span class="c1">// crop block</span>
+<span class="w">               </span><span class="n">blocks</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">img</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">bwSize</span><span class="p">,</span><span class="w"> </span><span class="n">bhSize</span><span class="p">)).</span><span class="n">clone</span><span class="p">());</span><span class="w"></span>
 
-               <span class="c1">// update x-coordinate</span>
-               <span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">blockWidth</span><span class="p">;</span>
-       <span class="p">}</span>
+<span class="w">               </span><span class="c1">// update x-coordinate</span>
+<span class="w">               </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
 
-       <span class="c1">// update y-coordinate</span>
-       <span class="n">y0</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">blockHeight</span><span class="p">;</span>
- <span class="p">}</span>
- <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">       </span><span class="c1">// update y-coordinate</span>
+<span class="w">       </span><span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </td></tr></table></div>
 <p>The previous snippet represents a small function with an integer output reflecting the run status of the function.
@@ -232,55 +242,55 @@ Moreover, to keep the code fast and optimal, we will use while loops, that will 
 <p>Let’s call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to do.
 For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from <a class="reference external" href="https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png">here</a>.
 In code this can be done as follows:</p>
-<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
- <span class="c1">// init vars</span>
- <span class="k">const</span> <span class="kt">int</span> <span class="n">blockw</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
- <span class="k">const</span> <span class="kt">int</span> <span class="n">blockh</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
- <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span> <span class="n">blocks</span><span class="p">;</span>
+<div class="highlight-C++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="c1">// init vars</span>
+<span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blocks</span><span class="p">;</span><span class="w"></span>
 
- <span class="c1">// read png image</span>
- <span class="n">Mat</span> <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">"Lenna.png"</span><span class="p">,</span> <span class="n">IMREAD_UNCHANGED</span><span class="p">);</span>
- <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"Display window"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">// read png image</span>
+<span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">"Lenna.png"</span><span class="p">,</span><span class="w"> </span><span class="n">IMREAD_UNCHANGED</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"Display window"</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">);</span><span class="w"></span>
 
- <span class="c1">// divide image into multiple blocks</span>
- <span class="kt">int</span> <span class="n">divideStatus</span> <span class="o">=</span> <span class="n">divideImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">blockw</span><span class="p">,</span> <span class="n">blockh</span><span class="p">,</span> <span class="n">blocks</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">// divide image into multiple blocks</span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">divideStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">divideImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">blockw</span><span class="p">,</span><span class="w"> </span><span class="n">blockh</span><span class="p">,</span><span class="w"> </span><span class="n">blocks</span><span class="p">);</span><span class="w"></span>
 
- <span class="c1">// debug: save blocks</span>
- <span class="n">cv</span><span class="o">::</span><span class="n">utils</span><span class="o">::</span><span class="n">fs</span><span class="o">::</span><span class="n">createDirectory</span><span class="p">(</span><span class="s">"blocksFolder"</span><span class="p">);</span>
- <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">blocks</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
- <span class="p">{</span>
-   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">blockId</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
-       <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">blockImgName</span> <span class="o">=</span> <span class="s">"blocksFolder/block#"</span> <span class="o">+</span> <span class="n">blockId</span> <span class="o">+</span> <span class="s">".png"</span><span class="p">;</span>
-       <span class="n">imwrite</span><span class="p">(</span><span class="n">blockImgName</span><span class="p">,</span> <span class="n">blocks</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
- <span class="p">}</span>
+<span class="w"> </span><span class="c1">// debug: save blocks</span>
+<span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">utils</span><span class="o">::</span><span class="n">fs</span><span class="o">::</span><span class="n">createDirectory</span><span class="p">(</span><span class="s">"blocksFolder"</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">blocks</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">blockId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">j</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">blockImgName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"blocksFolder/block#"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">".png"</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="n">imwrite</span><span class="p">(</span><span class="n">blockImgName</span><span class="p">,</span><span class="w"> </span><span class="n">blocks</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
 
- <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </td></tr></table></div>
 <p>The full code can be found in this <a class="reference external" href="https://gist.github.com/SuperKogito/0d6f839a04f17999aad8e4eac87f2411">gist: DivideImageUsingOpenCv.cpp</a>.</p>
@@ -323,22 +333,19 @@ The next blog should provide an answer for this.</p>
 </div>
 <div class="section">
 <div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="LoopMonitorsDetailsInCplusplus.html">
+<span style="float: left">
+     Previous:
     
-    How to loop over monitors and get their coordinates on Windows in C++?
-  </a>
+    <a href="LoopMonitorsDetailsInCplusplus.html">
+       How to loop over monitors and get their coordinates on Windows in C++?
+    </a>
 </span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="DivideImageUsingGdiplus.html">
-    Divide an image into blocks using GDI+ in C++
-    
-  </a>
+<span style="float: right">
+     Next: 
+    <a href="DivideImageUsingGdiplus.html">
+      Divide an image into blocks using GDI+ in C++ 
+    </a>
 </span>
 </div>
 </div>
@@ -347,11 +354,17 @@ The next blog should provide an answer for this.</p>
 <div class="clearer"></div>
 </div>
 <div class="footer">
-      ©2020, Ayoub Malek.
+      ©2019-2021, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+<script src="_static/js/share-buttons.js"></script>
 </body>
 </html>

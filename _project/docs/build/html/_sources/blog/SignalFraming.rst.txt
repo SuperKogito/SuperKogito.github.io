@@ -283,3 +283,24 @@ References and Further readings
 
 .. bibliography:: references/framing_refs.bib
    :cited:
+
+.. raw:: html
+
+    <div class="share-btn" data-url="https://..." data-title="..." data-desc="...">
+      <!-- facebook -->
+      <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fa fa-facebook" style="left: 32%;"></i></a>
+
+      <!-- twitter -->
+      <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter" style="left: 30%;"></i></a>
+
+      <!-- google plus -->
+      <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus" style="left: 24%;"></i></a>
+
+      <!-- linkedin -->
+      <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin" style="left: 29%;"></i></a>
+
+      <!-- pinterest -->
+      <a class="pinterest" href="https://pinterest.com/pin/create/bookmarklet/?media={{media}}&url={{url}}&is_video=false&description={{title}}" target="blank"><i class="fa fa-pinterest-p" style="left: 32%;"></i></a>
+
+    </div>
+------------------------------------------------------------------------------------------------------------------------

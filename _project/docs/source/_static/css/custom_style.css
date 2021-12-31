@@ -1124,7 +1124,172 @@ h6 {
   font-size      : 9px;
 }
 
+div.footer a {
+    color: var(--link-color);
+}
 
 
 /* compress css using http://www.codebeautifier.com*/
 /*https://css.github.io/csso/csso.html*
+
+
+
+
+
+/*
+ * Bootstrap Cookie Alert by Wruczek
+ * https://github.com/Wruczek/Bootstrap-Cookie-Alert
+ * Released under MIT license
+ */
+.cookiealert {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+		height:100%;
+    margin: 0 !important;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 0;
+    transform: translateY(100%);
+    transition: all 250ms ease-out;
+		color: red;
+		background: hsl(0, 0%, 10%, 0.25);
+		padding: 5px 5px;
+		font-size: 16px;
+		border-radius:5px;
+}
+
+.cookiesContainer {
+    width: 50%;
+    height: 10%;
+    display: block;
+    background: var(--main-background-color);
+    margin: 25%;
+    border-radius: 5px;
+		padding: 50px;
+}
+
+.cookiealert.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0%);
+    transition-delay: 1000ms;
+}
+
+.cookiealert a {
+    text-decoration: underline
+}
+
+.cookiealert .acceptcookies {
+    margin-left: 1px;
+    vertical-align: baseline;
+		margin-bottom:0.5em;
+}
+
+
+
+/*
+ * share buttons
+ */
+ //variables
+$basic-dark-color: #212121;
+$basic-light-color: #fff;
+$fb-color: #3b5998;
+$tw-color: #00aced;
+$g-plus: #dd4b39;
+$dribbble: #ea4c89;
+$pinterest: #cb2027;
+$insta: #bc2a8d;
+$in: #007bb6;
+$vimeo: #1ab7ea;
+$border-radius: 10px;
+$font-size: 25px;
+
+/*common styles !!!YOU DON'T NEED THEM */
+.container {
+  margin: 60px auto 0px auto;
+  text-align: center;
+
+  h1 {
+    font: {
+      family: 'Roboto', sans-serif;
+      weight: 900;
+      size: 30px;
+    }
+    text-transform: uppercase;
+    color: $basic-dark-color;
+    letter-spacing: 3px;
+
+    span {
+      display: inline-block;
+
+      &:before,
+      &:after {
+        content: "";
+        display: block;
+        width: 34px;
+        height: 2px;
+        background-color: $basic-dark-color;
+        margin: 0px 0px 0px 2px;
+      }
+    }
+  }
+}
+
+/* container */
+
+.share-btn {
+  width: 100%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+/* buttons */
+
+.share-btn > a {
+  width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: 8px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+  opacity: 0.75;
+  transition: opacity 0.15s linear;
+}
+
+.share-btn > a:hover {
+  opacity: 1;
+}
+
+/* icons */
+
+.share-btn > a > i {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* colors */
+
+.facebook {
+  background: #3b5998;
+}
+
+.twitter {
+    background: #55acee;
+}
+
+.googleplus {
+    background: #dd4b39;
+}
+
+.linkedin {
+    background: #0077b5;
+}
+
+.pinterest {
+    background: #cb2027;
+}

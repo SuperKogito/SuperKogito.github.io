@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="Audio signal RMS normalization in Python" name="description"/>
@@ -36,68 +34,80 @@
 <link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
 <style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+<div class="cookiesContainer">
+<b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                    I agree
+                </button>
+</div>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
 <div class="section" id="root-mean-square-normalization-in-python">
-<h1>Root mean square normalization in Python<a class="headerlink" href="#root-mean-square-normalization-in-python" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
+<h1>Root mean square normalization in Python<a class="headerlink" href="#root-mean-square-normalization-in-python" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
 <th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+</th><th>
+</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
 <th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
 <th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
 <th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
 <th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
 <th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
 <th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
 </tr>
 </table>
 </div>
-
+</body></html>
 <div class="blog-post-tags">
 <ul class="blog-posts-details">
 <li id="Date"><span>Date:</span>                 30 May 2020 </li>
@@ -125,8 +135,8 @@ A commonly used normalization technique is the Root Mean Square (RMS) normalizat
 </ul>
 <p>RMS normalization falls under the latter, where the perceived loudness level is determined using the root mean square of the signal.
 The result is then used to compute the gain value used in the normalization.
-Since the gain value is constant and applied across the entire recording, the normalization does not affect the signal-to-noise ratio and the relative dynamics <a class="reference internal" href="#shelvock" id="id1">[She12]</a>.
-The approach to RMS normalization can be summarized in the following mathematical formula <a class="reference internal" href="#malek" id="id2">[MM20]</a>:</p>
+Since the gain value is constant and applied across the entire recording, the normalization does not affect the signal-to-noise ratio and the relative dynamics <a class="bibtex reference internal" href="#shelvock" id="id1">[She12]</a>.
+The approach to RMS normalization can be summarized in the following mathematical formula <a class="bibtex reference internal" href="#malek" id="id2">[MM20]</a>:</p>
 <div class="math notranslate nohighlight" id="equation-rms">
 \begin{equation}
     y[n]=\sqrt{\frac{N-10\left(\frac{r}{20}\right)}{\sum_{i=0}^{N-1} x^{2} \left[ i\right]}} \cdot x[n]
@@ -147,33 +157,33 @@ The approach to RMS normalization can be summarized in the following mathematica
 <li><p>Normalize using the scaling factor.</p></li>
 <li><p>Write the resulting array as an audio.</p></li>
 </ul>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">rms_level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">rms_level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Normalize the signal given a certain technique (peak or rms).</span>
 <span class="sd">    Args:</span>
@@ -211,35 +221,31 @@ We also provided a small implementation of the approach that is part of the <a c
 </div>
 <div class="section" id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-blog/rmsnormalization-0"><dl class="citation">
-<dt class="label" id="malek"><span class="brackets"><a class="fn-backref" href="#id2">MM20</a></span></dt>
+<p id="bibtex-bibliography-blog/rmsnormalization-0"></p><dl class="citation">
+<dt class="bibtex label" id="malek"><span class="brackets"><a class="fn-backref" href="#id2">MM20</a></span></dt>
 <dd><p>Ayoub Malek and Hasna Marwa Malek. Pydiogment: A Python package for audio augmentation. 2020. [Online; accessed 30.04.2020]. URL: <a class="reference external" href="https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf">https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf</a>.</p>
 </dd>
-<dt class="label" id="shelvock"><span class="brackets"><a class="fn-backref" href="#id1">She12</a></span></dt>
+<dt class="bibtex label" id="shelvock"><span class="brackets"><a class="fn-backref" href="#id1">She12</a></span></dt>
 <dd><p>Matt Shelvock. Audio Mastering as Musical Practice. Master’s thesis, The University of Western Ontario: The School of Graduate and Postdoctoral Studies, London, Ontario, Canada, 2012. URL: <a class="reference external" href="https://ir.lib.uwo.ca/etd/530">https://ir.lib.uwo.ca/etd/530</a>.</p>
 </dd>
 </dl>
-</p>
 </div>
 </div>
 <div class="section">
 <div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="urlstechie.html">
+<span style="float: left">
+     Previous:
     
-    Introducing urlstechie and its urls checking tools
-  </a>
+    <a href="urlstechie.html">
+       Introducing urlstechie and its urls checking tools
+    </a>
 </span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="CaptureScreenUsingOpenCv.html">
-    Capturing the screen on Windows in C++ using OpenCV
-    
-  </a>
+<span style="float: right">
+     Next: 
+    <a href="CaptureScreenUsingOpenCv.html">
+      Capturing the screen on Windows in C++ using OpenCV 
+    </a>
 </span>
 </div>
 </div>
@@ -248,11 +254,17 @@ We also provided a small implementation of the approach that is part of the <a c
 <div class="clearer"></div>
 </div>
 <div class="footer">
-      ©2020, Ayoub Malek.
+      ©2019-2021, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+<script src="_static/js/share-buttons.js"></script>
 </body>
 </html>

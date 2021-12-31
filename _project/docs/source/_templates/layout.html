@@ -1,0 +1,150 @@
+{%- extends "basic/layout.html" %}
+
+{%- block extrahead %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}" type="text/css" />
+  {% if theme_touch_icon %}
+    <link rel="apple-touch-icon" href="{{ pathto('_static/' ~ theme_touch_icon, 1) }}" />
+  {% endif %}
+  {% if theme_canonical_url %}
+    <link rel="canonical" href="{{ theme_canonical_url }}{{ pagename }}.html"/>
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+{% endblock %}
+
+{# top+bottom related navs; we also have our own in sidebar #}
+{%- macro rellink_markup() %}
+  <nav id="rellinks">
+    <ul>
+      {%- if prev %}
+        <li>
+          &larr;
+          <a href="{{ prev.link|e }}" title="Previous document">{{ prev.title }}</a>
+        </li>
+      {%- endif %}
+      {%- if next %}
+        <li>
+          <a href="{{ next.link|e }}" title="Next document">{{ next.title }}</a>
+          &rarr;
+        </li>
+      {%- endif %}
+    </ul>
+  </nav>
+{%- endmacro %}
+
+{%- set theme_show_relbar_top = theme_show_relbar_top or theme_show_relbars %}
+{%- set theme_show_relbar_bottom = theme_show_relbar_bottom or theme_show_relbars %}
+
+{# removed existing top+bottom related nav, and embed in main content #}
+{%- block relbar1 %}{% endblock %}
+{%- block relbar2 %}{% endblock %}
+
+{# Nav should appear before content, not after #}
+{%- block content %}
+{%- if theme_fixed_sidebar|lower == 'true' %}
+  <div class="document">
+    {{ sidebar() }}
+    {%- block document %}
+      <div class="documentwrapper">
+      {%- if render_sidebar %}
+        <div class="bodywrapper">
+      {%- endif %}
+
+          {%- block relbar_top %}
+            {%- if theme_show_relbar_top|tobool %}
+              <div class="related top">
+                &nbsp;
+                {{- rellink_markup () }}
+              </div>
+            {%- endif %}
+          {% endblock %}
+
+          <div class="body" role="main">
+            <!-- START Bootstrap-Cookie-Alert -->
+            <div class="alert text-center cookiealert" role="alert">
+                <div class="cookiesContainer">
+                  <b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+                <button type="button" class="btn btn-primary btn-sm acceptcookies">
+                    I agree
+                </button>
+              </div>
+            </div>
+            <!-- END Bootstrap-Cookie-Alert -->
+
+            {% block body %} {% endblock %}
+          </div>
+
+          {%- block relbar_bottom %}
+            {%- if theme_show_relbar_bottom|tobool %}
+              <div class="related bottom">
+                &nbsp;
+                {{- rellink_markup () }}
+              </div>
+            {%- endif %}
+          {% endblock %}
+
+      {%- if render_sidebar %}
+        </div>
+      {%- endif %}
+      </div>
+    {%- endblock %}
+    <div class="clearer"></div>
+  </div>
+{%- else %}
+{{ super() }}
+{%- endif %}
+{%- endblock %}
+
+{%- block footer %}
+    <div class="footer">
+      {% if show_copyright %}&copy;2019-{{ copyright }}.{% endif %}
+      {% if theme_show_powered_by|lower == 'true' %}
+      {% if show_copyright %}|{% endif %}
+      Powered by <a href="http://sphinx-doc.org/">Sphinx {{ sphinx_version }}</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster {{ alabaster_version }}</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+
+      {% endif %}
+      {%- if show_source and has_source and sourcename %}
+      {% if show_copyright or theme_show_powered_by %}|{% endif %}
+      <a href="{{ pathto('_sources/' + sourcename, true)|e }}"
+          rel="nofollow">{{ _('Page source') }}</a>
+      {%- endif %}
+    </div>
+
+    {% if theme_github_banner|lower != 'false' %}
+    <a href="https://github.com/{{ theme_github_user }}/{{ theme_github_repo }}" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="{{ pathto('_static/' ~ theme_github_banner, 1) if theme_github_banner|lower != 'true' else 'https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png' }}" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    {% endif %}
+
+    {% if theme_analytics_id %}
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ theme_analytics_id }}']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    {% endif %}
+    <!-- Include cookiealert script -->
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    <script src="_static/js/share-buttons.js"></script>
+
+
+{%- endblock %}

@@ -73,13 +73,6 @@ def post_process(html_files):
 
                 <th>
                     <th>
-                        <th class="icon"> <a href="{prefix}games.html"         title="Games"   ><i class="fa fa-gamepad"     ></i></a></th>
-                        <th class="menu-label"> <a href="{prefix}games.html"         title="Games"   >Games</a></th>
-                    </th>
-               </th>
-
-                <th>
-                    <th>
                         <th class="icon"><a href="{prefix}about.html"         title="About"   ><i class="fa fa-user-circle" ></i></a></th>
                         <th class="menu-label"><a href="{prefix}about.html"         title="About"   >About</a></th>
                     </th>

@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="applied machine learning to diabetics detection" name="description"/>
@@ -36,68 +34,80 @@
 <link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
 <style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+<div class="cookiesContainer">
+<b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                    I agree
+                </button>
+</div>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
 <div class="section" id="diabetes-detection-using-machine-learning-part-i">
-<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
+<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
 <th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+</th><th>
+</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
 <th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
 <th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
 <th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
 <th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
 <th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
 <th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
 </tr>
 </table>
 </div>
-
+</body></html>
 <div class="blog-post-tags">
 <ul class="blog-posts-details">
 <li id="Date"><span>Date:</span>                 30 June 2019 </li>
@@ -147,7 +157,7 @@ The database includes the following information <a class="footnote-reference bra
 <li><p>Age: Female age (<span class="math notranslate nohighlight">\(years\)</span>)</p></li>
 <li><p>Outcome: Diabetes onset within 5 years (0 = No diabetes: green, 1 = diabetic: red).</p></li>
 </ol>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">The</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">the</span> <span class="n">diabetic</span> <span class="n">diagnosis</span> <span class="p">(</span><span class="c1">#9) using the available 8 features (#1-#8).</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">The</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">the</span> <span class="n">diabetic</span> <span class="n">diagnosis</span> <span class="p">(</span><span class="c1">#9) using the available 8 features (#1-#8).</span>
 </pre></div>
 </div>
 <div class="section" id="data-exploration">
@@ -155,15 +165,15 @@ The database includes the following information <a class="footnote-reference bra
 <p>First, we start by loading our data and using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html">pandas.DataFrame.describe</a> to get a nice description of the data at hand.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-i">
 <div class="code-block-caption"><span class="caption-text">Code snippet I</span><a class="headerlink" href="#code-snippet-i" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># define column names</span>
 <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Pregnancies"</span><span class="p">,</span>                <span class="s2">"Glucose"</span><span class="p">,</span> <span class="s2">"Blood_pressure"</span><span class="p">,</span>
@@ -171,7 +181,7 @@ The database includes the following information <a class="footnote-reference bra
                <span class="s2">"Diabetes_Pedigree_Function"</span><span class="p">,</span> <span class="s2">"Age"</span><span class="p">,</span>     <span class="s2">"Outcome"</span><span class="p">]</span>
 <span class="c1"># load data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'diabetes.csv'</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -217,23 +227,23 @@ For example: a Bmi = 0 means that the person either has an infinite height or a 
 The previous pre-processing is done using the following code:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-ii">
 <div class="code-block-caption"><span class="caption-text">Code snippet II</span><a class="headerlink" href="#code-snippet-ii" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="k">def</span> <span class="nf">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">'''</span>
@@ -243,13 +253,13 @@ The previous pre-processing is done using the following code:</p>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span> <span class="n">data</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span> <span class="p">]</span><span class="o">.</span><span class="n">index</span>
 
     <span class="c1"># Delete these row indexes from dataFrame</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">indices</span> <span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">indices</span> <span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># drop erroneous rows</span>
 <span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Glucose'</span><span class="p">,</span> <span class="s1">'Blood_pressure'</span><span class="p">,</span> <span class="s1">'Skin_thickness'</span><span class="p">,</span> <span class="s1">'Insulin'</span><span class="p">,</span> <span class="s1">'Bmi'</span><span class="p">]:</span>
     <span class="n">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cname</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -288,60 +298,60 @@ This might result in better detection for the 0 outcome. To keep things balanced
 In code this looks like the following:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iii">
 <div class="code-block-caption"><span class="caption-text">Code snippet III</span><a class="headerlink" href="#code-snippet-iii" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
                     <span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.35</span><span class="p">,</span> <span class="n">hspace</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Raw correct data'</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># remove outliers and plot results</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Data without outliers'</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">'Insulin'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Insulin'</span><span class="p">]</span> <span class="o">*</span> <span class="o">.</span><span class="mo">001</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'Insulin'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Insulin'</span><span class="p">]</span> <span class="o">*</span> <span class="mf">.001</span>
 <span class="n">data</span>            <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># scale data and plot results</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Scaled Data'</span><span class="p">)</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">data</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>  <span class="n">columns</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># equilize data and plot results</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Equilized Data'</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">equalize_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
@@ -460,22 +470,19 @@ We will explore all these results to build a robust detection system in the next
 </div>
 <div class="section">
 <div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="VoiceBasedGenderRecognition.html">
+<span style="float: left">
+     Previous:
     
-    Voice based gender recognition using Gaussian mixture models
-  </a>
+    <a href="VoiceBasedGenderRecognition.html">
+       Voice based gender recognition using Gaussian mixture models
+    </a>
 </span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="diabetesML2.html">
-    Diabetes detection using machine learning (part II)
-    
-  </a>
+<span style="float: right">
+     Next: 
+    <a href="diabetesML2.html">
+      Diabetes detection using machine learning (part II) 
+    </a>
 </span>
 </div>
 </div>
@@ -484,11 +491,17 @@ We will explore all these results to build a robust detection system in the next
 <div class="clearer"></div>
 </div>
 <div class="footer">
-      ©2020, Ayoub Malek.
+      ©2019-2021, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+<script src="_static/js/share-buttons.js"></script>
 </body>
 </html>

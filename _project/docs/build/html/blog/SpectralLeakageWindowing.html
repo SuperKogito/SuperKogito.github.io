@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/><meta content="Audio signal windowing and spectral leakage" name="description"/>
@@ -36,68 +34,80 @@
 <link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
 <style type="text/css">
-    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
-    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
-    ul.postlist a {font-style: italic;}
-    ul.postlist-style-disc {list-style-type: disc;}
-    ul.postlist-style-none {list-style-type: none;}
-    ul.postlist-style-circle {list-style-type: circle;}
-  </style>
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
 <div class="document">
 <div class="documentwrapper">
 <div class="body" role="main">
+<!-- START Bootstrap-Cookie-Alert -->
+<div class="alert text-center cookiealert" role="alert">
+<div class="cookiesContainer">
+<b>
+                    We use cookies and other technologies to perform analytics and deliver a better user experience.
+                    By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
+                    See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
+                    You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
+                </b>
+<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                    I agree
+                </button>
+</div>
+</div>
+<!-- END Bootstrap-Cookie-Alert -->
 <div class="section" id="spectral-leakage-and-windowing">
-<h1>Spectral leakage and windowing<a class="headerlink" href="#spectral-leakage-and-windowing" title="Permalink to this headline">¶</a></h1>
-<div class="sub-title-menu">
+<h1>Spectral leakage and windowing<a class="headerlink" href="#spectral-leakage-and-windowing" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
 <table class="menu-table" id="menuTable" style="border:hidden;">
 <tr>
 <th>
-<th>
-<th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
+</th><th>
+</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
 <th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
 <th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
 <th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
 <th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="../games.html" title="Games"><i class="fa fa-gamepad"></i></a></th>
-<th class="menu-label"> <a href="../games.html" title="Games">Games</a></th>
-</th>
-</th>
-<th>
-<th>
-<th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
+</th><th>
+</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
 <th class="menu-label"><a href="../about.html" title="About">About</a></th>
-</th>
-</th>
 <th>
-<th>
-<th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
+</th><th>
+</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
 <th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</th>
-</th>
 </tr>
 </table>
 </div>
-
+</body></html>
 <div class="blog-post-tags">
 <ul class="blog-posts-details">
 <li id="Date"><span>Date:</span>                13 Mars 2020 </li>
@@ -121,15 +131,15 @@ This blog post provides a small overview of what is spectral usage, when does it
 <div class="section" id="what-is-spectral-leakage">
 <h2>What is spectral leakage ?<a class="headerlink" href="#what-is-spectral-leakage" title="Permalink to this headline">¶</a></h2>
 <p>As <em>Allen B. Downey</em> mentions in his book <em>Think DSP</em>, in order to understand windowing, we must first understand spectral leakage and for that we have first to understand the Discrete Fourier Transform (DFT) and its related assumptions.
-When using DFT to compute spectograms, we assume signals to be periodic. In practice, this assumption is often not fulfilled, resulting in inaccurate transform computations containing extra residual frequency components <a class="reference internal" href="#downey2014" id="id1">[DowneyAB14]</a>.
+When using DFT to compute spectograms, we assume signals to be periodic. In practice, this assumption is often not fulfilled, resulting in inaccurate transform computations containing extra residual frequency components <a class="bibtex reference internal" href="#downey2014" id="id1">[DowneyAB14]</a>.
 This phenomenon is known as spectral leakage, which is a smearing of power across a frequency spectrum that occurs when the processed signal is not periodic in the sample interval.
-It occurs because of the discrete sampling in the effective Fourier series computations of a waveform having discontinuities results in additional frequency components <a class="reference internal" href="#roberts" id="id2">[Rob]</a>.
+It occurs because of the discrete sampling in the effective Fourier series computations of a waveform having discontinuities results in additional frequency components <a class="bibtex reference internal" href="#roberts" id="id2">[Rob]</a>.
 Leakage is a common error encountered in digital signal processing, that cannot be entirely eliminated but may be reduced using windowing.</p>
 </div>
 <div class="section" id="what-is-windowing">
 <h2>What is windowing ?<a class="headerlink" href="#what-is-windowing" title="Permalink to this headline">¶</a></h2>
-<p>Windowing is a counter-measure against spectral leakage that reduces the amplitudes of the samples at the start and end of a signal window <a class="reference internal" href="#lyon2009" id="id3">[Lyo09]</a>.
-This eliminates the discontinuities, helps with the periodicity of the signal and consequently reduces any leakage <a class="reference internal" href="#downey2014" id="id4">[DowneyAB14]</a>.
+<p>Windowing is a counter-measure against spectral leakage that reduces the amplitudes of the samples at the start and end of a signal window <a class="bibtex reference internal" href="#lyon2009" id="id3">[Lyo09]</a>.
+This eliminates the discontinuities, helps with the periodicity of the signal and consequently reduces any leakage <a class="bibtex reference internal" href="#downey2014" id="id4">[DowneyAB14]</a>.
 Therefore, windowing is none other than a multiplication of the input signal with a predefined function.</p>
 <div class="math notranslate nohighlight">
 \begin{eqnarray}
@@ -152,29 +162,29 @@ In python this can be done easily using <a class="reference external" href="http
 <p>Here is a small code snippet implementing windowing that I wrote as part of a python audio features extraction library named <a class="reference external" href="https://github.com/SuperKogito/spafe">spafe</a></p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Windowing</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
  <span class="k">def</span> <span class="nf">windowing</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">frame_len</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s2">"hamming"</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">14</span><span class="p">):</span>
@@ -209,38 +219,34 @@ In the python code introduced in this post, we included some of the most used fu
 </div>
 <div class="section" id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-blog/SpectralLeakageWindowing-0"><dl class="citation">
-<dt class="label" id="lyon2009"><span class="brackets"><a class="fn-backref" href="#id3">Lyo09</a></span></dt>
+<p id="bibtex-bibliography-blog/SpectralLeakageWindowing-0"></p><dl class="citation">
+<dt class="bibtex label" id="lyon2009"><span class="brackets"><a class="fn-backref" href="#id3">Lyo09</a></span></dt>
 <dd><p>Douglas Lyon. The Discrete Fourier Transform, Part 4: Spectral Leakage. <em>Journal of object technology</em>, 2009.</p>
 </dd>
-<dt class="label" id="roberts"><span class="brackets"><a class="fn-backref" href="#id2">Rob</a></span></dt>
+<dt class="bibtex label" id="roberts"><span class="brackets"><a class="fn-backref" href="#id2">Rob</a></span></dt>
 <dd><p>S. Roberts. Leakage, 7.2.2 in Lecture 7-The Discrete Fourier Transform. [Online; accessed 13.03.2020]. URL: <a class="reference external" href="http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf">http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf</a>.</p>
 </dd>
-<dt class="label" id="downey2014"><span class="brackets">DowneyAB14</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
+<dt class="bibtex label" id="downey2014"><span class="brackets">DowneyAB14</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
 <dd><p>Downey, A. B. <em>Think DSP</em>. Green Tea Press, 2014.</p>
 </dd>
 </dl>
-</p>
 </div>
 </div>
 <div class="section">
 <div class="section">
-<span style="float: left;">
-  
-  Previous: 
-  <a href="NaiveVad.html">
+<span style="float: left">
+     Previous:
     
-    Naive voice activity detection using short time energy
-  </a>
+    <a href="NaiveVad.html">
+       Naive voice activity detection using short time energy
+    </a>
 </span>
 <span> </span>
-<span style="float: right;">
-  
-  Next: 
-  <a href="ffmpegpipe.html">
-    How to pipe an FFmpeg output and pass it to a Python variable?
-    
-  </a>
+<span style="float: right">
+     Next: 
+    <a href="ffmpegpipe.html">
+      How to pipe an FFmpeg output and pass it to a Python variable? 
+    </a>
 </span>
 </div>
 </div>
@@ -249,11 +255,17 @@ In the python code introduced in this post, we included some of the most used fu
 <div class="clearer"></div>
 </div>
 <div class="footer">
-      ©2020, Ayoub Malek.
+      ©2019-2021, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
-</div><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script src="../_static/js/mode-switcher.js"></script>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
+      | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
+      | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
+</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
+<!-- Include cookiealert script -->
+<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+<script src="_static/js/share-buttons.js"></script>
 </body>
 </html>
