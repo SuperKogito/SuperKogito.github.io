@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Spectral leakage and windowing" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html" />
+  
+<meta property="og:description" content="Audio signal windowing and spectral leakage" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/spectral_leakage.png" />
+  
+<meta property="og:image:alt" content="spectral_leakage" />
+  
+<meta property="og:keywords" content="windowing, spectral leakage, python, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
+    <title>Spectral leakage and windowing &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  13 März 2020 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/signal-processing.html">Signal processing</a>,   
+  <a href="../../../category/2020.html">2020</a>  
+</li>
+ 
+<li id="tags">
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/audio.html">Audio</a>   
+  <a href="../../../tag/python.html">Python</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp Server</a>
+      <p>31 Dezember 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp Server</a>
+      <p>31 Dezember 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 Oktober 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 Oktober 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../10/01/divide_image_using_opencv.html"
+      >Divide an image into blocks using OpenCV in C++</a>
+      <p>01 Oktober 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-spectral-leakage">
+   What is spectral leakage ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-windowing">
+   What is windowing ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-implement-it">
+   How to implement it?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code">
+     Code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="../policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="spectral-leakage-and-windowing">
+<h1>Spectral leakage and windowing<a class="headerlink" href="#spectral-leakage-and-windowing" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<p>Windowing is an important part of almost any signal processing system, that helps remove/ reduce spectral leakage when processing a non-periodic signal.
+This blog post provides a small overview of what is spectral usage, when does it occur and how to use windowing to suppress it.</p>
+<div class="line-block">
+<div class="line"><strong>* keywords:  *</strong> Windowing, Spectral leakage</div>
+</div>
+<section id="what-is-spectral-leakage">
+<h2>What is spectral leakage ?<a class="headerlink" href="#what-is-spectral-leakage" title="Permalink to this headline">#</a></h2>
+<p>As <em>Allen B. Downey</em> mentions in his book <em>Think DSP</em>, in order to understand windowing, we must first understand spectral leakage and for that we have first to understand the Discrete Fourier Transform (DFT) and its related assumptions.
+When using DFT to compute spectograms, we assume signals to be periodic. In practice, this assumption is often not fulfilled, resulting in inaccurate transform computations containing extra residual frequency components <a class="footnote-reference brackets" href="#footcite-downey2014" id="id1">1</a>.
+This phenomenon is known as spectral leakage, which is a smearing of power across a frequency spectrum that occurs when the processed signal is not periodic in the sample interval.
+It occurs because of the discrete sampling in the effective Fourier series computations of a waveform having discontinuities results in additional frequency components <a class="footnote-reference brackets" href="#footcite-roberts" id="id2">2</a>.
+Leakage is a common error encountered in digital signal processing, that cannot be entirely eliminated but may be reduced using windowing.</p>
+</section>
+<section id="what-is-windowing">
+<h2>What is windowing ?<a class="headerlink" href="#what-is-windowing" title="Permalink to this headline">#</a></h2>
+<p>Windowing is a counter-measure against spectral leakage that reduces the amplitudes of the samples at the start and end of a signal window <a class="footnote-reference brackets" href="#footcite-lyon2009" id="id3">3</a>.
+This eliminates the discontinuities, helps with the periodicity of the signal and consequently reduces any leakage <a class="footnote-reference brackets" href="#footcite-downey2014" id="id4">1</a>.
+Therefore, windowing is none other than a multiplication of the input signal with a predefined function.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray}
+    S = \sum_{i=0}^{\#F-1} F[i] . w
+\end{eqnarray}</div><p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span>   : Signal array.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\#F\)</span> : Number of frames.</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span>   : window function.</p></li>
+</ul>
+</section>
+<section id="how-to-implement-it">
+<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">#</a></h2>
+<p>This is depending on the type of the windowing function to use as there are many.
+However, since it is just a multiplication, the window samples are simply generated using a predefined function and multiplied with the signal samples.
+In python this can be done easily using <a class="reference external" href="https://numpy.org/">numpy</a> which offers a wide variety of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/routines.window.html">windowing_function</a></p>
+<section id="code">
+<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h3>
+<p>Here is a small code snippet implementing windowing that I wrote as part of a python audio features extraction library named <a class="reference external" href="https://github.com/SuperKogito/spafe">spafe</a></p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Windowing</span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span> <span class="k">def</span> <span class="nf">windowing</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">frame_len</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s2">&quot;hamming&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">14</span><span class="p">):</span>
+<span class="linenos"> 5</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span><span class="sd">     generate and apply a window function to avoid spectral leakage.</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="sd">     Args:</span>
+<span class="linenos"> 9</span><span class="sd">       frames  (array) : array including the overlapping frames.</span>
+<span class="linenos">10</span><span class="sd">       frame_len (int) : frame length.</span>
+<span class="linenos">11</span><span class="sd">       win_type  (str) : type of window to use.</span>
+<span class="linenos">12</span><span class="sd">                         Default is &quot;hamming&quot;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="sd">     Returns:</span>
+<span class="linenos">15</span><span class="sd">       windowed frames.</span>
+<span class="linenos">16</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos">17</span>     <span class="k">if</span>   <span class="n">win_type</span> <span class="o">==</span> <span class="s2">&quot;hamming&quot;</span> <span class="p">:</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="n">frame_len</span><span class="p">)</span>
+<span class="linenos">18</span>     <span class="k">elif</span> <span class="n">win_type</span> <span class="o">==</span> <span class="s2">&quot;hanning&quot;</span> <span class="p">:</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hanning</span><span class="p">(</span><span class="n">frame_len</span><span class="p">)</span>
+<span class="linenos">19</span>     <span class="k">elif</span> <span class="n">win_type</span> <span class="o">==</span> <span class="s2">&quot;bartlet&quot;</span> <span class="p">:</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bartlett</span><span class="p">(</span><span class="n">frame_len</span><span class="p">)</span>
+<span class="linenos">20</span>     <span class="k">elif</span> <span class="n">win_type</span> <span class="o">==</span> <span class="s2">&quot;kaiser&quot;</span>  <span class="p">:</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kaiser</span><span class="p">(</span><span class="n">frame_len</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+<span class="linenos">21</span>     <span class="k">elif</span> <span class="n">win_type</span> <span class="o">==</span> <span class="s2">&quot;blackman&quot;</span><span class="p">:</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">blackman</span><span class="p">(</span><span class="n">frame_len</span><span class="p">)</span>
+<span class="linenos">22</span>     <span class="n">windowed_frames</span> <span class="o">=</span> <span class="n">frames</span> <span class="o">*</span> <span class="n">windows</span>
+<span class="linenos">23</span>     <span class="k">return</span> <span class="n">windowed_frames</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>This blog presented windowing, which is a fundamental signal processing technique that helps eliminate discontinuities in a the frames and consequently avoid spectral leakage.
+This method is often used before any spectrum computations. There are various types of windowing, each having its own pros and cons.
+In the python code introduced in this post, we included some of the most used functions but these can be customized to the user's discretion.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog:<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
+  <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.202</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
+<p id="id5"><dl class="footnote brackets">
+<dt class="label" id="footcite-downey2014"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>Downey, A. B. <em>Think DSP</em>. Green Tea Press, 2014.</p>
+</dd>
+<dt class="label" id="footcite-roberts"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Leakage, 7.2.2 in Lecture 7-The Discrete Fourier Transform. [Online; accessed 13.03.2020]. URL: <a class="reference external" href="http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf">http://www.robots.ox.ac.uk/~sjrob/Teaching/SP/l7.pdf</a>.</p>
+</dd>
+<dt class="label" id="footcite-lyon2009"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Douglas Lyon. The Discrete Fourier Transform, Part 4: Spectral Leakage. <em>Journal of object technology</em>, 2009.</p>
+</dd>
+</dl>
+</p>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../02/09/naive_vad.html">
+      <i class="fa fa-arrow-circle-left"></i> Naive voice activity detection using short time energy
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../19/ffmpeg_pipe.html">
+      How to pipe an FFmpeg output and pass it to a Python variable? <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="SuperKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk1MTIzNzA1NA=="
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOAw3Qvs4CAV4E"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2022, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="policy/contribute.html">Contribute</a></li>
+              <li><a href="sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>

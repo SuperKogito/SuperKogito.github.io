@@ -1,0 +1,618 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Basic aiohttp Server" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2021/12/31/aiohttp_server.html" />
+  
+<meta property="og:description" content="convert chmod modes to octal and back to letters" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/aiohttp_server.png" />
+  
+<meta property="og:image:alt" content="aiohttp_server" />
+  
+<meta property="og:keywords" content="server, client, python, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
+    <title>Basic aiohttp Server &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2021/12/31/aiohttp_server.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  31 Dezember 2021 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
+  >
+  16 April 2022
+</li>
+ 
+<li id="author">
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/monastir.html">Monastir</a>  
+</li>
+ 
+<li id="language">
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/server-client.html">Server-client</a>  
+</li>
+ 
+<li id="tags">
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/python.html">Python</a>   
+  <a href="../../../tag/server.html">Server</a>   
+  <a href="../../../tag/asynchronousrous.html">Asynchronousrous</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="aiohttp_server_with_token.html"
+      >Token authenticated aiohttp Server</a>
+      <p>31 Dezember 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 Oktober 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 Oktober 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/01/divide_image_using_opencv.html"
+      >Divide an image into blocks using OpenCV in C++</a>
+      <p>01 Oktober 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/09/28/loop_monitors_details_in_cplusplus.html"
+      >How to loop over monitors and get their coordinates on Windows in C++?</a>
+      <p>28 September 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-aiohttp">
+   What is aiohttp ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-asyncio">
+   What is asyncio?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-concurrency">
+   What is concurrency?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-is-concurrency-useful-in-server-client-communications">
+   Why is concurrency useful in server/client communications?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-implement-it">
+   How to implement it?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code">
+   Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing">
+   Testing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="../policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="basic-aiohttp-server">
+<h1>Basic aiohttp Server<a class="headerlink" href="#basic-aiohttp-server" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<p>When it comes to deploying an application on a server online, a crucial aspect is its response time since no user wants to wait long for a response.
+Hence, optimizations and asynchronous processing are the way to go. within this context, <a class="reference external" href="https://docs.aiohttp.org/en/stable/">aiohttp</a> is a python library that helps implementing asynchronous HTTP Client/Server.
+The following blog is one of a series of four that will introduce a server implementation, followed by a token based authentication and some stress testing.</p>
+<section id="what-is-aiohttp">
+<h2>What is aiohttp ?<a class="headerlink" href="#what-is-aiohttp" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://docs.aiohttp.org/en/stable/">aiohttp</a> is an HTTP client/server for asyncio.
+Basically it allows you to write asynchronous clients and servers.
+The aiohttp package also supports Server WebSockets and Client WebSockets.</p>
+</section>
+<section id="what-is-asyncio">
+<h2>What is asyncio?<a class="headerlink" href="#what-is-asyncio" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://docs.python.org/3/library/asyncio.html">asyncio</a> is a library to write concurrent code.
+It is used at the core of many asynchronous applications to deliver high-performance and speedy processing, etc.</p>
+</section>
+<section id="what-is-concurrency">
+<h2>What is concurrency?<a class="headerlink" href="#what-is-concurrency" title="Permalink to this headline">#</a></h2>
+<p>In simple words, concurrency can be described as having multiple computations happening at the same time.
+In a little more complex formulation, it can be described as the execution of different parts a program out-of-order or in partial order.
+Hence, you can say concurrency is sort of partial parallelism of computations.</p>
+</section>
+<section id="why-is-concurrency-useful-in-server-client-communications">
+<h2>Why is concurrency useful in server/client communications?<a class="headerlink" href="#why-is-concurrency-useful-in-server-client-communications" title="Permalink to this headline">#</a></h2>
+<p>The ability to have multiple units of your code running in parallel allows you to handle more requests or even send multiple calls without requiring more physical resources.
+In other words, by asynchronously running your functions you can push your system to its limits but you should mind your processing order to avoid unexpected behaviors.</p>
+</section>
+<section id="how-to-implement-it">
+<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">#</a></h2>
+<p>Aiohttp includes a variey of examples on how to do this. In the following, I will only include here, what worked best for me:</p>
+<ol class="arabic">
+<li><p><strong>Start with installing aiohttp using</strong></p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Install aiohttp</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> pip install aiohttp
+</pre></div>
+</div>
+</div>
+</li>
+<li><p><strong>Write a request handler.</strong>
+Requests in aiohttp are processed using coroutines that will serve as the actual functions called by the client.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Write a request handler</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">2</span> <span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span> <span class="nd">@asyncio</span><span class="o">.</span><span class="n">coroutine</span>
+<span class="linenos">5</span> <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="linenos">6</span>     <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;pong&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p><strong>wrap everything by creating an Application instance and registering the request handler</strong></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Create application and register handler</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
+<span class="linenos">2</span> <span class="n">app</span><span class="o">.</span><span class="n">add_routes</span><span class="p">([</span><span class="n">web</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">ping</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h2>
+<p>The previously listed steps, should look together in Python as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Framing 1</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">async</span> <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="linenos">4</span>    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;pong&quot;</span><span class="p">)</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
+<span class="linenos">7</span><span class="n">app</span><span class="o">.</span><span class="n">add_routes</span><span class="p">([</span><span class="n">web</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">ping</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<p>and you are done, you just create a server application that returns a pong when pong'ed.
+This code, can require slight changes when creating the application and registering the handler in case of using multi-processing for example.</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">#</a></h2>
+<p>The previous code when executed will start a server running on <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a>.
+To test your server either type in your browser <a class="reference external" href="http://localhost:8080/ping">http://localhost:8080/ping</a> or simply <a class="reference external" href="https://curl.se/">curl</a> it using <code class="code docutils literal notranslate"><span class="pre">curl</span> <span class="pre">http://localhost:8080/ping</span></code>.
+The response should be the following <code class="code docutils literal notranslate"><span class="pre">pong</span></code>.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>This blog presented aiohttp and its usefulness within regard to concurrency.
+It further provided a simple example of a server that will respond with pong if it is alive.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
+  <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit" href="https://pinterest.com/pin/create/bookmarklet/?media={{media}}&url={{url}}&is_video=false&description={{title}}" target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 16 April 2022</p>
+<p>Last edited on 16.04.2022</p>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../../2020/10/25/chmod_modes.html">
+      <i class="fa fa-arrow-circle-left"></i> Chmod modes: from symbolic to octal and back
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="aiohttp_server_with_token.html">
+      Token authenticated aiohttp Server <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="SuperKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk1MTIzNzA1NA=="
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOAw3Qvs4CAV4E"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2022, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="policy/contribute.html">Contribute</a></li>
+              <li><a href="sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>
