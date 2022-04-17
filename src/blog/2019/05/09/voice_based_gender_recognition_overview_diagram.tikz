@@ -1,0 +1,11 @@
+\begin{tikzpicture}[connector/.style={draw, -latex},
+  decision/.style={diamond, draw, text centered, minimum height=2em},
+  terminator/.style={rectangle, draw, text centered, rounded corners, minimum height=2em},]
+
+  \node [terminator, fill=blue!20] at (0,0) (start) {\textbf{Input audio}};
+  \node [decision, fill=red!20] at (7,0) (decision) {What's the gender of the speaker?};
+  \node [terminator, fill=blue!20] at (14,0) (end) {\textbf{Predicted gender}};
+
+  \path [connector] (start) -- (decision);
+  \path [connector] (decision) -- (end);
+\end{tikzpicture}

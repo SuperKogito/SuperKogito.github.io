@@ -1,0 +1,48 @@
+\begin{tikzpicture}
+
+    % first line
+    \node (A0) [draw, minimum height=7mm, minimum width=10mm] {48};
+    \node (A1) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A0] {65};
+    \node (A2) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A1] {6C};
+    \node (A3) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A2] {32};
+    \node (A4) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A3] {6F};
+    \node (A5) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A4] {03};
+    \node (A6) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A5] {03};
+    \node (A7) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A6] {03};
+
+    \coordinate[above left=0mm of A0] (AddrLeft);
+    \coordinate[above right=0mm of A4] (AddrRight);
+
+    \coordinate[below left=0mm of A5] (RWLeft);
+    \coordinate[below right=0mm of A7] (RWRight);
+
+    \draw[decorate,decoration={brace,amplitude=10pt}, minimum height=9mm] (AddrLeft) -- (AddrRight)
+        node[anchor=south,midway,above=8pt] {Information bytes};
+
+    \draw[decorate,decoration={brace,amplitude=8pt}, minimum height=6mm] (RWRight) -- (RWLeft)
+        node[anchor=north,midway,below=8pt] {Padding bytes};
+
+
+    % second line
+    \node (A10) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A0] {48};
+    \node (A11) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A1] {65};
+    \node (A12) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A2] {6C};
+    \node (A13) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A3] {32};
+    \node (A14) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A4] {6F};
+    \node (A15) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A5] {5A};
+    \node (A16) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A6] {02};
+    \node (A17) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A7] {02};
+
+    \coordinate[above left=0mm of A10] (AddrLeft1);
+    \coordinate[above right=0mm of A15] (AddrRight1);
+
+    \coordinate[below left=0mm of A16] (RWLeft1);
+    \coordinate[below right=0mm of A17] (RWRight1);
+
+    \draw[decorate,decoration={brace,amplitude=10pt}, minimum height=9mm] (AddrLeft1) -- (AddrRight1)
+        node[anchor=south,midway,above=8pt] {Information bytes};
+
+    \draw[decorate,decoration={brace,amplitude=8pt}, minimum height=6mm] (RWRight1) -- (RWLeft1)
+        node[anchor=north,midway,below=8pt] {Padding bytes};
+
+\end{tikzpicture}

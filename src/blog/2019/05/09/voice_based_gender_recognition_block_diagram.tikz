@@ -1,0 +1,53 @@
+\begin{tikzpicture}[  materia/.style={draw, fill=blue!20, text width=6.0em, text centered, minimum height=1.5em,drop shadow},
+  etape/.style={materia, text width=24em, minimum width=25em, minimum height=3em, rounded corners, drop shadow},
+  texto/.style={above, text width=6em, text centered},
+  linepart/.style={draw, thick, color=black!50, -LaTeX, dashed},
+  line/.style={draw, thick, color=black!50, -LaTeX},
+  ur/.style={draw, text centered, minimum height=0.01em},
+  back group/.style={fill=yellow!20,rounded corners, draw=black!50, dashed, inner xsep=15pt, inner ysep=10pt},
+]
+
+    \newcommand{\etape}[2]{node (p#1) [etape] {#2}}
+    \newcommand{\transreceptor}[3]{\path [linepart] (#1.east) -- node [above] {\scriptsize #2} (#3);}
+
+  % Draw diagram elements
+  \node(p1){};
+  \path (p1.south)+(0.0,-0.5) node(p00){Training audios};
+  \path (p1.south)+(-5.5,-1.5) node(p10){Females training audios};
+  \path (p1.south)+(5.5,-1.5) node(p11){Males training audios};
+
+  \path (p1.south)+(-5.5,-3.5) \etape{21}{Extract females MFCC features};
+  \path (p21.south)+(0.0,-2.0) \etape{31}{Generate females GMM};
+
+  \path (p1.south)+(5.5,-3.5) \etape{2}{Extract males MFCC features};
+  \path (p2.south)+(0.0,-2.0) \etape{3}{Generate males GMM};
+
+  \path (p1.south)+(0.0,-10.0) \etape{4}{Compute both likelihood scores of genders};
+  \path (p4.south)+(0.0,-2.0) \etape{5}{Compare likelihoods (highest $\sim$ probable gender)};
+  \path (p4.north)+(0.0,1.5) node(p41){Test audios};
+  \path (p5.south)+(0.0,-2.0) node(p51){Prediction (predicted gender)};
+
+
+  % Draw arrows between elements
+  \path [line] (p00.west) -| node [above] {} (p10);
+  \path [line] (p00.east) -| node [above] {} (p11);
+  \path [line] (p10.south) -- node [above] {} (p21);
+  \path [line] (p11.south) -- node [above] {} (p2);
+  \path [line] (p2.south) -- node [above] {} (p3);
+  \path [line] (p21.south) -- node [above] {} (p31);
+  \path [line] (p3.south) |- node [above=5em, xshift=1.5cm] {Males GMM} (p4);
+  \path [line] (p31.south) |- node [above=5em, xshift=-1.5cm] {Females GMM} (p4);
+  \path [line] (p41.south) -- node {} (p4);
+  \path [line] (p4.south) -- node [above] {} (p5);
+  \path [line] (p5.south) -- node [above] {} (p51);
+
+  \begin{scope}[on background layer]
+    \node (bk1) [back group] [fit=(p21) (p3)] {};
+    \node (bk2) [back group] [fit=(p4) (p5)] {};
+  \end{scope}
+
+  \path (bk1.east)+(+3.0,0) node (ur1)[ur] {};
+  \path (bk2.east)+(+3.0,0) node (ur2)[ur] {};
+  \transreceptor{bk1}{Training}{ur1};
+  \transreceptor{bk2}{Testing}{ur2};
+\end{tikzpicture}

@@ -1,0 +1,51 @@
+\begin{tikzpicture}[block/.style={draw, rectangle, minimum height=3em, minimum width=3em}, coor/.style={coordinate},
+node distance=1cm,>=latex]
+    % 1st column graph
+    % We start by placing the blocks
+    \node [name=input0] {$P$};
+    \node [block, below left=1.75cm and 0.25cm of input0] (se0) {SE};
+    \node [block, below right=1.75cm and 0.25cm of input0] (mac0) {MAC};
+    \node [below=1cm of se0] (output00) {$C$};
+    \node [below=1cm of mac0] (output01) {$T$};
+
+    % Once the nodes are placed, connecting them is easy.
+    \draw [->] (input0) -| node {} (se0);
+    \draw [->] (input0) -| node {} (mac0);
+    \draw [->] (se0) -- node {} (output00);
+    \draw [->] (mac0) -- node {} (output01);
+    \node [name=title, below=5cm of input0] {Encrypt-and-MAC};
+
+    % 2nd column graph
+    % We start by placing the blocks
+    \node [name=input1, right=5cm of input0] {$P$};
+    \node [block, below left=1.75cm and 0.25cm of input1] (se1) {SE};
+    \node [block, below right=0.25cm and 0.25cm of input1] (mac1) {MAC};
+    \node [below=1cm of se1] (output10) {$C$};
+    \node [right=1.45cm of se1] (output11) {$T$};
+
+    % Once the nodes are placed, connecting them is easy.
+    \draw [->] (input1) -| node {} (se1);
+    \draw [->] (input1) -| node {} (mac1);
+    \draw [->] (se1) -- node {} (output10);
+    \draw [->] (mac1) -- node {} (output11);
+    \draw [->] (output11) -- node {} (se1);
+    \node [name=title, below=5cm of input1] {MAC-then-Encrypt};
+
+    % 3rd column graph
+    % We start by placing the blocks
+    \node [name=input2, right=5cm of input1] {$P$};
+    \node [block, below left=0.25cm and 0.25cm of input2] (se2) {SE};
+    \node [block, below right=1.75cm and 0.25cm of input2] (mac2) {MAC};
+    \node [left=1.45cm of mac2] (output20) {$C$};
+    \node [below=1cm of mac2] (output21) {$T$};
+    \node [below=2.5cm of se2] (output30) {$C$};
+
+    % Once the nodes are placed, connecting them is easy.
+    \draw [->] (input2) -| node {} (se2);
+    \draw [->] (input2) -| node {} (mac2);
+    \draw [->] (se2) -- node {} (output20);
+    \draw [->] (mac2) -- node {} (output21);
+    \draw [->] (output20) -- node {} (mac2);
+    \draw [->] (output20) -- node {} (output30);
+    \node [name=title, below=5cm of input2] {Encrypt-then-MAC};
+\end{tikzpicture}
