@@ -209,16 +209,10 @@ Result
 ~~~~~~
 The resulting blocks should look something like this:
 
-.. image:: ../../../../_static/blog-plots/opencv/divided_lenna.png
+.. figure:: ../../../../_static/blog-plots/opencv/divided_lenna.png
    :align: center
 
-
-.. raw:: html
-
-   <div class="clt">
-   <center><a href="../../../../figures/fig19.html" >Figure 19: divided image into multiple blocks </a> </center>
-   </div>
-
+   Figure 19: divided image into multiple blocks
 
 Limitations
 ~~~~~~~~~~~
