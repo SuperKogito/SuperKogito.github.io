@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/><meta content="Voice based gender recognition post" name="description"/>
-<meta content="Gender recognition by voice, Voice based gender recognition, Gaussian mixture model, gender classification, Ayoub Malek" name="keywords"/>
-<meta content="Ayoub Malek" name="author"/>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="Voice based gender recognition post" name="description" />
+<meta content="Gender recognition by voice, Voice based gender recognition, Gaussian mixture model, gender classification, Ayoub Malek" name="keywords" />
+<meta content="Ayoub Malek" name="author" />
 <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -16,23 +20,26 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-<title>Voice based gender recognition using Gaussian mixture models — Ayoub Malek's blog</title>
-<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
-<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
-<script src="../_static/jquery.js" type="text/javascript"></script>
-<script src="../_static/underscore.js" type="text/javascript"></script>
-<script src="../_static/doctools.js" type="text/javascript"></script>
-<script src="../_static/language_data.js" type="text/javascript"></script>
-<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<link href="../_static/favicon.ico" rel="shortcut icon"/>
-<link href="../about.html" rel="author" title="About these documents"/>
-<link href="../genindex.html" rel="index" title="Index"/>
-<link href="../search.html" rel="search" title="Search"/>
-<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
-<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
+    <title>Voice based gender recognition using Gaussian mixture models &#8212; Ayoub Malek&#39;s blog</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_style.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -57,97 +64,74 @@
     list-style-type: circle;
   }
 </style>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
-<div class="document">
-<div class="documentwrapper">
-<div class="body" role="main">
-<!-- START Bootstrap-Cookie-Alert -->
-<div class="alert text-center cookiealert" role="alert">
-<div class="cookiesContainer">
-<b>
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            <!-- START Bootstrap-Cookie-Alert -->
+            <div class="alert text-center cookiealert" role="alert">
+                <div class="cookiesContainer">
+                  <b>
                     We use cookies and other technologies to perform analytics and deliver a better user experience.
                     By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
                     See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
                     You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
                 </b>
-<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                <button type="button" class="btn btn-primary btn-sm acceptcookies">
                     I agree
                 </button>
-</div>
-</div>
-<!-- END Bootstrap-Cookie-Alert -->
-<div class="section" id="voice-based-gender-recognition-using-gaussian-mixture-models">
-<h1>Voice based gender recognition using Gaussian mixture models<a class="headerlink" href="#voice-based-gender-recognition-using-gaussian-mixture-models" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
-<table class="menu-table" id="menuTable" style="border:hidden;">
-<tr>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
-<th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-<th>
-</th><th>
-</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
-<th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
-<th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
-<th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-<th>
-</th><th>
-</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
-<th class="menu-label"><a href="../about.html" title="About">About</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
-<th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</tr>
-</table>
-</div>
-</body></html>
+              </div>
+            </div>
+            <!-- END Bootstrap-Cookie-Alert -->
+
+             <section id="voice-based-gender-recognition-using-gaussian-mixture-models">
+<h1>Voice based gender recognition using Gaussian mixture models<a class="headerlink" href="#voice-based-gender-recognition-using-gaussian-mixture-models" title="Permalink to this headline">¶</a></h1>
 <div class="blog-post-tags">
-<ul class="blog-posts-details">
-<li id="Date"><span>Date:</span>                09 May 2019 </li>
-<li id="author"><span>Author:</span> <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
-<li id="location"><span>Location:</span> <a href="location/munich.html">Munich</a>
-</li> <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
-</li> <li id="category"><span>Category:</span> <a href="category/machine-learning.html">Machine learning</a>
-</li>
-<li id="tags"><span>Tags:
+  <ul class="blog-posts-details">
+  <li id="Date"><span>Date:</span>                09 May 2019 </li>
+  <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+  <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+  </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+  </li>  <li id="category"><span>Category:</span> <a href="category/machine-learning.html">Machine learning</a>
+  </li>
+  <li id="tags"><span>Tags:
         </span>
-<a class="post-tags" href="tag/gender-recognition.html">Gender recognition</a>
-<a class="post-tags" href="tag/voice.html">Voice</a>
-<a class="post-tags" href="tag/audio.html">audio</a>
-<a class="post-tags" href="tag/gmm.html">GMM</a>
-<a class="post-tags" href="tag/python.html">Python</a>
-</li>
-</ul>
-</div><hr class="docutils"/>
-<a class="reference internal image-reference" href="../_images/vbgraph.png"><img alt="../_images/vbgraph.png" class="align-center" src="../_images/vbgraph.png" style="width: 482.8px; height: 108.8px;"/></a>
+        <a class="post-tags" href="tag/gender-recognition.html">Gender recognition</a>
+        <a class="post-tags" href="tag/voice.html">Voice</a>
+        <a class="post-tags" href="tag/audio.html">audio</a>
+        <a class="post-tags" href="tag/gmm.html">GMM</a>
+        <a class="post-tags" href="tag/python.html">Python</a>
+
+  </li>
+  </ul>
+</div><hr class="docutils" />
+<a class="reference internal image-reference" href="../_images/vbgraph.png"><img alt="../_images/vbgraph.png" class="align-center" src="../_images/vbgraph.png" style="width: 482.8px; height: 108.8px;" /></a>
 <div class="clt">
-<br/>
-<center><a href="../figures/fig4.html"> Fig 4: Voice based gender recognition overview</a> </center>
-<br/>
+<br>
+<center><a href="../figures/fig4.html" > Fig 4: Voice based gender recognition overview</a> </center>
+<br>
 </div>
 <p>
 This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
 The post provides an explanation of the following GitHub-project <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i> Voice-based-gender-recognition</a>.
 </p>
 <table align="center" style="width:100%">
-<tr>
-<th class="github-badge"> <a aria-label="Watch SuperKogito/Voice-based-gender-recognition on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito/Voice-based-gender-recognition/subscription">Watch</a> </th>
-<th class="github-badge"> <a aria-label="Star SuperKogito/Voice-based-gender-recognition on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito/Voice-based-gender-recognition">Star</a> </th>
-<th class="github-badge"> <a aria-label="Fork SuperKogito/Voice-based-gender-recognition on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito/Voice-based-gender-recognition/fork">Fork</a> </th>
-<th class="github-badge"> <a aria-label="Download SuperKogito/Voice-based-gender-recognition on GitHub" class="github-button" data-size="large" href="https://github.com/SuperKogito/Voice-based-gender-recognition/archive/master.zip">Download</a> </th>
-<th class="github-badge"> <a aria-label="Follow @SuperKogito on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito">Follow @SuperKogito</a> </th>
-</tr>
+  <tr>
+      <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/subscription" data-size="large" data-show-count="true" aria-label="Watch SuperKogito/Voice-based-gender-recognition on GitHub">Watch</a> </th>
+      <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition" data-size="large" data-show-count="true" aria-label="Star SuperKogito/Voice-based-gender-recognition on GitHub">Star</a> </th>
+      <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/fork" data-size="large" data-show-count="true" aria-label="Fork SuperKogito/Voice-based-gender-recognition on GitHub">Fork</a> </th>
+      <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito/Voice-based-gender-recognition/archive/master.zip" data-size="large" aria-label="Download SuperKogito/Voice-based-gender-recognition on GitHub">Download</a> </th>
+      <th class="github-badge"> <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a> </th>
+  </tr>
 </table>
-<script async="" defer="" src="https://buttons.github.io/buttons.js"></script><p>The aforementioned implementation, uses The Free ST American English Corpus data-set (<a class="reference external" href="http://www.openslr.org/45/">SLR45</a>), which is a free American English corpus by <a class="reference external" href="https://www.surfing.ai">Surfingtech</a>, containing utterances from 10 speakers (5 females and 5 males).</p>
+<script async defer src="https://buttons.github.io/buttons.js"></script><p>The aforementioned implementation, uses The Free ST American English Corpus data-set (<a class="reference external" href="http://www.openslr.org/45/">SLR45</a>), which is a free American English corpus by <a class="reference external" href="https://www.surfing.ai">Surfingtech</a>, containing utterances from 10 speakers (5 females and 5 males).</p>
 <p>Keywords: Gender recognition, Mel-frequency cepstrum coefficients, The Free ST American English Corpus data-set, Gaussian mixture models</p>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The idea here is to recognize the gender of the speaker based on pre-generated Gaussian mixture models (GMM).
 Once the data is properly formatted, we train our Gaussian mixture models for each gender by gathering Mel-frequency cepstrum coefficients (MFCC) from their associated training wave files.
@@ -155,12 +139,12 @@ Now that we have generated the models, we identify the speakers genders by extra
 These scores represent the likelihood that user MFCCs belong to one of the two models. The gender models with the highest score represents the probable gender of the speaker.
 In the following table, we summarize the previous main steps, as for a detailed modeling of the processing steps, you can refer to the Workflow graph in <a class="reference external" href="../figures/fig5.html">Fig_5</a>.</p>
 <div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 47%"/>
-<col style="width: 53%"/>
+<col style="width: 47%" />
+<col style="width: 53%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><ol class="upperroman simple">
@@ -188,17 +172,17 @@ In the following table, we summarize the previous main steps, as for a detailed 
 </tbody>
 </table>
 <div class="clt">
-<br/>
-<center><a href="../tables/table1.html">Table 1: Main steps of the voice based gender recognition</a> </center>
-</div></div>
-<div class="section" id="workflow-graph">
+<br>
+<center><a href="../tables/table1.html" >Table 1: Main steps of the voice based gender recognition</a> </center>
+</div></section>
+<section id="workflow-graph">
 <h2>Workflow graph<a class="headerlink" href="#workflow-graph" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="../_images/genderspeaker.png"><img alt="../_images/genderspeaker.png" class="align-center" src="../_images/genderspeaker.png" style="width: 625.6px; height: 613.6999999999999px;"/></a>
+<a class="reference internal image-reference" href="../_images/genderspeaker.png"><img alt="../_images/genderspeaker.png" class="align-center" src="../_images/genderspeaker.png" style="width: 625.6px; height: 613.6999999999999px;" /></a>
 <div class="clt">
-<br/>
-<center><a href="../figures/fig5.html">Fig 5: Voice based gender recognition</a> </center>
-</div></div>
-<div class="section" id="data-formatting">
+<br>
+<center><a href="../figures/fig5.html" >Fig 5: Voice based gender recognition</a> </center>
+</div></section>
+<section id="data-formatting">
 <h2>Data formatting<a class="headerlink" href="#data-formatting" title="Permalink to this headline">¶</a></h2>
 <p>Once you download your data-set, you will need to split it into two different sets:</p>
 <ul class="simple">
@@ -210,8 +194,8 @@ The code provides an option for running the whole cycle using “Run.py” or yo
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python3 Code/DataManager.py
 </pre></div>
 </div>
-</div>
-<div class="section" id="voice-features-extraction">
+</section>
+<section id="voice-features-extraction">
 <h2>Voice features extraction<a class="headerlink" href="#voice-features-extraction" title="Permalink to this headline">¶</a></h2>
 <p>The Mel-Frequency Cepstrum Coefficients (MFCC) are used here, since they deliver the best results in speaker verification.
 MFCCs are commonly derived as follows:</p>
@@ -225,58 +209,35 @@ MFCCs are commonly derived as follows:</p>
 <p>To extract MFCC features I usually use the <a class="reference external" href="https://python-speech-features.readthedocs.io/en/latest/">python_speech_features</a> library, it is simple to use and well documented:</p>
 <div class="literal-block-wrapper docutils container" id="featuresextraction">
 <div class="code-block-caption"><span class="caption-text">FeaturesExtraction.py</span><a class="headerlink" href="#featuresextraction" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
- <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
- <span class="kn">from</span> <span class="nn">scipy.io.wavfile</span> <span class="kn">import</span> <span class="n">read</span>
- <span class="kn">from</span> <span class="nn">python_speech_features</span> <span class="kn">import</span> <span class="n">mfcc</span>
- <span class="kn">from</span> <span class="nn">python_speech_features</span> <span class="kn">import</span> <span class="n">delta</span>
-
- <span class="k">def</span> <span class="nf">extract_features</span><span class="p">(</span><span class="n">audio_path</span><span class="p">):</span>
-     <span class="sd">"""</span>
-<span class="sd">     Extract MFCCs, their deltas and double deltas from an audio, performs CMS.</span>
-
-<span class="sd">     Args:</span>
-<span class="sd">         audio_path (str) : path to wave file without silent moments.</span>
-<span class="sd">     Returns:</span>
-<span class="sd">         (array) : Extracted features matrix.</span>
-<span class="sd">     """</span>
-     <span class="n">rate</span><span class="p">,</span> <span class="n">audio</span>  <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
-     <span class="n">mfcc_feature</span> <span class="o">=</span> <span class="n">mfcc</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">winlen</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">winstep</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">numcep</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">nfilt</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
-                         <span class="n">nfft</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> <span class="n">appendEnergy</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-     <span class="n">mfcc_feature</span>  <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">mfcc_feature</span><span class="p">)</span>
-     <span class="n">deltas</span>        <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">mfcc_feature</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-     <span class="n">double_deltas</span> <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">deltas</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-     <span class="n">combined</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">mfcc_feature</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">double_deltas</span><span class="p">))</span>
- <span class="k">return</span> <span class="n">combined</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 2</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="linenos"> 3</span> <span class="kn">from</span> <span class="nn">scipy.io.wavfile</span> <span class="kn">import</span> <span class="n">read</span>
+<span class="linenos"> 4</span> <span class="kn">from</span> <span class="nn">python_speech_features</span> <span class="kn">import</span> <span class="n">mfcc</span>
+<span class="linenos"> 5</span> <span class="kn">from</span> <span class="nn">python_speech_features</span> <span class="kn">import</span> <span class="n">delta</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span> <span class="k">def</span> <span class="nf">extract_features</span><span class="p">(</span><span class="n">audio_path</span><span class="p">):</span>
+<span class="linenos"> 8</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 9</span><span class="sd">     Extract MFCCs, their deltas and double deltas from an audio, performs CMS.</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="sd">     Args:</span>
+<span class="linenos">12</span><span class="sd">         audio_path (str) : path to wave file without silent moments.</span>
+<span class="linenos">13</span><span class="sd">     Returns:</span>
+<span class="linenos">14</span><span class="sd">         (array) : Extracted features matrix.</span>
+<span class="linenos">15</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos">16</span>     <span class="n">rate</span><span class="p">,</span> <span class="n">audio</span>  <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+<span class="linenos">17</span>     <span class="n">mfcc_feature</span> <span class="o">=</span> <span class="n">mfcc</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">winlen</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">winstep</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">numcep</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">nfilt</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+<span class="linenos">18</span>                         <span class="n">nfft</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span> <span class="n">appendEnergy</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>     <span class="n">mfcc_feature</span>  <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">mfcc_feature</span><span class="p">)</span>
+<span class="linenos">21</span>     <span class="n">deltas</span>        <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">mfcc_feature</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">22</span>     <span class="n">double_deltas</span> <span class="o">=</span> <span class="n">delta</span><span class="p">(</span><span class="n">deltas</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">23</span>     <span class="n">combined</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">mfcc_feature</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">double_deltas</span><span class="p">))</span>
+<span class="linenos">24</span> <span class="k">return</span> <span class="n">combined</span>
 </pre></div>
-</td></tr></table></div>
 </div>
 </div>
-<div class="section" id="gaussian-mixture-models">
+</section>
+<section id="gaussian-mixture-models">
 <h2>Gaussian Mixture Models<a class="headerlink" href="#gaussian-mixture-models" title="Permalink to this headline">¶</a></h2>
 <p>According to D. Reynolds in <a class="reference external" href="https://pdfs.semanticscholar.org/734b/07b53c23f74a3b004d7fe341ae4fce462fc6.pdf">Gaussian_Mixture_Models</a>:</p>
 <blockquote>
@@ -294,67 +255,44 @@ is the Gaussian distribution, with:</p>
 <li><p><span class="math notranslate nohighlight">\(w_{k}\)</span> represent the weights.</p></li>
 <li><p><span class="math notranslate nohighlight">\(k\)</span> refers the index of the GMM components.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/gmm.png"><img alt="../_images/gmm.png" class="align-center" src="../_images/gmm.png" style="width: 612.0px; height: 489.59999999999997px;"/></a>
+<a class="reference internal image-reference" href="../_images/gmm.png"><img alt="../_images/gmm.png" class="align-center" src="../_images/gmm.png" style="width: 612.0px; height: 489.59999999999997px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig6.html">Fig 6: Gaussian mixture model </a> </center>
+<center><a href="../figures/fig6.html" >Fig 6: Gaussian mixture model </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>To train a Gaussian mixture models based on some collected features, you can use <a class="reference external" href="https://scikit-learn.org">scikit-learn-library</a> specifically the <a class="reference external" href="https://scikit-learn.org/stable/modules/mixture.html">scikit-learn-gmm</a>:</p>
 <div class="literal-block-wrapper docutils container" id="gmmgeneration">
 <div class="code-block-caption"><span class="caption-text">GmmGeneration.py</span><a class="headerlink" href="#gmmgeneration" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>
-
-
-<span class="k">def</span> <span class="nf">save_gmm</span><span class="p">(</span><span class="n">gmm</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="sd">""" Save Gaussian mixture model using pickle.</span>
-<span class="sd">        Args:</span>
-<span class="sd">            gmm        : Gaussian mixture model.</span>
-<span class="sd">            name (str) : File name.</span>
-<span class="sd">    """</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">".gmm"</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmm_file</span><span class="p">:</span>
-        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">gmm</span><span class="p">,</span> <span class="n">gmm_file</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s2">"</span><span class="si">%5s</span><span class="s2"> </span><span class="si">%10s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="s2">"SAVING"</span><span class="p">,</span> <span class="n">filename</span><span class="p">,))</span>
-
-<span class="o">...</span>
-<span class="c1"># get gender_voice_features using FeaturesExtraction</span>
-<span class="c1"># generate gaussian mixture models</span>
-<span class="n">gender_gmm</span> <span class="o">=</span> <span class="n">GMM</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">covariance_type</span> <span class="o">=</span> <span class="s1">'diag'</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-<span class="c1"># fit features to models</span>
-<span class="n">gender_gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">gender_voice_features</span><span class="p">)</span>
-<span class="c1"># save gmm</span>
-<span class="n">save_gmm</span><span class="p">(</span><span class="n">gender_gmm</span><span class="p">,</span> <span class="s2">"gender"</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">def</span> <span class="nf">save_gmm</span><span class="p">(</span><span class="n">gmm</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="sd">&quot;&quot;&quot; Save Gaussian mixture model using pickle.</span>
+<span class="linenos"> 8</span><span class="sd">        Args:</span>
+<span class="linenos"> 9</span><span class="sd">            gmm        : Gaussian mixture model.</span>
+<span class="linenos">10</span><span class="sd">            name (str) : File name.</span>
+<span class="linenos">11</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">12</span>    <span class="n">filename</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.gmm&quot;</span>
+<span class="linenos">13</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmm_file</span><span class="p">:</span>
+<span class="linenos">14</span>        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">gmm</span><span class="p">,</span> <span class="n">gmm_file</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%5s</span><span class="s2"> </span><span class="si">%10s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;SAVING&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,))</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="o">...</span>
+<span class="linenos">18</span><span class="c1"># get gender_voice_features using FeaturesExtraction</span>
+<span class="linenos">19</span><span class="c1"># generate gaussian mixture models</span>
+<span class="linenos">20</span><span class="n">gender_gmm</span> <span class="o">=</span> <span class="n">GMM</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">covariance_type</span> <span class="o">=</span> <span class="s1">&#39;diag&#39;</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos">21</span><span class="c1"># fit features to models</span>
+<span class="linenos">22</span><span class="n">gender_gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">gender_voice_features</span><span class="p">)</span>
+<span class="linenos">23</span><span class="c1"># save gmm</span>
+<span class="linenos">24</span><span class="n">save_gmm</span><span class="p">(</span><span class="n">gender_gmm</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">)</span>
 </pre></div>
-</td></tr></table></div>
 </div>
 </div>
-<div class="section" id="gender-identification">
+</section>
+<section id="gender-identification">
 <h2>Gender identification<a class="headerlink" href="#gender-identification" title="Permalink to this headline">¶</a></h2>
 <p>The identification is done over three steps: first you retrieve the voice features, then you compute their likelihood of belonging to a certain gender and finally your compare both scores and make a decision on the probable gender.
 The computation of the scores is done as follows <a class="footnote-reference brackets" href="#id4" id="id2">1</a>:</p>
@@ -371,96 +309,61 @@ The computation of the scores is done as follows <a class="footnote-reference br
 </div></blockquote>
 <div class="literal-block-wrapper docutils container" id="genderidentification">
 <div class="code-block-caption"><span class="caption-text">GenderIdentification.py</span><a class="headerlink" href="#genderidentification" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">FeaturesExtractor</span> <span class="kn">import</span> <span class="n">FeaturesExtractor</span>
-
-<span class="k">def</span> <span class="nf">identify_gender</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
-    <span class="c1"># female hypothesis scoring</span>
-    <span class="n">is_female_scores</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">females_gmm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
-    <span class="n">is_female_log_likelihood</span> <span class="o">=</span> <span class="n">is_female_scores</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-
-    <span class="c1"># male hypothesis scoring</span>
-    <span class="n">is_male_scores</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">males_gmm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
-    <span class="n">is_male_log_likelihood</span> <span class="o">=</span> <span class="n">is_male_scores</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-
-    <span class="c1"># print scores</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%5s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="s2">"+ FEMALE SCORE"</span><span class="p">,</span><span class="s2">":"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">is_female_log_likelihood</span><span class="p">,</span> <span class="mi">3</span><span class="p">))))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%7s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="s2">"+ MALE SCORE"</span><span class="p">,</span> <span class="s2">":"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">is_male_log_likelihood</span><span class="p">,</span><span class="mi">3</span><span class="p">))))</span>
-
-    <span class="c1"># find the winner aka the probable gender of the speaker</span>
-    <span class="k">if</span> <span class="n">is_male_log_likelihood</span> <span class="o">&gt;</span> <span class="n">is_female_log_likelihood</span><span class="p">:</span> <span class="n">winner</span> <span class="o">=</span> <span class="s2">"male"</span>
-    <span class="k">else</span>                                                <span class="p">:</span> <span class="n">winner</span> <span class="o">=</span> <span class="s2">"female"</span>
-    <span class="k">return</span> <span class="n">winner</span>
-
-
-<span class="c1"># init instances and load models</span>
-<span class="n">features_extractor</span>  <span class="o">=</span> <span class="n">FeaturesExtractor</span><span class="p">()</span>
-<span class="n">females_gmm</span>         <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">females_model_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">))</span>
-<span class="n">males_gmm</span>           <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">males_model_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">))</span>
-
-<span class="c1"># read the test directory and get the list of test audio files</span>
-<span class="n">file</span>   <span class="o">=</span> <span class="s2">"speaker-test-file.wav"</span>
-<span class="n">vector</span> <span class="o">=</span> <span class="n">features_extractor</span><span class="o">.</span><span class="n">extract_features</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-<span class="n">winner</span> <span class="o">=</span> <span class="n">identify_gender</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-<span class="n">expected_gender</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%6s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">"</span> <span class="o">%</span>  <span class="p">(</span><span class="s2">"+ EXPECTATION"</span><span class="p">,</span><span class="s2">":"</span><span class="p">,</span> <span class="n">expected_gender</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%3s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">"</span> <span class="o">%</span>  <span class="p">(</span><span class="s2">"+ IDENTIFICATION"</span><span class="p">,</span> <span class="s2">":"</span><span class="p">,</span> <span class="n">winner</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">FeaturesExtractor</span> <span class="kn">import</span> <span class="n">FeaturesExtractor</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">def</span> <span class="nf">identify_gender</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="c1"># female hypothesis scoring</span>
+<span class="linenos"> 7</span>    <span class="n">is_female_scores</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">females_gmm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
+<span class="linenos"> 8</span>    <span class="n">is_female_log_likelihood</span> <span class="o">=</span> <span class="n">is_female_scores</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="c1"># male hypothesis scoring</span>
+<span class="linenos">11</span>    <span class="n">is_male_scores</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">males_gmm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span>
+<span class="linenos">12</span>    <span class="n">is_male_log_likelihood</span> <span class="o">=</span> <span class="n">is_male_scores</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="c1"># print scores</span>
+<span class="linenos">15</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%5s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;+ FEMALE SCORE&quot;</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">is_female_log_likelihood</span><span class="p">,</span> <span class="mi">3</span><span class="p">))))</span>
+<span class="linenos">16</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%7s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;+ MALE SCORE&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">is_male_log_likelihood</span><span class="p">,</span><span class="mi">3</span><span class="p">))))</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="c1"># find the winner aka the probable gender of the speaker</span>
+<span class="linenos">19</span>    <span class="k">if</span> <span class="n">is_male_log_likelihood</span> <span class="o">&gt;</span> <span class="n">is_female_log_likelihood</span><span class="p">:</span> <span class="n">winner</span> <span class="o">=</span> <span class="s2">&quot;male&quot;</span>
+<span class="linenos">20</span>    <span class="k">else</span>                                                <span class="p">:</span> <span class="n">winner</span> <span class="o">=</span> <span class="s2">&quot;female&quot;</span>
+<span class="linenos">21</span>    <span class="k">return</span> <span class="n">winner</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="c1"># init instances and load models</span>
+<span class="linenos">25</span><span class="n">features_extractor</span>  <span class="o">=</span> <span class="n">FeaturesExtractor</span><span class="p">()</span>
+<span class="linenos">26</span><span class="n">females_gmm</span>         <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">females_model_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="linenos">27</span><span class="n">males_gmm</span>           <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">males_model_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="c1"># read the test directory and get the list of test audio files</span>
+<span class="linenos">30</span><span class="n">file</span>   <span class="o">=</span> <span class="s2">&quot;speaker-test-file.wav&quot;</span>
+<span class="linenos">31</span><span class="n">vector</span> <span class="o">=</span> <span class="n">features_extractor</span><span class="o">.</span><span class="n">extract_features</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="linenos">32</span><span class="n">winner</span> <span class="o">=</span> <span class="n">identify_gender</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="linenos">33</span><span class="n">expected_gender</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%6s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">&quot;</span> <span class="o">%</span>  <span class="p">(</span><span class="s2">&quot;+ EXPECTATION&quot;</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">expected_gender</span><span class="p">))</span>
+<span class="linenos">36</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10s</span><span class="s2"> </span><span class="si">%3s</span><span class="s2"> </span><span class="si">%1s</span><span class="s2">&quot;</span> <span class="o">%</span>  <span class="p">(</span><span class="s2">&quot;+ IDENTIFICATION&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">winner</span><span class="p">))</span>
 </pre></div>
-</td></tr></table></div>
 </div>
 </div>
-<div class="section" id="code-scripts">
+</section>
+<section id="code-scripts">
 <h2>Code &amp; scripts<a class="headerlink" href="#code-scripts" title="Permalink to this headline">¶</a></h2>
 <p>Obviously the code provided on GitHub is more structured and advanced than what provided here since it is used to process multiple files,and to compute the accuracy level</p>
-</div>
-<div class="section" id="results-summary">
+</section>
+<section id="results-summary">
 <h2>Results summary<a class="headerlink" href="#results-summary" title="Permalink to this headline">¶</a></h2>
 <p>The results of the gender recognition tests can be summarized in the following table/ confusion matrix:</p>
 <div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 33%"/>
-<col style="width: 35%"/>
-<col style="width: 31%"/>
+<col style="width: 33%" />
+<col style="width: 35%" />
+<col style="width: 31%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td></td>
@@ -478,9 +381,9 @@ The computation of the scores is done as follows <a class="footnote-reference br
 </tbody>
 </table>
 <div class="clt">
-<center><a href="../tables/table2.html">Table 2: Gender recognition results summary (confusion matrix) </a> </center>
+<center><a href="../tables/table2.html" >Table 2: Gender recognition results summary (confusion matrix) </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>Using the previous results we can compute the following system characteristics:</p>
 <ul class="simple">
@@ -488,16 +391,16 @@ The computation of the scores is done as follows <a class="footnote-reference br
 <li><p>Precision for   male recognition = 376 / (376 + 21) = 0.94</p></li>
 <li><p>Accuracy  =  939 / 988 = 0.95</p></li>
 </ul>
-</div>
-<div class="section" id="conclusions">
+</section>
+<section id="conclusions">
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The system results in a <strong>95%</strong> accuracy of gender detection, but this can be different for other data-sets.</p></li>
 <li><p>The code can be further optimized using multi-threading, acceleration libs and multi-processing.</p></li>
 <li><p>The accuracy can be further improved using GMM normalization aka a UBM-GMM system.</p></li>
 </ul>
-</div>
-<div class="section" id="references-and-further-readings">
+</section>
+<section id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
@@ -519,42 +422,56 @@ The computation of the scores is done as follows <a class="footnote-reference br
 <dd><p>Machine Learning in Action: Voice Gender Detection using GMMs : A Python Primer, <a class="reference external" href="https://appliedmachinelearning.blog/2017/06/14/voice-gender-detection-using-gmms-a-python-primer/">https://appliedmachinelearning.blog/2017/06/14/voice-gender-detection-using-gmms-a-python-primer/</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
+
 <div class="section">
+    
+
 <div class="section">
-<span style="float: left">
+  <span style="float: left">
      Previous:
     
     <a href="AuthenticatedEncryption.html">
        Authenticated encryption
     </a>
-</span>
-<span> </span>
-<span style="float: right">
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
      Next: 
     <a href="diabetesML1.html">
       Diabetes detection using machine learning (part I) 
     </a>
-</span>
+    
+  </span>
 </div>
+  
 </div>
-</div>
-</div>
-<div class="clearer"></div>
-</div>
-<div class="footer">
-      ©2019-2021, Ayoub Malek.
+
+          </div>
+          
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019-2022, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
       | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
       | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
-</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
-<!-- Include cookiealert script -->
-<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
-<script src="_static/js/share-buttons.js"></script>
-</body>
+
+      
+    </div>
+
+    
+
+    
+    <!-- Include cookiealert script -->
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    <script src="_static/js/share-buttons.js"></script>
+  </body>
 </html>

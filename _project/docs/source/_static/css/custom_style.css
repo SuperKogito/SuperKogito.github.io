@@ -4,6 +4,7 @@
 	font-weight: 400;
 	src: url('../fonts/ubuntu/kit/ubuntu-regular-webfont.woff2') format('woff2'),url('../fonts/ubuntu/kit/ubuntu-regular-webfont.woff') format('woff');
 }
+
 html,html[theme=light] {
 	--box-background-color: hsl(0, 0%, 90%);
 	--highlight-color: hsl(0, 0%, 80%);

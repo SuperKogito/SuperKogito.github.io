@@ -13,6 +13,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+# Workaround for issue https://github.com/sphinx-contrib/googleanalytics/issues/2
+# Note that a warning still will be issued "unsupported object from its setup() function"
+# Remove this workaround when the issue has been resolved upstream
+import sphinx.application
+import sphinx.errors
+sphinx.application.ExtensionError = sphinx.errors.ExtensionError
+
 import os
 import sys
 import datetime
@@ -38,7 +45,7 @@ html_short_title = 'Ayoub Malek\'s Blog'
 # -- Project information -----------------------------------------------------
 now = datetime.datetime.now()
 project = 'Ayoub Malek'
-copyright =  str(now.year) + ', Ayoub Malek'
+copyright = str(now.year) + ', Ayoub Malek'
 author = 'SuperKogito'
 html_favicon = '_static/favicon.ico'
 # The short X.Y version

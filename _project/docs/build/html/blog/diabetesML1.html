@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/><meta content="applied machine learning to diabetics detection" name="description"/>
-<meta content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" name="keywords"/>
-<meta content="Ayoub Malek" name="author"/>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="applied machine learning to diabetics detection" name="description" />
+<meta content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" name="keywords" />
+<meta content="Ayoub Malek" name="author" />
 <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -16,23 +20,26 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-<title>Diabetes detection using machine learning (part I) — Ayoub Malek's blog</title>
-<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
-<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
-<script src="../_static/jquery.js" type="text/javascript"></script>
-<script src="../_static/underscore.js" type="text/javascript"></script>
-<script src="../_static/doctools.js" type="text/javascript"></script>
-<script src="../_static/language_data.js" type="text/javascript"></script>
-<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<link href="../_static/favicon.ico" rel="shortcut icon"/>
-<link href="../about.html" rel="author" title="About these documents"/>
-<link href="../genindex.html" rel="index" title="Index"/>
-<link href="../search.html" rel="search" title="Search"/>
-<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
-<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
+    <title>Diabetes detection using machine learning (part I) &#8212; Ayoub Malek&#39;s blog</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_style.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -57,73 +64,49 @@
     list-style-type: circle;
   }
 </style>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
-<div class="document">
-<div class="documentwrapper">
-<div class="body" role="main">
-<!-- START Bootstrap-Cookie-Alert -->
-<div class="alert text-center cookiealert" role="alert">
-<div class="cookiesContainer">
-<b>
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            <!-- START Bootstrap-Cookie-Alert -->
+            <div class="alert text-center cookiealert" role="alert">
+                <div class="cookiesContainer">
+                  <b>
                     We use cookies and other technologies to perform analytics and deliver a better user experience.
                     By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
                     See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
                     You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
                 </b>
-<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                <button type="button" class="btn btn-primary btn-sm acceptcookies">
                     I agree
                 </button>
-</div>
-</div>
-<!-- END Bootstrap-Cookie-Alert -->
-<div class="section" id="diabetes-detection-using-machine-learning-part-i">
-<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
-<table class="menu-table" id="menuTable" style="border:hidden;">
-<tr>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
-<th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-<th>
-</th><th>
-</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
-<th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
-<th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
-<th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-<th>
-</th><th>
-</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
-<th class="menu-label"><a href="../about.html" title="About">About</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
-<th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</tr>
-</table>
-</div>
-</body></html>
+              </div>
+            </div>
+            <!-- END Bootstrap-Cookie-Alert -->
+
+             <section id="diabetes-detection-using-machine-learning-part-i">
+<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">¶</a></h1>
 <div class="blog-post-tags">
-<ul class="blog-posts-details">
-<li id="Date"><span>Date:</span>                 30 June 2019 </li>
-<li id="author"><span>Author:</span> <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
-<li id="location"><span>Location:</span> <a href="location/munich.html">Munich</a>
-</li> <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
-</li> <li id="category"><span>Category:</span> <a href="category/machine-learning.html"> Machine learning</a>
-</li>
-<li id="tags"><span>Tags:
+  <ul class="blog-posts-details">
+  <li id="Date"><span>Date:</span>                 30 June 2019 </li>
+  <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+  <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+  </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+  </li>  <li id="category"><span>Category:</span> <a href="category/machine-learning.html"> Machine learning</a>
+  </li>
+  <li id="tags"><span>Tags:
         </span>
-<a class="post-tags" href="tag/data-processing.html">Data processing</a>
-<a class="post-tags" href="tag/visualization.html">Visualization</a>
-<a class="post-tags" href="tag/python.html">Python</a>
-</li>
-</ul>
-</div><hr class="docutils"/>
+        <a class="post-tags" href="tag/data-processing.html">Data processing</a>
+        <a class="post-tags" href="tag/visualization.html">Visualization</a>
+        <a class="post-tags" href="tag/python.html">Python</a>
+  </li>
+  </ul>
+</div><hr class="docutils" />
 <p>Diabetes is one of the most serious health challenges today.
 The publicly available Pima Indian diabetic database (<a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIDD</a>) have become a popular approach for testing the efficiency of machine learning algorithms <a class="footnote-reference brackets" href="#id6" id="id1">1</a>.
 Within this context, this blog post is part of 2 posts providing an in depth introduction to diabetes detection using various machine learning approaches.
@@ -131,17 +114,19 @@ In this first post in particular, we focus on exploring the data at hand and pre
 <ul>
 <li>The dataset can be Downloaded from   <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-database"></i>here</a>. </li>
 <li> The code related to this blog can be found under <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i> Diabetes detection</a>. </li>
+
+
 <table align="center" style="width:100%">
-<tr>
-<th> <a aria-label="Watch SuperKogito/Diabetes-detection-using-machine-learning on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/subscription">Watch</a> </th>
-<th> <a aria-label="Star SuperKogito/Diabetes-detection-using-machine-learning on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning">Star</a></th>
-<th> <a aria-label="Fork SuperKogito/Diabetes-detection-using-machine-learning on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/fork">Fork</a> </th>
-<th> <a aria-label="Download SuperKogito/Diabetes-detection-using-machine-learning on GitHub" class="github-button" data-size="large" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/archive/master.zip">Download</a></th>
-<th> <a aria-label="Follow @SuperKogito on GitHub" class="github-button" data-show-count="true" data-size="large" href="https://github.com/SuperKogito">Follow @SuperKogito</a> </th>
-</tr>
+  <tr>
+      <th> <a class="github-button" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/subscription" data-size="large" data-show-count="true" aria-label="Watch SuperKogito/Diabetes-detection-using-machine-learning on GitHub">Watch</a> </th>
+      <th> <a class="github-button" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" data-size="large" data-show-count="true" aria-label="Star SuperKogito/Diabetes-detection-using-machine-learning on GitHub">Star</a></th>
+      <th> <a class="github-button" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/fork" data-size="large" data-show-count="true" aria-label="Fork SuperKogito/Diabetes-detection-using-machine-learning on GitHub">Fork</a> </th>
+      <th> <a class="github-button" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/archive/master.zip" data-size="large" aria-label="Download SuperKogito/Diabetes-detection-using-machine-learning on GitHub">Download</a></th>
+      <th> <a class="github-button" href="https://github.com/SuperKogito" data-size="large" data-show-count="true" aria-label="Follow @SuperKogito on GitHub">Follow @SuperKogito</a> </th>
+  </tr>
 </table>
-<script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
-</ul><div class="section" id="the-pima-indian-diabetic-database">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</ul><section id="the-pima-indian-diabetic-database">
 <h2>The Pima Indian diabetic database<a class="headerlink" href="#the-pima-indian-diabetic-database" title="Permalink to this headline">¶</a></h2>
 <p>The Pima Indian diabetes database (<a class="reference external" href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Download_link</a>), donated from the <a class="reference external" href="https://www.niddk.nih.gov/">National_Institute_of_Diabetes_and_Digestive_and_Kidney_Diseases</a>, is a collection of medical diagnostic reports including information (9  numeric variables)
 on 768 female patients (with ages between 21 and 81) of <a class="reference external" href="https://en.wikipedia.org/wiki/Pima_people">Pima</a> Indian heritage (a native American population living near Phoenix, Arizona, USA) <a class="footnote-reference brackets" href="#id7" id="id2">2</a>.
@@ -157,33 +142,25 @@ The database includes the following information <a class="footnote-reference bra
 <li><p>Age: Female age (<span class="math notranslate nohighlight">\(years\)</span>)</p></li>
 <li><p>Outcome: Diabetes onset within 5 years (0 = No diabetes: green, 1 = diabetic: red).</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">The</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">the</span> <span class="n">diabetic</span> <span class="n">diagnosis</span> <span class="p">(</span><span class="c1">#9) using the available 8 features (#1-#8).</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">The</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">the</span> <span class="n">diabetic</span> <span class="n">diagnosis</span> <span class="p">(</span><span class="c1">#9) using the available 8 features (#1-#8).</span>
 </pre></div>
 </div>
-<div class="section" id="data-exploration">
+<section id="data-exploration">
 <h3>Data exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">¶</a></h3>
 <p>First, we start by loading our data and using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html">pandas.DataFrame.describe</a> to get a nice description of the data at hand.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-i">
 <div class="code-block-caption"><span class="caption-text">Code snippet I</span><a class="headerlink" href="#code-snippet-i" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># define column names</span>
-<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Pregnancies"</span><span class="p">,</span>                <span class="s2">"Glucose"</span><span class="p">,</span> <span class="s2">"Blood_pressure"</span><span class="p">,</span>
-               <span class="s2">"Skin_thickness"</span><span class="p">,</span>             <span class="s2">"Insulin"</span><span class="p">,</span> <span class="s2">"Bmi"</span><span class="p">,</span>
-               <span class="s2">"Diabetes_Pedigree_Function"</span><span class="p">,</span> <span class="s2">"Age"</span><span class="p">,</span>     <span class="s2">"Outcome"</span><span class="p">]</span>
-<span class="c1"># load data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'diabetes.csv'</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># define column names</span>
+<span class="linenos">4</span><span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Pregnancies&quot;</span><span class="p">,</span>                <span class="s2">&quot;Glucose&quot;</span><span class="p">,</span> <span class="s2">&quot;Blood_pressure&quot;</span><span class="p">,</span>
+<span class="linenos">5</span>               <span class="s2">&quot;Skin_thickness&quot;</span><span class="p">,</span>             <span class="s2">&quot;Insulin&quot;</span><span class="p">,</span> <span class="s2">&quot;Bmi&quot;</span><span class="p">,</span>
+<span class="linenos">6</span>               <span class="s2">&quot;Diabetes_Pedigree_Function&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span>     <span class="s2">&quot;Outcome&quot;</span><span class="p">]</span>
+<span class="linenos">7</span><span class="c1"># load data</span>
+<span class="linenos">8</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;diabetes.csv&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
+<span class="linenos">9</span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="output-i">
 <div class="code-block-caption"><span class="caption-text">Output I</span><a class="headerlink" href="#output-i" title="Permalink to this code">¶</a></div>
@@ -209,8 +186,8 @@ The database includes the following information <a class="footnote-reference bra
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="improving-data-quality">
+</section>
+<section id="improving-data-quality">
 <h3>Improving data quality<a class="headerlink" href="#improving-data-quality" title="Permalink to this headline">¶</a></h3>
 <p>From the previous output help we can deduce that there are no missing values (all columns include 768 value).
 However,  we notice some unrealistic values (it seems that someone replaced missing  values with zeros ) in the data <a class="footnote-reference brackets" href="#id6" id="id5">1</a>.
@@ -227,41 +204,25 @@ For example: a Bmi = 0 means that the person either has an infinite height or a 
 The previous pre-processing is done using the following code:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-ii">
 <div class="code-block-caption"><span class="caption-text">Code snippet II</span><a class="headerlink" href="#code-snippet-ii" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="k">def</span> <span class="nf">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-    <span class="sd">'''</span>
-<span class="sd">    Delete certain dataframe rows based on the value of a certain column element</span>
-<span class="sd">    '''</span>
-    <span class="c1"># Get names of indexes for which column Age has value 30</span>
-    <span class="n">indices</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span> <span class="n">data</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span> <span class="p">]</span><span class="o">.</span><span class="n">index</span>
-
-    <span class="c1"># Delete these row indexes from dataFrame</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">indices</span> <span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># drop erroneous rows</span>
-<span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Glucose'</span><span class="p">,</span> <span class="s1">'Blood_pressure'</span><span class="p">,</span> <span class="s1">'Skin_thickness'</span><span class="p">,</span> <span class="s1">'Insulin'</span><span class="p">,</span> <span class="s1">'Bmi'</span><span class="p">]:</span>
-    <span class="n">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cname</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="linenos"> 5</span><span class="sd">    Delete certain dataframe rows based on the value of a certain column element</span>
+<span class="linenos"> 6</span><span class="sd">    &#39;&#39;&#39;</span>
+<span class="linenos"> 7</span>    <span class="c1"># Get names of indexes for which column Age has value 30</span>
+<span class="linenos"> 8</span>    <span class="n">indices</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span> <span class="n">data</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span> <span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="c1"># Delete these row indexes from dataFrame</span>
+<span class="linenos">11</span>    <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">indices</span> <span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="c1"># drop erroneous rows</span>
+<span class="linenos">14</span><span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="s1">&#39;Blood_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;Skin_thickness&#39;</span><span class="p">,</span> <span class="s1">&#39;Insulin&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmi&#39;</span><span class="p">]:</span>
+<span class="linenos">15</span>    <span class="n">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cname</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="output-ii">
 <div class="code-block-caption"><span class="caption-text">Output II</span><a class="headerlink" href="#output-ii" title="Permalink to this code">¶</a></div>
@@ -298,156 +259,129 @@ This might result in better detection for the 0 outcome. To keep things balanced
 In code this looks like the following:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iii">
 <div class="code-block-caption"><span class="caption-text">Code snippet III</span><a class="headerlink" href="#code-snippet-iii" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># plot raw data</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
-                    <span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.35</span><span class="p">,</span> <span class="n">hspace</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Raw correct data'</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># remove outliers and plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Data without outliers'</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">'Insulin'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'Insulin'</span><span class="p">]</span> <span class="o">*</span> <span class="mf">.001</span>
-<span class="n">data</span>            <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># scale data and plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Scaled Data'</span><span class="p">)</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">data</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>  <span class="n">columns</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># equilize data and plot results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Equilized Data'</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">equalize_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># plot raw data</span>
+<span class="linenos"> 2</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="linenos"> 3</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
+<span class="linenos"> 4</span>                    <span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.35</span><span class="p">,</span> <span class="n">hspace</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Raw correct data&#39;</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1"># remove outliers and plot results</span>
+<span class="linenos">10</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">11</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Data without outliers&#39;</span><span class="p">)</span>
+<span class="linenos">12</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Insulin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Insulin&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">.001</span>
+<span class="linenos">13</span><span class="n">data</span>            <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+<span class="linenos">14</span><span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1"># scale data and plot results</span>
+<span class="linenos">17</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos">18</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scaled Data&#39;</span><span class="p">)</span>
+<span class="linenos">19</span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">20</span><span class="n">data</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>  <span class="n">columns</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">)</span>
+<span class="linenos">21</span><span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1"># equilize data and plot results</span>
+<span class="linenos">24</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Equilized Data&#39;</span><span class="p">)</span>
+<span class="linenos">26</span><span class="n">data</span> <span class="o">=</span> <span class="n">equalize_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">27</span><span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">column_names</span><span class="p">,</span> <span class="n">patch_artist</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos">28</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 </div>
 <p>The effects of the aforementioned transformations can be seen in the following box-plots (<a class="reference external" href="https://en.wikipedia.org/wiki/Box_plot">Box_plot</a>):</p>
-<a class="reference internal image-reference" href="../_images/data_manipulations.png"><img alt="../_images/data_manipulations.png" class="align-center" src="../_images/data_manipulations.png" style="width: 1440.0px; height: 864.0px;"/></a>
+<a class="reference internal image-reference" href="../_images/data_manipulations.png"><img alt="../_images/data_manipulations.png" class="align-center" src="../_images/data_manipulations.png" style="width: 1440.0px; height: 864.0px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig7.html">Figure 7: Box-plots for data transformation </a> </center>
+<center><a href="../figures/fig7.html" >Figure 7: Box-plots for data transformation </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>We can also visualize the balance in the data using bar and pie plots as shown in the next figure.
 These manipulations though improved the data but it also limited the dataset. The new dataset only includes 115x2 = 230 samples.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iv">
 <div class="code-block-caption"><span class="caption-text">Code snippet IV</span><a class="headerlink" href="#code-snippet-iv" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_overview</span><span class="p">(</span> <span class="n">data</span><span class="p">):</span>
-    <span class="sd">'''</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Plot Equalized samples overview</span>
-<span class="sd">    '''</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
     <span class="n">outcome</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">Outcome</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Samples count and percentage based on outcome"</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mf">18.</span><span class="p">)</span>
-    <span class="n">outcome</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'g'</span><span class="p">))</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Outcome = 0"</span><span class="p">,</span> <span class="s2">"Outcome = 1"</span><span class="p">])</span>
-    <span class="n">outcome</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"Outcome = 0"</span><span class="p">,</span> <span class="s2">"Outcome = 1"</span><span class="p">),</span>
-                    <span class="n">autopct</span> <span class="o">=</span> <span class="s2">"</span><span class="si">%.2f%%</span><span class="s2">"</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mf">13.</span><span class="p">,</span>
-                    <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'g'</span><span class="p">),</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"linewidth"</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">"edgecolor"</span><span class="p">:</span> <span class="s2">"#F7F7F7"</span><span class="p">})</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">texts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">"w"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">texts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">"w"</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Samples count and percentage based on outcome&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mf">18.</span><span class="p">)</span>
+    <span class="n">outcome</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Outcome = 0&quot;</span><span class="p">,</span> <span class="s2">&quot;Outcome = 1&quot;</span><span class="p">])</span>
+    <span class="n">outcome</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Outcome = 0&quot;</span><span class="p">,</span> <span class="s2">&quot;Outcome = 1&quot;</span><span class="p">),</span>
+                    <span class="n">autopct</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%.2f%%</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mf">13.</span><span class="p">,</span>
+                    <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">),</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;linewidth&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;edgecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;#F7F7F7&quot;</span><span class="p">})</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">texts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">texts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
 
 
 <span class="n">plot_overview</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<a class="reference internal image-reference" href="../_images/samples_overview.png"><img alt="../_images/samples_overview.png" class="align-center" src="../_images/samples_overview.png" style="width: 576.0px; height: 576.0px;"/></a>
+<a class="reference internal image-reference" href="../_images/samples_overview.png"><img alt="../_images/samples_overview.png" class="align-center" src="../_images/samples_overview.png" style="width: 576.0px; height: 576.0px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig8.html">Figure 8: Data overview </a> </center>
+<center><a href="../figures/fig8.html" >Figure 8: Data overview </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>The previously discussed transformations are used to remove possible bias in the data and improve its quality.
 However, if used improperly, it may deteriorate the detection quality. the question of which transformations to apply is dependent on the data nature, and the features correlation and distribution.</p>
-</div>
-<div class="section" id="features-overview">
+</section>
+<section id="features-overview">
 <h3>Features overview<a class="headerlink" href="#features-overview" title="Permalink to this headline">¶</a></h3>
 <p>Now that we cleaned the data, let us examine the available features closely. For that, we look at the bars and densities charts generated using DfPlotter.py (Github link to come later).
 This should help build some intuitions and observations related to the features interactions.</p>
-<a class="reference internal image-reference" href="../_images/bars.png"><img alt="../_images/bars.png" class="align-center" src="../_images/bars.png" style="width: 576.0px; height: 691.2px;"/></a>
+<a class="reference internal image-reference" href="../_images/bars.png"><img alt="../_images/bars.png" class="align-center" src="../_images/bars.png" style="width: 576.0px; height: 691.2px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig9.html">Figure 9: Bar-plots for the different features </a> </center>
-</div><a class="reference internal image-reference" href="../_images/densities.png"><img alt="../_images/densities.png" class="align-center" src="../_images/densities.png" style="width: 1152.0px; height: 864.0px;"/></a>
+<center><a href="../figures/fig9.html" >Figure 9: Bar-plots for the different features </a> </center>
+</div><a class="reference internal image-reference" href="../_images/densities.png"><img alt="../_images/densities.png" class="align-center" src="../_images/densities.png" style="width: 1152.0px; height: 864.0px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig10.html">Figure 10: Densities of the different features </a> </center>
+<center><a href="../figures/fig10.html" >Figure 10: Densities of the different features </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>From these plots alone, we can already confirm some known facts such as:</p>
 <ul class="simple">
 <li><p>With age the chances of having diabetes are higher.</p></li>
 <li><p>With low responsiveness to insulin, the chances of diabetes are high.</p></li>
 </ul>
-</div>
-<div class="section" id="correlation-and-features-selection">
+</section>
+<section id="correlation-and-features-selection">
 <h3>Correlation and features selection<a class="headerlink" href="#correlation-and-features-selection" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Correlation_and_dependence">Correlation</a> is a numerical coefficient representing the dependence between two features.
 It is a very useful metric, that helps rank the available features importance.
 In many systems, not all the features are relevant or at least some are redundant and leaving them out is a better option for speed or even accuracy reasons.
 Think of it as a similarity metric: if two features are highly correlated so they embody the same information and consequently you can drop one of them.
 Using the DfPlotter.py (Github link to come later) script, we compute &amp; visualize the correlations matrix and the the pai-plots related to the data.</p>
-<a class="reference internal image-reference" href="../_images/corr.png"><img alt="../_images/corr.png" class="align-center" src="../_images/corr.png" style="width: 828.0px; height: 828.0px;"/></a>
+<a class="reference internal image-reference" href="../_images/corr.png"><img alt="../_images/corr.png" class="align-center" src="../_images/corr.png" style="width: 828.0px; height: 828.0px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig11.html">Figure 11: Correlation matrix </a> </center>
+<center><a href="../figures/fig11.html" >Figure 11: Correlation matrix </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>When it comes to correlation coefficients:  bigger coefficient mean more dependence between the features.
 The correlation’s matrix is a symmetric matrix with a diagonal of ones, since a feature/variable is totally correlated with itself.
 In our example, we can conclude from the last row that the outcome is mostly dependent on the following features in order: Glucose (0.52), Insulin (0.38),  Age (0.38) and Bmi (0.28).
 However, if we are settling only for 3 features; choosing the first 3 might not be the best option since Glucose and Insulin are highly correlated (0.59).
 Therefore, a better choice would be to take:  Glucose (0.52), Age (0.38) and Bmi (0.28). This will be further discussed in [insert knn post name].</p>
-<a class="reference internal image-reference" href="../_images/pairplot.png"><img alt="../_images/pairplot.png" class="align-center" src="../_images/pairplot.png" style="width: 838.5px; height: 803.0px;"/></a>
+<a class="reference internal image-reference" href="../_images/pairplot.png"><img alt="../_images/pairplot.png" class="align-center" src="../_images/pairplot.png" style="width: 838.5px; height: 803.0px;" /></a>
 <div class="clt">
-<center><a href="../figures/fig12.html">Figure 12: Distributions scatter-plots </a> </center>
+<center><a href="../figures/fig12.html" >Figure 12: Distributions scatter-plots </a> </center>
 </div><div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
 <p>The pair plots confirm the previous results, since the only curves with some separation between data points are in the Glucose row, in particular the ones on the columns of the Skin_thickness and the Bmi.</p>
-</div>
-</div>
-<div class="section" id="conclusion">
+</section>
+</section>
+<section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>This 1st plot from a series of 3 provided an elaborate explanation of data manipulation techniques, their use and reasons to use them.
 From the raw dataset we retrieve a balanced, scaled and correct number of samples, that we later explored the mechanics regulating its features.
 We will explore all these results to build a robust detection system in the next post.</p>
-</div>
-<div class="section" id="references-and-further-readings">
+</section>
+<section id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id6"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id5">2</a>)</span></dt>
@@ -466,42 +400,56 @@ We will explore all these results to build a robust detection system in the next
 <dd><p>Kaggle kernals, Pima Indians Diabetes Database: Predict the onset of diabetes based on diagnostic measures, <a class="reference external" href="https://www.kaggle.com/uciml/pima-indians-diabetes-database/kernels">https://www.kaggle.com/uciml/pima-indians-diabetes-database/kernels</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
+
 <div class="section">
+    
+
 <div class="section">
-<span style="float: left">
+  <span style="float: left">
      Previous:
     
     <a href="VoiceBasedGenderRecognition.html">
        Voice based gender recognition using Gaussian mixture models
     </a>
-</span>
-<span> </span>
-<span style="float: right">
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
      Next: 
     <a href="diabetesML2.html">
       Diabetes detection using machine learning (part II) 
     </a>
-</span>
+    
+  </span>
 </div>
+  
 </div>
-</div>
-</div>
-<div class="clearer"></div>
-</div>
-<div class="footer">
-      ©2019-2021, Ayoub Malek.
+
+          </div>
+          
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019-2022, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
       | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
       | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
-</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
-<!-- Include cookiealert script -->
-<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
-<script src="_static/js/share-buttons.js"></script>
-</body>
+
+      
+    </div>
+
+    
+
+    
+    <!-- Include cookiealert script -->
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    <script src="_static/js/share-buttons.js"></script>
+  </body>
 </html>

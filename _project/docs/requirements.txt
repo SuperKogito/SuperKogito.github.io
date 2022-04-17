@@ -1,0 +1,12 @@
+beautifulsoup4
+ablog
+sphinxcontrib.napoleon
+sphinxjp.themes.sphinxjp
+sphinxjp.themes.basicstrap
+sphinxcontrib.googleanalytics
+sphinxcontrib.bibtex
+sphinxcontrib.spelling
+sphinx_sitemap
+sphinxcontrib.pdfembed
+git+https://github.com/SuperKogito/sphinxcontrib-pdfembed
+sphinxcontrib-bibtex==1.0.0 

@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/><meta content="Audio signal FFmpeg piping + pass it a Python variable" name="description"/>
-<meta content="ffmpeg, pipe, python, audio, Ayoub Malek" name="keywords"/>
-<meta content="Ayoub Malek" name="author"/>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="Audio signal FFmpeg piping + pass it a Python variable" name="description" />
+<meta content="ffmpeg, pipe, python, audio, Ayoub Malek" name="keywords" />
+<meta content="Ayoub Malek" name="author" />
 <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -16,23 +20,25 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-<title>How to pipe an FFmpeg output and pass it to a Python variable? — Ayoub Malek's blog</title>
-<link href="../_static/alabaster.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<link href="../_static/css/custom_style.css" rel="stylesheet" type="text/css"/>
-<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js" type="text/javascript"></script>
-<script src="../_static/jquery.js" type="text/javascript"></script>
-<script src="../_static/underscore.js" type="text/javascript"></script>
-<script src="../_static/doctools.js" type="text/javascript"></script>
-<script src="../_static/language_data.js" type="text/javascript"></script>
-<script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<link href="../_static/favicon.ico" rel="shortcut icon"/>
-<link href="../about.html" rel="author" title="About these documents"/>
-<link href="../genindex.html" rel="index" title="Index"/>
-<link href="../search.html" rel="search" title="Search"/>
-<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
-<meta content="width=device-width, initial-scale=0.9, maximum-scale=0.9" name="viewport"/>
+    <title>How to pipe an FFmpeg output and pass it to a Python variable? &#8212; Ayoub Malek&#39;s blog</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_style.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -57,73 +63,49 @@
     list-style-type: circle;
   }
 </style>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/></head><body>
-<div class="document">
-<div class="documentwrapper">
-<div class="body" role="main">
-<!-- START Bootstrap-Cookie-Alert -->
-<div class="alert text-center cookiealert" role="alert">
-<div class="cookiesContainer">
-<b>
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            <!-- START Bootstrap-Cookie-Alert -->
+            <div class="alert text-center cookiealert" role="alert">
+                <div class="cookiesContainer">
+                  <b>
                     We use cookies and other technologies to perform analytics and deliver a better user experience.
                     By clicking “I agree” below, you consent to the use by us and our third-party partners of cookies and data gathered from your use of this website.
                     See our <a href="https://cookiesandyou.com/" target="_blank">Privacy Policy</a> and <a href="https://cookiesandyou.com/" target="_blank">Third Party Partners</a> to learn more about the use of data and your rights.
                     You also agree to our <a href="https://cookiesandyou.com/" target="_blank">Terms of Service</a>.
                 </b>
-<button class="btn btn-primary btn-sm acceptcookies" type="button">
+                <button type="button" class="btn btn-primary btn-sm acceptcookies">
                     I agree
                 </button>
-</div>
-</div>
-<!-- END Bootstrap-Cookie-Alert -->
-<div class="section" id="how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable">
-<h1>How to pipe an FFmpeg output and pass it to a Python variable?<a class="headerlink" href="#how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable" title="Permalink to this headline">¶</a></h1><html><body><div class="sub-title-menu">
-<table class="menu-table" id="menuTable" style="border:hidden;">
-<tr>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../index.html" title="Home"><i class="fa fa-home"></i></a> </th>
-<th class="menu-label"> <a href="../index.html" title="Home">Home</a> </th>
-<th>
-</th><th>
-</th><th class="icon"><a href="../posts.html" title="Posts"><i class="fa fa-bars"></i></a></th>
-<th class="menu-label"><a href="../posts.html" title="Posts">Posts</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../publications.html" title="pubs"><i class="fa fa-file-text"></i></a></th>
-<th class="menu-label"> <a href="../publications.html" title="pubs">Publications</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="../projects.html" title="projects"><i class="fa fa-code"></i></a></th>
-<th class="menu-label"> <a href="../projects.html" title="projects">Projects</a></th>
-<th>
-</th><th>
-</th><th class="icon"><a href="../about.html" title="About"><i class="fa fa-user-circle"></i></a></th>
-<th class="menu-label"><a href="../about.html" title="About">About</a></th>
-<th>
-</th><th>
-</th><th class="icon"> <a href="#" onclick="modeSwitcher()"><i class="fa fa-adjust"></i></a></th>
-<th class="menu-label"> <a href="#" onclick="modeSwitcher()"><text id="theme-toggle">DARK MODE</text></a></th>
-</tr>
-</table>
-</div>
-</body></html>
+              </div>
+            </div>
+            <!-- END Bootstrap-Cookie-Alert -->
+
+             <section id="how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable">
+<h1>How to pipe an FFmpeg output and pass it to a Python variable?<a class="headerlink" href="#how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable" title="Permalink to this headline">¶</a></h1>
 <div class="blog-post-tags">
-<ul class="blog-posts-details">
-<li id="Date"><span>Date:</span>                 19 Mars 2020 </li>
-<li id="author"><span>Author:</span> <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
-<li id="location"><span>Location:</span> <a href="location/munich.html">Munich</a>
-</li> <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
-</li> <li id="category"><span>Category:</span> <a href="category/signal-processing.html"> Signal processing</a>
-</li>
-<li id="tags"><span>Tags:
+  <ul class="blog-posts-details">
+  <li id="Date"><span>Date:</span>                 19 Mars 2020 </li>
+  <li id="author"><span>Author:</span>            <a href="author/ayoub-malek.html">Ayoub Malek</a> </li>
+  <li id="location"><span>Location:</span>        <a href="location/munich.html">Munich</a>
+  </li>  <li id="language"><span>Language:</span> <a href="language/english.html">English</a>
+  </li>  <li id="category"><span>Category:</span> <a href="category/signal-processing.html"> Signal processing</a>
+  </li>
+  <li id="tags"><span>Tags:
         </span>
-<a class="post-tags" href="tag/audio.html">Audio</a>
-<a class="post-tags" href="tag/ffmpeg.html">Ffmpeg</a>
-<a class="post-tags" href="tag/python.html">Python</a>
-</li>
-</ul>
-</div><hr class="docutils"/>
+        <a class="post-tags" href="tag/audio.html">Audio</a>
+        <a class="post-tags" href="tag/ffmpeg.html">Ffmpeg</a>
+        <a class="post-tags" href="tag/python.html">Python</a>
+  </li>
+  </ul>
+</div><hr class="docutils" />
 <p>When writing code, the key optimization points are speed and efficiency.
 I often face this dilemma when using FFmpeg with Python.
 For example: when I need to convert an mp3 to a wave file and then do some processing to it in Python.
@@ -133,7 +115,7 @@ In this blog post, I will present an improved solution to this inconvenience by 
 <div class="line-block">
 <div class="line"><strong>* keywords:  *</strong> FFmpeg pipe output</div>
 </div>
-<div class="section" id="piping-the-ffmpeg-output">
+<section id="piping-the-ffmpeg-output">
 <h2>Piping the FFmpeg output<a class="headerlink" href="#piping-the-ffmpeg-output" title="Permalink to this headline">¶</a></h2>
 <p>Assuming a simple task of converting an mp3 file to a wave using FFmpeg, which can be done using the following shell command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ffmpeg -i mp3_path -o wav_path
@@ -146,153 +128,146 @@ This can be done using the following shell command:</p>
 </pre></div>
 </div>
 <p>At this point, executing this command results in a binary mess printed in your terminal, but we will make sense of the output in a second.</p>
-</div>
-<div class="section" id="reading-the-ffmpeg-output-in-python-as-a-numpy-variable">
+</section>
+<section id="reading-the-ffmpeg-output-in-python-as-a-numpy-variable">
 <h2>Reading the FFmpeg output in Python as a numpy variable?<a class="headerlink" href="#reading-the-ffmpeg-output-in-python-as-a-numpy-variable" title="Permalink to this headline">¶</a></h2>
 <p>FFmpeg shell commands can be executed in python with the help of the subprocess package and the resulting output can read from the subprocess pipe.
 The following code snippet shows how is this done.</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">subprocess</span>
- <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
- <span class="c1"># init command</span>
- <span class="n">ffmpeg_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ffmpeg"</span><span class="p">,</span> <span class="s2">"-i"</span><span class="p">,</span> <span class="n">mp3_path</span><span class="p">,</span>
-                   <span class="s2">"-ab"</span><span class="p">,</span> <span class="s2">"128k"</span><span class="p">,</span> <span class="s2">"-acodec"</span><span class="p">,</span> <span class="s2">"pcm_s16le"</span><span class="p">,</span> <span class="s2">"-ac"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"-ar"</span><span class="p">,</span> <span class="n">target_fs</span><span class="p">,</span> <span class="s2">"-map"</span><span class="p">,</span>
-                   <span class="s2">"0:a"</span><span class="p">,</span> <span class="s2">"-map_metadata"</span><span class="p">,</span> <span class="s2">"-1"</span><span class="p">,</span> <span class="s2">"-sn"</span><span class="p">,</span> <span class="s2">"-vn"</span><span class="p">,</span> <span class="s2">"-y"</span><span class="p">,</span>
-                   <span class="s2">"-f"</span><span class="p">,</span> <span class="s2">"wav"</span><span class="p">,</span> <span class="s2">"pipe:1"</span><span class="p">]</span>
-
- <span class="c1"># excute ffmpeg command</span>
- <span class="n">pipe</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ffmpeg_command</span><span class="p">,</span>
-                       <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
-                       <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
-                       <span class="n">bufsize</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">)</span>
-
- <span class="c1"># debug</span>
- <span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">pipe</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-
- <span class="c1"># read signal as numpy array and assign sampling rate</span>
- <span class="n">audio_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">buffer</span><span class="o">=</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">44</span><span class="p">)</span>
- <span class="n">sig</span><span class="p">,</span> <span class="n">fs</span>  <span class="o">=</span> <span class="n">audio_np</span><span class="p">,</span> <span class="n">target_fs</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="linenos"> 2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span> <span class="c1"># init command</span>
+<span class="linenos"> 5</span> <span class="n">ffmpeg_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ffmpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="n">mp3_path</span><span class="p">,</span>
+<span class="linenos"> 6</span>                   <span class="s2">&quot;-ab&quot;</span><span class="p">,</span> <span class="s2">&quot;128k&quot;</span><span class="p">,</span> <span class="s2">&quot;-acodec&quot;</span><span class="p">,</span> <span class="s2">&quot;pcm_s16le&quot;</span><span class="p">,</span> <span class="s2">&quot;-ac&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;-ar&quot;</span><span class="p">,</span> <span class="n">target_fs</span><span class="p">,</span> <span class="s2">&quot;-map&quot;</span><span class="p">,</span>
+<span class="linenos"> 7</span>                   <span class="s2">&quot;0:a&quot;</span><span class="p">,</span> <span class="s2">&quot;-map_metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span> <span class="s2">&quot;-sn&quot;</span><span class="p">,</span> <span class="s2">&quot;-vn&quot;</span><span class="p">,</span> <span class="s2">&quot;-y&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span>                   <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;wav&quot;</span><span class="p">,</span> <span class="s2">&quot;pipe:1&quot;</span><span class="p">]</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span> <span class="c1"># excute ffmpeg command</span>
+<span class="linenos">11</span> <span class="n">pipe</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ffmpeg_command</span><span class="p">,</span>
+<span class="linenos">12</span>                       <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+<span class="linenos">13</span>                       <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+<span class="linenos">14</span>                       <span class="n">bufsize</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span> <span class="c1"># debug</span>
+<span class="linenos">17</span> <span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">pipe</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span> <span class="c1"># read signal as numpy array and assign sampling rate</span>
+<span class="linenos">20</span> <span class="n">audio_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">buffer</span><span class="o">=</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">44</span><span class="p">)</span>
+<span class="linenos">21</span> <span class="n">sig</span><span class="p">,</span> <span class="n">fs</span>  <span class="o">=</span> <span class="n">audio_np</span><span class="p">,</span> <span class="n">target_fs</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>Note that the used FFmpeg command is slightly changed, to define the channel of choice and the encoding to use.
 For more on that you can refer either to <a class="bibtex reference internal" href="#zulko" id="id1">[zulkogithubio]</a> or <a class="bibtex reference internal" href="#ffmpeg" id="id2">[FFmpegDevelopers19]</a>.
 We also define a buffer size to receive the read data.
 The read data is essentially a wave file data including the header which must be ignored when passing the data to the
 numpy variable. In order to know how many bytes to ignore, we need to examine the following table <a class="bibtex reference internal" href="#digaud" id="id3">[topherleecom]</a> of the wave data:</p>
 <div class="line-block">
-<div class="line"><br/></div>
+<div class="line"><br /></div>
 </div>
-<table class="wav" summary="WAV File Header">
+<table summary="WAV File Header" class="wav">
 <tbody>
 <tr>
-<td width="10%">  Positions     </td>
-<td width="15%">  Sample Value  </td>
-<td width="75%">  Description   </td>
+ <td width="10%">  Positions     </td>
+ <td width="15%">  Sample Value  </td>
+ <td width="75%">  Description   </td>
+</tr>
+
+<tr>
+ <td>   1 - 4   </td>
+ <td>  "RIFF"   </td>
+ <td>  Marks the file as a riff file.  Characters are each 1 byte long. </td>
+</tr>
+
+<tr>
+ <td> 5 - 8 </td>
+ <td> File size (integer) </td>
+ <td> Size of the overall file - 8 bytes, in bytes (32-bit integer).  Typically, you'd fill this in after creation. </td>
+</tr>
+
+<tr>
+ <td>  9 - 12  </td>
+ <td> "WAVE"  </td>
+ <td> File Type Header.  For our purposes, it always equals "WAVE". </td>
+</tr>
+
+<tr>
+ <td> 13 - 16  </td>
+ <td> "fmt " </td>
+ <td> Format chunk marker.  Includes trailing null </td>
+</tr>
+
+<tr>
+ <td> 17 - 20 </td>
+ <td> 16    </td>
+ <td> Length of format data as listed above </td>
+</tr>
+
+<tr>
+ <td> 21 - 22 </td>
+ <td> 1     </td>
+ <td> Type of format (1 is PCM) - 2 byte integer </td>
 </tr>
 <tr>
-<td>   1 - 4   </td>
-<td>  "RIFF"   </td>
-<td>  Marks the file as a riff file.  Characters are each 1 byte long. </td>
+ <td>  23 - 24    </td>
+ <td>  2        </td>
+ <td>  Number of Channels - 2 byte integer </td>
 </tr>
+
 <tr>
-<td> 5 - 8 </td>
-<td> File size (integer) </td>
-<td> Size of the overall file - 8 bytes, in bytes (32-bit integer).  Typically, you'd fill this in after creation. </td>
+ <td>  25 - 28 </td>
+ <td>  44100 </td>
+ <td>  Sample Rate - 32 byte integer.  Common values are 44100 (CD), 48000 (DAT).  Sample Rate = Number of Samples per second, or Hertz. </td>
 </tr>
+
 <tr>
-<td>  9 - 12  </td>
-<td> "WAVE"  </td>
-<td> File Type Header.  For our purposes, it always equals "WAVE". </td>
+ <td>  29 - 32  </td>
+ <td>  176400 </td>
+ <td> (Sample Rate * BitsPerSample * Channels) / 8. </td>
 </tr>
+
 <tr>
-<td> 13 - 16  </td>
-<td> "fmt " </td>
-<td> Format chunk marker.  Includes trailing null </td>
+ <td>  33 - 34 </td>
+ <td>  4     </td>
+ <td> (BitsPerSample * Channels) / 8.1 - 8 bit mono2 - 8 bit stereo/16 bit mono4 - 16 bit stereo </td>
 </tr>
+
 <tr>
-<td> 17 - 20 </td>
-<td> 16    </td>
-<td> Length of format data as listed above </td>
+ <td>  35 - 36 </td>
+ <td>  16    </td>
+ <td>  Bits per sample </td>
 </tr>
+
 <tr>
-<td> 21 - 22 </td>
-<td> 1     </td>
-<td> Type of format (1 is PCM) - 2 byte integer </td>
+ <td> 37 - 40  </td>
+ <td> "data" </td>
+ <td> "data" chunk header.  Marks the beginning of the data section. </td>
 </tr>
+
 <tr>
-<td>  23 - 24    </td>
-<td>  2        </td>
-<td>  Number of Channels - 2 byte integer </td>
+ <td>  41 - 44 </td>
+ <td>  File size (data) </td>
+ <td>  Size of the data section. </td>
 </tr>
+
 <tr>
-<td>  25 - 28 </td>
-<td>  44100 </td>
-<td>  Sample Rate - 32 byte integer.  Common values are 44100 (CD), 48000 (DAT).  Sample Rate = Number of Samples per second, or Hertz. </td>
-</tr>
-<tr>
-<td>  29 - 32  </td>
-<td>  176400 </td>
-<td> (Sample Rate * BitsPerSample * Channels) / 8. </td>
-</tr>
-<tr>
-<td>  33 - 34 </td>
-<td>  4     </td>
-<td> (BitsPerSample * Channels) / 8.1 - 8 bit mono2 - 8 bit stereo/16 bit mono4 - 16 bit stereo </td>
-</tr>
-<tr>
-<td>  35 - 36 </td>
-<td>  16    </td>
-<td>  Bits per sample </td>
-</tr>
-<tr>
-<td> 37 - 40  </td>
-<td> "data" </td>
-<td> "data" chunk header.  Marks the beginning of the data section. </td>
-</tr>
-<tr>
-<td>  41 - 44 </td>
-<td>  File size (data) </td>
-<td>  Size of the data section. </td>
-</tr>
-<tr>
-<td>  45 - .. </td>
-<td colspan="2"> Sample values are given above for a 16-bit stereo source. </td>
+  <td>  45 - .. </td>
+  <td colspan="2"> Sample values are given above for a 16-bit stereo source. </td>
 </tr>
 </tbody>
 </table>
 <div class="clt">
-<br/>
-<center><a href="../tables/table4.html">Table 4: Wave file structure and content </a> <a class="reference internal" href="#digaud" id="id1">[topherleecom]</a></center>
+<br>
+<center><a href="../tables/table4.html" >Table 4: Wave file structure and content </a> <a class="reference internal" href="#digaud" id="id1">[topherleecom]</a></center>
 </div><p>In the above table we notice that the audio data bytes start at byte 45 and therefore the first 44 bytes are the offset.</p>
-</div>
-<div class="section" id="conclusion">
+</section>
+<section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>This blog post introduced a small example of reading the ffmpeg command pipe output and parsing the resulting wave data into a numpy array.
 This approach is a simpler and faster alternative to the classical convert, save then read.</p>
-</div>
-<div class="section" id="references-and-further-readings">
+</section>
+<section id="references-and-further-readings">
 <h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-blog/ffmpegpipe-0"></p><dl class="citation">
+<p id="bibtex-bibliography-blog/ffmpegpipe-0"><dl class="bibtex citation">
 <dt class="bibtex label" id="digaud"><span class="brackets"><a class="fn-backref" href="#id3">topherleecom</a></span></dt>
 <dd><p>topherlee.com. Digital Audio - Creating a WAV (RIFF) file. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://www.topherlee.com/software/pcm-tut-wavformat.html">http://www.topherlee.com/software/pcm-tut-wavformat.html</a>.</p>
 </dd>
@@ -303,42 +278,57 @@ This approach is a simpler and faster alternative to the classical convert, save
 <dd><p>FFmpeg Developers. FFmpeg tool (Version 4.2.2). 2019. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://ffmpeg.org/">http://ffmpeg.org/</a>.</p>
 </dd>
 </dl>
-</div>
-</div>
+</p>
+</section>
+</section>
+
 <div class="section">
+    
+
 <div class="section">
-<span style="float: left">
+  <span style="float: left">
      Previous:
     
     <a href="SpectralLeakageWindowing.html">
        Spectral leakage and windowing
     </a>
-</span>
-<span> </span>
-<span style="float: right">
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
      Next: 
     <a href="urlstechie.html">
       Introducing urlstechie and its urls checking tools 
     </a>
-</span>
+    
+  </span>
 </div>
+  
 </div>
-</div>
-</div>
-<div class="clearer"></div>
-</div>
-<div class="footer">
-      ©2019-2021, Ayoub Malek.
+
+          </div>
+          
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019-2022, Ayoub Malek.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       | <a href="https://github.com/bitprophet/alabaster">Terms of Service</a>
       | <a href="https://github.com/bitprophet/alabaster">Privacy Policy</a>
       | <a href="https://github.com/bitprophet/alabaster">Impressum</a>
-</div><html><head><script async="" defer="" src="https://buttons.github.io/buttons.js"></script></head></html><html><head><script src="../_static/js/mode-switcher.js"></script></head></html>
-<!-- Include cookiealert script -->
-<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
-<script src="_static/js/share-buttons.js"></script>
-</body>
+
+      
+    </div>
+
+    
+
+    
+    <!-- Include cookiealert script -->
+    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+    <script src="_static/js/share-buttons.js"></script>
+  </body>
 </html>
