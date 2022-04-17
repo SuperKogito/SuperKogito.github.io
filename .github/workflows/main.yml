@@ -5,10 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: URLs-checker
-      uses: urlstechie/urlchecker-action@0.2.0
+    - name: urlchecker-action
+      # You may pin to the exact commit or the version.
+      # uses: urlstechie/urlchecker-action@d79ac4327d583f3a0f5a9e91cd5cff646326d0be
+      uses: urlstechie/urlchecker-action@0.0.27
       with:
         # A project to clone. If not provided, assumes already cloned in the present working directory.
         git_path: https://github.com/SuperKogito/SuperKogito.github.io
