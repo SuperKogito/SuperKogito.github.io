@@ -72,6 +72,12 @@ html_theme_options = {
 }
 
 html_sidebars = {
+    "403": [
+        "hello.html",
+    ],  # This ensures we test for custom sidebars
+    "404": [
+        "hello.html",
+    ],  # This ensures we test for custom sidebars
     "index": [
         "hello.html",
     ],  # This ensures we test for custom sidebars
