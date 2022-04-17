@@ -50,7 +50,7 @@ The idea here is to recognize the gender of the speaker based on pre-generated G
 Once the data is properly formatted, we train our Gaussian mixture models for each gender by gathering Mel-frequency cepstrum coefficients (MFCC) from their associated training wave files.
 Now that we have generated the models, we identify the speakers genders by extracting their MFCCs from the testing wave files and scoring them against the models.
 These scores represent the likelihood that user MFCCs belong to one of the two models. The gender models with the highest score represents the probable gender of the speaker.
-In the following table, we summarize the previous main steps, as for a detailed modeling of the processing steps, you can refer to the Workflow graph in Fig_5_.
+In the following table, we summarize the previous main steps, as for a detailed modeling of the processing steps, you can refer to the Workflow graph in Figure_5_.
 
 |
 
@@ -70,6 +70,7 @@ In the following table, we summarize the previous main steps, as for a detailed 
 
 Workflow graph
 ~~~~~~~~~~~~~~~
+.. _Figure_5:
 
 .. tikz:: Figure 5: Voice based gender recognition
    :include: voice_based_gender_recognition_block_diagram.tikz
@@ -142,7 +143,7 @@ According to D. Reynolds in Gaussian_Mixture_Models_:
 
   << A Gaussian Mixture Model (GMM) is a parametric probability density function represented as a weighted sum of Gaussian component densities. GMMs are commonly used as a parametric model of the probability distribution of continuous measurements or features in a biometric system, such as vocal-tract related spectral features in a speaker recognition system. GMM parameters are estimated from training data using the iterative Expectation-Maximization (EM) algorithm or Maximum A Posteriori(MAP) estimation from a well-trained prior model. >>
 
-In a some way, you can consider a Gaussian mixture model as a probabilistic clustering representing a certain data distribution as a sum of Gaussian density functions (check Fig_6_) :footcite:`Eliathamby20131,Eliathamby20132`.
+In a some way, you can consider a Gaussian mixture model as a probabilistic clustering representing a certain data distribution as a sum of Gaussian density functions (check Figure_6_) :footcite:`Eliathamby20131,Eliathamby20132`.
 These densities forming a GMM are also called the components of the GMM. The likelihood of data points (feature vectors) for a model is given by following equation :footcite:`Appliedmachinelearning2022` :math:`\begin{equation}
 P(X | \lambda)=\sum_{k=1}^{K} w_{k} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)
 \end{equation}`, where :math:`\begin{equation} P_{k}\left(X | \mu_{k}, \Sigma_{k}\right)=\frac{1}{\sqrt{2 \pi\left|\Sigma_{k}\right|}} e^{\frac{1}{2}\left(X-\mu_{k}\right)^{T} \Sigma^{-1}\left(X-\mu_{k}\right)} \end{equation}`
@@ -154,6 +155,7 @@ is the Gaussian distribution, with:
 - :math:`w_{k}` represent the weights.
 - :math:`k` refers the index of the GMM components.
 
+.. _Figure_6:
 
 .. figure:: ../../../../_static/blog-plots/voice-based-gender-recognition/gmm.png
    :align: center
@@ -334,5 +336,3 @@ References and Further readings
 .. _python_speech_features: https://python-speech-features.readthedocs.io/en/latest/
 .. _scikit-learn-gmm: https://scikit-learn.org/stable/modules/mixture.html
 .. _scikit-learn-library: https://scikit-learn.org
-..  _Fig_5: ../../../../figures/fig5.html
-..  _Fig_6: ../../../../figures/fig6.html

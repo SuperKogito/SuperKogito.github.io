@@ -27,14 +27,11 @@ Overlapping the frames help avoiding information loss in between adjacent frames
 
 |
 
-.. image:: ../../../../_static/blog-plots/framing.png
+.. figure:: ../../../../_static/blog-plots/framing.png
    :align: center
    :scale: 85%
 
-.. raw:: html
-
-   <center><a href="../../../../figures/fig16.html" >Figure 16: Framing</a> </center>
-   </div>
+   Figure 16: Framing
 
 
 Assuming a signal :math:`S = \sum_{n=0}^{N_s-1} x[n]`, this can be mathematically formulated as follows:

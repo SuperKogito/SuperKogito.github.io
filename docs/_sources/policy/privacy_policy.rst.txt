@@ -1,4 +1,5 @@
 :orphan:
+
 Privacy Policy for SuperKogito
 ==============================
 
@@ -185,5 +186,6 @@ encourage you to contact us immediately and we will do our best efforts
 to promptly remove such information from our records.
 
 
+.. _`Privacy Policy Generator from CookiePolicyGenerator.com`: https://www.cookiepolicygenerator.com/privacy-policy-generator/
 .. _`Cookies Policy Generator from CookiePolicyGenerator.com`: https://www.cookiepolicygenerator.com/cookie-policy-generator/
 .. _`"Cookies" article from the Privacy Policy Generator`: https://www.generateprivacypolicy.com/#cookies
