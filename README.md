@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.com/SuperKogito/SuperKogito.github.io.svg?branch=master)](https://travis-ci.com/SuperKogito/SuperKogito.github.io)
-[![Check URLs](https://github.com/SuperKogito/SuperKogito.github.io/workflows/Check%20URLs/badge.svg)](https://github.com/SuperKogito/SuperKogito.github.io/runs/597903033?check_suite_focus=true)
-
 # SuperKogito.github.io
 
 This repository contains the source scripts/ files for my Github hosted website/blog.
@@ -10,6 +7,11 @@ The blog is built using the following resources:
 * [Github-pages](https://pages.github.com/)
 
 ### Exisiting articles:
+
+- 2021
+
+  - [[2021-12-31] Token authenticated aiohttp Server](https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html)
+  - [[2021-12-31] Basic aiohttp Server](https://superkogito.github.io/blog/2021/12/31/aiohttp_server.html)
 
 - 2020
 
@@ -40,6 +42,7 @@ The blog is built using the following resources:
 
 
 ### To dos:
+
 0. chmod post
 1. Pre-emphasis
 2. MFCC
