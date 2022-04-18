@@ -10,7 +10,7 @@ Encryption overview
 
 .. post:: Mar 03, 2019
    :tags: Encryption
-   :category: Cybersecurity, 2019
+   :category: Cybersecurity
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -81,16 +81,16 @@ This is further explained in the following post Authenticated_Encryption_ .
 
 
 
-Share this blog:
+Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&title=Encryption%20overview"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&text=Encryption%20overview"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&title=Encryption%20overview" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&title=Encryption%20overview"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 

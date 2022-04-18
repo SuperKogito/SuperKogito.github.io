@@ -1,14 +1,14 @@
 :og:description: Audio signal RMS normalization in Python
 :og:keywords: root mean square, signal normalization, python, Audio normalization, RMS normalization, python, ayoub malek, blog post
-:og:image: ../../../../_static/meta_images/spectral_leakage.png
+:og:image: ../../../../_static/meta_images/rms_normalization.png
 :og:image:alt: root mean square normalization in python
 
 Root mean square normalization in Python
 ========================================
 
 .. post:: Apr 30, 2020
-   :tags: Python, Augmentation, Audio
-   :category: Signal processing, 2020
+   :tags: Python, Audio, Augmentation
+   :category: Signal processing
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -96,14 +96,14 @@ We also provided a small implementation of the approach that is part of the Pydi
 
 Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&text=Root%20mean%20square%20normalization%20in%20Python"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 

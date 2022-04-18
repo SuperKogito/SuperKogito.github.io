@@ -8,7 +8,7 @@ Naive voice activity detection using short time energy
 
 .. post:: Feb 09, 2020
    :tags: Python, VAD, Audio
-   :category: Signal processing, 2020
+   :category: Signal processing
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -282,7 +282,7 @@ The difference between the input and output shows that the VAD is functional.
      <td class="centeredth">Input signal (voiced and silent frames) </td>
      <td class="centeredth">
      <audio controls style="width: 80%;">
-       <source src="../_static/audio/OSR_us_000_0060_8k.wav" type="audio/wav">
+       <source src="../../../../_static/audio/OSR_us_000_0060_8k.wav" type="audio/wav">
        Your browser does not support the audio element.
      </audio>
      </td>
@@ -291,7 +291,7 @@ The difference between the input and output shows that the VAD is functional.
      <td class="centeredth">Output signal (voiced only frames)</td>
      <td class="centeredth">
      <audio controls style="width: 80%;">
-       <source src="../_static/audio/naive_frame_energy_vad_no_silence_OSR_us_000_0060_8k.wav" type="audio/wav">
+       <source src="../../../../_static/audio/naive_frame_energy_vad_no_silence_OSR_us_000_0060_8k.wav" type="audio/wav">
        Your browser does not support the audio element.
      </audio>
      </td>
@@ -306,16 +306,16 @@ It also introduced a naive simple way to distinguish silence from speech using s
 This type of VAD, though it is fast & simple, it lacks accuracy in some cases as it is dependent on the manual choice of threshold and  :math:`E_0` (Energy value characterizing the silence to speech energy ratio).
 Therefore, it is advised to equalize the input audio before the processing. Alternative approaches to VAD uses extra features such as MFCCs and are based on machine learning algorithms.
 
-Share this blog:
+Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&text=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 

@@ -1,20 +1,14 @@
 :og:description: urlstechie introduction
-:og:keywords: cryptography overview, encryption, hashing, security, ayoub malek, cybersecurity post, blog introduction
-:og:image: ../../../../_static/meta_images/cryptography_overview.png
+:og:keywords:  urlstechie, urlchecker, check urls, Ayoub Malek, blog post, blog introduction
+:og:image: ../../../../_static/meta_images/urlstechie.png
 :og:image:alt: urlstechie
 
 Introducing urlstechie and its urls checking tools
 ==================================================
 
-.. meta::
-   :description: Introducing urlstechie and urls checking tools
-   :keywords: urlstechie, urlchecker, check urls, Ayoub Malek
-   :author: Ayoub Malek
-
-
 .. post:: Apr 04, 2020
    :tags: Continuous integration, urlstechie, Python
-   :category: Automation, 2020
+   :category: Automation
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -138,16 +132,16 @@ That's the foundation to a flourishing project and so all contributions are welc
 Just open an issue and come talk to us, help us improve the code by providing test cases, feedback, suggestions and bug reports.
 If you have a fix, that's even better, send us a pull request and join us on this coding ride ;)
 
-Share this blog:
+Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&text=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 

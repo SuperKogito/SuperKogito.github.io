@@ -7,8 +7,8 @@ How to loop over monitors and get their coordinates on Windows in C++?
 ======================================================================
 
 .. post:: September 28, 2020
-  :tags: Cplusplus
-  :category: Image processing, 2020
+  :tags: Cplusplus, Windows
+  :category: Image processing
   :author: Ayoub Malek
   :location: Munich
   :language: English
@@ -90,14 +90,14 @@ The retrieved coordinates can then be used in capturing the screens content usin
 
 Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&title=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&text=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&title=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&title=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 
