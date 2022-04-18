@@ -7,8 +7,8 @@ Cryptography overview
 =====================
 
 .. post:: Feb 17, 2019
-   :tags: Cryptography, Encryption, Hashing
-   :category: Cybersecurity, 2019
+   :tags: Encryption, Hashing
+   :category: Cybersecurity
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -19,10 +19,10 @@ Cryptography is mostly associated with the development and creation of mathemati
 It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory :footcite:`Kessler`.
 The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.
 
-Types of cryptographic algorithms
+Types of cryptography algorithms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Cryptographic algorithms can be classified according to various criteria :footcite:`Kessler`. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:
+Cryptography algorithms can be classified according to various criteria :footcite:`Kessler`. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:
 
 - **Secret Key Cryptography (SKC):** or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality :footcite:`Kessler,Tamimi`.
 - **Public Key Cryptography (PKC):** or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption :footcite:`Kessler`. It is essentially used for authentication, non-repudiation, and key exchange :footcite:`Tamimi`.
@@ -48,8 +48,9 @@ These operations can be explained by the following formulas: :math:`C=E_{k}(P)` 
 There exist several types of encryption (**symmetric/asymmetric**) and several ciphering techniques (**block/stream**) and modes etc :footcite:`Kessler`.
 The major differences between those will be explained in the following post :ref:`encryption-post-label`.
 
-A summary of cryptographic algorithms
+A summary of cryptography algorithms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 There are several practical implementations and algorithms of the aforementioned concepts.
 Some of these are widely used standards defined by the National Institute of Standards and Technology (NIST) such the Advanced Encryption Standard (AES) and the Secure Hashing Algorithm (SHA) etc.
 The most known algorithms are summarized below:
@@ -100,20 +101,20 @@ The most known algorithms are summarized below:
     <center>Figure 1: Cryptographic algorithms</center>
     </div>
 
-Share this blog:
+Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&text=Cryptography%20overview"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 
-.. update:: 8 Apr 2022
+.. update:: 18 Apr 2022
 
    👨‍💻 edited and review were on 08.04.202
 

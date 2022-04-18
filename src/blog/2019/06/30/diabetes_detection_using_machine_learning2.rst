@@ -1,6 +1,6 @@
 :og:description: applied machine learning to diabetics detection
 :og:keywords:  machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek
-:og:image: ../../../../_static/meta_images/diabetes_detection_using_machine_learning1.png
+:og:image: ../../../../_static/meta_images/diabetes_detection_using_machine_learning2.png
 :og:image:alt: diabetes_detection_using_machine_learning
 
 Diabetes detection using machine learning (part II)
@@ -8,7 +8,7 @@ Diabetes detection using machine learning (part II)
 
 .. post:: Jun 30, 2019
    :tags: Python, Data processing, Visualization
-   :category: Machine learning, 2019
+   :category: Machine learning
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -179,6 +179,18 @@ Conclusion
 ~~~~~~~~~~
 In these two blog posts, we investigated the utility of various machine learning approaches to diabetes detection and their efficiency.
 Moreover, various data transformations, such as scaling, equalization and outliers removal, have been proven to enhance the diabetes detection process.
+
+Share this blog
+~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+  <div id="share">
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20II)"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20II)"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20II)" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20II)"                    target="blank"><i class="fa fa-reddit"></i></a>
+  </div>
 
 References and Further readings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

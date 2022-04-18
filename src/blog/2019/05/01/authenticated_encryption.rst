@@ -7,8 +7,8 @@ Authenticated encryption
 ========================
 
 .. post:: May 1, 2019
-   :tags: Authenticated Encryption, Cryptography, Encryption, Hashing
-   :category: Cybersecurity, 2019
+   :tags: Encryption, Hashing
+   :category: Cybersecurity
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -90,16 +90,16 @@ To summarize, AE is a combination of SE and MAC that ensures integrity, authenti
 Out of those, Encrypt-then-MAC is the recommended approach to authenticated encryption. However, MAC-then-encrypt is still a safe and fast approach under certain tight conditions (the case of SSL for instance).
 
 
-Share this blog:
+Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter" href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&text=Autehnticated%20encryption"                  target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit" href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption"                      target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 

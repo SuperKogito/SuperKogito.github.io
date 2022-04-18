@@ -1,6 +1,6 @@
 :og:description: Audio signal windowing and spectral leakage
 :og:keywords: windowing, spectral leakage, python, ayoub malek, blog post
-:og:image: ../../../../_static/meta_images/spectral_leakage.png
+:og:image: ../../../../_static/meta_images/spectral_leakage_and_windowing.png
 :og:image:alt: spectral_leakage
 
 Spectral leakage and windowing
@@ -8,7 +8,7 @@ Spectral leakage and windowing
 
 .. post:: Mar 13, 2020
    :tags: Audio, Python
-   :category: Signal processing, 2020
+   :category: Signal processing
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -96,17 +96,18 @@ This blog presented windowing, which is a fundamental signal processing techniqu
 This method is often used before any spectrum computations. There are various types of windowing, each having its own pros and cons.
 In the python code introduced in this post, we included some of the most used functions but these can be customized to the user's discretion.
 
-Share this blog:
+Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&text=spectral%20leakage%20and%20windowing"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
+
 
 
 .. update:: 8 Apr 2022

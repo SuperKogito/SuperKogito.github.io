@@ -7,8 +7,8 @@ Capturing the screen on Windows in C++ using OpenCV
 ===================================================
 
 .. post:: July 25, 2020
-  :tags: Cplusplus, Windows, OpenCV, Screenshot
-  :category: Image processing, 2020
+  :tags: Cplusplus, Windows, OpenCV, Screen-capture
+  :category: Image processing
   :author: Ayoub Malek
   :location: Munich
   :language: English
@@ -163,14 +163,14 @@ This option will be explored in my next posts, so stay tuned.
 
 Share this blog
 ~~~~~~~~~~~~~~~~
+
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u={{url}}&title={{title}}" target="blank"><i class="fab fa-facebook-f"></i></a>
-    <a class="twitter" href="https://twitter.com/intent/tweet?status={{title}}+{{url}}" target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="googleplus" href="https://plus.google.com/share?url={{url}}" target="blank"><i class="fa fa-google-plus"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{title}}&source={{source}}" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit" href="http://www.reddit.com/submit?url={{url}}&title={{title}}" target="_blank" title="Submit to Reddit" target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html&title=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20OpenCV"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html&text=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20OpenCV"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html&title=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20OpenCV" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html&title=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20OpenCV"                    target="blank"><i class="fa fa-reddit"></i></a>
   </div>
 
 

@@ -8,7 +8,7 @@ Diabetes detection using machine learning (part I)
 
 .. post:: Jun 30, 2019
    :tags: Python, Data processing, Visualization
-   :category: Machine learning, 2019
+   :category: Machine learning
    :author: Ayoub Malek
    :location: Munich
    :language: English
@@ -317,6 +317,17 @@ This 1st plot from a series of 3 provided an elaborate explanation of data manip
 From the raw dataset we retrieve a balanced, scaled and correct number of samples, that we later explored the mechanics regulating its features.
 We will explore all these results to build a robust detection system in the next post.
 
+Share this blog
+~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+  <div id="share">
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                target="blank"><i class="fa fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                 target="blank"><i class="fa fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)" target="blank"><i class="fa fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                    target="blank"><i class="fa fa-reddit"></i></a>
+  </div>
 
 References and Further readings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
