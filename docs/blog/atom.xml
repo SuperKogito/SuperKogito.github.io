@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="english">
   <id>https://superkogito.github.io</id>
   <title>SuperKogito</title>
-  <updated>2022-04-18T15:08:08.135565+00:00</updated>
+  <updated>2022-04-30T10:47:21.203055+00:00</updated>
   <link href="https://superkogito.github.io"/>
   <link href="https://superkogito.github.io/blog/atom.xml" rel="self"/>
-  <generator uri="https://ablog.readthedocs.org/" version="0.10.23">ABlog</generator>
+  <generator uri="https://ablog.readthedocs.org/" version="0.10.25">ABlog</generator>
   <entry>
     <id>https://superkogito.github.io/blog/2019/02/10/intro.html</id>
     <title>Blog intro</title>
