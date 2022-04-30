@@ -50,8 +50,8 @@ function visualize_btc_year_performance (fname, divname) {
 
         // calculate layouts
         // each month becomes a g element
-        var dayWidth = 9  , dayHeight = 9;
-        var dayPadding = 2 , monthPadding = 10;
+        var dayWidth = 5  , dayHeight = 5;
+        var dayPadding = 1 , monthPadding = 5;
         var currentMonthX = 0;
 
         var dayOfWeekX = {
@@ -85,16 +85,16 @@ function visualize_btc_year_performance (fname, divname) {
 
 
         // vis
-        var width  = document.getElementsByTagName('body')[0].clientWidth;
-        var height = document.getElementsByTagName('body')[0].clientHeight;
+        var width  = document.getElementsByTagName('div')[0].clientWidth;
+        var height = document.getElementsByTagName('div')[0].clientHeight;
 
         var svg = d3.select(divname)
                     .append('svg')
-                    .attr('width', width)
+                    .attr('width', 599)
                     .attr('height', 80)
 
 
-        var yearView = svg.append('g');
+        var yearView = svg.append('g')
         var months   = yearView.selectAll('g')
                                .data(data_by_month)
                                .enter()
@@ -160,7 +160,8 @@ function visualize_btc_year_performance (fname, divname) {
                                         .style("font-size","12pt")
                                         .style("fill", "#1171A2")
                                    });
-        yearView.attr('transform', function(d) { return 'translate(' + ((width - yearView.node().getBBox().width) /2)+ ',20)' })
+        // yearView.attr('transform', function(d) { return 'translate(' + ((width - yearView.node().getBBox().width) /2)+ ',20)' })
+        yearView.attr('transform', function(d) { return 'translate(5,20)' })
 
 
 
@@ -180,14 +181,16 @@ function visualize_btc_year_performance (fname, divname) {
     });
 }
 
-visualize_btc_year_performance("../_static/btc_data/btc2020.csv", 'div.vis2020')
-visualize_btc_year_performance("../_static/btc_data/btc2019.csv", 'div.vis2019')
-visualize_btc_year_performance("../_static/btc_data/btc2018.csv", 'div.vis2018')
-visualize_btc_year_performance("../_static/btc_data/btc2017.csv", 'div.vis2017')
-visualize_btc_year_performance("../_static/btc_data/btc2016.csv", 'div.vis2016')
-visualize_btc_year_performance("../_static/btc_data/btc2015.csv", 'div.vis2015')
-visualize_btc_year_performance("../_static/btc_data/btc2014.csv", 'div.vis2014')
-visualize_btc_year_performance("../_static/btc_data/btc2013.csv", 'div.vis2013')
-visualize_btc_year_performance("../_static/btc_data/btc2012.csv", 'div.vis2012')
-visualize_btc_year_performance("../_static/btc_data/btc2011.csv", 'div.vis2011')
-visualize_btc_year_performance("../_static/btc_data/btc2010.csv", 'div.vis2010')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2022.csv", 'div.vis2022')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2021.csv", 'div.vis2021')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2020.csv", 'div.vis2020')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2019.csv", 'div.vis2019')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2018.csv", 'div.vis2018')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2017.csv", 'div.vis2017')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2016.csv", 'div.vis2016')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2015.csv", 'div.vis2015')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2014.csv", 'div.vis2014')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2013.csv", 'div.vis2013')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2012.csv", 'div.vis2012')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2011.csv", 'div.vis2011')
+visualize_btc_year_performance("https://superkogito.github.io/_static/btc_data/btc2010.csv", 'div.vis2010')

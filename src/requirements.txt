@@ -1,0 +1,11 @@
+Sphinx
+ablog
+sphinxext-opengraph
+sphinx_panels
+sphinx_copybutton
+sphinxcontrib.bibtex
+sphinxcontrib-tikz
+git+https://github.com/SuperKogito/sphinxcontrib-pdfembed 
+sphinxemoji
+sphinx_sitemap
+pydata_sphinx_theme
