@@ -1,10 +1,10 @@
 :og:description: Whipser based speech recognition authenticated aiohttp server
 :og:keywords: whisper, speech recognition, authentication, server, client, python, ayoub malek, blog post
-:og:image: ../../../../_static/meta_images/whisper_authenticated_aiohttp_server_with_token.png
-:og:image:alt: whisper_authenticated_aiohttp_server_with_token
+:og:image: ../../../../_static/meta_images/whisper_server_with_token.png
+:og:image:alt: whisper_server_with_token
 
-Token authenticated whisper based speech recognition aiohttp server
-===================================================================
+Whisper based speech recognition server
+=======================================
 
 .. post:: December 27, 2022
    :tags: Python, Server-client, Speech recognition, Whisper
