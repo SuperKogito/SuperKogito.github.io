@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="english">
   <id>https://superkogito.github.io</id>
   <title>SuperKogito</title>
-  <updated>2022-12-27T21:49:55.579421+00:00</updated>
+  <updated>2022-12-27T23:14:29.940702+00:00</updated>
   <link href="https://superkogito.github.io"/>
   <link href="https://superkogito.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33">ABlog</generator>
@@ -480,21 +480,19 @@ In the following post we improve the previous server by introducing a simple tok
   </entry>
   <entry>
     <id>https://superkogito.github.io/blog/2022/12/27/whisper_aiohttp_server_with_token.html</id>
-    <title>Token authenticated Whisper based speech recognition aiohttp server</title>
+    <title>Whisper based speech recognition server</title>
     <updated>2022-12-27T00:00:00+01:00</updated>
     <author>
       <name>Ayoub Malek</name>
     </author>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;In the last blog post, an authenticated aiohttp server was introduced.
-In this post, we build on top of the previous posts, to create a speech recognition server.
-The speech recognition feature will be based on &lt;a class="reference external" href="https://github.com/openai/whisper"&gt;whisper&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the last blog post: &lt;a class="reference external" href="https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html"&gt;Token authenticated aiohttp server&lt;/a&gt;, an authenticated aiohttp server was introduced.
+In this post, we build on top of the previous posts, to create an Automatic Speech Recognition (ASR) authenticated server, that uses the newly introduced &lt;a class="reference external" href="https://github.com/openai/whisper"&gt;whisper&lt;/a&gt; by &lt;a class="reference external" href="https://openai.com/"&gt;OpenAI&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://superkogito.github.io/blog/2022/12/27/whisper_aiohttp_server_with_token.html" rel="alternate"/>
-    <summary>In the last blog post, an authenticated aiohttp server was introduced.
-In this post, we build on top of the previous posts, to create a speech recognition server.
-The speech recognition feature will be based on whisper.</summary>
+    <summary>In the last blog post: Token authenticated aiohttp server, an authenticated aiohttp server was introduced.
+In this post, we build on top of the previous posts, to create an Automatic Speech Recognition (ASR) authenticated server, that uses the newly introduced whisper by OpenAI.</summary>
     <category term="Python" label="Python"/>
     <category term="Server-client" label="Server-client"/>
     <category term="Speechrecognition" label="Speech recognition"/>
