@@ -1,0 +1,846 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="How to pipe an FFmpeg output and pass it to a Python variable?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe/" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="Audio signal FFmpeg piping + pass it a Python variable" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/ffmpeg_pipe.png" />
+<meta property="og:image:alt" content="ffmpeg_pipe" />
+<meta property="og:keywords" content="ffmpeg, pipe, python, audio, Ayoub Malek, blog post" />
+<meta name="description" content="When writing code, the key optimization points are speed and efficiency. I often face this dilemma when using FFmpeg with Python. For example: when I need to convert an mp3 to a wave file and then do some processing to it in Python. The simple way to do this, is by using FFmpeg to convert the mp3..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>How to pipe an FFmpeg output and pass it to a Python variable? &#8212; 🧠 SuperKogito  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/css/social_media_sharing.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../../_static/twemoji.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2020/03/19/ffmpeg_pipe';</script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html" />
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="english"> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../../../search/" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../../../">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">🧠 SuperKogito  documentation</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../projects/">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../about/">
+                        About Me
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        
+<form class="bd-search d-flex align-items-center" action="../../../../../search/" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../projects/">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../../about/">
+                        About Me
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        
+<form class="bd-search d-flex align-items-center" action="../../../../../search/" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  19 March 2020 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../../author/ayoub-malek/">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../../location/munich/">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../../language/english/">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../../category/signal-processing/">Signal processing</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../../tag/ffmpeg/">Ffmpeg</a>   
+  <a href="../../../../tag/python/">Python</a>   
+  <a href="../../../../tag/audio/">Audio</a>  
+</li>
+ 
+</ul>
+
+    </div>
+    <div class="sidebar-start-items__item">
+<h3>
+  <a href="../../../../">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../../2022/12/27/whisper_aiohttp_server_with_token/"
+      >Token authenticated Whisper based speech recognition aiohttp server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../../2021/12/31/aiohttp_server_with_token/"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../../2021/12/31/aiohttp_server/"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../10/25/chmod_modes/"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../10/03/divide_image_using_gdiplus/"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+</ul>
+
+    </div>
+    <div class="sidebar-start-items__item">
+<h3>
+  <a href="../../../../archive/">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../../2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../../2021/">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../../2019/">2019 (7)</a>
+  </li>
+   
+</ul>
+
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+
+
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+            <article class="bd-article" role="main">
+               <section id="how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable">
+<h1>How to pipe an FFmpeg output and pass it to a Python variable?<a class="headerlink" href="#how-to-pipe-an-ffmpeg-output-and-pass-it-to-a-python-variable" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<p>When writing code, the key optimization points are speed and efficiency.
+I often face this dilemma when using FFmpeg with Python.
+For example: when I need to convert an mp3 to a wave file and then do some processing to it in Python.
+The simple way to  do this, is by using FFmpeg to convert the mp3 input to a wave, then read the wave in Python and do process it.
+Although this works, but clearly it is neither optimal nor the fastest solution.
+In this blog post, I will present an improved solution to this inconvenience by piping the output of FFmpeg to Python and directly pass it to a numpy variable.</p>
+<div class="line-block">
+<div class="line"><strong>* keywords:  *</strong> FFmpeg pipe output</div>
+</div>
+<section id="piping-the-ffmpeg-output">
+<h2>Piping the FFmpeg output<a class="headerlink" href="#piping-the-ffmpeg-output" title="Permalink to this headline">#</a></h2>
+<p>Assuming a simple task of converting an mp3 file to a wave using FFmpeg, which can be done using the following shell command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ffmpeg -i mp3_path -o wav_path
+</pre></div>
+</div>
+<p>This results in a wave file saved under <code class="code docutils literal notranslate"><span class="pre">wav_path</span></code>.
+Alternatively, we can pipe the output and return it as an output instead of writing it to a file.
+This can be done using the following shell command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ffmpeg -i mp3_path -f wav pipe:1
+</pre></div>
+</div>
+<p>At this point, executing this command results in a binary mess printed in your terminal, but we will make sense of the output in a second.</p>
+</section>
+<section id="reading-the-ffmpeg-output-in-python-as-a-numpy-variable">
+<h2>Reading the FFmpeg output in Python as a numpy variable?<a class="headerlink" href="#reading-the-ffmpeg-output-in-python-as-a-numpy-variable" title="Permalink to this headline">#</a></h2>
+<p>FFmpeg shell commands can be executed in python with the help of the subprocess package and the resulting output can read from the subprocess pipe.
+The following code snippet shows how is this done.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="linenos"> 2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span> <span class="c1"># init command</span>
+<span class="linenos"> 5</span> <span class="n">ffmpeg_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ffmpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="n">mp3_path</span><span class="p">,</span>
+<span class="linenos"> 6</span>                   <span class="s2">&quot;-ab&quot;</span><span class="p">,</span> <span class="s2">&quot;128k&quot;</span><span class="p">,</span> <span class="s2">&quot;-acodec&quot;</span><span class="p">,</span> <span class="s2">&quot;pcm_s16le&quot;</span><span class="p">,</span> <span class="s2">&quot;-ac&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;-ar&quot;</span><span class="p">,</span> <span class="n">target_fs</span><span class="p">,</span> <span class="s2">&quot;-map&quot;</span><span class="p">,</span>
+<span class="linenos"> 7</span>                   <span class="s2">&quot;0:a&quot;</span><span class="p">,</span> <span class="s2">&quot;-map_metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span> <span class="s2">&quot;-sn&quot;</span><span class="p">,</span> <span class="s2">&quot;-vn&quot;</span><span class="p">,</span> <span class="s2">&quot;-y&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span>                   <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;wav&quot;</span><span class="p">,</span> <span class="s2">&quot;pipe:1&quot;</span><span class="p">]</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span> <span class="c1"># excute ffmpeg command</span>
+<span class="linenos">11</span> <span class="n">pipe</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ffmpeg_command</span><span class="p">,</span>
+<span class="linenos">12</span>                       <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+<span class="linenos">13</span>                       <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+<span class="linenos">14</span>                       <span class="n">bufsize</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span> <span class="c1"># debug</span>
+<span class="linenos">17</span> <span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">pipe</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span> <span class="c1"># read signal as numpy array and assign sampling rate</span>
+<span class="linenos">20</span> <span class="n">audio_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">buffer</span><span class="o">=</span><span class="n">pipe</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">44</span><span class="p">)</span>
+<span class="linenos">21</span> <span class="n">sig</span><span class="p">,</span> <span class="n">fs</span>  <span class="o">=</span> <span class="n">audio_np</span><span class="p">,</span> <span class="n">target_fs</span>
+</pre></div>
+</div>
+<p>Note that the used FFmpeg command is slightly changed, to define the channel of choice and the encoding to use.
+For more on that you can refer either to <a class="footnote-reference brackets" href="#footcite-zulko" id="id1">1</a> or <a class="footnote-reference brackets" href="#footcite-ffmpeg" id="id2">2</a>.
+We also define a buffer size to receive the read data.
+The read data is essentially a wave file data including the header which must be ignored when passing the data to the
+numpy variable. In order to know how many bytes to ignore, we need to examine the following table <a class="footnote-reference brackets" href="#footcite-digaud" id="id3">3</a> of the wave data:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-text">Table 4: Wave file structure and content</span><a class="headerlink" href="#id5" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Positions</p></th>
+<th class="head"><p>Sample Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 - 4</p></td>
+<td><p>RIFF</p></td>
+<td><p>Marks the file as a riff file.  Characters are each 1 byte long.</p></td>
+</tr>
+<tr class="row-odd"><td><p>5 - 8</p></td>
+<td><p>File size (integer)</p></td>
+<td><p>Size of the overall file - 8 bytes, in bytes (32-bit integer).  Typically, you'd fill this in after creation.</p></td>
+</tr>
+<tr class="row-even"><td><p>9 - 12</p></td>
+<td><p>&quot;WAVE&quot;</p></td>
+<td><p>File Type Header.  For our purposes, it always equals &quot;WAVE&quot;.</p></td>
+</tr>
+<tr class="row-odd"><td><p>13 - 16</p></td>
+<td><p>&quot;fmt &quot;</p></td>
+<td><p>Format chunk marker.  Includes trailing null</p></td>
+</tr>
+<tr class="row-even"><td><p>17 - 20</p></td>
+<td><p>16</p></td>
+<td><p>Length of format data as listed above</p></td>
+</tr>
+<tr class="row-odd"><td><p>21 - 22</p></td>
+<td><p>1</p></td>
+<td><p>Type of format (1 is PCM) - 2 byte integer</p></td>
+</tr>
+<tr class="row-even"><td><p>23 - 24</p></td>
+<td><p>2</p></td>
+<td><p>Number of Channels - 2 byte integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>25 - 28</p></td>
+<td><p>44100</p></td>
+<td><p>Sample Rate - 32 byte integer.  Common values are 44100 (CD), 48000 (DAT).  Sample Rate = Number of Samples per second, or Hertz.</p></td>
+</tr>
+<tr class="row-even"><td><p>29 - 32</p></td>
+<td><p>176400</p></td>
+<td><p>(Sample Rate * BitsPerSample * Channels) / 8.</p></td>
+</tr>
+<tr class="row-odd"><td><p>33 - 34</p></td>
+<td><p>4</p></td>
+<td><p>(BitsPerSample * Channels) / 8.1 - 8 bit mono2 - 8 bit stereo/16 bit mono4 - 16 bit stereo</p></td>
+</tr>
+<tr class="row-even"><td><p>35 - 36</p></td>
+<td><p>16</p></td>
+<td><p>Bits per sample</p></td>
+</tr>
+<tr class="row-odd"><td><p>37 - 40</p></td>
+<td><p>&quot;data&quot;</p></td>
+<td><p>&quot;data&quot; chunk header.  Marks the beginning of the data section.</p></td>
+</tr>
+<tr class="row-even"><td><p>41 - 44</p></td>
+<td><p>File size (data)</p></td>
+<td><p>Size of the data section.</p></td>
+</tr>
+<tr class="row-odd"><td><p>45</p></td>
+<td></td>
+<td><p>Sample values are given above for a 16-bit stereo source.</p></td>
+</tr>
+</tbody>
+</table>
+<p>In the above table we notice that the audio data bytes start at byte 45 and therefore the first 44 bytes are the offset.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>This blog post introduced a small example of reading the ffmpeg command pipe output and parsing the resulting wave data into a numpy array.
+This approach is a simpler and faster alternative to the classical convert, save then read.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html&title=How%20to%20pipe%20an%20FFmpeg%20output%20and%20pass%20it%20to%20a%20Python%20variable?"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html&text=How%20to%20pipe%20an%20FFmpeg%20output%20and%20pass%20it%20to%20a%20Python%20variable?"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html&title=How%20to%20pipe%20an%20FFmpeg%20output%20and%20pass%20it%20to%20a%20Python%20variable?" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html&title=How%20to%20pipe%20an%20FFmpeg%20output%20and%20pass%20it%20to%20a%20Python%20variable?"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.202</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id4">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-zulko"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>zulko.github.io/. Read and Write Audio Files in Python Using FFMPEG. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://zulko.github.io/blog/2013/10/04/read-and-write-audio-files-in-python-using-ffmpeg/">http://zulko.github.io/blog/2013/10/04/read-and-write-audio-files-in-python-using-ffmpeg/</a>.</p>
+</dd>
+<dt class="label" id="footcite-ffmpeg"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>FFmpeg Developers. FFmpeg tool (Version 4.2.2). 2019. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://ffmpeg.org/">http://ffmpeg.org/</a>.</p>
+</dd>
+<dt class="label" id="footcite-digaud"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>topherlee.com. Digital Audio - Creating a WAV (RIFF) file. [Online; accessed 19.03.2020]. URL: <a class="reference external" href="http://www.topherlee.com/software/pcm-tut-wavformat.html">http://www.topherlee.com/software/pcm-tut-wavformat.html</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../13/spectral_leakage_and_windowing/">
+      <i class="fa fa-arrow-circle-left"></i> Spectral leakage and windowing
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../../../04/04/urlstechie/">
+      Introducing urlstechie and its urls checking tools <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+            </article>
+            
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#piping-the-ffmpeg-output">
+   Piping the FFmpeg output
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-the-ffmpeg-output-in-python-as-a-numpy-variable">
+   Reading the FFmpeg output in Python as a numpy variable?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../../../_sources/blog/2020/03/19/ffmpeg_pipe.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2019-2022, Ayoub Malek.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
