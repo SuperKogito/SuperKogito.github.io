@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Naive voice activity detection using short time energy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/02/09/naive_vad.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="voice activity detection using short time energy" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/naive_vad.png" />
+<meta property="og:image:alt" content="naive_vad" />
+<meta property="og:keywords" content="voice activity detection, vad, short time energy, ayoub malek, post, blog introduction" />
+<meta name="description" content="An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones. This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy. This problem ..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>Naive voice activity detection using short time energy &#8212; 🧠 SuperKogito  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2020/02/09/naive_vad';</script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2020/02/09/naive_vad.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="english"> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">🧠 SuperKogito  documentation</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../blog.html">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../about.html">
+                        About Me
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../blog.html">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../about.html">
+                        About Me
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  09 February 2020 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/signal-processing.html">Signal processing</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/audio.html">Audio</a>   
+  <a href="../../../tag/python.html">Python</a>   
+  <a href="../../../tag/vad.html">VAD</a>  
+</li>
+ 
+</ul>
+
+    </div>
+    <div class="sidebar-start-items__item">
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+</ul>
+
+    </div>
+    <div class="sidebar-start-items__item">
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+
+
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+            <article class="bd-article" role="main">
+               <section id="naive-voice-activity-detection-using-short-time-energy">
+<h1>Naive voice activity detection using short time energy<a class="headerlink" href="#naive-voice-activity-detection-using-short-time-energy" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<p>An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones.
+This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy.
+This problem is known as Voice Activity Detection (VAD). This blog aims to introduce voice activity detection and present simple short time energy based VAD implementation.</p>
+<section id="what-is-voice-activity-detection">
+<h2>What is voice activity detection ?<a class="headerlink" href="#what-is-voice-activity-detection" title="Permalink to this headline">#</a></h2>
+<p>Voice activity detection is a speech/signal processing technique in which the presence or absence of human speech is detected.
+VAD is often used in speech coding and speech recognition but it also helps optimize and speed audio dependent approach like speaker recognition.</p>
+</section>
+<section id="why-do-we-do-need-voice-activity-detection">
+<h2>Why do we do need voice activity detection?<a class="headerlink" href="#why-do-we-do-need-voice-activity-detection" title="Permalink to this headline">#</a></h2>
+<p>As mentioned before VAD is very useful in many audio processing related tasks. A couple of these uses are highlighted in the following list:</p>
+<ul class="simple">
+<li><p>In speech recognition, VAD helps improve the quality by masking the effect of silent frames and noise.</p></li>
+<li><p>In Speech enhancement, VAD can be used to collect silent frames to get a good noise estimation for example.</p></li>
+<li><p>In Speaker recognition, VAD allows for better quality detection since the recognition will be based only on &quot;pure&quot; speech frames.</p></li>
+<li><p>In many other applications, VAD is used to accelerate the processing and avoid extra runs for silent frames.</p></li>
+</ul>
+</section>
+<section id="how-to-implement-it">
+<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">#</a></h2>
+<p>The basic assumption behind short time energy based VAD is that voiced frames has more energy than silent.
+Therefore, we can frame the signal, compute the short time energy aka the energy pro frame and according to a predefined threshold we can decide where the frame is voiced or silent <a class="footnote-reference brackets" href="#footcite-tom2019" id="id1">1</a>.
+These steps can be summarized in the following:</p>
+<ul>
+<li><p><strong>Frame signal</strong> (refer to <a class="reference external" href="SignalFraming.html">Signal_framing</a>).</p>
+<p>Assuming a signal <span class="math notranslate nohighlight">\(S\)</span>, this can be formulated as follows: <span class="math notranslate nohighlight">\(S = \sum_{n=0}^{N_s-1} x[n] = \sum_{i=0}^{\#F-1} f[i]\)</span> where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span>: Discrete signal.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x[n]\)</span>: Signal sample in time domain.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N_s\)</span> : Signal length in samples.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f[i]\)</span>: Signal frame.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\#F\)</span> : Number of frames.</p></li>
+</ul>
+</li>
+<li><p><strong>Compute the energy per frame aka short time energy.</strong></p>
+<p>The short time energy can be assumed to be the total energy of each.
+The energy pro frame is <span class="math notranslate nohighlight">\(E_f = \sum_{n=0}^{N_f - 1} |x[n]|^2\)</span>, and consequently the normalized short time energy value, is <span class="math notranslate nohighlight">\(\overline{E}_f = \frac{1}{N_f - 1}.\sum_{n=0}^{N_f - 1} |x[n]|^2\)</span>.
+Based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Parseval%27s_theorem">Parseval's theorem</a> , we can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">discrete Fourrier transform</a> to compute the energy since: <span class="math notranslate nohighlight">\(\sum_{n=0}^{N_f - 1} |x[n]|^2 = \frac{1}{N_f - 1}.\sum_{n=0}^{N_f - 1} |X[n]|^2\)</span>.
+To summarize: <span class="math notranslate nohighlight">\(\overline{E}_f = \frac{1}{(N_f - 1)^2}.\sum_{n=0}^{N_f - 1} |X[n]|^2\)</span></p>
+<p>with:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E_f[n]\)</span>: Frame total energy.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{E}_f[n]\)</span>: Normalized frame total energy.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x[n]\)</span>: Signal sample in the time domain.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X[n]\)</span>: Signal sample in the frequency domain.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N_f\)</span> : Frame length in samples.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F[i]\)</span>: Signal frame.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\#F\)</span> : Number of frames.</p></li>
+</ul>
+<p>A standard practice is to convert the computed energy to Decibels using a suitably chosen <span class="math notranslate nohighlight">\(E_0\)</span> (Energy value characterizing the silence to speech energy ratio):</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+    \overline{E}_{f_{dB}} = 10 ⋅ \log_{10}(\frac{\overline{E}_f}{E_0})
+\end{equation}</div></li>
+<li><p><strong>Construct VAD array using threshold comparison the energy.</strong></p>
+<p>By comparing the short time energy values to a predefined energy threshold, we compute the VAD as follows:</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+  VAD[n]=\left\{\begin{array}{ll}
+      {0,} &amp; {\overline{E}_f[n] \leq    threshold \implies Silence} \\
+      {1,} &amp; {\overline{E}_f[n] &gt;       threshold \implies Speech}
+  \end{array}\right.
+\end{equation}</div><p>with:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(VAD[n]\)</span>: The Voice Activity Detection array.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{E}_f[n]\)</span>: Normalized frame total energy.</p></li>
+</ul>
+</li>
+<li><p><strong>Compute the voiced Signal.</strong></p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+  \widetilde{S}[n]= S[n] . VAD[n]
+\end{equation}</div><p>with:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\widetilde{S}[n]\)</span>: Silence filtered signal.</p></li>
+<li><p><span class="math notranslate nohighlight">\(VAD[n]\)</span>: The Voice Activity Detection array.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S[n]\)</span> : The original signal.</p></li>
+</ul>
+</li>
+</ul>
+<p>The code for the previous steps is the following (I added a visualization function to help visualize the concept):</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Framing 1</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">import</span> <span class="nn">scipy</span>
+<span class="linenos">  2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">  3</span><span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="linenos">  4</span><span class="kn">import</span> <span class="nn">scipy.io.wavfile</span>
+<span class="linenos">  5</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span><span class="k">def</span> <span class="nf">stride_trick</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">stride_length</span><span class="p">,</span> <span class="n">stride_step</span><span class="p">):</span>
+<span class="linenos">  9</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 10</span><span class="sd">    apply framing using the stride trick from numpy.</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span><span class="sd">    Args:</span>
+<span class="linenos"> 13</span><span class="sd">        a (array) : signal array.</span>
+<span class="linenos"> 14</span><span class="sd">        stride_length (int) : length of the stride.</span>
+<span class="linenos"> 15</span><span class="sd">        stride_step (int) : stride step.</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="sd">    Returns:</span>
+<span class="linenos"> 18</span><span class="sd">        blocked/framed array.</span>
+<span class="linenos"> 19</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 20</span>    <span class="n">nrows</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">stride_length</span><span class="p">)</span> <span class="o">//</span> <span class="n">stride_step</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos"> 21</span>    <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">strides</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 22</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">stride_tricks</span><span class="o">.</span><span class="n">as_strided</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>
+<span class="linenos"> 23</span>                                           <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span> <span class="n">stride_length</span><span class="p">),</span>
+<span class="linenos"> 24</span>                                           <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="n">stride_step</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="k">def</span> <span class="nf">framing</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">win_len</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">win_hop</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+<span class="linenos"> 28</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 29</span><span class="sd">    transform a signal into a series of overlapping frames (=Frame blocking).</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="sd">    Args:</span>
+<span class="linenos"> 32</span><span class="sd">        sig     (array) : a mono audio signal (Nx1) from which to compute features.</span>
+<span class="linenos"> 33</span><span class="sd">        fs        (int) : the sampling frequency of the signal we are working with.</span>
+<span class="linenos"> 34</span><span class="sd">                          Default is 16000.</span>
+<span class="linenos"> 35</span><span class="sd">        win_len (float) : window length in sec.</span>
+<span class="linenos"> 36</span><span class="sd">                          Default is 0.025.</span>
+<span class="linenos"> 37</span><span class="sd">        win_hop (float) : step between successive windows in sec.</span>
+<span class="linenos"> 38</span><span class="sd">                          Default is 0.01.</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="sd">    Returns:</span>
+<span class="linenos"> 41</span><span class="sd">        array of frames.</span>
+<span class="linenos"> 42</span><span class="sd">        frame length.</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="sd">    Notes:</span>
+<span class="linenos"> 45</span><span class="sd">    ------</span>
+<span class="linenos"> 46</span><span class="sd">        Uses the stride trick to accelerate the processing.</span>
+<span class="linenos"> 47</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 48</span>    <span class="c1"># run checks and assertions</span>
+<span class="linenos"> 49</span>    <span class="k">if</span> <span class="n">win_len</span> <span class="o">&lt;</span> <span class="n">win_hop</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ParameterError: win_len must be larger than win_hop.&quot;</span><span class="p">)</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span>    <span class="c1"># compute frame length and frame step (convert from seconds to samples)</span>
+<span class="linenos"> 52</span>    <span class="n">frame_length</span> <span class="o">=</span> <span class="n">win_len</span> <span class="o">*</span> <span class="n">fs</span>
+<span class="linenos"> 53</span>    <span class="n">frame_step</span> <span class="o">=</span> <span class="n">win_hop</span> <span class="o">*</span> <span class="n">fs</span>
+<span class="linenos"> 54</span>    <span class="n">signal_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+<span class="linenos"> 55</span>    <span class="n">frames_overlap</span> <span class="o">=</span> <span class="n">frame_length</span> <span class="o">-</span> <span class="n">frame_step</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span>    <span class="c1"># compute number of frames and left sample in order to pad if needed to make</span>
+<span class="linenos"> 58</span>    <span class="c1"># sure all frames have equal number of samples  without truncating any samples</span>
+<span class="linenos"> 59</span>    <span class="c1"># from the original signal</span>
+<span class="linenos"> 60</span>    <span class="n">rest_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">signal_length</span> <span class="o">-</span> <span class="n">frames_overlap</span><span class="p">)</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">frame_length</span> <span class="o">-</span> <span class="n">frames_overlap</span><span class="p">)</span>
+<span class="linenos"> 61</span>    <span class="n">pad_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">frame_step</span> <span class="o">-</span> <span class="n">rest_samples</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">rest_samples</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">)))</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span>    <span class="c1"># apply stride trick</span>
+<span class="linenos"> 64</span>    <span class="n">frames</span> <span class="o">=</span> <span class="n">stride_trick</span><span class="p">(</span><span class="n">pad_signal</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">frame_length</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">frame_step</span><span class="p">))</span>
+<span class="linenos"> 65</span>    <span class="k">return</span> <span class="n">frames</span><span class="p">,</span> <span class="n">frame_length</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span><span class="k">def</span> <span class="nf">_calculate_normalized_short_time_energy</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
+<span class="linenos"> 69</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">frames</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="k">def</span> <span class="nf">naive_frame_energy_vad</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">win_len</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">win_hop</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">E0</span><span class="o">=</span><span class="mf">1e7</span><span class="p">):</span>
+<span class="linenos"> 73</span>    <span class="c1"># framing</span>
+<span class="linenos"> 74</span>    <span class="n">frames</span><span class="p">,</span> <span class="n">frames_len</span> <span class="o">=</span> <span class="n">framing</span><span class="p">(</span><span class="n">sig</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">win_len</span><span class="o">=</span><span class="n">win_len</span><span class="p">,</span> <span class="n">win_hop</span><span class="o">=</span><span class="n">win_hop</span><span class="p">)</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span>    <span class="c1"># compute short time energies to get voiced frames</span>
+<span class="linenos"> 77</span>    <span class="n">energy</span> <span class="o">=</span> <span class="n">_calculate_normalized_short_time_energy</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+<span class="linenos"> 78</span>    <span class="n">log_energy</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">energy</span> <span class="o">/</span> <span class="n">E0</span><span class="p">)</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span>    <span class="c1"># normalize energy to 0 dB then filter and format</span>
+<span class="linenos"> 81</span>    <span class="n">energy</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">log_energy</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="linenos"> 82</span>    <span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">frames_len</span><span class="p">)</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span>    <span class="c1"># compute vad and get speech frames</span>
+<span class="linenos"> 85</span>    <span class="n">vad</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">energy</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">sig</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="linenos"> 86</span>    <span class="n">vframes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">vad</span><span class="o">==</span><span class="mi">1</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">sig</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="linenos"> 87</span>    <span class="k">return</span> <span class="n">energy</span><span class="p">,</span> <span class="n">vad</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vframes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="k">def</span> <span class="nf">multi_plots</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">titles</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">plot_rows</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]):</span>
+<span class="linenos"> 91</span>    <span class="c1"># first fig</span>
+<span class="linenos"> 92</span>    <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">plot_rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="linenos"> 93</span>    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">plot_rows</span><span class="p">):</span>
+<span class="linenos"> 96</span>        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">plot_rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 97</span>        <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="linenos"> 98</span>        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="o">/</span><span class="n">fs</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">step</span><span class="p">)],</span> <span class="n">y</span><span class="p">,</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="linenos"> 99</span>        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="linenos">100</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span>    <span class="c1"># second fig</span>
+<span class="linenos">103</span>    <span class="n">sig</span><span class="p">,</span> <span class="n">vad</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos">104</span>    <span class="c1"># plot VAD and orginal signal</span>
+<span class="linenos">105</span>    <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="linenos">106</span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="o">/</span><span class="n">fs</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">))],</span> <span class="n">sig</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Signal&quot;</span><span class="p">)</span>
+<span class="linenos">107</span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="o">/</span><span class="n">fs</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vad</span><span class="p">))],</span> <span class="nb">max</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span><span class="o">*</span><span class="n">vad</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;VAD&quot;</span><span class="p">)</span>
+<span class="linenos">108</span>    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="linenos">109</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">113</span>    <span class="c1"># init vars</span>
+<span class="linenos">114</span>    <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;OSR_us_000_0060_8k.wav&quot;</span>
+<span class="linenos">115</span>    <span class="n">fs</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span>    <span class="c1">#########################</span>
+<span class="linenos">118</span>    <span class="c1"># naive_frame_energy_vad</span>
+<span class="linenos">119</span>    <span class="c1">#########################</span>
+<span class="linenos">120</span>    <span class="c1"># get voiced frames</span>
+<span class="linenos">121</span>    <span class="n">energy</span><span class="p">,</span> <span class="n">vad</span><span class="p">,</span> <span class="n">voiced</span> <span class="o">=</span> <span class="n">naive_frame_energy_vad</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=-</span><span class="mi">35</span><span class="p">,</span>
+<span class="linenos">122</span>                                                 <span class="n">win_len</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">win_hop</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span>    <span class="c1"># plot results</span>
+<span class="linenos">125</span>    <span class="n">multi_plots</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">sig</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">vad</span><span class="p">,</span> <span class="n">voiced</span><span class="p">],</span>
+<span class="linenos">126</span>                <span class="n">titles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Input signal (voiced + silence)&quot;</span><span class="p">,</span> <span class="s2">&quot;Short time energy&quot;</span><span class="p">,</span>
+<span class="linenos">127</span>                        <span class="s2">&quot;Voice activity detection&quot;</span><span class="p">,</span> <span class="s2">&quot;Output signal (voiced only)&quot;</span><span class="p">],</span>
+<span class="linenos">128</span>                <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">plot_rows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span>    <span class="c1"># save voiced signal</span>
+<span class="linenos">131</span>    <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">wavfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;naive_frame_energy_vad_no_silence_&quot;</span><span class="o">+</span> <span class="n">fname</span><span class="p">,</span>
+<span class="linenos">132</span>                           <span class="n">fs</span><span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">voiced</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">sig</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The resulting plots clearly show a good performance of this simple and fast VAD.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/naive_vad_multi_plots.png"><img alt="../../../../_images/naive_vad_multi_plots.png" src="../../../../_images/naive_vad_multi_plots.png" style="width: 1040.3999999999999px; height: 428.4px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 17: Summary plots of voice activity detection</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../../../_images/vad_and_signal.png"><img alt="../../../../_images/vad_and_signal.png" src="../../../../_images/vad_and_signal.png" style="width: 918.0px; height: 306.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 18: Voice activity detection and original signal</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>I already tested the VAD using the following <a class="reference external" href="https://www.voiptroubleshooter.com/open_speech/american/OSR_us_000_0060_8k.wav">sample</a> that can be downloaded from <a class="reference external" href="https://www.voiptroubleshooter.com/open_speech/american.html">Open Speech Repository</a>.
+The difference between the input and output shows that the VAD is functional.</p>
+<table class="docutils align-default">
+ <tr>
+   <td class="centeredth">Input signal (voiced and silent frames) </td>
+   <td class="centeredth">
+   <audio controls style="width: 80%;">
+     <source src="../../../../_static/audio/OSR_us_000_0060_8k.wav" type="audio/wav">
+     Your browser does not support the audio element.
+   </audio>
+   </td>
+ </tr>
+ <tr>
+   <td class="centeredth">Output signal (voiced only frames)</td>
+   <td class="centeredth">
+   <audio controls style="width: 80%;">
+     <source src="../../../../_static/audio/naive_frame_energy_vad_no_silence_OSR_us_000_0060_8k.wav" type="audio/wav">
+     Your browser does not support the audio element.
+   </audio>
+   </td>
+ </tr>
+</table></section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>This blog gave a quick overview to voice activity detection and its use in practical speech/ signal processing applications.
+It also introduced a naive simple way to distinguish silence from speech using short time energy.
+This type of VAD, though it is fast &amp; simple, it lacks accuracy in some cases as it is dependent on the manual choice of threshold and  <span class="math notranslate nohighlight">\(E_0\)</span> (Energy value characterizing the silence to speech energy ratio).
+Therefore, it is advised to equalize the input audio before the processing. Alternative approaches to VAD uses extra features such as MFCCs and are based on machine learning algorithms.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&text=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.202</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id2">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-tom2019"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Tom Bäckström. Voice activity detection (vad). <a class="reference external" href="https://wiki.aalto.fi/pages/viewpage.action?pageId=151500905">https://wiki.aalto.fi/pages/viewpage.action?pageId=151500905</a>, 2019. [Online; accessed 11.04.2022]. URL: <a class="reference external" href="https://wiki.aalto.fi/pages/viewpage.action?pageId=151500905">https://wiki.aalto.fi/pages/viewpage.action?pageId=151500905</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../01/25/signal_framing.html">
+      <i class="fa fa-arrow-circle-left"></i> Signal framing
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../../03/13/spectral_leakage_and_windowing.html">
+      Spectral leakage and windowing <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+            </article>
+            
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-voice-activity-detection">
+   What is voice activity detection ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-do-we-do-need-voice-activity-detection">
+   Why do we do need voice activity detection?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-implement-it">
+   How to implement it?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../../_sources/blog/2020/02/09/naive_vad.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2019-2022, Ayoub Malek.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

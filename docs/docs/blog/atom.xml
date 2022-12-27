@@ -1,0 +1,502 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="english">
+  <id>https://superkogito.github.io</id>
+  <title>SuperKogito</title>
+  <updated>2022-12-27T23:05:57.320279+00:00</updated>
+  <link href="https://superkogito.github.io"/>
+  <link href="https://superkogito.github.io/blog/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.org/" version="0.10.33">ABlog</generator>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/02/10/intro.html</id>
+    <title>Blog intro</title>
+    <updated>2019-02-10T00:00:00+01:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;This first blog is a quick introduction of my profile, and motives to start a blog.
+In this post I will be answering the following questions:&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/02/10/intro.html" rel="alternate"/>
+    <summary>This first blog is a quick introduction of my profile, and motives to start a blog.
+In this post I will be answering the following questions:</summary>
+    <category term="Firstpost" label="First post"/>
+    <published>2019-02-10T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html</id>
+    <title>Cryptography overview</title>
+    <updated>2022-04-18T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See &lt;a class="footnote-reference brackets" href="#footcite-tamimi" id="id1"&gt;1&lt;/a&gt;&lt;a class="footnote-reference brackets" href="#footcite-oak" id="id2"&gt;2&lt;/a&gt;.
+It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory &lt;a class="footnote-reference brackets" href="#footcite-kessler" id="id3"&gt;3&lt;/a&gt;.
+The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html" rel="alternate"/>
+    <summary>Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See 12.
+It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory 3.
+The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.</summary>
+    <category term="Encryption" label="Encryption"/>
+    <category term="Hashing" label="Hashing"/>
+    <published>2019-02-17T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/03/03/encryption_overview.html</id>
+    <title>Encryption overview</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &amp;quot;decryption&amp;quot; &lt;a class="footnote-reference brackets" href="#footcite-kessler" id="id1"&gt;1&lt;/a&gt;.
+These operations can be explained by the following formulas: &lt;span class="math notranslate nohighlight"&gt;\(C=E_{k}(P)\)&lt;/span&gt; and &lt;span class="math notranslate nohighlight"&gt;\(P=D_{k}(C)\)&lt;/span&gt;, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key &lt;a class="footnote-reference brackets" href="#footcite-kessler" id="id2"&gt;1&lt;/a&gt;.
+There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc &lt;a class="footnote-reference brackets" href="#footcite-kessler" id="id3"&gt;1&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/03/03/encryption_overview.html" rel="alternate"/>
+    <summary>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called "decryption" 1.
+These operations can be explained by the following formulas: C=E_{k}(P) and P=D_{k}(C), where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key 1.
+There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc 1.</summary>
+    <category term="Encryption" label="Encryption"/>
+    <published>2019-03-03T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html</id>
+    <title>Authenticated encryption</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;With growing dependency on information technology and more at stake, the security aspect has become more vital than ever.
+Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data &lt;a class="footnote-reference brackets" href="#footcite-bellare" id="id1"&gt;1&lt;/a&gt;.
+AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders &lt;a class="footnote-reference brackets" href="#footcite-nampere" id="id2"&gt;2&lt;/a&gt;.
+This article introduces the different combinations of authenticated encryption and their applications.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html" rel="alternate"/>
+    <summary>With growing dependency on information technology and more at stake, the security aspect has become more vital than ever.
+Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data 1.
+AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders 2.
+This article introduces the different combinations of authenticated encryption and their applications.</summary>
+    <category term="Encryption" label="Encryption"/>
+    <category term="Hashing" label="Hashing"/>
+    <published>2019-05-01T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html</id>
+    <title>Voice based gender recognition using Gaussian mixture models</title>
+    <updated>2022-04-10T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;The aforementioned implementation, uses The Free ST American English Corpus data-set (&lt;a class="reference external" href="http://www.openslr.org/45/"&gt;SLR45&lt;/a&gt;), which is a free American English corpus by &lt;a class="reference external" href="https://www.surfing.ai"&gt;Surfingtech&lt;/a&gt;, containing utterances from 10 speakers (5 females and 5 males).&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html" rel="alternate"/>
+    <summary>The aforementioned implementation, uses The Free ST American English Corpus data-set (SLR45), which is a free American English corpus by Surfingtech, containing utterances from 10 speakers (5 females and 5 males).</summary>
+    <category term="Audio" label="Audio"/>
+    <category term="GMM" label="GMM"/>
+    <category term="Python" label="Python"/>
+    <category term="Voice" label="Voice"/>
+    <published>2019-05-09T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html</id>
+    <title>Diabetes detection using machine learning (part I)</title>
+    <updated>2019-06-30T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Diabetes is one of the most serious health challenges today.
+The publicly available Pima Indian diabetic database (&lt;a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names"&gt;PIDD&lt;/a&gt;) have become a popular approach for testing the efficiency of machine learning algorithms &lt;a class="footnote-reference brackets" href="#id6" id="id1"&gt;1&lt;/a&gt;.
+Within this context, this blog post is part of 2 posts providing an in depth introduction to diabetes detection using various machine learning approaches.
+In this first post in particular, we focus on exploring the data at hand and preparing it for machine learning related processing.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" rel="alternate"/>
+    <summary>Diabetes is one of the most serious health challenges today.
+The publicly available Pima Indian diabetic database (PIDD) have become a popular approach for testing the efficiency of machine learning algorithms 1.
+Within this context, this blog post is part of 2 posts providing an in depth introduction to diabetes detection using various machine learning approaches.
+In this first post in particular, we focus on exploring the data at hand and preparing it for machine learning related processing.</summary>
+    <category term="Dataprocessing" label="Data processing"/>
+    <category term="Python" label="Python"/>
+    <category term="Visualization" label="Visualization"/>
+    <published>2019-06-30T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html</id>
+    <title>Diabetes detection using machine learning (part II)</title>
+    <updated>2019-06-30T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;In this 2nd post on detecting diabetes with the help of machine learning and using the Pima Indian diabetic database (&lt;a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names"&gt;PIDD&lt;/a&gt;) &lt;a class="footnote-reference brackets" href="#id5" id="id1"&gt;1&lt;/a&gt;, we will dig into testing various classifiers and evaluating their performances.
+We will also examine the performance improvements by the data transformations explained in the previous post.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html" rel="alternate"/>
+    <summary>In this 2nd post on detecting diabetes with the help of machine learning and using the Pima Indian diabetic database (PIDD) 1, we will dig into testing various classifiers and evaluating their performances.
+We will also examine the performance improvements by the data transformations explained in the previous post.</summary>
+    <category term="Dataprocessing" label="Data processing"/>
+    <category term="Python" label="Python"/>
+    <category term="Visualization" label="Visualization"/>
+    <published>2019-06-30T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/01/25/signal_framing.html</id>
+    <title>Signal framing</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;When it comes to non-stationary signals, spectral features in short parts/ sequences are of great use.
+Therefore, decomposing the signal into multiple ranges is the way to go about this type of features extraction.
+This technique is known as frame blocking or framing. The following blog explains why do we need framing and how to do it in python.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/01/25/signal_framing.html" rel="alternate"/>
+    <summary>When it comes to non-stationary signals, spectral features in short parts/ sequences are of great use.
+Therefore, decomposing the signal into multiple ranges is the way to go about this type of features extraction.
+This technique is known as frame blocking or framing. The following blog explains why do we need framing and how to do it in python.</summary>
+    <category term="Audio" label="Audio"/>
+    <category term="Framing" label="Framing"/>
+    <category term="Python" label="Python"/>
+    <published>2020-01-25T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/02/09/naive_vad.html</id>
+    <title>Naive voice activity detection using short time energy</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones.
+This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy.
+This problem is known as Voice Activity Detection (VAD). This blog aims to introduce voice activity detection and present simple short time energy based VAD implementation.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/02/09/naive_vad.html" rel="alternate"/>
+    <summary>An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones.
+This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy.
+This problem is known as Voice Activity Detection (VAD). This blog aims to introduce voice activity detection and present simple short time energy based VAD implementation.</summary>
+    <category term="Audio" label="Audio"/>
+    <category term="Python" label="Python"/>
+    <category term="VAD" label="VAD"/>
+    <published>2020-02-09T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/03/13/spectral_leakage_and_windowing.html</id>
+    <title>Spectral leakage and windowing</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Windowing is an important part of almost any signal processing system, that helps remove/ reduce spectral leakage when processing a non-periodic signal.
+This blog post provides a small overview of what is spectral usage, when does it occur and how to use windowing to suppress it.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/03/13/spectral_leakage_and_windowing.html" rel="alternate"/>
+    <summary>Windowing is an important part of almost any signal processing system, that helps remove/ reduce spectral leakage when processing a non-periodic signal.
+This blog post provides a small overview of what is spectral usage, when does it occur and how to use windowing to suppress it.</summary>
+    <category term="Audio" label="Audio"/>
+    <category term="Python" label="Python"/>
+    <published>2020-03-13T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html</id>
+    <title>How to pipe an FFmpeg output and pass it to a Python variable?</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;When writing code, the key optimization points are speed and efficiency.
+I often face this dilemma when using FFmpeg with Python.
+For example: when I need to convert an mp3 to a wave file and then do some processing to it in Python.
+The simple way to  do this, is by using FFmpeg to convert the mp3 input to a wave, then read the wave in Python and do process it.
+Although this works, but clearly it is neither optimal nor the fastest solution.
+In this blog post, I will present an improved solution to this inconvenience by piping the output of FFmpeg to Python and directly pass it to a numpy variable.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/03/19/ffmpeg_pipe.html" rel="alternate"/>
+    <summary>When writing code, the key optimization points are speed and efficiency.
+I often face this dilemma when using FFmpeg with Python.
+For example: when I need to convert an mp3 to a wave file and then do some processing to it in Python.
+The simple way to  do this, is by using FFmpeg to convert the mp3 input to a wave, then read the wave in Python and do process it.
+Although this works, but clearly it is neither optimal nor the fastest solution.
+In this blog post, I will present an improved solution to this inconvenience by piping the output of FFmpeg to Python and directly pass it to a numpy variable.</summary>
+    <category term="Audio" label="Audio"/>
+    <category term="Ffmpeg" label="Ffmpeg"/>
+    <category term="Python" label="Python"/>
+    <published>2020-03-19T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/04/04/urlstechie.html</id>
+    <title>Introducing urlstechie and its urls checking tools</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Continuous testing is a vital part of any healthy software development process.
+Urls must always be tested and broken links must be fixed to guarantee a high quality product.
+Unfortunately, this is not always trivial and can be tedious.
+Moreover, most tools available out there cannot handle in-code urls and lack many other needed features.
+A while back, I ran across this particular Problem and I quickly saw the great automation opportunity this was, and how can Python and Regex help me solve this.
+This was the start of the urlchecker-action ... from there and with the amazing &lt;a class="reference external" href="https://github.com/vsoch"&gt;&amp;#64;vsoch&lt;/a&gt; joining, the tools expanded and this was the start of the urlstechie organization.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/04/04/urlstechie.html" rel="alternate"/>
+    <summary>Continuous testing is a vital part of any healthy software development process.
+Urls must always be tested and broken links must be fixed to guarantee a high quality product.
+Unfortunately, this is not always trivial and can be tedious.
+Moreover, most tools available out there cannot handle in-code urls and lack many other needed features.
+A while back, I ran across this particular Problem and I quickly saw the great automation opportunity this was, and how can Python and Regex help me solve this.
+This was the start of the urlchecker-action ... from there and with the amazing @vsoch joining, the tools expanded and this was the start of the urlstechie organization.</summary>
+    <category term="Continuousintegration" label="Continuous integration"/>
+    <category term="Python" label="Python"/>
+    <category term="urlstechie" label="urlstechie"/>
+    <published>2020-04-04T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/04/30/rms_normalization.html</id>
+    <title>Root mean square normalization in Python</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
+A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/04/30/rms_normalization.html" rel="alternate"/>
+    <summary>Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
+A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.</summary>
+    <category term="Audio" label="Audio"/>
+    <category term="Augmentation" label="Augmentation"/>
+    <category term="Python" label="Python"/>
+    <published>2020-04-30T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html</id>
+    <title>Capturing the screen on Windows in C++ using OpenCV</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;OpenCV is just a great computer vision tool with a wide variety of capabilities, that is available in both C++ and Python.
+In this first blog about OpenCV, I will be introducing a simple algorithm to capture the content of the screen on Windows using OpenCV in C++.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html" rel="alternate"/>
+    <summary>OpenCV is just a great computer vision tool with a wide variety of capabilities, that is available in both C++ and Python.
+In this first blog about OpenCV, I will be introducing a simple algorithm to capture the content of the screen on Windows using OpenCV in C++.</summary>
+    <category term="Cplusplus" label="Cplusplus"/>
+    <category term="OpenCV" label="OpenCV"/>
+    <category term="Screen-capture" label="Screen-capture"/>
+    <category term="Windows" label="Windows"/>
+    <published>2020-07-25T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/07/26/capture_screen_using_gdiplus.html</id>
+    <title>Capturing the screen on Windows in C++ using GDI+</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start"&gt;GDI+/ Gdiplus&lt;/a&gt; is part of the &lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/"&gt;Win32 API&lt;/a&gt;, that helps C/C++ programmers with graphics related tasks on Windows.
+In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/07/26/capture_screen_using_gdiplus.html" rel="alternate"/>
+    <summary>GDI+/ Gdiplus is part of the Win32 API, that helps C/C++ programmers with graphics related tasks on Windows.
+In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.</summary>
+    <category term="Cplusplus" label="Cplusplus"/>
+    <category term="Gdiplus" label="Gdiplus"/>
+    <category term="Screen-capture" label="Screen-capture"/>
+    <category term="Windows" label="Windows"/>
+    <published>2020-07-26T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/07/28/capture_sceenshot_using_gdiplus_vs_capture_sceenshot_using_opencv.html</id>
+    <title>Comparing screen capturing using GDI+ and OpenCV on Windows in C++</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;To follow up on my last two blogs (&lt;a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html"&gt;Capturing the screen on Windows in C++ using OpenCV&lt;/a&gt; &amp;amp; &lt;a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html"&gt;Capturing the screen on Windows in C++ using GDI+&lt;/a&gt; ), we compare in this post both approaches.
+In order to compare both approaches, we examines their run-times and CPU usages.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/07/28/capture_sceenshot_using_gdiplus_vs_capture_sceenshot_using_opencv.html" rel="alternate"/>
+    <summary>To follow up on my last two blogs (Capturing the screen on Windows in C++ using OpenCV &amp; Capturing the screen on Windows in C++ using GDI+ ), we compare in this post both approaches.
+In order to compare both approaches, we examines their run-times and CPU usages.</summary>
+    <category term="Cplusplus" label="Cplusplus"/>
+    <category term="Gdiplus" label="Gdiplus"/>
+    <category term="OpenCV" label="OpenCV"/>
+    <category term="Screen-capture" label="Screen-capture"/>
+    <category term="Windows" label="Windows"/>
+    <published>2020-07-28T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html</id>
+    <title>How to loop over monitors and get their coordinates on Windows in C++?</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;The previous three blogs (&lt;a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html"&gt;Capturing the screen on Windows in C++ using OpenCV&lt;/a&gt; &amp;amp; &lt;a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html"&gt;Capturing the screen on Windows in C++ using GDI+&lt;/a&gt; and &lt;a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html"&gt;Comparing screen capturing using GDI+ and OpenCV on Windows in C++&lt;/a&gt;) described capturing a screenshot of only &lt;em&gt;one&lt;/em&gt; monitor.
+However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
+Therefore, we will need to retrieve the coordinates of the targeted monitors.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html" rel="alternate"/>
+    <summary>The previous three blogs (Capturing the screen on Windows in C++ using OpenCV &amp; Capturing the screen on Windows in C++ using GDI+ and Comparing screen capturing using GDI+ and OpenCV on Windows in C++) described capturing a screenshot of only one monitor.
+However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
+Therefore, we will need to retrieve the coordinates of the targeted monitors.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.</summary>
+    <category term="Cplusplus" label="Cplusplus"/>
+    <category term="Windows" label="Windows"/>
+    <published>2020-09-28T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/10/01/divide_image_using_opencv.html</id>
+    <title>Divide an image into blocks using OpenCV in C++</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Often you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
+This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/10/01/divide_image_using_opencv.html" rel="alternate"/>
+    <summary>Often you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
+This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.</summary>
+    <category term="Cplusplus" label="Cplusplus"/>
+    <category term="OpenCV" label="OpenCV"/>
+    <category term="Windows" label="Windows"/>
+    <published>2020-10-01T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html</id>
+    <title>Divide an image into blocks using GDI+ in C++</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
+This blog will provide an alternative implementation using the Windows API, specifically the &lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start"&gt;GDI+&lt;/a&gt; library.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html" rel="alternate"/>
+    <summary>In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
+This blog will provide an alternative implementation using the Windows API, specifically the GDI+ library.</summary>
+    <category term="Cplusplus" label="Cplusplus"/>
+    <category term="Gdiplus" label="Gdiplus"/>
+    <category term="Windows" label="Windows"/>
+    <published>2020-10-03T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2020/10/25/chmod_modes.html</id>
+    <title>Chmod modes: from symbolic to octal and back</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Often you will be faced with permission limitations, that will hinder you from manipulating a certain file or directory.
+To overcome this on Unix-based systems, one can use the &lt;strong&gt;chmod&lt;/strong&gt; command to edit permissions and enable more manipulations possibilities.
+In this blog, we examine the &lt;strong&gt;chmod&lt;/strong&gt; command and its different modes.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2020/10/25/chmod_modes.html" rel="alternate"/>
+    <summary>Often you will be faced with permission limitations, that will hinder you from manipulating a certain file or directory.
+To overcome this on Unix-based systems, one can use the chmod command to edit permissions and enable more manipulations possibilities.
+In this blog, we examine the chmod command and its different modes.</summary>
+    <category term="Bash" label="Bash"/>
+    <category term="Linux" label="Linux"/>
+    <published>2020-10-25T00:00:00+02:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2021/12/31/aiohttp_server.html</id>
+    <title>Basic aiohttp server</title>
+    <updated>2022-04-16T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;When it comes to deploying an application on a server online, a crucial aspect is its response time since no user wants to wait long for a response.
+Hence, optimizations and asynchronous processing are the way to go. within this context, &lt;a class="reference external" href="https://docs.aiohttp.org/en/stable/"&gt;aiohttp&lt;/a&gt; is a python library that helps implementing asynchronous HTTP Client/Server.
+The following blog is one of a series of four that will introduce a server implementation, followed by a token based authentication and some stress testing.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2021/12/31/aiohttp_server.html" rel="alternate"/>
+    <summary>When it comes to deploying an application on a server online, a crucial aspect is its response time since no user wants to wait long for a response.
+Hence, optimizations and asynchronous processing are the way to go. within this context, aiohttp is a python library that helps implementing asynchronous HTTP Client/Server.
+The following blog is one of a series of four that will introduce a server implementation, followed by a token based authentication and some stress testing.</summary>
+    <category term="Python" label="Python"/>
+    <category term="Server-client" label="Server-client"/>
+    <published>2021-12-31T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html</id>
+    <title>Token authenticated aiohttp server</title>
+    <updated>2022-04-08T00:00:00+02:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;In the previous blog post, a simple aiohttp server was introduced.
+In the following post we improve the previous server by introducing a simple token authentication mechanism.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html" rel="alternate"/>
+    <summary>In the previous blog post, a simple aiohttp server was introduced.
+In the following post we improve the previous server by introducing a simple token authentication mechanism.</summary>
+    <category term="Python" label="Python"/>
+    <category term="Server-client" label="Server-client"/>
+    <published>2021-12-31T00:00:00+01:00</published>
+  </entry>
+  <entry>
+    <id>https://superkogito.github.io/blog/2022/12/27/whisper_aiohttp_server_with_token.html</id>
+    <title>Whisper based speech recognition server</title>
+    <updated>2022-12-27T00:00:00+01:00</updated>
+    <author>
+      <name>Ayoub Malek</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;In the last blog post: &lt;a class="reference external" href="https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html"&gt;Token authenticated aiohttp server&lt;/a&gt;, an authenticated aiohttp server was introduced.
+In this post, we build on top of the previous posts, to create an Automatic Speech Recognition (ASR) authenticated server, that uses the newly introduced &lt;a class="reference external" href="https://github.com/openai/whisper"&gt;whisper&lt;/a&gt; by &lt;a class="reference external" href="https://openai.com/"&gt;OpenAI&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://superkogito.github.io/blog/2022/12/27/whisper_aiohttp_server_with_token.html" rel="alternate"/>
+    <summary>In the last blog post: Token authenticated aiohttp server, an authenticated aiohttp server was introduced.
+In this post, we build on top of the previous posts, to create an Automatic Speech Recognition (ASR) authenticated server, that uses the newly introduced whisper by OpenAI.</summary>
+    <category term="Python" label="Python"/>
+    <category term="Server-client" label="Server-client"/>
+    <category term="Speechrecognition" label="Speech recognition"/>
+    <category term="Whisper" label="Whisper"/>
+    <published>2022-12-27T00:00:00+01:00</published>
+  </entry>
+</feed>

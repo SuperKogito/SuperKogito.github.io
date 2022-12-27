@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Root mean square normalization in Python" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/04/30/rms_normalization.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="Audio signal RMS normalization in Python" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/rms_normalization.png" />
+<meta property="og:image:alt" content="root mean square normalization in python" />
+<meta property="og:keywords" content="root mean square, signal normalization, python, Audio normalization, RMS normalization, python, ayoub malek, blog post" />
+<meta name="description" content="Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level. A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS nor..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>Root mean square normalization in Python &#8212; 🧠 SuperKogito  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2020/04/30/rms_normalization';</script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2020/04/30/rms_normalization.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="english"> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">🧠 SuperKogito  documentation</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../blog.html">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../about.html">
+                        About Me
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../index.html">
+                        Home
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../blog.html">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../../about.html">
+                        About Me
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  30 April 2020 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/signal-processing.html">Signal processing</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/augmentation.html">Augmentation</a>   
+  <a href="../../../tag/python.html">Python</a>   
+  <a href="../../../tag/audio.html">Audio</a>  
+</li>
+ 
+</ul>
+
+    </div>
+    <div class="sidebar-start-items__item">
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+</ul>
+
+    </div>
+    <div class="sidebar-start-items__item">
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+
+
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+            <article class="bd-article" role="main">
+               <section id="root-mean-square-normalization-in-python">
+<h1>Root mean square normalization in Python<a class="headerlink" href="#root-mean-square-normalization-in-python" title="Permalink to this headline">#</a></h1>
+<hr class="docutils" />
+<p>Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
+A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.</p>
+<section id="what-is-rms-normalization">
+<h2>What is RMS normalization?<a class="headerlink" href="#what-is-rms-normalization" title="Permalink to this headline">#</a></h2>
+<p>In general there are two principal types of audio normalization:</p>
+<ul class="simple">
+<li><p>Peak normalization which adjusts the recording based on its highest signal level.</p></li>
+<li><p>Loudness normalization which adjusts the recording based its perceived loudness.</p></li>
+</ul>
+<p>RMS normalization falls under the latter, where the perceived loudness level is determined using the root mean square of the signal.
+The result is then used to compute the gain value used in the normalization.
+Since the gain value is constant and applied across the entire recording, the normalization does not affect the signal-to-noise ratio and the relative dynamics <a class="footnote-reference brackets" href="#footcite-shelvock" id="id1">1</a>.
+The approach to RMS normalization can be summarized in the following mathematical formula <a class="footnote-reference brackets" href="#footcite-malek" id="id2">2</a>:</p>
+<div class="math notranslate nohighlight" id="equation-rms">
+\begin{equation}
+    y[n]=\sqrt{\frac{N-10\left(\frac{r}{20}\right)}{\sum_{i=0}^{N-1} x^{2} \left[ i\right]}} \cdot x[n]
+\end{equation}</div><p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x[n]\)</span> is the original signal.</p></li>
+<li><p><span class="math notranslate nohighlight">\(y[n]\)</span> is the normalized signal.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> is the length of <span class="math notranslate nohighlight">\(x[n]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r\)</span> is the input RMS level in dB.</p></li>
+</ul>
+</section>
+<section id="how-to-implement-it-in-python">
+<h2>How to implement it in Python?<a class="headerlink" href="#how-to-implement-it-in-python" title="Permalink to this headline">#</a></h2>
+<p>Implementing the RMS normalization is fairly simple in Python and the algorithm can be summarized in the following steps:</p>
+<ul class="simple">
+<li><p>Read audio as an array.</p></li>
+<li><p>Compute the linear RMS level and its scaling factor</p></li>
+<li><p>Normalize using the scaling factor.</p></li>
+<li><p>Write the resulting array as an audio.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">rms_level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span><span class="sd">    Normalize the signal given a certain technique (peak or rms).</span>
+<span class="linenos"> 4</span><span class="sd">    Args:</span>
+<span class="linenos"> 5</span><span class="sd">        - infile    (str) : input filename/path.</span>
+<span class="linenos"> 6</span><span class="sd">        - rms_level (int) : rms level in dB.</span>
+<span class="linenos"> 7</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 8</span>    <span class="c1"># read input file</span>
+<span class="linenos"> 9</span>    <span class="n">fs</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="c1"># linear rms level and scaling factor</span>
+<span class="linenos">12</span>    <span class="n">r</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">rms_level</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sig</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="c1"># normalize</span>
+<span class="linenos">16</span>    <span class="n">y</span> <span class="o">=</span> <span class="n">sig</span> <span class="o">*</span> <span class="n">a</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="c1"># construct file names</span>
+<span class="linenos">19</span>    <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="n">name_attribute</span> <span class="o">=</span> <span class="s2">&quot;output_file.wav&quot;</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="c1"># export data to file</span>
+<span class="linenos">23</span>    <span class="n">write_file</span><span class="p">(</span><span class="n">output_file_path</span><span class="o">=</span><span class="n">output_file_path</span><span class="p">,</span>
+<span class="linenos">24</span>               <span class="n">input_file_name</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
+<span class="linenos">25</span>               <span class="n">name_attribute</span><span class="o">=</span><span class="n">name_attribute</span><span class="p">,</span>
+<span class="linenos">26</span>               <span class="n">sig</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+<span class="linenos">27</span>               <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This implementation is available as part of the <a class="reference external" href="https://github.com/SuperKogito/pydiogment/">Pydiogment_library</a></p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>This blog post provided a small introduction of the RMS normalization technique, which is commonly used in speech processing to improve the quality of recordings.
+We also provided a small implementation of the approach that is part of the <a class="reference external" href="https://github.com/SuperKogito/pydiogment/">Pydiogment_library</a>.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&text=Root%20mean%20square%20normalization%20in%20Python"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.2022</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-shelvock"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Matt Shelvock. Audio Mastering as Musical Practice. Master's thesis, The University of Western Ontario: The School of Graduate and Postdoctoral Studies, London, Ontario, Canada, 2012. URL: <a class="reference external" href="https://ir.lib.uwo.ca/etd/530">https://ir.lib.uwo.ca/etd/530</a>.</p>
+</dd>
+<dt class="label" id="footcite-malek"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Ayoub Malek and Hasna Marwa Malek. Pydiogment: A Python package for audio augmentation. 2020. [Online; accessed 30.04.2020]. URL: <a class="github reference external" href="https://github.com/SuperKogito/pydiogment/blob/master/paper/paper.pdf">SuperKogito/pydiogment</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../04/urlstechie.html">
+      <i class="fa fa-arrow-circle-left"></i> Introducing urlstechie and its urls checking tools
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../../07/25/capture_screen_using_opencv.html">
+      Capturing the screen on Windows in C++ using OpenCV <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+            </article>
+            
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-rms-normalization">
+   What is RMS normalization?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-implement-it-in-python">
+   How to implement it in Python?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../../_sources/blog/2020/04/30/rms_normalization.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2019-2022, Ayoub Malek.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
