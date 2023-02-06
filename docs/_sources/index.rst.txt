@@ -33,6 +33,13 @@ List of posts
   :format: {date} {title}
   :list-style: circle
 
+
+Publications
+------------
+
+- Malek, A., (2023). Spafe: Simplified python audio features extraction. Journal of Open Source Software, 8(81), 4739, https://doi.org/10.21105/joss.04739
+
+
 Libraries
 ---------
 

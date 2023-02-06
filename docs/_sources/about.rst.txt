@@ -10,7 +10,7 @@ About Me
    :author: Ayoub Malek
 
 
-I hate to talking about myself, hence I figured that; instead of writing an obnoxious self centered essay, I should just provide some bullet points summarizing my journey so far:
+I hate talking about myself, so I figured that; instead of writing an obnoxious self centered essay, here are some bullet points summarizing my journey so far:
 
 - Born and raised in Tunisia |:tunisia:|.
 - My first lines of code were in `Turbo Pascal`_ in high-school.
@@ -18,7 +18,7 @@ I hate to talking about myself, hence I figured that; instead of writing an obno
 - Was granted a scholarship for engineering studies in Germany |:germany:|.
 - Studied electrical engineering at the |:classical_building:| `Technical University of Munich`_.
 - Have a `B.Sc.`_ (2017) and `M.Sc.`_ (2019) in electrical engineering.
-- Based in Munich, at the moment.
+- Based in Munich, Germany.
 - Machine Learning Engineer @ `Yoummday GmbH`_.
 - My hobbies are sports 🏀⚽🏓 and programming |:computer:|.
 

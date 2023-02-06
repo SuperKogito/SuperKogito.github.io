@@ -17,26 +17,24 @@
 <meta property="og:ignore_canonical" content="true" />
 
     <title>Capturing the screen on Windows in C++ using OpenCV &#8212; 🧠 SuperKogito  documentation</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="../../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
-  
-  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -45,10 +43,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -58,14 +54,43 @@
     <script src="../../../../_static/copybutton.js"></script>
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
     <script src="../../../../_static/twemoji.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2020/07/25/capture_screen_using_opencv';</script>
     <link rel="canonical" href="http://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html" />
     <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../../../about.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="english"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    <link 
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GPWJJB9TRK');
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <!-- 
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ --> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -99,254 +124,95 @@
 </style>
 
   </head>
-  
-  
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-  
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
-  <label class="overlay overlay-primary" for="__primary"></label>
-
-  
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-      
-<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
-  </div>
-
-  
-  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
-      <span class="fa-solid fa-bars"></span>
-  </label>
   <div id="navbar-start">
     
     
-  
-
-
-<a class="navbar-brand logo" href="../../../../index.html">
-
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-    <p class="title logo__title">🧠 SuperKogito  documentation</p>
-  
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
 </a>
+
     
   </div>
 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
   
-  <div class="col-lg-9 navbar-header-items">
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
     <div id="navbar-center" class="mr-auto">
       
       <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../index.html">
-                        Home
-                      </a>
-                    </li>
-                
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../projects.html">
-                        Projects
-                      </a>
-                    </li>
-                
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../blog.html">
-                        Blog
-                      </a>
-                    </li>
-                
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../about.html">
-                        About Me
-                      </a>
-                    </li>
-                
-    </ul>
-</nav>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
       </div>
       
     </div>
 
     <div id="navbar-end">
       
-        <div class="navbar-end-item navbar-persistent--container">
-          
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-        </div>
-      
-      
       <div class="navbar-end-item">
-        
-<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
 </form>
       </div>
       
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          
-          
-          
-          
-          
-          
-          
-          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
         </li>
       </ul>
       </div>
       
     </div>
   </div>
-
-
-  
-  
-    <div class="navbar-persistent--mobile">
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-    </div>
-  
-
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-  </label>
-  
-
 </div>
-  </nav>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-      <div class="sidebar-header-items__center">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../index.html">
-                        Home
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../projects.html">
-                        Projects
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../blog.html">
-                        Blog
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../../about.html">
-                        About Me
-                      </a>
-                    </li>
-                
-    </ul>
-</nav>
-      </div>
-      
-      </div>
+    </nav>
     
 
-    
-    
-    <div class="sidebar-header-items__end">
-      
-      <div class="navbar-end-item">
-        
-<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
+    <div class="container-xl">
+      <div class="row">
           
-          
-          
-          
-          
-          
-          
-          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
-        </li>
-      </ul>
-      </div>
-      
-    </div>
-    
-  </div>
-
-  
-  <div class="sidebar-start-items sidebar-primary__section">
-    <div class="sidebar-start-items__item">  
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">  
 <h2>
    <i class="fa fa-calendar"></i>
   25 July 2020 
@@ -392,16 +258,14 @@
   <span><i class="fa-fw fa fa-tags"></i> </span
   >
    
+  <a href="../../../tag/windows.html">Windows</a>   
   <a href="../../../tag/screen-capture.html">Screen-capture</a>   
   <a href="../../../tag/opencv.html">OpenCV</a>   
-  <a href="../../../tag/cplusplus.html">Cplusplus</a>   
-  <a href="../../../tag/windows.html">Windows</a>  
+  <a href="../../../tag/cplusplus.html">Cplusplus</a>  
 </li>
  
 </ul>
 
-    </div>
-    <div class="sidebar-start-items__item">
 <h3>
   <a href="../../../../blog.html">✍️ Recent Posts</a>
 </h3>
@@ -439,8 +303,6 @@
   
 </ul>
 
-    </div>
-    <div class="sidebar-start-items__item">
 <h3>
   <a href="../../../archive.html">🗓️ Archives</a>
 </h3>
@@ -464,33 +326,76 @@
    
 </ul>
 
-    </div>
-  </div>
-  
-
-  
-  <div class="sidebar-end-items sidebar-primary__section">
-    <div class="sidebar-end-items__item">
-    </div>
-  </div>
-
-  
-  <div id="rtd-footer-container"></div>
-
-      </div>
-      <main id="main-content" class="bd-main">
-        
-        
-        <div class="bd-content">
-          <div class="bd-article-container">
-            
-            <div class="bd-header-article">
-                
             </div>
             
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
             
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-library-and-includes">
+   Build library and Includes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#capture-screenshot-function">
+   Capture screenshot function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-main-call">
+   The main call
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations">
+   Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
 
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
 <!--  Bootstrap HTML  -->
 <div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -505,14 +410,14 @@
 
 
 
-            <article class="bd-article" role="main">
-               <section id="capturing-the-screen-on-windows-in-c-using-opencv">
-<h1>Capturing the screen on Windows in C++ using OpenCV<a class="headerlink" href="#capturing-the-screen-on-windows-in-c-using-opencv" title="Permalink to this headline">#</a></h1>
+              <div>
+                 <section id="capturing-the-screen-on-windows-in-c-using-opencv">
+<h1>Capturing the screen on Windows in C++ using OpenCV<a class="headerlink" href="#capturing-the-screen-on-windows-in-c-using-opencv" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>OpenCV is just a great computer vision tool with a wide variety of capabilities, that is available in both C++ and Python.
 In this first blog about OpenCV, I will be introducing a simple algorithm to capture the content of the screen on Windows using OpenCV in C++.</p>
 <section id="build-library-and-includes">
-<h2>Build library and Includes<a class="headerlink" href="#build-library-and-includes" title="Permalink to this headline">#</a></h2>
+<h2>Build library and Includes<a class="headerlink" href="#build-library-and-includes" title="Permalink to this headline">¶</a></h2>
 <p>In order to use OpenCV in C++, we have first to install the library.
 In my case, I am using Visual Studio 2019 so I had to build the library from source and correctly link it to my project.
 You can choose any build architecture that suits you, but most of my upcoming posts will be using the x86 architecture as I will be combining my code with win32 based GUIs.
@@ -529,7 +434,7 @@ In this case we need the OpenCV header (<code class="code docutils literal notra
 </div>
 </section>
 <section id="capture-screenshot-function">
-<h2>Capture screenshot function<a class="headerlink" href="#capture-screenshot-function" title="Permalink to this headline">#</a></h2>
+<h2>Capture screenshot function<a class="headerlink" href="#capture-screenshot-function" title="Permalink to this headline">¶</a></h2>
 <p>Now let's write the main capture function, which will take a window handle to get its associated contextual device and return a <a class="reference external" href="https://docs.opencv.org/trunk/d3/d63/classcv_1_1Mat.html">cv::Mat object</a> including the screenshot information.
 This function will first define handles to the device context and the associated Region of interest (defined using start-x, start-y, width and height).
 The bitmap and its header are then created and filled with the screen pixels data.
@@ -596,7 +501,7 @@ The previously described steps looks as follows in C++:</p>
 </div>
 </section>
 <section id="the-main-call">
-<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">#</a></h2>
+<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
 <p>In order to test this, and for you to have an idea on how to use the previous code, in your future projects.
 Let's call it inside of a main function, encode the output as a <cite>PNG</cite> and save the captured screenshot to the hard drive.
 In code this looks like this:</p>
@@ -625,7 +530,7 @@ In code this looks like this:</p>
 <em>In case you prefer having `JPEG` data, then just replicate all the previous steps while replacing :code::`&quot;.png&quot;` with :code::`&quot;.jpg&quot;`.</em></p>
 </section>
 <section id="limitations">
-<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The previous implementation is a bit limited. As it is somewhat slow comparing to the screen capture windows function associated with the capture screen button. This can be explained by the fact that unlike the windows function, OpenCV was not built for such a basic task.</p></li>
 <li><p>Furthermore, in a multi-monitors setup, if you play with the DPI and the scaling settings of the screens, you will notice that the resulting screenshots can be cropped. This can be solved by setting the C++ project DPI-awareness to <cite>True</cite>. In Visual Studio 2019, this can be done under: <code class="code docutils literal notranslate"><span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">Project-Name</span> <span class="pre">Properties</span> <span class="pre">&gt;</span> <span class="pre">Manifest</span> <span class="pre">Tool</span> <span class="pre">&gt;</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output</span> <span class="pre">&gt;</span> <span class="pre">DPI</span> <span class="pre">Awareness</span></code></p></li>
@@ -633,14 +538,14 @@ In code this looks like this:</p>
 </ul>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>To summarize, in this post we introduced a small example of how to capture the screen content using OpenCV and save it to the hard drive as an image or to the memory to use it inside your code.
 The code is fairly simple and supports both <cite>PNG</cite> and <cite>JPEG</cite>.
 On the other hand, the code is slightly slow and therefore using the native Windows solution might result in better performance.
 This option will be explored in my next posts, so stay tuned.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html&title=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20OpenCV"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/07/25/capture_screen_using_opencv.html&text=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20OpenCV"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -652,7 +557,7 @@ This option will be explored in my next posts, so stay tuned.</p>
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Capturing an Image, Microsoft, <a class="reference external" href="http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx">http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx</a></p></li>
 <li><p>OPENCV Desktop Capture, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/34466993/opencv-desktop-capture">https://stackoverflow.com/questions/34466993/opencv-desktop-capture</a></p></li>
@@ -687,8 +592,8 @@ This option will be explored in my next posts, so stay tuned.</p>
   
 </div>
 
-            </article>
-            
+              </div>
+              
 <!-- Add a comment box underneath the page's content -->
 <script src="https://giscus.app/client.js"
         data-repo="superKogito/SuperKogito.github.io"
@@ -705,138 +610,55 @@ This option will be explored in my next posts, so stay tuned.</p>
         async>
 </script>
 <script src="../_static/cookiealert.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
 
-            
-            
-            <footer class="bd-footer-article">
-                <!-- Previous / next buttons -->
+              
+              <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            </footer>
-            
-          </div>
-          
-          
-          
-            <div class="bd-sidebar-secondary bd-toc">
               
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#build-library-and-includes">
-   Build library and Includes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#capture-screenshot-function">
-   Capture screenshot function
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-main-call">
-   The main call
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#limitations">
-   Limitations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#share-this-blog">
-   Share this blog
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-readings">
-   References and Further readings
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-<div class="toc-item">
-  
-<div id="searchbox"></div>
-</div>
-
-<div class="toc-item">
-  
-</div>
-
-<div class="toc-item">
-  
-<div class="tocsection sourcelink">
-    <a href="../../../../_sources/blog/2020/07/25/capture_screen_using_opencv.rst.txt">
-        <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-</div>
-
-</div>
-
-            </div>
+          </main>
           
-          
-        </div>
-        <footer class="bd-footer-content">
-          <div class="bd-footer-content__inner">
-            
-          </div>
-        </footer>
-        
-      </main>
+
+      </div>
     </div>
-  </div>
-
   
-    
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
 
-  <footer class="bd-footer"><div class="bd-footer__inner container">
-  
-  <div class="footer-item">
-    
-<p class="copyright">
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
 
-    &copy; Copyright 2019-2022, Ayoub Malek.<br>
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
 
-</p>
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
+              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
 
-  </div>
-  
-  <div class="footer-item">
-    <p class="theme-version">
-    Built with the
-    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
-        PyData Sphinx Theme
-    </a>
-    0.12.0.
-</p>
-  </div>
-  
-  <div class="footer-item">
-    
-<p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
-</p>
-
-  </div>
-  
-</div>
+    </div>
   </footer>
   </body>
 </html>

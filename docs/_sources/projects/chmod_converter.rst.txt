@@ -75,5 +75,4 @@ The converter is written in Javascript and its source code can be found under `c
 
 
 
-
 .. _`chmod-converter.js`: https://gist.github.com/SuperKogito/a67e15a7057a754dc20af42bf4f860cb
