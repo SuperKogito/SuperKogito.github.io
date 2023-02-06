@@ -68,7 +68,7 @@ html_theme_options = {
     "search_bar_text": "Search this site...",
     "google_analytics_id": "UA-133660046-1",
     "navbar_end": ["search-field.html", "navbar-icon-links"],
-    "left_sidebar_end": ["sidebar-ethical-ads"],
+    "primary_sidebar_end": ["sidebar-ethical-ads"],
 }
 
 html_sidebars = {
@@ -90,7 +90,7 @@ html_sidebars = {
     "policy/**": ["hello.html"],
 
     "blog": ["tagcloud.html", "archives.html"],
-    "blog/**": ["postcard.html", "recentposts.html", "archives.html"],
+    "blog/**": ["postcard.html", "recentposts.html", "archives.html"]# "layout.html"],
 }
 
 blog_baseurl = "https://superkogito.github.io"

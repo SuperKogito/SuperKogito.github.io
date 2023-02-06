@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Authenticated encryption" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="Authenticated Encryption post" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/authenticated_encryption.png" />
+<meta property="og:image:alt" content="voice_based_gender_recognition" />
+<meta property="og:keywords" content="Authenticated Encryption, Encryption, Hashing, Security, Ayoub Malek, Cybersecurity Ayoub Malek" />
+<meta name="description" content="With growing dependency on information technology and more at stake, the security aspect has become more vital than ever. Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data 1. ..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>Authenticated encryption &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    <link 
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GPWJJB9TRK');
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <!-- 
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ --> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  01 May 2019 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/cybersecurity.html">Cybersecurity</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/hashing.html">Hashing</a>   
+  <a href="../../../tag/encryption.html">Encryption</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-an-ae">
+   What is an AE?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-different-combinations-resulting-in-ae">
+   The different combinations resulting in AE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ae-flaws-and-limitations">
+     AE flaws and limitations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="authenticated-encryption">
+<h1>Authenticated encryption<a class="headerlink" href="#authenticated-encryption" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>With growing dependency on information technology and more at stake, the security aspect has become more vital than ever.
+Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data <a class="footnote-reference brackets" href="#footcite-bellare" id="id1">1</a>.
+AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders <a class="footnote-reference brackets" href="#footcite-nampere" id="id2">2</a>.
+This article introduces the different combinations of authenticated encryption and their applications.</p>
+<section id="what-is-an-ae">
+<h2>What is an AE?<a class="headerlink" href="#what-is-an-ae" title="Permalink to this headline">¶</a></h2>
+<p>Nowadays, the traditional approach to secure communications is to establish a “secure channel” between two endpoints and then exchange encrypted data <a class="footnote-reference brackets" href="#footcite-hugo" id="id3">3</a>.
+Typically, this is done by initiating a secure key-exchange (or multiple keys), which will be later used to encrypt/decrypt the exchanged data.
+This approach is used in many protocols such as: Secure Sockets Layer (SSL: predecessor of TLS), Internet Protocol security (IPsec), Secure Shell (SSH) etc. <a class="footnote-reference brackets" href="#footcite-hugo" id="id4">3</a>.
+An authenticated encryption is composed by two main blocks; Message Authentication Code (MAC) and a Symmetric Encryption (SE).
+The MAC is a piece of information (often called a tag) generated based on the data at hand and is transmitted throughout the channel within the sent package.
+The tag is then used in the receiving end to verify the data integrity and the authenticity of its source.
+SE on the other hand refers to an encryption algorithms using the same cryptographic key for both encryption and decryption.
+Encryption transforms a plain-text into unreadable text (Cipher-text), to ensure the privacy of the interactions.
+The authenticated encryption combination of MAC and SE provides Integrity and Authenticity using the MAC and Privacy through SE.</p>
+</section>
+<section id="the-different-combinations-resulting-in-ae">
+<h2>The different combinations resulting in AE<a class="headerlink" href="#the-different-combinations-resulting-in-ae" title="Permalink to this headline">¶</a></h2>
+<p>There are various approaches to authenticated encryption that differs essentially in the way the MAC and the SE are combined.
+To describe these three methods effectively, we consider P as Plain-text, C as Cipher-text, SE is a symmetric encryption function, K stands for Key, MAC is a message authentication code, T is the generated tag and || denotes concatenation.
+This results in the following three different approaches:</p>
+<ul class="simple">
+<li><p><strong>MAC and Encrypt (M&amp;E):</strong> In this approach the sender computes a MAC of the P, encrypts the P, and then appends the MAC to the C <a class="footnote-reference brackets" href="#footcite-moxie" id="id5">4</a>.
+This is how SSH works and can be described by:
+<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(P)\)</span></p></li>
+<li><p><strong>MAC-then-Encrypt (MtE):</strong> Here the sender computes a MAC of the P, then encrypts both the P and the MAC <a class="footnote-reference brackets" href="#footcite-moxie" id="id6">4</a>.
+This is approximately how SSL works.
+<span class="math notranslate nohighlight">\(C = E_{k1}(P || MAC_{k2}(P))\)</span></p></li>
+<li><p><strong>Encrypt-then-MAC (EtM):</strong> It consists of encrypting the P first and then appending a MAC of the result <a class="footnote-reference brackets" href="#footcite-moxie" id="id7">4</a>.
+This scheme is used in IPsec and can be summed by:
+<span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))\)</span></p></li>
+</ul>
+<div class="figure" id="id13" style="text-align: center"><p><img width="100%" src="None" alt="text" /></p>
+<p><span class="caption-text">Figure 3: SE and MAC combinations</span></p>
+</div><section id="ae-flaws-and-limitations">
+<h3>AE flaws and limitations<a class="headerlink" href="#ae-flaws-and-limitations" title="Permalink to this headline">¶</a></h3>
+<p>Although SE and the MAC can be independently secure, their combination is not necessarily unbreakable. For example, when using MtE, one needs to remove the padding that was originally introduced during the encryption process before decrypting <a class="footnote-reference brackets" href="#footcite-moxie" id="id8">4</a>.
+This un-padding before decryption reveals a huge vulnerability since the receiver throws two distinct errors with different delays:</p>
+<ul class="simple">
+<li><p>Padding error if the padding is incorrect.</p></li>
+<li><p>Decryption error in case of faulty decryption.</p></li>
+</ul>
+<p>Knowing that the receiver always checks the last byte first to process padding, an attacker can build a cipher-text to be decrypted arbitrarily by modifying the last byte of the second to last cipher-text block <a class="footnote-reference brackets" href="#footcite-moxie" id="id9">4</a>.
+When processing the message, the receiver has two possible crypto-related errors: a padding error, or a MAC error <a class="footnote-reference brackets" href="#footcite-moxie" id="id10">4</a>.
+This revelation of the error can result in the following scenario:</p>
+<blockquote>
+<div><p>The attacker first intercepts a cipher-text of 2 blocks using sniffing for instance. Knowing that CBC-decryption uses the previous block as an Initialization Vector (IV) for the decryption process of the current cipher-text,
+the decryption process can be summarized in the following formula, where D stands for decryption, c is the 2nd block of the cipher-text and p is its associated plain-text block: <span class="math notranslate nohighlight">\(D(c) \oplus IV = p\)</span></p>
+<p>With the help of this combination of MAC and CBC the attacker first sends to the receiver a packet where the L byte of the IV is altered, if a success message is received, then he changes the L-1 byte and so on until he receives an error at L-6 for example.
+This use of a package to interact with the AE is called a padding oracle and would enable the attacker to determine the used padding and the length of the data.
+The attacker then seeks to introduce a higher padding by changing the IV values, while changing the second byte. Once he doesn’t receive a padding error, using some basic math the value of the plain-text second byte is determined as in figure 5.
+Using these steps, the attacker can determine a full plain-text block that he can later use alongside its associated cipher-text block to determine the key.
+Once the key is known, the whole interaction becomes open to the attacker. This attack is called a <strong>Padding oracle attack</strong> or <strong>the Vaudenay attack</strong> <a class="footnote-reference brackets" href="#footcite-moxie" id="id11">4</a>.</p>
+</div></blockquote>
+<p>At first glance this may seem avoidable by simply not revealing the type of error, whether it is a padding or MAC-error (note that some error feedback is practical to have, especially in web-services).
+However, the threat is still unavoidable since the attacker can analyze the time taken to respond.
+This helps the attacker to determine, whether a padding error or a MAC-error was detected (A MAC error obviously takes longer since the receiver must first remove the padding, decrypt and then verify the MAC).
+This is known as a <strong>timing attack</strong>. These type of attacks are part of <strong>chosen cipher-text attacks</strong>. M&amp;E is also vulnerable to the same type of attacks, therefore Encrypt-then-MAC is the best practice of AE.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>To summarize, AE is a combination of SE and MAC that ensures integrity, authenticity and secrecy. Depending on the combination order of SE and MAC, we have 3 types of AE.
+Out of those, Encrypt-then-MAC is the recommended approach to authenticated encryption. However, MAC-then-encrypt is still a safe and fast approach under certain tight conditions (the case of SSL for instance).</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter" href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&text=Autehnticated%20encryption"                  target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit" href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption"                      target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.202</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container" id="id12">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-bellare"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>C. Nampremere M. Bellare. Authenticated encryption: relations among notions and analysis of the generic composition paradigm. 2007.</p>
+</dd>
+<dt class="label" id="footcite-nampere"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>P. Rogaway C. Namprempre and T. Shrimpton. Reconsidering generic composition. 2014.</p>
+</dd>
+<dt class="label" id="footcite-hugo"><span class="brackets">3</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>H. Krawczyk. The order of encryption and authentication for protecting communications (or: how secure is ssl?). 2001.</p>
+</dd>
+<dt class="label" id="footcite-moxie"><span class="brackets">4</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>,<a href="#id7">3</a>,<a href="#id8">4</a>,<a href="#id9">5</a>,<a href="#id10">6</a>,<a href="#id11">7</a>)</span></dt>
+<dd><p>M. Marlinspike. blog: The Cryptographic Doom Principle,. <a class="reference external" href="https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017">https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017</a>, 05.01.2018.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../03/03/encryption_overview.html">
+      <i class="fa fa-arrow-circle-left"></i> Encryption overview
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../09/voice_based_gender_recognition.html">
+      Voice based gender recognition using Gaussian mixture models <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
+              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Cryptography overview" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/02/17/cryptography_overview.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="cryptography overview" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/cryptography_overview.png" />
+<meta property="og:image:alt" content="cryptography_overview" />
+<meta property="og:keywords" content="cryptography overview, encryption, hashing, security, ayoub malek, cybersecurity post, blog introduction" />
+<meta name="description" content="Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See 1 2. It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, com..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>Cryptography overview &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2019/02/17/cryptography_overview.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    <link 
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GPWJJB9TRK');
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <!-- 
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ --> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  17 February 2019 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  18 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/cybersecurity.html">Cybersecurity</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/hashing.html">Hashing</a>   
+  <a href="../../../tag/encryption.html">Encryption</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-cryptography-algorithms">
+   Types of cryptography algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encryption-vs-hashing">
+   Encryption vs Hashing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encryption-and-decryption">
+   Encryption and Decryption
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-summary-of-cryptography-algorithms">
+   A summary of cryptography algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="cryptography-overview">
+<h1>Cryptography overview<a class="headerlink" href="#cryptography-overview" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See <a class="footnote-reference brackets" href="#footcite-tamimi" id="id1">1</a><a class="footnote-reference brackets" href="#footcite-oak" id="id2">2</a>.
+It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory <a class="footnote-reference brackets" href="#footcite-kessler" id="id3">3</a>.
+The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.</p>
+<section id="types-of-cryptography-algorithms">
+<h2>Types of cryptography algorithms<a class="headerlink" href="#types-of-cryptography-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>Cryptography algorithms can be classified according to various criteria <a class="footnote-reference brackets" href="#footcite-kessler" id="id4">3</a>. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:</p>
+<ul class="simple">
+<li><p><strong>Secret Key Cryptography (SKC):</strong> or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality <a class="footnote-reference brackets" href="#footcite-kessler" id="id5">3</a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id6">1</a>.</p></li>
+<li><p><strong>Public Key Cryptography (PKC):</strong> or “Asymmetric encryption” uses one keys couple: A public key for encryption and a private key for decryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id7">3</a>. It is essentially used for authentication, non-repudiation, and key exchange <a class="footnote-reference brackets" href="#footcite-tamimi" id="id8">1</a>.</p></li>
+<li><p><strong>Hash Functions:</strong> Irreversible mathematical transformations that generates a checksum/a digital fingerprint used for checking the data integrity or none-corruptness <a class="footnote-reference brackets" href="#footcite-kessler" id="id9">3</a>.</p></li>
+</ul>
+</section>
+<section id="encryption-vs-hashing">
+<h2>Encryption vs Hashing<a class="headerlink" href="#encryption-vs-hashing" title="Permalink to this headline">¶</a></h2>
+<p><strong>Encryption</strong> transforms a plain-text into something unintelligible called cipher-text using a key. The essential thing about encryption is that it is reversible <a class="footnote-reference brackets" href="#footcite-oak" id="id10">2</a>.
+A unique cipher-text &amp; plain-text couple can be determined using encryption, decryption and a key. Encryption is used essentially in confidentiality.
+For example, in an electronic exchange, you encrypt messages to prevent a third party lacking the key from reading the messages <a class="footnote-reference brackets" href="#footcite-ssl" id="id11">4</a>.</p>
+<p><strong>Hashing</strong>, unlike encryption, transforms the input data into a (usually fixed length) sequence of characters often called checksum/hash-sum or a tag.
+Moreover, hashing is a one-way operation that does not require a key and so the quality of a hashing algorithm depends on the uniqueness of the generated hashes.
+Two different messages with the same hash values are a case of “collision”. Hashing is used to maintain data integrity <a class="footnote-reference brackets" href="#footcite-ssl" id="id12">4</a>.
+For example, if a hash sum is generated based on a message text, any future changes on the text would be detected due the mismatch between the previously generated hash and the current one.</p>
+</section>
+<section id="encryption-and-decryption">
+<h2>Encryption and Decryption<a class="headerlink" href="#encryption-and-decryption" title="Permalink to this headline">¶</a></h2>
+<p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; <a class="footnote-reference brackets" href="#footcite-kessler" id="id13">3</a>.
+These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="footnote-reference brackets" href="#footcite-kessler" id="id14">3</a>.
+There exist several types of encryption (<strong>symmetric/asymmetric</strong>) and several ciphering techniques (<strong>block/stream</strong>) and modes etc <a class="footnote-reference brackets" href="#footcite-kessler" id="id15">3</a>.
+The major differences between those will be explained in the following post <a class="reference internal" href="../../03/03/encryption_overview.html#encryption-post-label"><span class="std std-ref">Encryption overview</span></a>.</p>
+</section>
+<section id="a-summary-of-cryptography-algorithms">
+<h2>A summary of cryptography algorithms<a class="headerlink" href="#a-summary-of-cryptography-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>There are several practical implementations and algorithms of the aforementioned concepts.
+Some of these are widely used standards defined by the National Institute of Standards and Technology (NIST) such the Advanced Encryption Standard (AES) and the Secure Hashing Algorithm (SHA) etc.
+The most known algorithms are summarized below:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="clt">
+<ul>
+   Cryptographic algorithms
+        <ul>
+             <li> Symmetric encryption
+                  <ul>
+                      <li> Block cipher
+                          <ul>
+                              <li> AES </li>
+                              <li> DES </li>
+                              <li> Twofish </li>
+                              <li> Blowfish </li>
+                          </ul>
+                      </li>
+
+                      <li> Stream cipher
+                          <ul>
+                              <li> RC4 </li>
+                              <li> ChaCha </li>
+                          </ul>
+                      </li>
+                 </ul>
+            </li>
+
+            <li> Asymmetric encryption
+                <ul>
+                    <li> RSA </li>
+                    <li> ECC </li>
+                </ul>
+            </li>
+
+            <li> Hashing functions
+                <ul>
+                    <li> RSA </li>
+                    <li> ECC </li>
+                </ul>
+            </li>
+        </ul>
+</ul>
+<center>Figure 1: Cryptographic algorithms</center>
+</div></section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&text=Cryptography%20overview"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 18 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.202</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container" id="id16">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-tamimi"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>,<a href="#id8">3</a>)</span></dt>
+<dd><p>Abdel-Karim Al Tamimi. Performance Analysis of Data Encryption Algorithms. 2006.</p>
+</dd>
+<dt class="label" id="footcite-oak"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id10">2</a>)</span></dt>
+<dd><p>Madhura Oak. Symmetric Cryptography. <a class="reference external" href="https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/">https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/</a>, 05.01.2018.</p>
+</dd>
+<dt class="label" id="footcite-kessler"><span class="brackets">3</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id5">3</a>,<a href="#id7">4</a>,<a href="#id9">5</a>,<a href="#id13">6</a>,<a href="#id14">7</a>,<a href="#id15">8</a>)</span></dt>
+<dd><p>Gary C. Kessler. An Overview of Cryptography. 2017.</p>
+</dd>
+<dt class="label" id="footcite-ssl"><span class="brackets">4</span><span class="fn-backref">(<a href="#id11">1</a>,<a href="#id12">2</a>)</span></dt>
+<dd><p>ssl2buy. Difference Between Hashing and Encryption. <a class="reference external" href="https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption">https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption</a>, 05.01.2018.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../10/intro.html">
+      <i class="fa fa-arrow-circle-left"></i> Blog intro
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../../03/03/encryption_overview.html">
+      Encryption overview <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
+              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="How to loop over monitors and get their coordinates on Windows in C++?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="Loop over monitors and get their coordinates and dimensions in C++ when using a multiple monitors setup on windows." />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/loop_monitors_details_in_cplusplus.png" />
+<meta property="og:image:alt" content="How to loop over monitors and get their coordinates on Windows in C++" />
+<meta property="og:keywords" content="c++, multiple monitors setup, multi-monitors, monitors dimensions, C++, monitor coordinates, ayoub malek, blog post" />
+<meta name="description" content="The previous three blogs ( Capturing the screen on Windows in C++ using OpenCV& Capturing the screen on Windows in C++ using GDI+ and Comparing screen capturing using GDI+ and OpenCV on Windows in C++) described capturing a screenshot of only one monitor. However, nowadays we often use multiple m..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>How to loop over monitors and get their coordinates on Windows in C++? &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    <link 
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GPWJJB9TRK');
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <!-- 
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ --> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  28 September 2020 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/image-processing.html">Image processing</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/windows.html">Windows</a>   
+  <a href="../../../tag/cplusplus.html">Cplusplus</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#approach-and-implementation">
+   Approach and implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c">
+<h1>How to loop over monitors and get their coordinates on Windows in C++?<a class="headerlink" href="#how-to-loop-over-monitors-and-get-their-coordinates-on-windows-in-c" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>The previous three blogs (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">Capturing the screen on Windows in C++ using GDI+</a> and <a class="reference external" href="https://superkogito.github.io/blog/CaptureSceenshotUsingGdiplusVSCaptureSceenshotUsingOpenCV.html">Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a>) described capturing a screenshot of only <em>one</em> monitor.
+However, nowadays we often use multiple monitors and capturing the content of all of them or a specific one, two or more.
+Therefore, we will need to retrieve the coordinates of the targeted monitors.
+This blog will provide a short explanation and a C++ implementation for how to loop the existing monitors in a multiple monitors setup, get their dimensions and coordinates which can be used later into capturing the monitors content.</p>
+<div class="line-block">
+<div class="line"><strong>*Keywords*</strong>:  multiple monitors, multi-monitors dimensions, monitor coordinates, C++</div>
+</div>
+<section id="approach-and-implementation">
+<h2>Approach and implementation<a class="headerlink" href="#approach-and-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The trick for looping the screens dimensions is to use the function <code class="code docutils literal notranslate"><span class="pre">EnumDisplayMonitors(NULL,</span> <span class="pre">NULL,</span> <span class="pre">MyInfoEnumProc,</span> <span class="pre">0)</span></code>, which is available as part of the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a>.
+A nice approach to this, is to pack the enumeration code in a structure that can be looped to retrieve the information related to each monitor.
+This can be done as in the following:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1">// Structure that includes all screen hanldes and rectangles</span>
+<span class="linenos"> 7</span><span class="k">struct</span><span class="w"> </span><span class="nc">cMonitorsVec</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">       </span><span class="n">iMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HMONITOR</span><span class="o">&gt;</span><span class="w">  </span><span class="n">hMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">HDC</span><span class="o">&gt;</span><span class="w">       </span><span class="n">hdcMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RECT</span><span class="o">&gt;</span><span class="w">      </span><span class="n">rcMonitors</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">      </span><span class="k">static</span><span class="w"> </span><span class="n">BOOL</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">MonitorEnum</span><span class="p">(</span><span class="n">HMONITOR</span><span class="w"> </span><span class="n">hMon</span><span class="p">,</span><span class="w"> </span><span class="n">HDC</span><span class="w"> </span><span class="n">hdc</span><span class="p">,</span><span class="w"> </span><span class="n">LPRECT</span><span class="w"> </span><span class="n">lprcMonitor</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">pData</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">              </span><span class="n">cMonitorsVec</span><span class="o">*</span><span class="w"> </span><span class="n">pThis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">cMonitorsVec</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hMon</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">hdc</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">rcMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">lprcMonitor</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">              </span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pThis</span><span class="o">-&gt;</span><span class="n">hdcMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">              </span><span class="k">return</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">      </span><span class="n">cMonitorsVec</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">              </span><span class="n">EnumDisplayMonitors</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MonitorEnum</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">LPARAM</span><span class="p">)</span><span class="k">this</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">29</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">34</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">35</span><span class="w">      </span><span class="n">cMonitorsVec</span><span class="w"> </span><span class="n">Monitors</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">monitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="n">monitorIndex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">iMonitors</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">monitorIndex</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Screen id: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">monitorIndex</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">40</span><span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;-----------------------------------------------------&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">41</span><span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; - screen left-top corner coordinates : (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span><span class="w"></span>
+<span class="linenos">42</span><span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span><span class="w"></span>
+<span class="linenos">43</span><span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; - screen dimensions (width x height) : (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">left</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">45</span><span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Monitors</span><span class="p">.</span><span class="n">rcMonitors</span><span class="p">[</span><span class="n">monitorIndex</span><span class="p">].</span><span class="n">bottom</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">46</span><span class="w">                                                                 </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">47</span><span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;-----------------------------------------------------&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">48</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">49</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The previous code can be also found under <a class="reference external" href="https://gist.github.com/SuperKogito/c31c0c0f9e69e484a1740b67a207a5c1">here</a>.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>This post introduced a small example of how to retrieve the coordinates and dimensions of the connected monitors using C++ on Windows in the case of a multi-monitors setup.
+The retrieved coordinates can then be used in capturing the screens content using the snippets from the previous blogs  (<a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingOpenCv.html">Capturing the screen on Windows in C++ using OpenCV</a> &amp; <a class="reference external" href="https://superkogito.github.io/blog/CaptureScreenUsingGdiplus.html">Capturing the screen on Windows in C++ using GDI+</a>)</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&title=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&text=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&title=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/09/28/loop_monitors_details_in_cplusplus.html&title=How%20to%20loop%20over%20monitors%20and%20get%20their%20coordinates%20on%20Windows%20in%20C++?"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.2022</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>EnumDisplayMonitors function (winuser.h), Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors">https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors</a></p></li>
+<li><p>Enumeration and Display Control, Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control">https://docs.microsoft.com/en-us/windows/win32/gdi/enumeration-and-display-control</a></p></li>
+<li><p>Multi-monitor Screenshots only 2 monitors in C++ with WinApi, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi">https://stackoverflow.com/questions/37132196/multi-monitor-screenshots-only-2-monitors-in-c-with-winapi</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../07/28/capture_sceenshot_using_gdiplus_vs_capture_sceenshot_using_opencv.html">
+      <i class="fa fa-arrow-circle-left"></i> Comparing screen capturing using GDI+ and OpenCV on Windows in C++
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../../10/01/divide_image_using_opencv.html">
+      Divide an image into blocks using OpenCV in C++ <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
+              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>

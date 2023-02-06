@@ -1,0 +1,733 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Token authenticated aiohttp server" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="authenticated aiohttp servver" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/aiohttp_server_with_token.png" />
+<meta property="og:image:alt" content="authenticated_aiohttp_server" />
+<meta property="og:keywords" content="authentication, server, client, python, ayoub malek, blog post" />
+<meta name="description" content="In the previous blog post, a simple aiohttp server was introduced. In the following post we improve the previous server by introducing a simple token authentication mechanism. Why authenticate?: Authentication is a crucial part when dealing with server-client connections. If your resources are li..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>Token authenticated aiohttp server &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    <link 
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GPWJJB9TRK');
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <!-- 
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ --> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  31 December 2021 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/monastir.html">Monastir</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/server-client.html">Server-client</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/python.html">Python</a>   
+  <a href="../../../tag/server-client.html">Server-client</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
+      >Divide an image into blocks using GDI+ in C++</a>
+      <p>03 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../../../2020/10/01/divide_image_using_opencv.html"
+      >Divide an image into blocks using OpenCV in C++</a>
+      <p>01 October 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-authenticate">
+   Why authenticate?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-use-tokens">
+   Why use tokens?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code">
+   Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing">
+   Testing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="token-authenticated-aiohttp-server">
+<h1>Token authenticated aiohttp server<a class="headerlink" href="#token-authenticated-aiohttp-server" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>In the previous blog post, a simple aiohttp server was introduced.
+In the following post we improve the previous server by introducing a simple token authentication mechanism.</p>
+<section id="why-authenticate">
+<h2>Why authenticate?<a class="headerlink" href="#why-authenticate" title="Permalink to this headline">¶</a></h2>
+<p>Authentication is a crucial part when dealing with server-client connections.
+If your resources are limited and your server has no filtering mechanism of whom to serve, an overload of requests would break your server.
+This the one of the simplest yet efficient Denial of Service attacks (DOS).
+Hence an authentication mechanism will help filter unrecognized requests and will spare you the computational power and attention.</p>
+</section>
+<section id="why-use-tokens">
+<h2>Why use tokens?<a class="headerlink" href="#why-use-tokens" title="Permalink to this headline">¶</a></h2>
+<p>Token based authentication is one of the cheapest and the simplest approaches.
+It is an efficient filtering approach if the data communicated is not that important.
+Depending on how you generate your valid tokens, how you communicate/ store them you can improve your security but this will not be discussed here.</p>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>To improve the previous implementation, we will push all the config variables into one JSON file and we will name it <cite>config.json</cite>.
+This will include all the configuration parameters for our script. It will look like the following.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">config.json</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">{</span>
+<span class="linenos"> 2</span>  <span class="s2">&quot;server&quot;</span>: <span class="o">{</span>
+<span class="linenos"> 3</span>    <span class="s2">&quot;http&quot;</span>: <span class="o">{</span>
+<span class="linenos"> 4</span>      <span class="s2">&quot;host&quot;</span>: <span class="s2">&quot;127.0.0.1&quot;</span>,
+<span class="linenos"> 5</span>      <span class="s2">&quot;port&quot;</span>: <span class="m">8000</span>,
+<span class="linenos"> 6</span>      <span class="s2">&quot;request_max_size&quot;</span>: <span class="m">1048576</span>,
+<span class="linenos"> 7</span>      <span class="s2">&quot;allowed_tokens&quot;</span>: <span class="o">[</span><span class="s2">&quot;token1&quot;</span>,<span class="s2">&quot;token2&quot;</span><span class="o">]</span>
+<span class="linenos"> 8</span>    <span class="o">}</span>
+<span class="linenos"> 9</span>  <span class="o">}</span>,
+<span class="linenos">10</span>  <span class="s2">&quot;log&quot;</span>: <span class="o">{</span>
+<span class="linenos">11</span>    <span class="s2">&quot;level&quot;</span>: <span class="o">[{</span>
+<span class="linenos">12</span>      <span class="s2">&quot;logger&quot;</span>: <span class="s2">&quot;server_logger&quot;</span>,
+<span class="linenos">13</span>      <span class="s2">&quot;level&quot;</span>: <span class="s2">&quot;DEBUG&quot;</span>
+<span class="linenos">14</span>    <span class="o">}]</span>
+<span class="linenos">15</span>  <span class="o">}</span>
+<span class="linenos">16</span><span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>As you see in the config, we are now able to configure the host and the port to run the server on.
+We are also able to constraint the size of the accepted requests along with providing a list of accepted valid tokens.
+Furthermore, we added a logger and a debug level to investigate possible errors.
+The following section will detail the work.</p>
+<ol class="arabic">
+<li><p><strong>First we configure the logger.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># init loggging</span>
+<span class="linenos">4</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="linenos">5</span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2">] p</span><span class="si">%(process)s</span><span class="s2"> {</span><span class="si">%(pathname)s</span><span class="s2">: </span><span class="si">%(funcName)s</span><span class="s2">: </span><span class="si">%(lineno)d</span><span class="s2">}: </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %p %I:%M:%S&quot;</span><span class="p">)</span>
+<span class="linenos">6</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Load the configuration infos.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">json</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># parse conf</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.json&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+<span class="linenos">5</span>    <span class="n">conf</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">config_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Write a request handler.</strong>
+Requests in aiohttp are processed using coroutines that will serve as the actual functions called by the client.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="linenos">2</span><span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="nd">@asyncio</span><span class="o">.</span><span class="n">coroutine</span>
+<span class="linenos">5</span><span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="linenos">6</span>    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;pong&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Write the authentication and token handler</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">def</span> <span class="nf">token_auth_middleware</span><span class="p">(</span><span class="n">user_loader</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+<span class="linenos"> 6</span>                          <span class="n">request_property</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+<span class="linenos"> 7</span>                          <span class="n">auth_scheme</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Token&#39;</span><span class="p">,</span>
+<span class="linenos"> 8</span>                          <span class="n">exclude_routes</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(),</span>
+<span class="linenos"> 9</span>                          <span class="n">exclude_methods</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">:</span>
+<span class="linenos">10</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">11</span><span class="sd">    Checks a auth token and adds a user from user_loader in request.</span>
+<span class="linenos">12</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">13</span>    <span class="nd">@web</span><span class="o">.</span><span class="n">middleware</span>
+<span class="linenos">14</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">middleware</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+<span class="linenos">15</span>        <span class="k">try</span>               <span class="p">:</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="k">except</span> <span class="ne">KeyError</span>   <span class="p">:</span> <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPUnauthorized</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Missing authorization header&#39;</span><span class="p">,)</span>
+<span class="linenos">17</span>        <span class="k">except</span> <span class="ne">ValueError</span> <span class="p">:</span> <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPForbidden</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Invalid authorization header&#39;</span><span class="p">,)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>        <span class="k">if</span> <span class="n">auth_scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="n">scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+<span class="linenos">20</span>            <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPForbidden</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Invalid token scheme&#39;</span><span class="p">,)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user_loader</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="k">if</span> <span class="n">user</span> <span class="p">:</span> <span class="n">request</span><span class="p">[</span><span class="n">request_property</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span>
+<span class="linenos">24</span>        <span class="k">else</span>    <span class="p">:</span> <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPForbidden</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Token doesn</span><span class="se">\&#39;</span><span class="s1">t exist&#39;</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="k">return</span> <span class="k">await</span> <span class="n">handler</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="linenos">26</span>    <span class="k">return</span> <span class="n">middleware</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Write the server init function and wrap it all.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">async</span> <span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+<span class="linenos"> 5</span>   <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 6</span><span class="sd">   Init web application.</span>
+<span class="linenos"> 7</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="linenos"> 8</span>   <span class="k">async</span> <span class="k">def</span> <span class="nf">user_loader</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos"> 9</span>       <span class="n">user</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;uuid&#39;</span><span class="p">:</span> <span class="s1">&#39;fake-uuid&#39;</span><span class="p">}</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">][</span><span class="s2">&quot;http&quot;</span><span class="p">][</span><span class="s2">&quot;allowed_tokens&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="linenos">10</span>       <span class="k">return</span> <span class="n">user</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>   <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="n">client_max_size</span><span class="o">=</span><span class="n">conf</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">][</span><span class="s2">&quot;http&quot;</span><span class="p">][</span><span class="s2">&quot;request_max_size&quot;</span><span class="p">],</span>
+<span class="linenos">13</span>                         <span class="n">middlewares</span><span class="o">=</span><span class="p">[</span><span class="n">token_auth_middleware</span><span class="p">(</span><span class="n">user_loader</span><span class="p">)])</span>
+<span class="linenos">14</span>   <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/ping&#39;</span><span class="p">,</span> <span class="n">ping</span><span class="p">)</span>
+<span class="linenos">15</span>   <span class="k">return</span> <span class="n">app</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">init</span><span class="p">(),)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<p>The previously listed steps, should look together in Python as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">aiohttp-server-with-token-auth</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">json</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># init loggging</span>
+<span class="linenos"> 9</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="linenos">10</span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2">] p</span><span class="si">%(process)s</span><span class="s2"> {</span><span class="si">%(pathname)s</span><span class="s2">: </span><span class="si">%(funcName)s</span><span class="s2">: </span><span class="si">%(lineno)d</span><span class="s2">}: </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %p %I:%M:%S&quot;</span><span class="p">)</span>
+<span class="linenos">11</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="c1"># parse conf</span>
+<span class="linenos">14</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.json&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+<span class="linenos">15</span>    <span class="n">conf</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">config_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="nd">@asyncio</span><span class="o">.</span><span class="n">coroutine</span>
+<span class="linenos">18</span><span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="linenos">19</span>    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;-&gt; Received PING&quot;</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;pong&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">})</span>
+<span class="linenos">21</span>    <span class="k">return</span> <span class="n">response</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="k">def</span> <span class="nf">token_auth_middleware</span><span class="p">(</span><span class="n">user_loader</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+<span class="linenos">24</span>                          <span class="n">request_property</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+<span class="linenos">25</span>                          <span class="n">auth_scheme</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Token&#39;</span><span class="p">,</span>
+<span class="linenos">26</span>                          <span class="n">exclude_routes</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(),</span>
+<span class="linenos">27</span>                          <span class="n">exclude_methods</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">:</span>
+<span class="linenos">28</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">29</span><span class="sd">    Checks a auth token and adds a user from user_loader in request.</span>
+<span class="linenos">30</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">31</span>    <span class="nd">@web</span><span class="o">.</span><span class="n">middleware</span>
+<span class="linenos">32</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">middleware</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+<span class="linenos">33</span>        <span class="k">try</span>               <span class="p">:</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="linenos">34</span>        <span class="k">except</span> <span class="ne">KeyError</span>   <span class="p">:</span> <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPUnauthorized</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Missing authorization header&#39;</span><span class="p">,)</span>
+<span class="linenos">35</span>        <span class="k">except</span> <span class="ne">ValueError</span> <span class="p">:</span> <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPForbidden</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Invalid authorization header&#39;</span><span class="p">,)</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span>        <span class="k">if</span> <span class="n">auth_scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="n">scheme</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+<span class="linenos">38</span>            <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPForbidden</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Invalid token scheme&#39;</span><span class="p">,)</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span>        <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user_loader</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="linenos">41</span>        <span class="k">if</span> <span class="n">user</span> <span class="p">:</span> <span class="n">request</span><span class="p">[</span><span class="n">request_property</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span>
+<span class="linenos">42</span>        <span class="k">else</span>    <span class="p">:</span> <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPForbidden</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s1">&#39;Token doesn</span><span class="se">\&#39;</span><span class="s1">t exist&#39;</span><span class="p">)</span>
+<span class="linenos">43</span>        <span class="k">return</span> <span class="k">await</span> <span class="n">handler</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="linenos">44</span>    <span class="k">return</span> <span class="n">middleware</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="k">async</span> <span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+<span class="linenos">47</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">48</span><span class="sd">    Init web application.</span>
+<span class="linenos">49</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">50</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">user_loader</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="linenos">51</span>        <span class="n">user</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;uuid&#39;</span><span class="p">:</span> <span class="s1">&#39;fake-uuid&#39;</span><span class="p">}</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">][</span><span class="s2">&quot;http&quot;</span><span class="p">][</span><span class="s2">&quot;allowed_tokens&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="linenos">52</span>        <span class="k">return</span> <span class="n">user</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span>    <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="n">client_max_size</span><span class="o">=</span><span class="n">conf</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">][</span><span class="s2">&quot;http&quot;</span><span class="p">][</span><span class="s2">&quot;request_max_size&quot;</span><span class="p">],</span>
+<span class="linenos">55</span>                          <span class="n">middlewares</span><span class="o">=</span><span class="p">[</span><span class="n">token_auth_middleware</span><span class="p">(</span><span class="n">user_loader</span><span class="p">)])</span>
+<span class="linenos">56</span>    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/ping&#39;</span><span class="p">,</span> <span class="n">ping</span><span class="p">)</span>
+<span class="linenos">57</span>    <span class="k">return</span> <span class="n">app</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos">60</span>    <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">init</span><span class="p">(),)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>The previous code when executed will start a server running on <code class="code docutils literal notranslate"><span class="pre">http://localhost:8080/</span></code>.
+To test your server either type in your browser <code class="code docutils literal notranslate"><span class="pre">http://localhost:8080/ping</span></code> or simply <a class="reference external" href="https://curl.se/">curl</a> it while passing your token using <code class="code docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-H</span> <span class="pre">'Authorization:</span> <span class="pre">Token</span> <span class="pre">token1'</span> <span class="pre">http://127.0.0.1:8080/ping</span></code>.
+The response should be a json including pong and a success status.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>This blog presented an improved aiohttp server that implements token based authentication to filter out unwanted traffic and protect itself against possible spamming attacks
+that could be part of DOS attacks.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html&title=Token%20authenticated%20aiohttp%20Server"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html&text=Token%20authenticated%20aiohttp%20Server"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html&title=Token%20authenticated%20aiohttp%20Server" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html&title=Token%20authenticated%20aiohttp%20Server"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.2022</p>
+</div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="aiohttp_server.html">
+      <i class="fa fa-arrow-circle-left"></i> Basic aiohttp server
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html">
+      Whisper based speech recognition server <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
+              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>

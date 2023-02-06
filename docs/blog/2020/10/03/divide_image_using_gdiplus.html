@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+<html lang="english">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Divide an image into blocks using GDI+ in C++" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
+<meta property="og:description" content="Divide an image into multiple blocks with fixed height and width using Gdiplus in C++" />
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/divide_image_using_gdiplus.png" />
+<meta property="og:image:alt" content="divide an image into blocks using gdi+ in c++" />
+<meta property="og:keywords" content="Image divide, C++, Gdiplus, GDI+, Win32, ayoub malek, blog post" />
+<meta name="description" content="In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise. This blog will provide an alternative implementation using the Windows API, specifically the GDI+ library. A..." />
+<meta property="og:ignore_canonical" content="true" />
+
+    <title>Divide an image into blocks using GDI+ in C++ &#8212; 🧠 SuperKogito  documentation</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/twemoji.js"></script>
+    <link rel="canonical" href="http://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="english">
+    <link 
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+    rel="stylesheet"  type='text/css'>
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GPWJJB9TRK');
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <!-- 
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-133660046-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+ --> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="SuperKogito"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../../index.html">
+<p class="title">🧠 SuperKogito</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../index.html">
+  Home
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../projects.html">
+  Projects
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../about.html">
+  About Me
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  03 October 2020 
+</h2>
+
+<ul>
+  
+<li id="published">
+  <span><i class="fa fa-pencil-square-o"></i></span
+  >
+  08 April 2022
+</li>
+ 
+<li id="author">
+  <span><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
+</li>
+ 
+<li id="location">
+  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  >
+   
+  <a href="../../../location/munich.html">Munich</a>  
+</li>
+ 
+<li id="language">
+  <span><i class="fa-fw fa fa-language"></i></span
+  >
+   
+  <a href="../../../language/english.html">English</a>  
+</li>
+ 
+<li id="category">
+  <span><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../../category/image-processing.html">Image processing</a>  
+</li>
+ 
+<li id="tags">
+  <span><i class="fa-fw fa fa-tags"></i> </span
+  >
+   
+  <a href="../../../tag/windows.html">Windows</a>   
+  <a href="../../../tag/cplusplus.html">Cplusplus</a>   
+  <a href="../../../tag/gdiplus.html">Gdiplus</a>  
+</li>
+ 
+</ul>
+
+<h3>
+  <a href="../../../../blog.html">✍️ Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
+      >Whisper based speech recognition server</a>
+      <p>27 December 2022</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server_with_token.html"
+      >Token authenticated aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../../../2021/12/31/aiohttp_server.html"
+      >Basic aiohttp server</a>
+      <p>31 December 2021</p>
+  </li>
+  
+  <li>
+    <a href="../25/chmod_modes.html"
+      >Chmod modes: from symbolic to octal and back</a>
+      <p>25 October 2020</p>
+  </li>
+  
+  <li>
+    <a href="../01/divide_image_using_opencv.html"
+      >Divide an image into blocks using OpenCV in C++</a>
+      <p>01 October 2020</p>
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../../archive.html">🗓️ Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../../2022.html">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2021.html">2021 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2020.html">2020 (13)</a>
+  </li>
+    
+  <li>
+    <a href="../../../2019.html">2019 (7)</a>
+  </li>
+   
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#approach">
+   Approach
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-main-call">
+   The main call
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#result">
+   Result
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations">
+   Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-this-blog">
+   Share this blog
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-readings">
+   References and Further readings
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+<!--  Bootstrap HTML  -->
+<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    We use cookies on this website to distinguish you from other users.
+    We use this data to improve our content experience and for targeted advertising.
+    By continuing to use this website you consent to our use of cookies.
+    For more information, please see our
+    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
+</div>
+
+
+
+              <div>
+                 <section id="divide-an-image-into-blocks-using-gdi-in-c">
+<h1>Divide an image into blocks using GDI+ in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-gdi-in-c" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>In the previous blog, we used OpenCV to divide an image into multiple blocks of a certain height and width, which is useful when we need to apply a certain image transformation block-wise.
+This blog will provide an alternative implementation using the Windows API, specifically the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+</a> library.</p>
+<section id="approach">
+<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
+<p>Similarly to the approach introduced in the previous blog (<a class="reference external" href="DivideImageUsingOpenCv.html">Divide an image into blocks using OpenCV in C++</a>) using OpenCV, this alternative aims to crop the blocks one by one after computing their coordinates and dimensions.
+At the same time, we will make sure to crop the side blocks and lower blocks correctly even if their dimensions are different than other blocks.</p>
+<blockquote>
+<div><p>From <a class="reference external" href="DivideImageUsingOpenCv.html">Divide an image into blocks using OpenCV in C++</a>:</p>
+<p><em>To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -&gt; we will get 512 / 128 = 4 blocks.
+However if the image width = 576 px and the block width = 128 px -&gt; we should get 4 blocks with 128 px and 1 block with width 64 px.
+Therefore on each loop we need to check/ compute the block dimensions.</em></p>
+</div></blockquote>
+<p>Similarly, we also use while loops in this alternative to keep the code fast and optimal.
+The previously described code is implemented in the following snippet:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="linenos">  2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;minmax.h&gt;</span><span class="cp"></span>
+<span class="linenos">  3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gdiplus.h&gt;</span><span class="cp"></span>
+<span class="linenos">  4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SDKDDKVer.h&gt;</span><span class="cp"></span>
+<span class="linenos">  5</span><span class="cp">#pragma comment(lib,&quot;gdiplus.lib&quot;)</span>
+<span class="linenos">  6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;atlimage.h&quot;</span><span class="cp"></span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="kt">bool</span><span class="w"> </span><span class="nf">saveToMemory</span><span class="p">(</span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span><span class="w"> </span><span class="n">tile</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">dataFormat</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 10</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 11</span><span class="w">  </span><span class="c1">// write to IStream</span>
+<span class="linenos"> 12</span><span class="w">  </span><span class="n">IStream</span><span class="o">*</span><span class="w"> </span><span class="n">istream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 13</span><span class="w">  </span><span class="n">CreateStreamOnHGlobal</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">istream</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="w">  </span><span class="c1">// define encoding</span>
+<span class="linenos"> 16</span><span class="w">  </span><span class="n">CLSID</span><span class="w"> </span><span class="n">clsid</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 17</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dataFormat</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">&quot;bmp&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 18</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 19</span><span class="w">    </span><span class="n">CLSIDFromString</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;{557cf400-1a04-11d3-9a73-0000f81ef32e}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clsid</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 20</span><span class="w">    </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tile</span><span class="o">-&gt;</span><span class="n">Save</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clsid</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 21</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="o">::</span><span class="n">Ok</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 22</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 23</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 24</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dataFormat</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">&quot;jpg&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 25</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 26</span><span class="w">    </span><span class="n">CLSIDFromString</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;{557cf401-1a04-11d3-9a73-0000f81ef32e}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clsid</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 27</span><span class="w">    </span><span class="c1">// Before we call Image::Save, we must initialize an EncoderParameters object.</span>
+<span class="linenos"> 28</span><span class="w">    </span><span class="c1">// The EncoderParameters object has an array of EncoderParameter objects.</span>
+<span class="linenos"> 29</span><span class="w">    </span><span class="c1">// In this case, there is only one EncoderParameter object in the array.</span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="c1">// The one EncoderParameter object has an array of values.</span>
+<span class="linenos"> 31</span><span class="w">    </span><span class="c1">// In this case, there is only one value (of type ULONG)</span>
+<span class="linenos"> 32</span><span class="w">    </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">EncoderParameters</span><span class="w"> </span><span class="n">encoderParameters</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 33</span><span class="w">    </span><span class="n">encoderParameters</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 34</span><span class="w">    </span><span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Guid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">EncoderQuality</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 35</span><span class="w">    </span><span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">EncoderParameterValueTypeLong</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">NumberOfValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="c1">// Save the image as a JPEG with quality level 0.</span>
+<span class="linenos"> 39</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">quality</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">70</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="n">encoderParameters</span><span class="p">.</span><span class="n">Parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">quality</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="w">    </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tile</span><span class="o">-&gt;</span><span class="n">Save</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clsid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">encoderParameters</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 43</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="o">::</span><span class="n">Ok</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 44</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 45</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 46</span><span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dataFormat</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">&quot;png&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 47</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="n">CLSIDFromString</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;{557cf406-1a04-11d3-9a73-0000f81ef32e}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clsid</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 49</span><span class="w">    </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tile</span><span class="o">-&gt;</span><span class="n">Save</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clsid</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Status</span><span class="o">::</span><span class="n">Ok</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 51</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 52</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span><span class="w">  </span><span class="c1">// get memory handle associated with istream</span>
+<span class="linenos"> 55</span><span class="w">  </span><span class="n">HGLOBAL</span><span class="w"> </span><span class="n">hg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 56</span><span class="w">  </span><span class="n">GetHGlobalFromStream</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hg</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span><span class="w">  </span><span class="c1">// copy IStream to buffer</span>
+<span class="linenos"> 59</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">bufsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GlobalSize</span><span class="p">(</span><span class="n">hg</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 60</span><span class="w">  </span><span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">bufsize</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="w">  </span><span class="c1">// lock &amp; unlock memory</span>
+<span class="linenos"> 63</span><span class="w">  </span><span class="n">LPVOID</span><span class="w"> </span><span class="n">pimage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GlobalLock</span><span class="p">(</span><span class="n">hg</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 64</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pimage</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 65</span><span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">pimage</span><span class="p">,</span><span class="w"> </span><span class="n">bufsize</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="w">  </span><span class="n">GlobalUnlock</span><span class="p">(</span><span class="n">hg</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 68</span><span class="w">  </span><span class="n">istream</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 69</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 70</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="kt">int</span><span class="w"> </span><span class="nf">gdiplusDivideImage</span><span class="p">(</span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">blocks</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 73</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 74</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">imgWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="o">-&gt;</span><span class="n">GetWidth</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 75</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">imgHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="o">-&gt;</span><span class="n">GetHeight</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">bhSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 78</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">bwSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 79</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">blockId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 80</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">y0</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 83</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 84</span><span class="w">    </span><span class="n">bhSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">blockHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">imgHeight</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 88</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 89</span><span class="w">      </span><span class="n">bwSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">blockWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">imgWidth</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 90</span><span class="w">      </span><span class="n">blockId</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">      </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span><span class="w"> </span><span class="n">bmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="o">-&gt;</span><span class="n">Clone</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">bwSize</span><span class="p">,</span><span class="w"> </span><span class="n">bhSize</span><span class="p">,</span><span class="w"> </span><span class="n">PixelFormat24bppRGB</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span><span class="w">      </span><span class="c1">// encode block</span>
+<span class="linenos"> 95</span><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pngbytes</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="w">      </span><span class="c1">// encode block</span>
+<span class="linenos"> 98</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">saveToMemory</span><span class="p">(</span><span class="n">bmp</span><span class="p">,</span><span class="w"> </span><span class="n">pngbytes</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;png&quot;</span><span class="p">)))</span><span class="w"></span>
+<span class="linenos"> 99</span><span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">100</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Cannot save block_&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;_&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;to png&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">101</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_FAILURE</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">102</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">103</span><span class="w">      </span><span class="c1">// update starting coordinates</span>
+<span class="linenos">104</span><span class="w">      </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockWidth</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="w">      </span><span class="c1">// append to vec</span>
+<span class="linenos">107</span><span class="w">      </span><span class="n">blocks</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pngbytes</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">108</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">109</span><span class="w">    </span><span class="c1">// update starting coordinates</span>
+<span class="linenos">110</span><span class="w">    </span><span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockHeight</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">111</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">112</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">113</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The previous snippet includes two main functions:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">saveToMemory()</span></code> : used to save the image bytes to the memory using a specific encoding.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">gdiplusDivideImage()</span></code> : divides an input image into blocks with an integer output reflecting the run status of the function.</p></li>
+</ul>
+</section>
+<section id="the-main-call">
+<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
+<p>Let's call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to.
+For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from <a class="reference external" href="https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png">here</a>.
+In code this can be done as follows:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="c1">// initilialize GDI+</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="n">CoInitialize</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="n">ULONG_PTR</span><span class="w"> </span><span class="n">token</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">GdiplusStartupInput</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">GdiplusStartup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="c1">// init vars</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">imgblocks</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="c1">// load img</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">*</span><span class="w"> </span><span class="n">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="o">::</span><span class="n">FromFile</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;Lenna.png&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">  </span><span class="c1">// divide img</span>
+<span class="linenos">16</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">divstatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdiplusDivideImage</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="n">blockw</span><span class="p">,</span><span class="w"> </span><span class="n">blockh</span><span class="p">,</span><span class="w"> </span><span class="n">imgblocks</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">  </span><span class="c1">// create repository for blocks</span>
+<span class="linenos">19</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">CreateDirectory</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;blocksFolder&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Directory Error: Cannot create directory for blocks.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">  </span><span class="c1">// save blocks</span>
+<span class="linenos">26</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">imgblocks</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">blockId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">j</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">blockImgName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blocksFolder/block#&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blockId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;.png&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">    </span><span class="c1">// write from memory to file for testing:</span>
+<span class="linenos">32</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">fout</span><span class="p">(</span><span class="n">blockImgName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">binary</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">    </span><span class="n">fout</span><span class="p">.</span><span class="n">write</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">imgblocks</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">imgblocks</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">35</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">36</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The full code can be found in this <a class="reference external" href="https://gist.github.com/SuperKogito/434ac8489f8b99aa10377966180e3a35">gist: DivideImageUsingGdiplus.cpp</a>.</p>
+</section>
+<section id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h2>
+<p>The resulting blocks should look something like this:</p>
+<figure class="align-center" id="id1">
+<img alt="../../../../_images/divided_lenna.png" src="../../../../_images/divided_lenna.png" />
+<figcaption>
+<p><span class="caption-text">Figure 19: divided image into multiple blocks</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This code is practical and simple to use on Windows but unfortunately, on the contrary to the OpenCV variant, it does not support different operating systems like Linux for example.</p></li>
+<li><p>In some cases the user might want to have equally sized blocks; in that case the dimensions of the blocks should be pre-computed if the user wants to use this snippet.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>This post provided an alternative C++ implementation to the previous OpenCV code used to divide an image into multiple blocks with predefined height and width.
+Similarly, we also saved the resulting blocks to the hard drive in order to verify that the code is functional.
+The code is fairly simple and supports various image encoding types(<cite>PNG</cite>, <cite>JPEG</cite> etc.) but unlike the OpenCV implementation, it only supports Windows since it is based in part on the Win32 API, specifically the GDI+ library.</p>
+</section>
+<section id="share-this-blog">
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<div id="share">
+  <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html&title=Divide%20an%20image%20into%20blocks%20using%20GDI+%20in%20C++"                target="blank"><i class="fa fa-facebook"></i></a>
+  <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html&text=Divide%20an%20image%20into%20blocks%20using%20GDI+%20in%20C++"                 target="blank"><i class="fa fa-twitter"></i></a>
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html&title=Divide%20an%20image%20into%20blocks%20using%20GDI+%20in%20C++" target="blank"><i class="fa fa-linkedin"></i></a>
+  <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/10/03/divide_image_using_gdiplus.html&title=Divide%20an%20image%20into%20blocks%20using%20GDI+%20in%20C++"                    target="blank"><i class="fa fa-reddit"></i></a>
+</div><div class="note update admonition">
+<p class="admonition-title">Updated on 08 April 2022</p>
+<p>👨‍💻 edited and review were on 08.04.2022</p>
+</div>
+</section>
+<section id="references-and-further-readings">
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Image class (gdiplusheaders.h), Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/gdiplusheaders/nl-gdiplusheaders-image">https://docs.microsoft.com/en-us/windows/win32/api/gdiplusheaders/nl-gdiplusheaders-image</a></p></li>
+<li><p>GDI+, Microsoft, <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/api/_gdiplus/">https://docs.microsoft.com/en-us/windows/win32/api/_gdiplus/</a></p></li>
+<li><p>Crop a big picture into several small size pictures, Graphic design, <a class="reference external" href="https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures">https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures</a></p></li>
+<li><p>Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, <a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks">https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../01/divide_image_using_opencv.html">
+      <i class="fa fa-arrow-circle-left"></i> Divide an image into blocks using OpenCV in C++
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../25/chmod_modes.html">
+      Chmod modes: from symbolic to octal and back <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="superKogito/SuperKogito.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOCYjWaM4CObax"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<script src="../_static/cookiealert.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+      <!-- Site footer -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <ul class="footer-links">
+              <li>
+                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
+                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
+              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
+              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <ul class="footer-links">
+              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
+              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+
+    </div>
+  </footer>
+  </body>
+</html>
