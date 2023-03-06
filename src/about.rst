@@ -19,7 +19,8 @@ I hate talking about myself, so I figured that; instead of writing an obnoxious 
 - Studied electrical engineering at the |:classical_building:| `Technical University of Munich`_.
 - Have a `B.Sc.`_ (2017) and `M.Sc.`_ (2019) in electrical engineering.
 - Based in Munich, Germany.
-- Machine Learning Engineer @ `Yoummday GmbH`_.
+- ex Machine Learning Engineer @ `Yoummday GmbH`_.
+- Audio signal processing developer @ `Huawei`_.
 - My hobbies are sports 🏀⚽🏓 and programming |:computer:|.
 
 
@@ -33,3 +34,5 @@ Here is a reasonably up-to-date curriculum vitae:
 .. _`Technical University of Munich`: https://www.tum.de/
 .. _`B.Sc.`: https://en.wikipedia.org/wiki/Bachelor_of_Science
 .. _`M.Sc.`: https://en.wikipedia.org/wiki/Master_of_Science
+.. _`Huawei`: https://www.huawei.com/en/
+
