@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Cryptography overview" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/02/17/cryptography_overview.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="cryptography overview" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/cryptography_overview.png" />
-<meta property="og:image:alt" content="cryptography_overview" />
-<meta property="og:keywords" content="cryptography overview, encryption, hashing, security, ayoub malek, cybersecurity post, blog introduction" />
-<meta name="description" content="Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See 1 2. It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, com..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Cryptography overview" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/02/17/cryptography_overview.html" />
+  
+<meta property="og:description" content="cryptography overview" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/cryptography_overview.png" />
+  
+<meta property="og:image:alt" content="cryptography_overview" />
+  
+<meta property="og:keywords" content="cryptography overview, encryption, hashing, security, ayoub malek, cybersecurity post, blog introduction" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Cryptography overview &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,54 +213,61 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  17 February 2019 
+  17 Februar 2019 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   18 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/cybersecurity.html">Cybersecurity</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/hashing.html">Hashing</a>   
-  <a href="../../../tag/encryption.html">Encryption</a>  
+  <a href="../../../tag/encryption.html">Encryption</a>   
+  <a href="../../../tag/hashing.html">Hashing</a>  
 </li>
  
 </ul>
@@ -273,31 +280,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -325,6 +332,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -335,7 +345,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -406,13 +416,13 @@
 
               <div>
                  <section id="cryptography-overview">
-<h1>Cryptography overview<a class="headerlink" href="#cryptography-overview" title="Permalink to this headline">¶</a></h1>
+<h1>Cryptography overview<a class="headerlink" href="#cryptography-overview" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Cryptography is mostly associated with the development and creation of mathematical algorithms, which are used to insure various security aspects See <a class="footnote-reference brackets" href="#footcite-tamimi" id="id1">1</a><a class="footnote-reference brackets" href="#footcite-oak" id="id2">2</a>.
 It is the cornerstone of modern communications security and is based on various mathematical concepts and theories such as: number theory, computational complexity theory and probability theory <a class="footnote-reference brackets" href="#footcite-kessler" id="id3">3</a>.
 The following post provides a quick overview of various cryptography concepts such as encryption, decryption and hashing.</p>
 <section id="types-of-cryptography-algorithms">
-<h2>Types of cryptography algorithms<a class="headerlink" href="#types-of-cryptography-algorithms" title="Permalink to this headline">¶</a></h2>
+<h2>Types of cryptography algorithms<a class="headerlink" href="#types-of-cryptography-algorithms" title="Permalink to this headline">#</a></h2>
 <p>Cryptography algorithms can be classified according to various criteria <a class="footnote-reference brackets" href="#footcite-kessler" id="id4">3</a>. One can distinguish them, according to the number of their deployed keys, which results in the following three categories:</p>
 <ul class="simple">
 <li><p><strong>Secret Key Cryptography (SKC):</strong> or “Symmetric encryption”, uses one single shared key for both encryption and decryption to provide privacy and confidentiality <a class="footnote-reference brackets" href="#footcite-kessler" id="id5">3</a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id6">1</a>.</p></li>
@@ -421,7 +431,7 @@ The following post provides a quick overview of various cryptography concepts su
 </ul>
 </section>
 <section id="encryption-vs-hashing">
-<h2>Encryption vs Hashing<a class="headerlink" href="#encryption-vs-hashing" title="Permalink to this headline">¶</a></h2>
+<h2>Encryption vs Hashing<a class="headerlink" href="#encryption-vs-hashing" title="Permalink to this headline">#</a></h2>
 <p><strong>Encryption</strong> transforms a plain-text into something unintelligible called cipher-text using a key. The essential thing about encryption is that it is reversible <a class="footnote-reference brackets" href="#footcite-oak" id="id10">2</a>.
 A unique cipher-text &amp; plain-text couple can be determined using encryption, decryption and a key. Encryption is used essentially in confidentiality.
 For example, in an electronic exchange, you encrypt messages to prevent a third party lacking the key from reading the messages <a class="footnote-reference brackets" href="#footcite-ssl" id="id11">4</a>.</p>
@@ -431,14 +441,14 @@ Two different messages with the same hash values are a case of “collision”. 
 For example, if a hash sum is generated based on a message text, any future changes on the text would be detected due the mismatch between the previously generated hash and the current one.</p>
 </section>
 <section id="encryption-and-decryption">
-<h2>Encryption and Decryption<a class="headerlink" href="#encryption-and-decryption" title="Permalink to this headline">¶</a></h2>
+<h2>Encryption and Decryption<a class="headerlink" href="#encryption-and-decryption" title="Permalink to this headline">#</a></h2>
 <p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; <a class="footnote-reference brackets" href="#footcite-kessler" id="id13">3</a>.
 These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="footnote-reference brackets" href="#footcite-kessler" id="id14">3</a>.
 There exist several types of encryption (<strong>symmetric/asymmetric</strong>) and several ciphering techniques (<strong>block/stream</strong>) and modes etc <a class="footnote-reference brackets" href="#footcite-kessler" id="id15">3</a>.
 The major differences between those will be explained in the following post <a class="reference internal" href="../../03/03/encryption_overview.html#encryption-post-label"><span class="std std-ref">Encryption overview</span></a>.</p>
 </section>
 <section id="a-summary-of-cryptography-algorithms">
-<h2>A summary of cryptography algorithms<a class="headerlink" href="#a-summary-of-cryptography-algorithms" title="Permalink to this headline">¶</a></h2>
+<h2>A summary of cryptography algorithms<a class="headerlink" href="#a-summary-of-cryptography-algorithms" title="Permalink to this headline">#</a></h2>
 <p>There are several practical implementations and algorithms of the aforementioned concepts.
 Some of these are widely used standards defined by the National Institute of Standards and Technology (NIST) such the Advanced Encryption Standard (AES) and the Secure Hashing Algorithm (SHA) etc.
 The most known algorithms are summarized below:</p>
@@ -487,7 +497,7 @@ The most known algorithms are summarized below:</p>
 <center>Figure 1: Cryptographic algorithms</center>
 </div></section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&title=Cryptography%20overview"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/02/17/cryptography_overview.html&text=Cryptography%20overview"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -499,7 +509,7 @@ The most known algorithms are summarized below:</p>
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id16">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-tamimi"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>,<a href="#id8">3</a>)</span></dt>
@@ -576,7 +586,8 @@ The most known algorithms are summarized below:</p>
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

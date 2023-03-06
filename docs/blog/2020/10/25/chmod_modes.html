@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Chmod modes: from symbolic to octal and back" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2020/10/25/chmod_modes.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="convert chmod modes to octal and back to letters" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/chmod_modes.png" />
-<meta property="og:image:alt" content="chmod_modes_from_symbolic_to_octal_and_back" />
-<meta property="og:keywords" content="chmod, chmod modes, octal, symbolic, rwx, python, ayoub malek, blog post" />
-<meta name="description" content="Often you will be faced with permission limitations, that will hinder you from manipulating a certain file or directory. To overcome this on Unix-based systems, one can use the chmod command to edit permissions and enable more manipulations possibilities. In this blog, we examine the chmod comman..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Chmod modes: from symbolic to octal and back" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/10/25/chmod_modes.html" />
+  
+<meta property="og:description" content="convert chmod modes to octal and back to letters" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/chmod_modes.png" />
+  
+<meta property="og:image:alt" content="chmod_modes_from_symbolic_to_octal_and_back" />
+  
+<meta property="og:keywords" content="chmod, chmod modes, octal, symbolic, rwx, python, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Chmod modes: from symbolic to octal and back &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,54 +213,61 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  25 October 2020 
+  25 Oktober 2020 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/linux.html">linux</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/bash.html">Bash</a>   
-  <a href="../../../tag/linux.html">Linux</a>  
+  <a href="../../../tag/linux.html">Linux</a>   
+  <a href="../../../tag/bash.html">Bash</a>  
 </li>
  
 </ul>
@@ -273,31 +280,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../01/divide_image_using_opencv.html"
       >Divide an image into blocks using OpenCV in C++</a>
-      <p>01 October 2020</p>
+      <p>01 Oktober 2020</p>
   </li>
   
 </ul>
@@ -325,6 +332,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -335,7 +345,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -411,19 +421,19 @@
 
               <div>
                  <section id="chmod-modes-from-symbolic-to-octal-and-back">
-<h1>Chmod modes: from symbolic to octal and back<a class="headerlink" href="#chmod-modes-from-symbolic-to-octal-and-back" title="Permalink to this headline">¶</a></h1>
+<h1>Chmod modes: from symbolic to octal and back<a class="headerlink" href="#chmod-modes-from-symbolic-to-octal-and-back" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Often you will be faced with permission limitations, that will hinder you from manipulating a certain file or directory.
 To overcome this on Unix-based systems, one can use the <strong>chmod</strong> command to edit permissions and enable more manipulations possibilities.
 In this blog, we examine the <strong>chmod</strong> command and its different modes.</p>
 <section id="viewing-file-permissions">
-<h2>Viewing file permissions<a class="headerlink" href="#viewing-file-permissions" title="Permalink to this headline">¶</a></h2>
+<h2>Viewing file permissions<a class="headerlink" href="#viewing-file-permissions" title="Permalink to this headline">#</a></h2>
 <p>Chmod is part of the essentials packet <a class="reference external" href="https://www.gnu.org/software/coreutils/">coreutils</a>, which comes as part of Ubuntu.
 Before getting to changing some file's permissions, we need first to determine them.
 For that you can use the following command <code class="code docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">[filename]</span></code> or -<em>if you don't want to see any extra unrelated information</em>- use <code class="code docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">[filename]</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">{'print</span> <span class="pre">$1&quot;</span>&#160;&#160;&#160; <span class="pre">&quot;$9'}</span></code>.</p>
 </section>
 <section id="understanding-file-permissions">
-<h2>Understanding file permissions<a class="headerlink" href="#understanding-file-permissions" title="Permalink to this headline">¶</a></h2>
+<h2>Understanding file permissions<a class="headerlink" href="#understanding-file-permissions" title="Permalink to this headline">#</a></h2>
 <p>File permissions can be defined in two modes, each divided in 3 user categories:</p>
 <ul class="simple">
 <li><p><strong>Symbolic mode</strong> : In this mode each user category [u, g, o] and permission/right [r, w, x] is defined using a combination of letters, where <strong>r</strong> stands for read rights, <strong>w</strong> for write rights and <strong>x</strong> for execution rights.</p></li>
@@ -471,7 +481,7 @@ For that you can use the following command <code class="code docutils literal no
 <center><a href="../tables/table5.html" >Table 5: User categories representation in symbolic and octal modes </a> </center>
 </div></section>
 <section id="converting-chmod-permissions">
-<h2>Converting chmod permissions<a class="headerlink" href="#converting-chmod-permissions" title="Permalink to this headline">¶</a></h2>
+<h2>Converting chmod permissions<a class="headerlink" href="#converting-chmod-permissions" title="Permalink to this headline">#</a></h2>
 <p>Chmod changes the permissions of a given file/ directory according a to a rights description in a certain mode.
 A mode can be octal (description with numbers) or symbolic (description with letters).
 Whereas letters are easier to understand, octals are more practical and conversion from one mode to another can be done as follows:</p>
@@ -552,7 +562,7 @@ The resulting code is:</p>
 <center><a href="../../../../projects/chmod_converter.html" > chmod modes converter and interpreter</a> </center>
 </div></section>
 <section id="changing-chmod-permissions">
-<h2>Changing chmod permissions<a class="headerlink" href="#changing-chmod-permissions" title="Permalink to this headline">¶</a></h2>
+<h2>Changing chmod permissions<a class="headerlink" href="#changing-chmod-permissions" title="Permalink to this headline">#</a></h2>
 <p>In order to change the permissions of a file (file.sh for example) or directory using chmod, you can use any of the following commands:</p>
 <ul class="simple">
 <li><p>In <strong>symbolic</strong> mode: <code class="code docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">u=rwx,g=rw-,o=r--</span> <span class="pre">file.sh</span></code></p></li>
@@ -570,12 +580,12 @@ The resulting code is:</p>
 <p>Additionally, you can use the <strong>-R</strong> argument to change permissions recursively or combine <strong>chmod</strong> with the <a class="reference external" href="https://ss64.com/bash/find.html">find</a> command to change permissions of multiple files. For more on <strong>chmod</strong> check its manual using <code class="code docutils literal notranslate"><span class="pre">man</span> <span class="pre">chmod</span></code>.</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>This blog post provided a small introduction to the <strong>chmod</strong> function used to change files/directories permissions.
 Moreover, the post included a description of the different modes used with chmod and how to convert from one to the other.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/10/25/chmod_modes.html&title=Chmod%20modes:%20from%20symbolic%20to%20octal%20and%20back"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/10/25/chmod_modes.html&text=Chmod%20modes:%20from%20symbolic%20to%20octal%20and%20back"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -587,7 +597,7 @@ Moreover, the post included a description of the different modes used with chmod
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>chmod, ss64, <a class="reference external" href="https://ss64.com/bash/chmod.html">https://ss64.com/bash/chmod.html</a></p></li>
 <li><p>chmod, ubuntuusers, <a class="reference external" href="https://wiki.ubuntuusers.de/chmod/">https://wiki.ubuntuusers.de/chmod/</a></p></li>
@@ -653,7 +663,8 @@ Moreover, the post included a description of the different modes used with chmod
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Diabetes detection using machine learning (part I)" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="applied machine learning to diabetics detection" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/diabetes_detection_using_machine_learning1.png" />
-<meta property="og:image:alt" content="diabetes_detection_using_machine_learning" />
-<meta property="og:keywords" content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" />
-<meta name="description" content="Diabetes is one of the most serious health challenges today. The publicly available Pima Indian diabetic database ( PIDD) have become a popular approach for testing the efficiency of machine learning algorithms 1. Within this context, this blog post is part of 2 posts providing an in depth introd..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Diabetes detection using machine learning (part I)" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" />
+  
+<meta property="og:description" content="applied machine learning to diabetics detection" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/diabetes_detection_using_machine_learning1.png" />
+  
+<meta property="og:image:alt" content="diabetes_detection_using_machine_learning" />
+  
+<meta property="og:keywords" content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Diabetes detection using machine learning (part I) &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,44 +213,50 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  30 June 2019 
+  30 Juni 2019 
 </h2>
 
 <ul>
    
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/machine-learning.html">Machine learning</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
   <a href="../../../tag/python.html">Python</a>   
@@ -268,31 +274,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -320,6 +326,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -330,7 +339,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -413,7 +422,7 @@
 
               <div>
                  <section id="diabetes-detection-using-machine-learning-part-i">
-<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">¶</a></h1>
+<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Diabetes is one of the most serious health challenges today.
 The publicly available Pima Indian diabetic database (<a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIDD</a>) have become a popular approach for testing the efficiency of machine learning algorithms <a class="footnote-reference brackets" href="#id6" id="id1">1</a>.
@@ -435,7 +444,7 @@ In this first post in particular, we focus on exploring the data at hand and pre
 </table>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </ul><section id="the-pima-indian-diabetic-database">
-<h2>The Pima Indian diabetic database<a class="headerlink" href="#the-pima-indian-diabetic-database" title="Permalink to this headline">¶</a></h2>
+<h2>The Pima Indian diabetic database<a class="headerlink" href="#the-pima-indian-diabetic-database" title="Permalink to this headline">#</a></h2>
 <p>The Pima Indian diabetes database (<a class="reference external" href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Download_link</a>), donated from the <a class="reference external" href="https://www.niddk.nih.gov/">National_Institute_of_Diabetes_and_Digestive_and_Kidney_Diseases</a>, is a collection of medical diagnostic reports including information (9  numeric variables)
 on 768 female patients (with ages between 21 and 81) of <a class="reference external" href="https://en.wikipedia.org/wiki/Pima_people">Pima</a> Indian heritage (a native American population living near Phoenix, Arizona, USA) <a class="footnote-reference brackets" href="#id7" id="id2">2</a>.
 The database includes the following information <a class="footnote-reference brackets" href="#id8" id="id3">3</a> <a class="footnote-reference brackets" href="#id9" id="id4">4</a> :</p>
@@ -454,10 +463,10 @@ The database includes the following information <a class="footnote-reference bra
 </pre></div>
 </div>
 <section id="data-exploration">
-<h3>Data exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">¶</a></h3>
+<h3>Data exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">#</a></h3>
 <p>First, we start by loading our data and using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html">pandas.DataFrame.describe</a> to get a nice description of the data at hand.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-i">
-<div class="code-block-caption"><span class="caption-text">Code snippet I</span><a class="headerlink" href="#code-snippet-i" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Code snippet I</span><a class="headerlink" href="#code-snippet-i" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="c1"># define column names</span>
@@ -471,7 +480,7 @@ The database includes the following information <a class="footnote-reference bra
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="output-i">
-<div class="code-block-caption"><span class="caption-text">Output I</span><a class="headerlink" href="#output-i" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Output I</span><a class="headerlink" href="#output-i" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">Pregnancies</span>     <span class="n">Glucose</span>  <span class="n">Blood_pressure</span>  <span class="n">Skin_thickness</span>     <span class="n">Insulin</span>  \
  <span class="n">count</span>   <span class="mf">768.000000</span>  <span class="mf">768.000000</span>      <span class="mf">768.000000</span>      <span class="mf">768.000000</span>  <span class="mf">768.000000</span>
  <span class="n">mean</span>      <span class="mf">3.845052</span>  <span class="mf">120.894531</span>       <span class="mf">69.105469</span>       <span class="mf">20.536458</span>   <span class="mf">79.799479</span>
@@ -496,7 +505,7 @@ The database includes the following information <a class="footnote-reference bra
 </div>
 </section>
 <section id="improving-data-quality">
-<h3>Improving data quality<a class="headerlink" href="#improving-data-quality" title="Permalink to this headline">¶</a></h3>
+<h3>Improving data quality<a class="headerlink" href="#improving-data-quality" title="Permalink to this headline">#</a></h3>
 <p>From the previous output help we can deduce that there are no missing values (all columns include 768 value).
 However,  we notice some unrealistic values (it seems that someone replaced missing  values with zeros ) in the data <a class="footnote-reference brackets" href="#id6" id="id5">1</a>.
 For example: a Bmi = 0 means that the person either has an infinite height or a zero weight, which is not physically possible.</p>
@@ -511,7 +520,7 @@ For example: a Bmi = 0 means that the person either has an infinite height or a 
 <p>Although, these values can be reconstructed (using K-nearest neighbor algorithm assuming the data from patients with similar features follow the same pattern) but I opted for dropping rows including faulty data, which results in a database with only 392 case (no  missing  values).
 The previous pre-processing is done using the following code:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-ii">
-<div class="code-block-caption"><span class="caption-text">Code snippet II</span><a class="headerlink" href="#code-snippet-ii" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Code snippet II</span><a class="headerlink" href="#code-snippet-ii" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">def</span> <span class="nf">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -533,7 +542,7 @@ The previous pre-processing is done using the following code:</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="output-ii">
-<div class="code-block-caption"><span class="caption-text">Output II</span><a class="headerlink" href="#output-ii" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Output II</span><a class="headerlink" href="#output-ii" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">Pregnancies</span>     <span class="n">Glucose</span>  <span class="n">Blood_pressure</span>  <span class="n">Skin_thickness</span>     <span class="n">Insulin</span>  \
  <span class="n">count</span>   <span class="mf">392.000000</span>  <span class="mf">392.000000</span>      <span class="mf">392.000000</span>      <span class="mf">392.000000</span>  <span class="mf">392.000000</span>
  <span class="n">mean</span>      <span class="mf">3.301020</span>  <span class="mf">122.627551</span>       <span class="mf">70.663265</span>       <span class="mf">29.145408</span>  <span class="mf">156.056122</span>
@@ -566,7 +575,7 @@ Finally, we notice that we have more samples describing the 0 outcome than sampl
 This might result in better detection for the 0 outcome. To keep things balanced, I decide to equalize the dataset and use an equal number of samples for both cases.
 In code this looks like the following:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iii">
-<div class="code-block-caption"><span class="caption-text">Code snippet III</span><a class="headerlink" href="#code-snippet-iii" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Code snippet III</span><a class="headerlink" href="#code-snippet-iii" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># plot raw data</span>
 <span class="linenos"> 2</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="linenos"> 3</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
@@ -602,13 +611,13 @@ In code this looks like the following:</p>
 <figure class="align-center" id="id10">
 <a class="reference internal image-reference" href="../../../../_images/data_manipulations.png"><img alt="../../../../_images/data_manipulations.png" src="../../../../_images/data_manipulations.png" style="width: 1440.0px; height: 864.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 7: Box-plots for data transformation</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 7: Box-plots for data transformation</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>We can also visualize the balance in the data using bar and pie plots as shown in the next figure.
 These manipulations though improved the data but it also limited the dataset. The new dataset only includes 115x2 = 230 samples.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iv">
-<div class="code-block-caption"><span class="caption-text">Code snippet IV</span><a class="headerlink" href="#code-snippet-iv" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Code snippet IV</span><a class="headerlink" href="#code-snippet-iv" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_overview</span><span class="p">(</span> <span class="n">data</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Plot Equalized samples overview</span>
@@ -631,26 +640,26 @@ These manipulations though improved the data but it also limited the dataset. Th
 <figure class="align-center" id="id11">
 <a class="reference internal image-reference" href="../../../../_images/samples_overview.png"><img alt="../../../../_images/samples_overview.png" src="../../../../_images/samples_overview.png" style="width: 576.0px; height: 576.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 8: Data overview</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 8: Data overview</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The previously discussed transformations are used to remove possible bias in the data and improve its quality.
 However, if used improperly, it may deteriorate the detection quality. the question of which transformations to apply is dependent on the data nature, and the features correlation and distribution.</p>
 </section>
 <section id="features-overview">
-<h3>Features overview<a class="headerlink" href="#features-overview" title="Permalink to this headline">¶</a></h3>
+<h3>Features overview<a class="headerlink" href="#features-overview" title="Permalink to this headline">#</a></h3>
 <p>Now that we cleaned the data, let us examine the available features closely. For that, we look at the bars and densities charts generated using DfPlotter.py (Github link to come later).
 This should help build some intuitions and observations related to the features interactions.</p>
 <figure class="align-center" id="id12">
 <a class="reference internal image-reference" href="../../../../_images/bars.png"><img alt="../../../../_images/bars.png" src="../../../../_images/bars.png" style="width: 576.0px; height: 691.2px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 9: Bar-plots for the different features</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 9: Bar-plots for the different features</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id13">
 <a class="reference internal image-reference" href="../../../../_images/densities.png"><img alt="../../../../_images/densities.png" src="../../../../_images/densities.png" style="width: 1152.0px; height: 864.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 10: Densities of the different features</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 10: Densities of the different features</span><a class="headerlink" href="#id13" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>From these plots alone, we can already confirm some known facts such as:</p>
@@ -660,7 +669,7 @@ This should help build some intuitions and observations related to the features 
 </ul>
 </section>
 <section id="correlation-and-features-selection">
-<h3>Correlation and features selection<a class="headerlink" href="#correlation-and-features-selection" title="Permalink to this headline">¶</a></h3>
+<h3>Correlation and features selection<a class="headerlink" href="#correlation-and-features-selection" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Correlation_and_dependence">Correlation</a> is a numerical coefficient representing the dependence between two features.
 It is a very useful metric, that helps rank the available features importance.
 In many systems, not all the features are relevant or at least some are redundant and leaving them out is a better option for speed or even accuracy reasons.
@@ -669,7 +678,7 @@ Using the DfPlotter.py (Github link to come later) script, we compute &amp; visu
 <figure class="align-center" id="id14">
 <a class="reference internal image-reference" href="../../../../_images/corr.png"><img alt="../../../../_images/corr.png" src="../../../../_images/corr.png" style="width: 828.0px; height: 828.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 11: Correlation matrix</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 11: Correlation matrix</span><a class="headerlink" href="#id14" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>When it comes to correlation coefficients:  bigger coefficient mean more dependence between the features.
@@ -680,20 +689,20 @@ Therefore, a better choice would be to take:  Glucose (0.52), Age (0.38) and Bmi
 <figure class="align-center" id="id15">
 <img alt="../../../../_images/pairplot.png" src="../../../../_images/pairplot.png" />
 <figcaption>
-<p><span class="caption-text">Figure 12: Distributions scatter-plots</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 12: Distributions scatter-plots</span><a class="headerlink" href="#id15" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The pair plots confirm the previous results, since the only curves with some separation between data points are in the Glucose row, in particular the ones on the columns of the Skin_thickness and the Bmi.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>This 1st plot from a series of 3 provided an elaborate explanation of data manipulation techniques, their use and reasons to use them.
 From the raw dataset we retrieve a balanced, scaled and correct number of samples, that we later explored the mechanics regulating its features.
 We will explore all these results to build a robust detection system in the next post.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -701,7 +710,7 @@ We will explore all these results to build a robust detection system in the next
   <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                    target="blank"><i class="fa fa-reddit"></i></a>
 </div></section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id6"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id5">2</a>)</span></dt>
 <dd><p>Rahmat Zolfaghari, Diagnosis of Diabetes in Female Population of Pima Indian Heritage with Ensemble of BP Neural Network and SVM, IJCEM International Journal of Computational Engineering &amp; Management, Vol. 15 Issue 4, July 2012, <a class="reference external" href="https://www.ijcem.org/papers072012/ijcem_072012_22.pdf">paper</a></p>
@@ -776,7 +785,8 @@ We will explore all these results to build a robust detection system in the next
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

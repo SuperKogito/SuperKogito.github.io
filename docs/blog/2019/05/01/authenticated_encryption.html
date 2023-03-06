@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Authenticated encryption" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="Authenticated Encryption post" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/authenticated_encryption.png" />
-<meta property="og:image:alt" content="voice_based_gender_recognition" />
-<meta property="og:keywords" content="Authenticated Encryption, Encryption, Hashing, Security, Ayoub Malek, Cybersecurity Ayoub Malek" />
-<meta name="description" content="With growing dependency on information technology and more at stake, the security aspect has become more vital than ever. Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data 1. ..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Authenticated encryption" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html" />
+  
+<meta property="og:description" content="Authenticated Encryption post" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/authenticated_encryption.png" />
+  
+<meta property="og:image:alt" content="voice_based_gender_recognition" />
+  
+<meta property="og:keywords" content="Authenticated Encryption, Encryption, Hashing, Security, Ayoub Malek, Cybersecurity Ayoub Malek" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Authenticated encryption &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,54 +213,61 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  01 May 2019 
+  01 Mai 2019 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/cybersecurity.html">Cybersecurity</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/hashing.html">Hashing</a>   
-  <a href="../../../tag/encryption.html">Encryption</a>  
+  <a href="../../../tag/encryption.html">Encryption</a>   
+  <a href="../../../tag/hashing.html">Hashing</a>  
 </li>
  
 </ul>
@@ -273,31 +280,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -325,6 +332,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -335,7 +345,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -408,14 +418,14 @@
 
               <div>
                  <section id="authenticated-encryption">
-<h1>Authenticated encryption<a class="headerlink" href="#authenticated-encryption" title="Permalink to this headline">¶</a></h1>
+<h1>Authenticated encryption<a class="headerlink" href="#authenticated-encryption" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>With growing dependency on information technology and more at stake, the security aspect has become more vital than ever.
 Within this context acts authenticated encryption(AE) as a shared-key based transform whose goal is to provide secrecy, Integrity and authenticity of the encapsulated data <a class="footnote-reference brackets" href="#footcite-bellare" id="id1">1</a>.
 AE combines traditional Symmetric Encryption (SE) with a Message Authentication Code (MAC) in different orders <a class="footnote-reference brackets" href="#footcite-nampere" id="id2">2</a>.
 This article introduces the different combinations of authenticated encryption and their applications.</p>
 <section id="what-is-an-ae">
-<h2>What is an AE?<a class="headerlink" href="#what-is-an-ae" title="Permalink to this headline">¶</a></h2>
+<h2>What is an AE?<a class="headerlink" href="#what-is-an-ae" title="Permalink to this headline">#</a></h2>
 <p>Nowadays, the traditional approach to secure communications is to establish a “secure channel” between two endpoints and then exchange encrypted data <a class="footnote-reference brackets" href="#footcite-hugo" id="id3">3</a>.
 Typically, this is done by initiating a secure key-exchange (or multiple keys), which will be later used to encrypt/decrypt the exchanged data.
 This approach is used in many protocols such as: Secure Sockets Layer (SSL: predecessor of TLS), Internet Protocol security (IPsec), Secure Shell (SSH) etc. <a class="footnote-reference brackets" href="#footcite-hugo" id="id4">3</a>.
@@ -427,7 +437,7 @@ Encryption transforms a plain-text into unreadable text (Cipher-text), to ensure
 The authenticated encryption combination of MAC and SE provides Integrity and Authenticity using the MAC and Privacy through SE.</p>
 </section>
 <section id="the-different-combinations-resulting-in-ae">
-<h2>The different combinations resulting in AE<a class="headerlink" href="#the-different-combinations-resulting-in-ae" title="Permalink to this headline">¶</a></h2>
+<h2>The different combinations resulting in AE<a class="headerlink" href="#the-different-combinations-resulting-in-ae" title="Permalink to this headline">#</a></h2>
 <p>There are various approaches to authenticated encryption that differs essentially in the way the MAC and the SE are combined.
 To describe these three methods effectively, we consider P as Plain-text, C as Cipher-text, SE is a symmetric encryption function, K stands for Key, MAC is a message authentication code, T is the generated tag and || denotes concatenation.
 This results in the following three different approaches:</p>
@@ -442,10 +452,10 @@ This is approximately how SSL works.
 This scheme is used in IPsec and can be summed by:
 <span class="math notranslate nohighlight">\(C = E_{k1}(P) || MAC_{k2}(E_{k1}(P))\)</span></p></li>
 </ul>
-<div class="figure" id="id13" style="text-align: center"><p><img width="100%" src="None" alt="text" /></p>
+<div class="figure" id="id13" style="text-align: center"><p><img width="100%" src="../../../../_images/tikz-a8053abfd6b0a56622d070b4809f8e0c4da18e09.png" alt="text" /></p>
 <p><span class="caption-text">Figure 3: SE and MAC combinations</span></p>
 </div><section id="ae-flaws-and-limitations">
-<h3>AE flaws and limitations<a class="headerlink" href="#ae-flaws-and-limitations" title="Permalink to this headline">¶</a></h3>
+<h3>AE flaws and limitations<a class="headerlink" href="#ae-flaws-and-limitations" title="Permalink to this headline">#</a></h3>
 <p>Although SE and the MAC can be independently secure, their combination is not necessarily unbreakable. For example, when using MtE, one needs to remove the padding that was originally introduced during the encryption process before decrypting <a class="footnote-reference brackets" href="#footcite-moxie" id="id8">4</a>.
 This un-padding before decryption reveals a huge vulnerability since the receiver throws two distinct errors with different delays:</p>
 <ul class="simple">
@@ -471,12 +481,12 @@ This is known as a <strong>timing attack</strong>. These type of attacks are par
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>To summarize, AE is a combination of SE and MAC that ensures integrity, authenticity and secrecy. Depending on the combination order of SE and MAC, we have 3 types of AE.
 Out of those, Encrypt-then-MAC is the recommended approach to authenticated encryption. However, MAC-then-encrypt is still a safe and fast approach under certain tight conditions (the case of SSL for instance).</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&title=Autehnticated%20encryption"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter" href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/05/01/authenticated_encryption.html&text=Autehnticated%20encryption"                  target="blank"><i class="fa fa-twitter"></i></a>
@@ -488,7 +498,7 @@ Out of those, Encrypt-then-MAC is the recommended approach to authenticated encr
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id12">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-bellare"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -565,7 +575,8 @@ Out of those, Encrypt-then-MAC is the recommended approach to authenticated encr
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

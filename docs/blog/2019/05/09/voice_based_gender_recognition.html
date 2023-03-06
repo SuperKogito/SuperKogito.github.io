@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Voice based gender recognition using Gaussian mixture models" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="Voice based gender recognition post" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/voice_based_gender_recognition.png" />
-<meta property="og:image:alt" content="voice_based_gender_recognition" />
-<meta property="og:keywords" content="Gender recognition by voice, Voice based gender recognition, Gaussian mixture model, gender classification, Ayoub Malek" />
-<meta name="description" content="Figure 4: Voice based gender recognition overview,, The aforementioned implementation, uses The Free ST American English Corpus data-set ( SLR45), which is a free American English corpus by Surfingtech, containing utterances from 10 speakers (5 females and 5 males). Keywords: Gender recognition, ..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Voice based gender recognition using Gaussian mixture models" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html" />
+  
+<meta property="og:description" content="Voice based gender recognition post" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/voice_based_gender_recognition.png" />
+  
+<meta property="og:image:alt" content="voice_based_gender_recognition" />
+  
+<meta property="og:keywords" content="Gender recognition by voice, Voice based gender recognition, Gaussian mixture model, gender classification, Ayoub Malek" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Voice based gender recognition using Gaussian mixture models &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,56 +213,63 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  09 May 2019 
+  09 Mai 2019 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   10 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/machine-learning.html">Machine learning</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/gmm.html">GMM</a>   
-  <a href="../../../tag/python.html">Python</a>   
+  <a href="../../../tag/audio.html">Audio</a>   
   <a href="../../../tag/voice.html">Voice</a>   
-  <a href="../../../tag/audio.html">Audio</a>  
+  <a href="../../../tag/gmm.html">GMM</a>   
+  <a href="../../../tag/python.html">Python</a>  
 </li>
  
 </ul>
@@ -275,31 +282,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -327,6 +334,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -337,7 +347,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -433,9 +443,9 @@
 
               <div>
                  <section id="voice-based-gender-recognition-using-gaussian-mixture-models">
-<h1>Voice based gender recognition using Gaussian mixture models<a class="headerlink" href="#voice-based-gender-recognition-using-gaussian-mixture-models" title="Permalink to this headline">¶</a></h1>
+<h1>Voice based gender recognition using Gaussian mixture models<a class="headerlink" href="#voice-based-gender-recognition-using-gaussian-mixture-models" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
-<div class="figure" id="id10" style="text-align: center"><p><img width="75%" src="None" alt="text" /></p>
+<div class="figure" id="id10" style="text-align: center"><p><img width="75%" src="../../../../_images/tikz-abd79aa6710b164bdf7482702fa6cbd1f3a1cb81.png" alt="text" /></p>
 <p><span class="caption-text">Figure 4: Voice based gender recognition overview</span></p>
 </div><p>
 This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
@@ -453,7 +463,7 @@ The post provides an explanation of the following GitHub-project <a href="https:
 <script async defer src="https://buttons.github.io/buttons.js"></script><p>The aforementioned implementation, uses The Free ST American English Corpus data-set (<a class="reference external" href="http://www.openslr.org/45/">SLR45</a>), which is a free American English corpus by <a class="reference external" href="https://www.surfing.ai">Surfingtech</a>, containing utterances from 10 speakers (5 females and 5 males).</p>
 <p>Keywords: Gender recognition, Mel-frequency cepstrum coefficients, The Free ST American English Corpus data-set, Gaussian mixture models</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>The idea here is to recognize the gender of the speaker based on pre-generated Gaussian mixture models (GMM).
 Once the data is properly formatted, we train our Gaussian mixture models for each gender by gathering Mel-frequency cepstrum coefficients (MFCC) from their associated training wave files.
 Now that we have generated the models, we identify the speakers genders by extracting their MFCCs from the testing wave files and scoring them against the models.
@@ -496,13 +506,13 @@ In the following table, we summarize the previous main steps, as for a detailed 
 <center>Table 1: Main steps of the voice based gender recognition</center>
 </div></section>
 <section id="workflow-graph">
-<h2>Workflow graph<a class="headerlink" href="#workflow-graph" title="Permalink to this headline">¶</a></h2>
+<h2>Workflow graph<a class="headerlink" href="#workflow-graph" title="Permalink to this headline">#</a></h2>
 <div class="figure" id="id11" style="text-align: center">
-<span id="figure-5"></span><p><img width="85%" src="None" alt="text" /></p>
+<span id="figure-5"></span><p><img width="85%" src="../../../../_images/tikz-0bbba90892c16d44d116aa29154b6a832912f68c.png" alt="text" /></p>
 <p><span class="caption-text">Figure 5: Voice based gender recognition</span></p>
 </div></section>
 <section id="data-formatting">
-<h2>Data formatting<a class="headerlink" href="#data-formatting" title="Permalink to this headline">¶</a></h2>
+<h2>Data formatting<a class="headerlink" href="#data-formatting" title="Permalink to this headline">#</a></h2>
 <p>Once you download your data-set, you will need to split it into two different sets:</p>
 <ul class="simple">
 <li><p>Training set: This set will be used to train the gender models.</p></li>
@@ -515,7 +525,7 @@ The code provides an option for running the whole cycle using &quot;Run.py&quot;
 </div>
 </section>
 <section id="voice-features-extraction">
-<h2>Voice features extraction<a class="headerlink" href="#voice-features-extraction" title="Permalink to this headline">¶</a></h2>
+<h2>Voice features extraction<a class="headerlink" href="#voice-features-extraction" title="Permalink to this headline">#</a></h2>
 <p>The Mel-Frequency Cepstrum Coefficients (MFCC) are used here, since they deliver the best results in speaker verification <a class="footnote-reference brackets" href="#footcite-appliedmachinelearning2022" id="id1">1</a>.
 MFCCs are commonly derived as follows:</p>
 <ol class="arabic simple">
@@ -527,7 +537,7 @@ MFCCs are commonly derived as follows:</p>
 </ol>
 <p>To extract MFCC features I usually use the <a class="reference external" href="https://python-speech-features.readthedocs.io/en/latest/">python_speech_features</a> library, it is simple to use and well documented:</p>
 <div class="literal-block-wrapper docutils container" id="featuresextraction">
-<div class="code-block-caption"><span class="caption-text">FeaturesExtraction.py</span><a class="headerlink" href="#featuresextraction" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">FeaturesExtraction.py</span><a class="headerlink" href="#featuresextraction" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
 <span class="linenos"> 3</span> <span class="kn">from</span> <span class="nn">scipy.io.wavfile</span> <span class="kn">import</span> <span class="n">read</span>
@@ -557,7 +567,7 @@ MFCCs are commonly derived as follows:</p>
 </div>
 </section>
 <section id="gaussian-mixture-models">
-<h2>Gaussian Mixture Models<a class="headerlink" href="#gaussian-mixture-models" title="Permalink to this headline">¶</a></h2>
+<h2>Gaussian Mixture Models<a class="headerlink" href="#gaussian-mixture-models" title="Permalink to this headline">#</a></h2>
 <p>According to D. Reynolds in <a class="reference external" href="https://pdfs.semanticscholar.org/734b/07b53c23f74a3b004d7fe341ae4fce462fc6.pdf">Gaussian_Mixture_Models</a>:</p>
 <blockquote>
 <div><p>&lt;&lt; A Gaussian Mixture Model (GMM) is a parametric probability density function represented as a weighted sum of Gaussian component densities. GMMs are commonly used as a parametric model of the probability distribution of continuous measurements or features in a biometric system, such as vocal-tract related spectral features in a speaker recognition system. GMM parameters are estimated from training data using the iterative Expectation-Maximization (EM) algorithm or Maximum A Posteriori(MAP) estimation from a well-trained prior model. &gt;&gt;</p>
@@ -577,12 +587,12 @@ is the Gaussian distribution, with:</p>
 <figure class="align-center" id="id12">
 <span id="figure-6"></span><a class="reference internal image-reference" href="../../../../_images/gmm.png"><img alt="../../../../_images/gmm.png" src="../../../../_images/gmm.png" style="width: 540.0px; height: 540.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 6: Simplified Gaussian mixture model visualization</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 6: Simplified Gaussian mixture model visualization</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To train a Gaussian mixture models based on some collected features, you can use <a class="reference external" href="https://scikit-learn.org">scikit-learn-library</a> specifically the <a class="reference external" href="https://scikit-learn.org/stable/modules/mixture.html">scikit-learn-gmm</a>:</p>
 <div class="literal-block-wrapper docutils container" id="gmmgeneration">
-<div class="code-block-caption"><span class="caption-text">GmmGeneration.py</span><a class="headerlink" href="#gmmgeneration" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">GmmGeneration.py</span><a class="headerlink" href="#gmmgeneration" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">os</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">pickle</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>
@@ -612,7 +622,7 @@ is the Gaussian distribution, with:</p>
 </div>
 </section>
 <section id="gender-identification">
-<h2>Gender identification<a class="headerlink" href="#gender-identification" title="Permalink to this headline">¶</a></h2>
+<h2>Gender identification<a class="headerlink" href="#gender-identification" title="Permalink to this headline">#</a></h2>
 <p>The identification is done over three steps: first you retrieve the voice features, then you compute their likelihood of belonging to a certain gender and finally your compare both scores and make a decision on the probable gender.
 The computation of the scores is done as follows <a class="footnote-reference brackets" href="#footcite-reynolds2000" id="id5">4</a> <a class="footnote-reference brackets" href="#footcite-sergio2014" id="id6">5</a>.</p>
 <blockquote>
@@ -627,7 +637,7 @@ The computation of the scores is done as follows <a class="footnote-reference br
 \end{eqnarray}</div><p>where <span class="math notranslate nohighlight">\(\begin{eqnarray} p\left(Y | H_{i}\right) \end{eqnarray}\)</span>, is the probability density function for the hypothesis <span class="math notranslate nohighlight">\(H_{i}\)</span> evaluated for the observed speech segment Y, also called <em>the likelihood of the hypothesis</em> <span class="math notranslate nohighlight">\(H_{i}\)</span> given the speech segment Y <a class="footnote-reference brackets" href="#footcite-reynolds2000" id="id7">4</a>.</p>
 </div></blockquote>
 <div class="literal-block-wrapper docutils container" id="genderidentification">
-<div class="code-block-caption"><span class="caption-text">GenderIdentification.py</span><a class="headerlink" href="#genderidentification" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">GenderIdentification.py</span><a class="headerlink" href="#genderidentification" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">pickle</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">FeaturesExtractor</span> <span class="kn">import</span> <span class="n">FeaturesExtractor</span>
@@ -669,13 +679,13 @@ The computation of the scores is done as follows <a class="footnote-reference br
 </div>
 </section>
 <section id="code-scripts">
-<h2>Code &amp; scripts<a class="headerlink" href="#code-scripts" title="Permalink to this headline">¶</a></h2>
+<h2>Code &amp; scripts<a class="headerlink" href="#code-scripts" title="Permalink to this headline">#</a></h2>
 <p>
 The full code for this approach to voice based gender identification can be found on GitHub under <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i> Voice-based-gender-recognition</a>.
 </p><p>Obviously the code provided on GitHub is more structured and advanced than what provided here since it is used to process multiple files,and to compute the accuracy level</p>
 </section>
 <section id="results-summary">
-<h2>Results summary<a class="headerlink" href="#results-summary" title="Permalink to this headline">¶</a></h2>
+<h2>Results summary<a class="headerlink" href="#results-summary" title="Permalink to this headline">#</a></h2>
 <p>The results of the gender recognition tests can be summarized in the following table/ confusion matrix:</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -714,7 +724,7 @@ The full code for this approach to voice based gender identification can be foun
 </ul>
 </section>
 <section id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>The system results in a <strong>95%</strong> accuracy of gender detection, but this can be different for other data-sets.</p></li>
 <li><p>The code can be further optimized using multi-threading, acceleration libs and multi-processing.</p></li>
@@ -722,7 +732,7 @@ The full code for this approach to voice based gender identification can be foun
 </ul>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&text=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -734,7 +744,7 @@ The full code for this approach to voice based gender identification can be foun
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id8">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-appliedmachinelearning2022"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
@@ -814,7 +824,8 @@ The full code for this approach to voice based gender identification can be foun
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

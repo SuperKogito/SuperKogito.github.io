@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Naive voice activity detection using short time energy" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2020/02/09/naive_vad.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="voice activity detection using short time energy" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/naive_vad.png" />
-<meta property="og:image:alt" content="naive_vad" />
-<meta property="og:keywords" content="voice activity detection, vad, short time energy, ayoub malek, post, blog introduction" />
-<meta name="description" content="An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones. This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy. This problem ..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Naive voice activity detection using short time energy" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/02/09/naive_vad.html" />
+  
+<meta property="og:description" content="voice activity detection using short time energy" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/naive_vad.png" />
+  
+<meta property="og:image:alt" content="naive_vad" />
+  
+<meta property="og:keywords" content="voice activity detection, vad, short time energy, ayoub malek, post, blog introduction" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Naive voice activity detection using short time energy &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,50 +213,57 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  09 February 2020 
+  09 Februar 2020 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/signal-processing.html">Signal processing</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
   <a href="../../../tag/python.html">Python</a>   
@@ -274,31 +281,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -326,6 +333,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -336,7 +346,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -407,18 +417,18 @@
 
               <div>
                  <section id="naive-voice-activity-detection-using-short-time-energy">
-<h1>Naive voice activity detection using short time energy<a class="headerlink" href="#naive-voice-activity-detection-using-short-time-energy" title="Permalink to this headline">¶</a></h1>
+<h1>Naive voice activity detection using short time energy<a class="headerlink" href="#naive-voice-activity-detection-using-short-time-energy" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones.
 This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy.
 This problem is known as Voice Activity Detection (VAD). This blog aims to introduce voice activity detection and present simple short time energy based VAD implementation.</p>
 <section id="what-is-voice-activity-detection">
-<h2>What is voice activity detection ?<a class="headerlink" href="#what-is-voice-activity-detection" title="Permalink to this headline">¶</a></h2>
+<h2>What is voice activity detection ?<a class="headerlink" href="#what-is-voice-activity-detection" title="Permalink to this headline">#</a></h2>
 <p>Voice activity detection is a speech/signal processing technique in which the presence or absence of human speech is detected.
 VAD is often used in speech coding and speech recognition but it also helps optimize and speed audio dependent approach like speaker recognition.</p>
 </section>
 <section id="why-do-we-do-need-voice-activity-detection">
-<h2>Why do we do need voice activity detection?<a class="headerlink" href="#why-do-we-do-need-voice-activity-detection" title="Permalink to this headline">¶</a></h2>
+<h2>Why do we do need voice activity detection?<a class="headerlink" href="#why-do-we-do-need-voice-activity-detection" title="Permalink to this headline">#</a></h2>
 <p>As mentioned before VAD is very useful in many audio processing related tasks. A couple of these uses are highlighted in the following list:</p>
 <ul class="simple">
 <li><p>In speech recognition, VAD helps improve the quality by masking the effect of silent frames and noise.</p></li>
@@ -428,7 +438,7 @@ VAD is often used in speech coding and speech recognition but it also helps opti
 </ul>
 </section>
 <section id="how-to-implement-it">
-<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">¶</a></h2>
+<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">#</a></h2>
 <p>The basic assumption behind short time energy based VAD is that voiced frames has more energy than silent.
 Therefore, we can frame the signal, compute the short time energy aka the energy pro frame and according to a predefined threshold we can decide where the frame is voiced or silent <a class="footnote-reference brackets" href="#footcite-tom2019" id="id1">1</a>.
 These steps can be summarized in the following:</p>
@@ -491,7 +501,7 @@ To summarize: <span class="math notranslate nohighlight">\(\overline{E}_f = \fra
 </ul>
 <p>The code for the previous steps is the following (I added a visualization function to help visualize the concept):</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Framing 1</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Framing 1</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">import</span> <span class="nn">scipy</span>
 <span class="linenos">  2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos">  3</span><span class="kn">import</span> <span class="nn">scipy.signal</span>
@@ -634,13 +644,13 @@ To summarize: <span class="math notranslate nohighlight">\(\overline{E}_f = \fra
 <figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="../../../../_images/naive_vad_multi_plots.png"><img alt="../../../../_images/naive_vad_multi_plots.png" src="../../../../_images/naive_vad_multi_plots.png" style="width: 1040.3999999999999px; height: 428.4px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 17: Summary plots of voice activity detection</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 17: Summary plots of voice activity detection</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id5">
 <a class="reference internal image-reference" href="../../../../_images/vad_and_signal.png"><img alt="../../../../_images/vad_and_signal.png" src="../../../../_images/vad_and_signal.png" style="width: 918.0px; height: 306.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Figure 18: Voice activity detection and original signal</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 18: Voice activity detection and original signal</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>I already tested the VAD using the following <a class="reference external" href="https://www.voiptroubleshooter.com/open_speech/american/OSR_us_000_0060_8k.wav">sample</a> that can be downloaded from <a class="reference external" href="https://www.voiptroubleshooter.com/open_speech/american.html">Open Speech Repository</a>.
@@ -666,14 +676,14 @@ The difference between the input and output shows that the VAD is functional.</p
  </tr>
 </table></section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>This blog gave a quick overview to voice activity detection and its use in practical speech/ signal processing applications.
 It also introduced a naive simple way to distinguish silence from speech using short time energy.
 This type of VAD, though it is fast &amp; simple, it lacks accuracy in some cases as it is dependent on the manual choice of threshold and  <span class="math notranslate nohighlight">\(E_0\)</span> (Energy value characterizing the silence to speech energy ratio).
 Therefore, it is advised to equalize the input audio before the processing. Alternative approaches to VAD uses extra features such as MFCCs and are based on machine learning algorithms.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&text=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -685,7 +695,7 @@ Therefore, it is advised to equalize the input audio before the processing. Alte
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id2">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-tom2019"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -753,7 +763,8 @@ Therefore, it is advised to equalize the input audio before the processing. Alte
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

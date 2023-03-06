@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Diabetes detection using machine learning (part II)" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="applied machine learning to diabetics detection" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/diabetes_detection_using_machine_learning2.png" />
-<meta property="og:image:alt" content="diabetes_detection_using_machine_learning" />
-<meta property="og:keywords" content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" />
-<meta name="description" content="In this 2nd post on detecting diabetes with the help of machine learning and using the Pima Indian diabetic database ( PIDD) 1, we will dig into testing various classifiers and evaluating their performances. We will also examine the performance improvements by the data transformations explained i..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Diabetes detection using machine learning (part II)" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html" />
+  
+<meta property="og:description" content="applied machine learning to diabetics detection" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/diabetes_detection_using_machine_learning2.png" />
+  
+<meta property="og:image:alt" content="diabetes_detection_using_machine_learning" />
+  
+<meta property="og:keywords" content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Diabetes detection using machine learning (part II) &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,44 +213,50 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  30 June 2019 
+  30 Juni 2019 
 </h2>
 
 <ul>
    
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/machine-learning.html">Machine learning</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
   <a href="../../../tag/python.html">Python</a>   
@@ -268,31 +274,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -320,6 +326,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -330,7 +339,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -413,12 +422,12 @@
 
               <div>
                  <section id="diabetes-detection-using-machine-learning-part-ii">
-<h1>Diabetes detection using machine learning (part II)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-ii" title="Permalink to this headline">¶</a></h1>
+<h1>Diabetes detection using machine learning (part II)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-ii" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>In this 2nd post on detecting diabetes with the help of machine learning and using the Pima Indian diabetic database (<a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIDD</a>) <a class="footnote-reference brackets" href="#id5" id="id1">1</a>, we will dig into testing various classifiers and evaluating their performances.
 We will also examine the performance improvements by the data transformations explained in the previous post.</p>
 <section id="the-tested-machine-learning-detection-approaches">
-<h2>The tested machine learning detection approaches<a class="headerlink" href="#the-tested-machine-learning-detection-approaches" title="Permalink to this headline">¶</a></h2>
+<h2>The tested machine learning detection approaches<a class="headerlink" href="#the-tested-machine-learning-detection-approaches" title="Permalink to this headline">#</a></h2>
 <p>The idea of the detection in this context is distinguishing based on the provided features if the person has diabetes or not. This is a clear classification problem <a class="footnote-reference brackets" href="#id6" id="id2">2</a>.
 For which we test the following classifiers:</p>
 <ul class="simple">
@@ -443,7 +452,7 @@ For which we test the following classifiers:</p>
 </ul>
 </section>
 <section id="code-and-implementation">
-<h2>Code and implementation<a class="headerlink" href="#code-and-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Code and implementation<a class="headerlink" href="#code-and-implementation" title="Permalink to this headline">#</a></h2>
 <p>
 The code for this section is to be found in this script_.
 However, the whole project is available in the following  <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i> Diabetes detection</a>.
@@ -461,7 +470,7 @@ However, the whole project is available in the following  <a href="https://githu
 <script async defer src="https://buttons.github.io/buttons.js"></script><p>The dataset can be Downloaded from <a class="reference external" href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning/blob/master/diabetes.csv">here</a>.</p>
 </section>
 <section id="evaluation-techniques">
-<h2>Evaluation techniques<a class="headerlink" href="#evaluation-techniques" title="Permalink to this headline">¶</a></h2>
+<h2>Evaluation techniques<a class="headerlink" href="#evaluation-techniques" title="Permalink to this headline">#</a></h2>
 <p>When facing a typical machine learning classification problem, accuracy values can be deceiving and inaccurate.
 Therefore, other metrics such as the confusion matrix, <a class="reference external" href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity">Sensitivity</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity">Specificity</a> are used to provide a better assessment of the algorithms <a class="footnote-reference brackets" href="#id7" id="id3">3</a> <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
 <div class="math notranslate nohighlight" id="equation-specificity-and-sensitivity">
@@ -512,25 +521,25 @@ Therefore, we need to maximize True Positives count and accept the presence of s
 </ol>
 </div></blockquote>
 <section id="data-transformations-influence-on-results">
-<h3>Data transformations influence on results<a class="headerlink" href="#data-transformations-influence-on-results" title="Permalink to this headline">¶</a></h3>
+<h3>Data transformations influence on results<a class="headerlink" href="#data-transformations-influence-on-results" title="Permalink to this headline">#</a></h3>
 <p>In the previous post, the utility of some data transformations has been discussed as a method to improve the data quality and consequently improve the classification.
 the following plots, confirm this as we can clearly see that employing these data transformations (scaling, equalization and outliers removal) results overall in better accuracy, sensitivity and specificity.</p>
 <figure class="align-center" id="id9">
 <img alt="../../../../_images/dataTrafos.png" src="../../../../_images/dataTrafos.png" />
 <figcaption>
-<p><span class="caption-text">Figure 13: Influence of data transformations</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 13: Influence of data transformations</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="classifiers-comparison">
-<h3>Classifiers comparison<a class="headerlink" href="#classifiers-comparison" title="Permalink to this headline">¶</a></h3>
+<h3>Classifiers comparison<a class="headerlink" href="#classifiers-comparison" title="Permalink to this headline">#</a></h3>
 <p>In this section, we examine the performances of the aforementioned machine learning approaches approaches to diabetes detection.
 The plots and the results summary prove that the Support Vector Classifiers clearly results in the best prediction rates.
 In this case, we prioritize True Positives detection (sensitivity over simplicity) as we want to detect all of those having diabetes even if it means getting some False Positives (healthy patients diagnosed as diabetics) as that can be dismissed with some extra tests.</p>
 <figure class="align-center" id="id10">
 <img alt="../../../../_images/scaled_and_equalized_data_without_outliers-BAR.png" src="../../../../_images/scaled_and_equalized_data_without_outliers-BAR.png" />
 <figcaption>
-<p><span class="caption-text">Figure 14: Performance comparison for different classifiers &lt;/a&gt; &lt;/center&gt;</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 14: Performance comparison for different classifiers &lt;/a&gt; &lt;/center&gt;</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="line-block">
@@ -539,14 +548,14 @@ In this case, we prioritize True Positives detection (sensitivity over simplicit
 <figure class="align-center" id="id11">
 <img alt="../../../../_images/scaled_and_equalized_data_without_outliers-CM.png" src="../../../../_images/scaled_and_equalized_data_without_outliers-CM.png" />
 <figcaption>
-<p><span class="caption-text">Figure 15: Confusion matrices for different classifiers &lt;/a&gt; &lt;/center&gt;</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 15: Confusion matrices for different classifiers &lt;/a&gt; &lt;/center&gt;</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="literal-block-wrapper docutils container" id="results">
-<div class="code-block-caption"><span class="caption-text">Results summary</span><a class="headerlink" href="#results" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Results summary</span><a class="headerlink" href="#results" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">---------------------------------------------------------------------------------------------------</span>
                                     <span class="n">Classifiers</span> <span class="n">performances</span>
  <span class="o">---------------------------------------------------------------------------------------------------</span>
@@ -567,12 +576,12 @@ In this case, we prioritize True Positives detection (sensitivity over simplicit
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>In these two blog posts, we investigated the utility of various machine learning approaches to diabetes detection and their efficiency.
 Moreover, various data transformations, such as scaling, equalization and outliers removal, have been proven to enhance the diabetes detection process.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20II)"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20II)"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -580,7 +589,7 @@ Moreover, various data transformations, such as scaling, equalization and outlie
   <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20II)"                    target="blank"><i class="fa fa-reddit"></i></a>
 </div></section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Pima Indians Diabetes Database, <a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names</a></p>
@@ -655,7 +664,8 @@ Moreover, various data transformations, such as scaling, equalization and outlie
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

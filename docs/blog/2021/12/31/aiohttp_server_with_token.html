@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Token authenticated aiohttp server" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="authenticated aiohttp servver" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/aiohttp_server_with_token.png" />
-<meta property="og:image:alt" content="authenticated_aiohttp_server" />
-<meta property="og:keywords" content="authentication, server, client, python, ayoub malek, blog post" />
-<meta name="description" content="In the previous blog post, a simple aiohttp server was introduced. In the following post we improve the previous server by introducing a simple token authentication mechanism. Why authenticate?: Authentication is a crucial part when dealing with server-client connections. If your resources are li..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Token authenticated aiohttp server" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html" />
+  
+<meta property="og:description" content="authenticated aiohttp servver" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/aiohttp_server_with_token.png" />
+  
+<meta property="og:image:alt" content="authenticated_aiohttp_server" />
+  
+<meta property="og:keywords" content="authentication, server, client, python, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Token authenticated aiohttp server &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -124,7 +126,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -193,10 +195,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -212,50 +212,57 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  31 December 2021 
+  31 Dezember 2021 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/monastir.html">Monastir</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/server-client.html">Server-client</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
   <a href="../../../tag/python.html">Python</a>   
@@ -272,31 +279,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/01/divide_image_using_opencv.html"
       >Divide an image into blocks using OpenCV in C++</a>
-      <p>01 October 2020</p>
+      <p>01 Oktober 2020</p>
   </li>
   
 </ul>
@@ -324,6 +331,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -334,7 +344,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -410,29 +420,29 @@
 
               <div>
                  <section id="token-authenticated-aiohttp-server">
-<h1>Token authenticated aiohttp server<a class="headerlink" href="#token-authenticated-aiohttp-server" title="Permalink to this headline">¶</a></h1>
+<h1>Token authenticated aiohttp server<a class="headerlink" href="#token-authenticated-aiohttp-server" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>In the previous blog post, a simple aiohttp server was introduced.
 In the following post we improve the previous server by introducing a simple token authentication mechanism.</p>
 <section id="why-authenticate">
-<h2>Why authenticate?<a class="headerlink" href="#why-authenticate" title="Permalink to this headline">¶</a></h2>
+<h2>Why authenticate?<a class="headerlink" href="#why-authenticate" title="Permalink to this headline">#</a></h2>
 <p>Authentication is a crucial part when dealing with server-client connections.
 If your resources are limited and your server has no filtering mechanism of whom to serve, an overload of requests would break your server.
 This the one of the simplest yet efficient Denial of Service attacks (DOS).
 Hence an authentication mechanism will help filter unrecognized requests and will spare you the computational power and attention.</p>
 </section>
 <section id="why-use-tokens">
-<h2>Why use tokens?<a class="headerlink" href="#why-use-tokens" title="Permalink to this headline">¶</a></h2>
+<h2>Why use tokens?<a class="headerlink" href="#why-use-tokens" title="Permalink to this headline">#</a></h2>
 <p>Token based authentication is one of the cheapest and the simplest approaches.
 It is an efficient filtering approach if the data communicated is not that important.
 Depending on how you generate your valid tokens, how you communicate/ store them you can improve your security but this will not be discussed here.</p>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
 <p>To improve the previous implementation, we will push all the config variables into one JSON file and we will name it <cite>config.json</cite>.
 This will include all the configuration parameters for our script. It will look like the following.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">config.json</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">config.json</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">{</span>
 <span class="linenos"> 2</span>  <span class="s2">&quot;server&quot;</span>: <span class="o">{</span>
 <span class="linenos"> 3</span>    <span class="s2">&quot;http&quot;</span>: <span class="o">{</span>
@@ -542,10 +552,10 @@ Requests in aiohttp are processed using coroutines that will serve as the actual
 </ol>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h2>
 <p>The previously listed steps, should look together in Python as follows:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">aiohttp-server-with-token-auth</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">aiohttp-server-with-token-auth</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">json</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">logging</span>
@@ -611,18 +621,18 @@ Requests in aiohttp are processed using coroutines that will serve as the actual
 </div>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">#</a></h2>
 <p>The previous code when executed will start a server running on <code class="code docutils literal notranslate"><span class="pre">http://localhost:8080/</span></code>.
 To test your server either type in your browser <code class="code docutils literal notranslate"><span class="pre">http://localhost:8080/ping</span></code> or simply <a class="reference external" href="https://curl.se/">curl</a> it while passing your token using <code class="code docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-H</span> <span class="pre">'Authorization:</span> <span class="pre">Token</span> <span class="pre">token1'</span> <span class="pre">http://127.0.0.1:8080/ping</span></code>.
 The response should be a json including pong and a success status.</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>This blog presented an improved aiohttp server that implements token based authentication to filter out unwanted traffic and protect itself against possible spamming attacks
 that could be part of DOS attacks.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html&title=Token%20authenticated%20aiohttp%20Server"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2021/12/31/aiohttp_server_with_token.html&text=Token%20authenticated%20aiohttp%20Server"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -692,7 +702,8 @@ that could be part of DOS attacks.</p>
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Divide an image into blocks using OpenCV in C++" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2020/10/01/divide_image_using_opencv.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="Divide an image into multiple blocks with fixed height and width using OpenCV in C++" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/divide_image_using_opencv.png" />
-<meta property="og:image:alt" content="divide an image into blocks using opencv in c++" />
-<meta property="og:keywords" content="Image divide, C++, OpenCV, ayoub malek, blog post" />
-<meta name="description" content="Often you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise. This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with cust..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Divide an image into blocks using OpenCV in C++" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/10/01/divide_image_using_opencv.html" />
+  
+<meta property="og:description" content="Divide an image into multiple blocks with fixed height and width using OpenCV in C++" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/divide_image_using_opencv.png" />
+  
+<meta property="og:image:alt" content="divide an image into blocks using opencv in c++" />
+  
+<meta property="og:keywords" content="Image divide, C++, OpenCV, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Divide an image into blocks using OpenCV in C++ &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -124,7 +126,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -193,10 +195,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -212,55 +212,62 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  01 October 2020 
+  01 Oktober 2020 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/image-processing.html">Image processing</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/windows.html">Windows</a>   
+  <a href="../../../tag/cplusplus.html">Cplusplus</a>   
   <a href="../../../tag/opencv.html">OpenCV</a>   
-  <a href="../../../tag/cplusplus.html">Cplusplus</a>  
+  <a href="../../../tag/windows.html">Windows</a>  
 </li>
  
 </ul>
@@ -273,31 +280,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -325,6 +332,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -335,7 +345,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -411,12 +421,12 @@
 
               <div>
                  <section id="divide-an-image-into-blocks-using-opencv-in-c">
-<h1>Divide an image into blocks using OpenCV in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-opencv-in-c" title="Permalink to this headline">¶</a></h1>
+<h1>Divide an image into blocks using OpenCV in C++<a class="headerlink" href="#divide-an-image-into-blocks-using-opencv-in-c" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Often you will need to divide an image into multiple blocks of a certain height and width to apply a certain transformation or would like to compare two images block-wise.
 This blog will provide a short explanation and a C++ implementation for how to divide an image into multiple blocks with custom height and width.</p>
 <section id="approach">
-<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
+<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">#</a></h2>
 <p>There are various ways of approaching this problem; most approaches out there compute the number of blocks in xy-directions and use for loops to cut the blocks.
 In this blog, the dimensions of the blocks are prioritized, therefore, we will need to make sure to crop the side blocks and lower blocks correctly even if their dimensions are different from the other blocks.</p>
 <p>To elaborate on this a bit more: if the image width = 512 px and the block width = 128 px -&gt; we will get 512 / 128 = 4 blocks.
@@ -479,7 +489,7 @@ Moreover, to keep the code fast and optimal, we will use while loops, that will 
 <code class="code docutils literal notranslate"><span class="pre">divideImage()</span></code> takes in 4 inputs which are the image to divide, the blocks width, the blocks height and a vector variable to store the cropped blocks in.</p>
 </section>
 <section id="the-main-call">
-<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
+<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">#</a></h2>
 <p>Let's call the previous function in a main function and save the resulting blocks in a defined directory to visualize the results and verify, that the code is doing what it is supposed to do.
 For the purpose of this test I chose to use the famous Lenna picture, that can downloaded from <a class="reference external" href="https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna_(test_image).png">here</a>.
 In code this can be done as follows:</p>
@@ -513,31 +523,31 @@ In code this can be done as follows:</p>
 <p>The full code can be found in this <a class="reference external" href="https://gist.github.com/SuperKogito/0d6f839a04f17999aad8e4eac87f2411">gist: DivideImageUsingOpenCv.cpp</a>.</p>
 </section>
 <section id="result">
-<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h2>
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">#</a></h2>
 <p>The resulting blocks should look something like this:</p>
 <figure class="align-center" id="id1">
 <img alt="../../../../_images/divided_lenna.png" src="../../../../_images/divided_lenna.png" />
 <figcaption>
-<p><span class="caption-text">Figure 19: divided image into multiple blocks</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Figure 19: divided image into multiple blocks</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="limitations">
-<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>In some cases the user might want to have equally sized blocks or a predefined number of blocks. Therefore, in such case, the dimensions of the blocks should be pre-computed if the user wants to use this snippet. However, tweaking the code for such use-case should be simple to do.</p></li>
 <li><p>NB: This code has only tested on Windows 10.</p></li>
 </ul>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>To summarize, in this post we introduced a small example of how to divide an image into multiple blocks with predefined height and width using OpenCV in C++.
 We also went through saving the resulting blocks to the hard drive in order to verify that the code is functional.
 The code is fairly simple and supports various image encoding types(<cite>PNG</cite>, <cite>JPEG</cite> etc.) but do we need OpenCV to achieve this? can this be done differently?
 The next blog should provide an answer for this.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/10/01/divide_image_using_opencv.html&title=Divide%20an%20image%20into%20blocks%20using%20OpenCV%20in%20C++"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/10/01/divide_image_using_opencv.html&text=Divide%20an%20image%20into%20blocks%20using%20OpenCV%20in%20C++"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -549,7 +559,7 @@ The next blog should provide an answer for this.</p>
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Crop a big picture into several small size pictures, Graphic design, <a class="reference external" href="https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures">https://graphicdesign.stackexchange.com/questions/30008/crop-a-big-picture-into-several-small-size-pictures</a></p></li>
 <li><p>Divide 256*256 image into 4*4 blocks, Matlab, Stackoverflow, <a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks">https://www.mathworks.com/matlabcentral/answers/33103-divide-256-256-image-into-4-4-blocks</a></p></li>
@@ -615,7 +625,8 @@ The next blog should provide an answer for this.</p>
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

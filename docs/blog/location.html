@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Locations &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,12 +19,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -33,7 +29,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -113,7 +110,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -182,10 +179,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -202,6 +197,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">
 <h3>
   <a href="../blog.html">✍️ Recent Posts</a>
 </h3>
@@ -210,31 +206,31 @@
   <li>
     <a href="2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -262,6 +258,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -293,9 +292,7 @@
 
 
               <div>
-                
-
-
+                  
 <div class="section">
   <h2>
     Posts from
@@ -304,32 +301,28 @@
   
   <div class="section">
     <p>
-      
-      31 December 2021
-      
+        31 Dezember 2021 
       -
       <a href="2021/12/31/aiohttp_server_with_token.html"
         >Token authenticated aiohttp server</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      31 December 2021
-      
+        31 Dezember 2021 
       -
       <a href="2021/12/31/aiohttp_server.html"
         >Basic aiohttp server</a
       >
     </p>
+    
   </div>
   
 </div>
-
-
-
+  
 <div class="section">
   <h2>
     Posts from
@@ -338,260 +331,237 @@
   
   <div class="section">
     <p>
-      
-      27 December 2022
-      
+        27 Dezember 2022 
       -
       <a href="2022/12/27/whisper_aiohttp_server_with_token.html"
         >Whisper based speech recognition server</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      25 October 2020
-      
+        25 Oktober 2020 
       -
       <a href="2020/10/25/chmod_modes.html"
         >Chmod modes: from symbolic to octal and back</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      03 October 2020
-      
+        03 Oktober 2020 
       -
       <a href="2020/10/03/divide_image_using_gdiplus.html"
         >Divide an image into blocks using GDI+ in C++</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      01 October 2020
-      
+        01 Oktober 2020 
       -
       <a href="2020/10/01/divide_image_using_opencv.html"
         >Divide an image into blocks using OpenCV in C++</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      28 September 2020
-      
+        28 September 2020 
       -
       <a href="2020/09/28/loop_monitors_details_in_cplusplus.html"
         >How to loop over monitors and get their coordinates on Windows in C++?</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      28 July 2020
-      
+        28 Juli 2020 
       -
       <a href="2020/07/28/capture_sceenshot_using_gdiplus_vs_capture_sceenshot_using_opencv.html"
         >Comparing screen capturing using GDI+ and OpenCV on Windows in C++</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      26 July 2020
-      
+        26 Juli 2020 
       -
       <a href="2020/07/26/capture_screen_using_gdiplus.html"
         >Capturing the screen on Windows in C++ using GDI+</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      25 July 2020
-      
+        25 Juli 2020 
       -
       <a href="2020/07/25/capture_screen_using_opencv.html"
         >Capturing the screen on Windows in C++ using OpenCV</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      30 April 2020
-      
+        30 April 2020 
       -
       <a href="2020/04/30/rms_normalization.html"
         >Root mean square normalization in Python</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      04 April 2020
-      
+        04 April 2020 
       -
       <a href="2020/04/04/urlstechie.html"
         >Introducing urlstechie and its urls checking tools</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      19 March 2020
-      
+        19 März 2020 
       -
       <a href="2020/03/19/ffmpeg_pipe.html"
         >How to pipe an FFmpeg output and pass it to a Python variable?</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      13 March 2020
-      
+        13 März 2020 
       -
       <a href="2020/03/13/spectral_leakage_and_windowing.html"
         >Spectral leakage and windowing</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      09 February 2020
-      
+        09 Februar 2020 
       -
       <a href="2020/02/09/naive_vad.html"
         >Naive voice activity detection using short time energy</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      25 January 2020
-      
+        25 Januar 2020 
       -
       <a href="2020/01/25/signal_framing.html"
         >Signal framing</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      30 June 2019
-      
+        30 Juni 2019 
       -
       <a href="2019/06/30/diabetes_detection_using_machine_learning2.html"
         >Diabetes detection using machine learning (part II)</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      30 June 2019
-      
+        30 Juni 2019 
       -
       <a href="2019/06/30/diabetes_detection_using_machine_learning1.html"
         >Diabetes detection using machine learning (part I)</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      09 May 2019
-      
+        09 Mai 2019 
       -
       <a href="2019/05/09/voice_based_gender_recognition.html"
         >Voice based gender recognition using Gaussian mixture models</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      01 May 2019
-      
+        01 Mai 2019 
       -
       <a href="2019/05/01/authenticated_encryption.html"
         >Authenticated encryption</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      03 March 2019
-      
+        03 März 2019 
       -
       <a href="2019/03/03/encryption_overview.html"
         >Encryption overview</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      17 February 2019
-      
+        17 Februar 2019 
       -
       <a href="2019/02/17/cryptography_overview.html"
         >Cryptography overview</a
       >
     </p>
+    
   </div>
   
   <div class="section">
     <p>
-      
-      10 February 2019
-      
+        10 Februar 2019 
       -
       <a href="2019/02/10/intro.html"
         >Blog intro</a
       >
     </p>
+    
   </div>
   
 </div>
-
-
-
+  
               </div>
               
 <!-- Add a comment box underneath the page's content -->
@@ -623,7 +593,8 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

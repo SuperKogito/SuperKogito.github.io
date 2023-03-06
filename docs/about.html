@@ -8,19 +8,25 @@
 <meta content="This is the about me page of Ayoub Malek's blog and website" name="description" />
 <meta content="Ayoub Malek, About Ayoub, Malek, Ayoub Malek Blog, Ayoub Malek Website, SuperKogito, Ayoub SuperKogito" name="keywords" />
 <meta content="Ayoub Malek" name="author" />
-<meta property="og:title" content="About Me" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/about.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="I hate talking about myself, so I figured that; instead of writing an obnoxious self centered essay, here are some bullet points summarizing my journey so far: Born and raised in Tunisia 🇹🇳., My first lines of code were in Turbo Pascal in high-school., Graduated high-school with honours (2012)., ..." />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/meta_ws_img_old.png" />
-<meta property="og:image:alt" content="🧠 SuperKogito" />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="About Me" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/about.html" />
+  
+<meta property="og:description" content="I hate talking about myself, so I figured that; instead of writing an obnoxious self centered essay, here are some bullet points summarizing my journey so far: Born and raised in Tunisia 🇹🇳., My first lines of code were in Turbo Pascal in high-school., Graduated high-school with honours (2012)., ..." />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/meta_ws_img_old.png" />
+  
+<meta property="og:image:alt" content="About Me" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>About Me &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -30,12 +36,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -45,7 +46,8 @@
     <link rel="stylesheet" type="text/css" href="_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -126,7 +128,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -195,10 +197,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -214,7 +214,8 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><div class="profile-pic"><img src="_static/me.png" /></div>
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><div class="profile-pic"><img src="_static/me.png" /></div>
 
 <div class="bio-info">
     <div class="name">
@@ -230,6 +231,9 @@
     </div>
 
 </div>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -276,7 +280,7 @@
 
               <div>
                  <section id="about-me">
-<h1>About Me<a class="headerlink" href="#about-me" title="Permalink to this headline">¶</a></h1>
+<h1>About Me<a class="headerlink" href="#about-me" title="Permalink to this headline">#</a></h1>
 <p>I hate talking about myself, so I figured that; instead of writing an obnoxious self centered essay, here are some bullet points summarizing my journey so far:</p>
 <ul class="simple">
 <li><p>Born and raised in Tunisia 🇹🇳.</p></li>
@@ -286,7 +290,8 @@
 <li><p>Studied electrical engineering at the 🏛️ <a class="reference external" href="https://www.tum.de/">Technical University of Munich</a>.</p></li>
 <li><p>Have a <a class="reference external" href="https://en.wikipedia.org/wiki/Bachelor_of_Science">B.Sc.</a> (2017) and <a class="reference external" href="https://en.wikipedia.org/wiki/Master_of_Science">M.Sc.</a> (2019) in electrical engineering.</p></li>
 <li><p>Based in Munich, Germany.</p></li>
-<li><p>Machine Learning Engineer &#64; <a class="reference external" href="https://www.yoummday.com/">Yoummday GmbH</a>.</p></li>
+<li><p>ex Machine Learning Engineer &#64; <a class="reference external" href="https://www.yoummday.com/">Yoummday GmbH</a>.</p></li>
+<li><p>Audio signal processing developer &#64; <a class="reference external" href="https://www.huawei.com/en/">Huawei</a>.</p></li>
 <li><p>My hobbies are sports 🏀⚽🏓 and programming 💻.</p></li>
 </ul>
 <p>Here is a reasonably up-to-date curriculum vitae:</p>
@@ -331,7 +336,7 @@
 
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="blog.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -347,7 +352,8 @@
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

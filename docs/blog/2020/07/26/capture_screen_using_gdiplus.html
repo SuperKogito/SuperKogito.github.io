@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Capturing the screen on Windows in C++ using GDI+" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2020/07/26/capture_screen_using_gdiplus.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="Capturing the screen using Gdiplus" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/capture_screen_using_gdiplus.png" />
-<meta property="og:image:alt" content="Capturing the screen on Windows in C++ using GDI+" />
-<meta property="og:keywords" content="Screen capture, Gdiplus, GDI+, C++, Win32, Windows, c++, ayoub malek, blog post" />
-<meta name="description" content="GDI+/ Gdiplus is part of the Win32 API, that helps C/C++ programmers with graphics related tasks on Windows. In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++. GDI+ / Gdiplus introduction: Gdiplus is part of the Win32 API, so ..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Capturing the screen on Windows in C++ using GDI+" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/07/26/capture_screen_using_gdiplus.html" />
+  
+<meta property="og:description" content="Capturing the screen using Gdiplus" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/capture_screen_using_gdiplus.png" />
+  
+<meta property="og:image:alt" content="Capturing the screen on Windows in C++ using GDI+" />
+  
+<meta property="og:keywords" content="Screen capture, Gdiplus, GDI+, C++, Win32, Windows, c++, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Capturing the screen on Windows in C++ using GDI+ &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -124,7 +126,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -193,10 +195,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -212,56 +212,63 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  26 July 2020 
+  26 Juli 2020 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/image-processing.html">Image processing</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/windows.html">Windows</a>   
-  <a href="../../../tag/screen-capture.html">Screen-capture</a>   
   <a href="../../../tag/cplusplus.html">Cplusplus</a>   
-  <a href="../../../tag/gdiplus.html">Gdiplus</a>  
+  <a href="../../../tag/gdiplus.html">Gdiplus</a>   
+  <a href="../../../tag/windows.html">Windows</a>   
+  <a href="../../../tag/screen-capture.html">Screen-capture</a>  
 </li>
  
 </ul>
@@ -274,31 +281,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -326,6 +333,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -336,7 +346,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -417,18 +427,18 @@
 
               <div>
                  <section id="capturing-the-screen-on-windows-in-c-using-gdi">
-<h1>Capturing the screen on Windows in C++ using GDI+<a class="headerlink" href="#capturing-the-screen-on-windows-in-c-using-gdi" title="Permalink to this headline">¶</a></h1>
+<h1>Capturing the screen on Windows in C++ using GDI+<a class="headerlink" href="#capturing-the-screen-on-windows-in-c-using-gdi" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-gdi-start">GDI+/ Gdiplus</a> is part of the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a>, that helps C/C++ programmers with graphics related tasks on Windows.
 In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.</p>
 <section id="gdi-gdiplus-introduction">
-<h2>GDI+ / Gdiplus introduction<a class="headerlink" href="#gdi-gdiplus-introduction" title="Permalink to this headline">¶</a></h2>
+<h2>GDI+ / Gdiplus introduction<a class="headerlink" href="#gdi-gdiplus-introduction" title="Permalink to this headline">#</a></h2>
 <p>Gdiplus is part of the <cite>Win32 API</cite>, so we don't have to do any additional actions to be able to use the library.
 A simple <code class="code docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;Gdiplus.h&quot;</span></code> should be sufficient.
 Moreover, as hinted in the previous blog, we will notice a notable difference in run-times between this implementation and the OpenCV variant, since GDI+ is built on top of the Windows Graphics Device Interface (GDI).</p>
 </section>
 <section id="capture-screenshot">
-<h2>Capture screenshot<a class="headerlink" href="#capture-screenshot" title="Permalink to this headline">¶</a></h2>
+<h2>Capture screenshot<a class="headerlink" href="#capture-screenshot" title="Permalink to this headline">#</a></h2>
 <p>Now let's write the main capture function, which will take a window handle to get its associated contextual device and return a <cite>HBITMAP</cite> object with the screenshot information.
 The function first defines handles to the device context and the associated Region of interest (defined using start-x, start-y, width and height).
 The bitmap and its header are then created and the screen pixel data are passed to them.
@@ -496,12 +506,12 @@ The previously described steps looks as follows in C++:</p>
 </div>
 </section>
 <section id="save-screenshot-to-memory">
-<h2>Save Screenshot to memory<a class="headerlink" href="#save-screenshot-to-memory" title="Permalink to this headline">¶</a></h2>
+<h2>Save Screenshot to memory<a class="headerlink" href="#save-screenshot-to-memory" title="Permalink to this headline">#</a></h2>
 <p>Unlike the case of OpenCV, in order to <strong>save the captured bitmap to the memory</strong> as a <cite>PNG</cite> or <cite>JPEG</cite> etc. we must write some code for that.
 This can be done using the following Boolean function:</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">bool</span><span class="w"> </span><span class="n">saveToMemory</span><span class="p">(</span><span class="n">HBITMAP</span><span class="o">*</span><span class="w"> </span><span class="n">hbitmap</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">dataFormat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;png&quot;</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">bool</span><span class="w"> </span><span class="nf">saveToMemory</span><span class="p">(</span><span class="n">HBITMAP</span><span class="o">*</span><span class="w"> </span><span class="n">hbitmap</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BYTE</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">dataFormat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;png&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 3</span><span class="w">    </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="w"> </span><span class="nf">bmp</span><span class="p">(</span><span class="o">*</span><span class="n">hbitmap</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="n">Gdiplus</span><span class="o">::</span><span class="n">Bitmap</span><span class="w"> </span><span class="n">bmp</span><span class="p">(</span><span class="o">*</span><span class="n">hbitmap</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
 <span class="linenos"> 4</span><span class="w">    </span><span class="c1">// write to IStream</span>
 <span class="linenos"> 5</span><span class="w">    </span><span class="n">IStream</span><span class="o">*</span><span class="w"> </span><span class="n">istream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 6</span><span class="w">    </span><span class="n">CreateStreamOnHGlobal</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">istream</span><span class="p">);</span><span class="w"></span>
@@ -537,7 +547,7 @@ This can be done using the following Boolean function:</p>
 </div>
 </section>
 <section id="the-main-call">
-<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">¶</a></h2>
+<h2>The main call<a class="headerlink" href="#the-main-call" title="Permalink to this headline">#</a></h2>
 <p>Let's bind everything together inside the <code class="code docutils literal notranslate"><span class="pre">main()</span></code> function and test this, so you can also have an idea on how to use the previous code.
 In code this looks like this:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
@@ -580,7 +590,7 @@ In code this looks like this:</p>
 <p><strong>The full code can be found in this</strong> <a class="reference external" href="https://gist.github.com/SuperKogito/a6383dddcf4ee459b979e12550cc6e51">gist: CaptureScreenUsingGdiplus.cpp</a>.</p>
 </section>
 <section id="limitations">
-<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
 <p>Similar to the OpenCV variant, this implementation is a bit limited; In a multi-monitors setups, if you play with the DPI and the scaling settings of the screens, you will notice that the resulting screenshots can be cropped.
 This can be solved by setting the C++ project DPI-awareness to True.
 In Visual Studio 2019, this can be done under: <code class="code docutils literal notranslate"><span class="pre">Project</span> <span class="pre">&gt;</span> <span class="pre">Project-Name</span> <span class="pre">Properties</span> <span class="pre">&gt;</span> <span class="pre">Manifest</span> <span class="pre">Tool</span> <span class="pre">&gt;</span> <span class="pre">Input</span> <span class="pre">and</span> <span class="pre">Output</span> <span class="pre">&gt;</span> <span class="pre">DPI</span> <span class="pre">Awareness</span></code></p>
@@ -589,13 +599,13 @@ Some users might want to only capture a specific screen. This can be solved -as 
 <p>Moreover, since GDI+ is part of the Windows API, this implementation is not portable for other operating systems.</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>To summarize, in this post we introduced a small example of how to capture the screen content using the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/">Win32 API</a> : GDI+ also known as Gdiplus.
 We also went through saving the captured screenshot to the hard drive or to memory in order to use it in the code again.
 The code is fairly simple and supports both <cite>PNG</cite> &amp; <cite>JPEG</cite> and seems to be faster than the OpenCV version, but is it really? This will be explored in details in my next post, so stay tuned.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/07/26/capture_screen_using_gdiplus.html&title=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20Gdi+"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/07/26/capture_screen_using_gdiplus.html&text=Capturing%20the%20screen%20on%20Windows%20in%20C++%20using%20Gdi+"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -607,7 +617,7 @@ The code is fairly simple and supports both <cite>PNG</cite> &amp; <cite>JPEG</c
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Capturing an Image, Microsoft, <a class="reference external" href="http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx">http://msdn.microsoft.com/en-us/library/windows/window/dd183402%28v=vs.85%29.aspx</a></p></li>
 <li><p>Gdi+ Take Screenshot multiple monitors, Stackoverflow, <a class="reference external" href="https://stackoverflow.com/questions/34444865/gdi-take-screenshot-multiple-monitors">https://stackoverflow.com/questions/34444865/gdi-take-screenshot-multiple-monitors</a></p></li>
@@ -673,7 +683,8 @@ The code is fairly simple and supports both <cite>PNG</cite> &amp; <cite>JPEG</c
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">
