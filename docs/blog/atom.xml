@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="english">
   <id>https://superkogito.github.io</id>
   <title>SuperKogito</title>
-  <updated>2023-02-06T02:37:44.456868+00:00</updated>
+  <updated>2023-03-06T22:12:19.680264+00:00</updated>
   <link href="https://superkogito.github.io"/>
   <link href="https://superkogito.github.io/blog/atom.xml" rel="self"/>
-  <generator uri="https://ablog.readthedocs.org/" version="0.10.33">ABlog</generator>
+  <generator uri="https://ablog.readthedocs.org/" version="0.10.25">ABlog</generator>
   <entry>
     <id>https://superkogito.github.io/blog/2019/02/10/intro.html</id>
     <title>Blog intro</title>
@@ -102,9 +102,9 @@ This article introduces the different combinations of authenticated encryption a
     <link href="https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html" rel="alternate"/>
     <summary>The aforementioned implementation, uses The Free ST American English Corpus data-set (SLR45), which is a free American English corpus by Surfingtech, containing utterances from 10 speakers (5 females and 5 males).</summary>
     <category term="Audio" label="Audio"/>
+    <category term="Voice" label="Voice"/>
     <category term="GMM" label="GMM"/>
     <category term="Python" label="Python"/>
-    <category term="Voice" label="Voice"/>
     <published>2019-05-09T00:00:00+02:00</published>
   </entry>
   <entry>
@@ -126,8 +126,8 @@ In this first post in particular, we focus on exploring the data at hand and pre
 The publicly available Pima Indian diabetic database (PIDD) have become a popular approach for testing the efficiency of machine learning algorithms 1.
 Within this context, this blog post is part of 2 posts providing an in depth introduction to diabetes detection using various machine learning approaches.
 In this first post in particular, we focus on exploring the data at hand and preparing it for machine learning related processing.</summary>
-    <category term="Dataprocessing" label="Data processing"/>
     <category term="Python" label="Python"/>
+    <category term="Dataprocessing" label="Data processing"/>
     <category term="Visualization" label="Visualization"/>
     <published>2019-06-30T00:00:00+02:00</published>
   </entry>
@@ -146,8 +146,8 @@ We will also examine the performance improvements by the data transformations ex
     <link href="https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning2.html" rel="alternate"/>
     <summary>In this 2nd post on detecting diabetes with the help of machine learning and using the Pima Indian diabetic database (PIDD) 1, we will dig into testing various classifiers and evaluating their performances.
 We will also examine the performance improvements by the data transformations explained in the previous post.</summary>
-    <category term="Dataprocessing" label="Data processing"/>
     <category term="Python" label="Python"/>
+    <category term="Dataprocessing" label="Data processing"/>
     <category term="Visualization" label="Visualization"/>
     <published>2019-06-30T00:00:00+02:00</published>
   </entry>
@@ -168,9 +168,9 @@ This technique is known as frame blocking or framing. The following blog explain
     <summary>When it comes to non-stationary signals, spectral features in short parts/ sequences are of great use.
 Therefore, decomposing the signal into multiple ranges is the way to go about this type of features extraction.
 This technique is known as frame blocking or framing. The following blog explains why do we need framing and how to do it in python.</summary>
-    <category term="Audio" label="Audio"/>
-    <category term="Framing" label="Framing"/>
     <category term="Python" label="Python"/>
+    <category term="Framing" label="Framing"/>
+    <category term="Audio" label="Audio"/>
     <published>2020-01-25T00:00:00+01:00</published>
   </entry>
   <entry>
@@ -190,9 +190,9 @@ This problem is known as Voice Activity Detection (VAD). This blog aims to intro
     <summary>An important part of speech/speaker recognition tasks is distinction of voiced segments from silent ones.
 This helps -for example- align phonemes with their associated voiced segments and avoid any extra information related to silence/ noise that would degrade the system's accuracy.
 This problem is known as Voice Activity Detection (VAD). This blog aims to introduce voice activity detection and present simple short time energy based VAD implementation.</summary>
-    <category term="Audio" label="Audio"/>
     <category term="Python" label="Python"/>
     <category term="VAD" label="VAD"/>
+    <category term="Audio" label="Audio"/>
     <published>2020-02-09T00:00:00+01:00</published>
   </entry>
   <entry>
@@ -237,9 +237,9 @@ For example: when I need to convert an mp3 to a wave file and then do some proce
 The simple way to  do this, is by using FFmpeg to convert the mp3 input to a wave, then read the wave in Python and do process it.
 Although this works, but clearly it is neither optimal nor the fastest solution.
 In this blog post, I will present an improved solution to this inconvenience by piping the output of FFmpeg to Python and directly pass it to a numpy variable.</summary>
-    <category term="Audio" label="Audio"/>
-    <category term="Ffmpeg" label="Ffmpeg"/>
     <category term="Python" label="Python"/>
+    <category term="Ffmpeg" label="Ffmpeg"/>
+    <category term="Audio" label="Audio"/>
     <published>2020-03-19T00:00:00+01:00</published>
   </entry>
   <entry>
@@ -266,8 +266,8 @@ Moreover, most tools available out there cannot handle in-code urls and lack man
 A while back, I ran across this particular Problem and I quickly saw the great automation opportunity this was, and how can Python and Regex help me solve this.
 This was the start of the urlchecker-action ... from there and with the amazing @vsoch joining, the tools expanded and this was the start of the urlstechie organization.</summary>
     <category term="Continuousintegration" label="Continuous integration"/>
-    <category term="Python" label="Python"/>
     <category term="urlstechie" label="urlstechie"/>
+    <category term="Python" label="Python"/>
     <published>2020-04-04T00:00:00+02:00</published>
   </entry>
   <entry>
@@ -285,9 +285,9 @@ A commonly used normalization technique is the Root Mean Square (RMS) normalizat
     <link href="https://superkogito.github.io/blog/2020/04/30/rms_normalization.html" rel="alternate"/>
     <summary>Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
 A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.</summary>
+    <category term="Python" label="Python"/>
     <category term="Audio" label="Audio"/>
     <category term="Augmentation" label="Augmentation"/>
-    <category term="Python" label="Python"/>
     <published>2020-04-30T00:00:00+02:00</published>
   </entry>
   <entry>
@@ -306,9 +306,9 @@ In this first blog about OpenCV, I will be introducing a simple algorithm to cap
     <summary>OpenCV is just a great computer vision tool with a wide variety of capabilities, that is available in both C++ and Python.
 In this first blog about OpenCV, I will be introducing a simple algorithm to capture the content of the screen on Windows using OpenCV in C++.</summary>
     <category term="Cplusplus" label="Cplusplus"/>
+    <category term="Windows" label="Windows"/>
     <category term="OpenCV" label="OpenCV"/>
     <category term="Screen-capture" label="Screen-capture"/>
-    <category term="Windows" label="Windows"/>
     <published>2020-07-25T00:00:00+02:00</published>
   </entry>
   <entry>
@@ -328,8 +328,8 @@ In this blog, we will be writing a simple algorithm to capture the content of th
 In this blog, we will be writing a simple algorithm to capture the content of the screen on Windows using Gdiplus in C++.</summary>
     <category term="Cplusplus" label="Cplusplus"/>
     <category term="Gdiplus" label="Gdiplus"/>
-    <category term="Screen-capture" label="Screen-capture"/>
     <category term="Windows" label="Windows"/>
+    <category term="Screen-capture" label="Screen-capture"/>
     <published>2020-07-26T00:00:00+02:00</published>
   </entry>
   <entry>
@@ -348,10 +348,10 @@ In order to compare both approaches, we examines their run-times and CPU usages.
     <summary>To follow up on my last two blogs (Capturing the screen on Windows in C++ using OpenCV &amp; Capturing the screen on Windows in C++ using GDI+ ), we compare in this post both approaches.
 In order to compare both approaches, we examines their run-times and CPU usages.</summary>
     <category term="Cplusplus" label="Cplusplus"/>
+    <category term="Windows" label="Windows"/>
     <category term="Gdiplus" label="Gdiplus"/>
     <category term="OpenCV" label="OpenCV"/>
     <category term="Screen-capture" label="Screen-capture"/>
-    <category term="Windows" label="Windows"/>
     <published>2020-07-28T00:00:00+02:00</published>
   </entry>
   <entry>
@@ -434,8 +434,8 @@ In this blog, we examine the &lt;strong&gt;chmod&lt;/strong&gt; command and its 
     <summary>Often you will be faced with permission limitations, that will hinder you from manipulating a certain file or directory.
 To overcome this on Unix-based systems, one can use the chmod command to edit permissions and enable more manipulations possibilities.
 In this blog, we examine the chmod command and its different modes.</summary>
-    <category term="Bash" label="Bash"/>
     <category term="Linux" label="Linux"/>
+    <category term="Bash" label="Bash"/>
     <published>2020-10-25T00:00:00+02:00</published>
   </entry>
   <entry>

@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Spectral leakage and windowing" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2020/03/13/spectral_leakage_and_windowing.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="Audio signal windowing and spectral leakage" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/spectral_leakage_and_windowing.png" />
-<meta property="og:image:alt" content="spectral_leakage" />
-<meta property="og:keywords" content="windowing, spectral leakage, python, ayoub malek, blog post" />
-<meta name="description" content="Windowing is an important part of almost any signal processing system, that helps remove/ reduce spectral leakage when processing a non-periodic signal. This blog post provides a small overview of what is spectral usage, when does it occur and how to use windowing to suppress it.* keywords: * Win..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Spectral leakage and windowing" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/03/13/spectral_leakage_and_windowing.html" />
+  
+<meta property="og:description" content="Audio signal windowing and spectral leakage" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/spectral_leakage_and_windowing.png" />
+  
+<meta property="og:image:alt" content="spectral_leakage" />
+  
+<meta property="og:keywords" content="windowing, spectral leakage, python, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Spectral leakage and windowing &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,54 +213,61 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  13 March 2020 
+  13 März 2020 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/signal-processing.html">Signal processing</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/python.html">Python</a>   
-  <a href="../../../tag/audio.html">Audio</a>  
+  <a href="../../../tag/audio.html">Audio</a>   
+  <a href="../../../tag/python.html">Python</a>  
 </li>
  
 </ul>
@@ -273,31 +280,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -325,6 +332,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -335,7 +345,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -413,7 +423,7 @@
 
               <div>
                  <section id="spectral-leakage-and-windowing">
-<h1>Spectral leakage and windowing<a class="headerlink" href="#spectral-leakage-and-windowing" title="Permalink to this headline">¶</a></h1>
+<h1>Spectral leakage and windowing<a class="headerlink" href="#spectral-leakage-and-windowing" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Windowing is an important part of almost any signal processing system, that helps remove/ reduce spectral leakage when processing a non-periodic signal.
 This blog post provides a small overview of what is spectral usage, when does it occur and how to use windowing to suppress it.</p>
@@ -421,7 +431,7 @@ This blog post provides a small overview of what is spectral usage, when does it
 <div class="line"><strong>* keywords:  *</strong> Windowing, Spectral leakage</div>
 </div>
 <section id="what-is-spectral-leakage">
-<h2>What is spectral leakage ?<a class="headerlink" href="#what-is-spectral-leakage" title="Permalink to this headline">¶</a></h2>
+<h2>What is spectral leakage ?<a class="headerlink" href="#what-is-spectral-leakage" title="Permalink to this headline">#</a></h2>
 <p>As <em>Allen B. Downey</em> mentions in his book <em>Think DSP</em>, in order to understand windowing, we must first understand spectral leakage and for that we have first to understand the Discrete Fourier Transform (DFT) and its related assumptions.
 When using DFT to compute spectograms, we assume signals to be periodic. In practice, this assumption is often not fulfilled, resulting in inaccurate transform computations containing extra residual frequency components <a class="footnote-reference brackets" href="#footcite-downey2014" id="id1">1</a>.
 This phenomenon is known as spectral leakage, which is a smearing of power across a frequency spectrum that occurs when the processed signal is not periodic in the sample interval.
@@ -429,7 +439,7 @@ It occurs because of the discrete sampling in the effective Fourier series compu
 Leakage is a common error encountered in digital signal processing, that cannot be entirely eliminated but may be reduced using windowing.</p>
 </section>
 <section id="what-is-windowing">
-<h2>What is windowing ?<a class="headerlink" href="#what-is-windowing" title="Permalink to this headline">¶</a></h2>
+<h2>What is windowing ?<a class="headerlink" href="#what-is-windowing" title="Permalink to this headline">#</a></h2>
 <p>Windowing is a counter-measure against spectral leakage that reduces the amplitudes of the samples at the start and end of a signal window <a class="footnote-reference brackets" href="#footcite-lyon2009" id="id3">3</a>.
 This eliminates the discontinuities, helps with the periodicity of the signal and consequently reduces any leakage <a class="footnote-reference brackets" href="#footcite-downey2014" id="id4">1</a>.
 Therefore, windowing is none other than a multiplication of the input signal with a predefined function.</p>
@@ -444,15 +454,15 @@ Therefore, windowing is none other than a multiplication of the input signal wit
 </ul>
 </section>
 <section id="how-to-implement-it">
-<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">¶</a></h2>
+<h2>How to implement it?<a class="headerlink" href="#how-to-implement-it" title="Permalink to this headline">#</a></h2>
 <p>This is depending on the type of the windowing function to use as there are many.
 However, since it is just a multiplication, the window samples are simply generated using a predefined function and multiplied with the signal samples.
 In python this can be done easily using <a class="reference external" href="https://numpy.org/">numpy</a> which offers a wide variety of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/routines.window.html">windowing_function</a></p>
 <section id="code">
-<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h3>
+<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h3>
 <p>Here is a small code snippet implementing windowing that I wrote as part of a python audio features extraction library named <a class="reference external" href="https://github.com/SuperKogito/spafe">spafe</a></p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">Windowing</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Windowing</span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span>
@@ -482,13 +492,13 @@ In python this can be done easily using <a class="reference external" href="http
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>This blog presented windowing, which is a fundamental signal processing technique that helps eliminate discontinuities in a the frames and consequently avoid spectral leakage.
 This method is often used before any spectrum computations. There are various types of windowing, each having its own pros and cons.
 In the python code introduced in this post, we included some of the most used functions but these can be customized to the user's discretion.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&text=spectral%20leakage%20and%20windowing"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -500,7 +510,7 @@ In the python code introduced in this post, we included some of the most used fu
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id5">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-downey2014"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
@@ -574,7 +584,8 @@ In the python code introduced in this post, we included some of the most used fu
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

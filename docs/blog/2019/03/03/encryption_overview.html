@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Encryption overview" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/03/03/encryption_overview.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="encryption introduction" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/encryption_overview.png" />
-<meta property="og:image:alt" content="encryption_overview" />
-<meta property="og:keywords" content="encryption overview, encryption, security, ayoub malek, cybersecurity" />
-<meta name="description" content="Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; 1. These operations can be explained by the following formulas: C=E_{k}(P) and P=D_{k}(C), where P = plain-text, C = cipher-text, E = t..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Encryption overview" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2019/03/03/encryption_overview.html" />
+  
+<meta property="og:description" content="encryption introduction" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/encryption_overview.png" />
+  
+<meta property="og:image:alt" content="encryption_overview" />
+  
+<meta property="og:keywords" content="encryption overview, encryption, security, ayoub malek, cybersecurity" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Encryption overview &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,50 +213,57 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
-  03 March 2019 
+  03 März 2019 
 </h2>
 
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/cybersecurity.html">Cybersecurity</a>  
 </li>
  
 <li id="tags">
-  <span><i
+  <span
+    ><i
       class="fa-fw fa fa-tag"
     ></i
     ></span
@@ -275,31 +282,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2020/10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../../2020/10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -327,6 +334,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -337,7 +347,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -415,18 +425,18 @@
 
               <div>
                  <section id="encryption-overview">
-<span id="encryption-post-label"></span><h1>Encryption overview<a class="headerlink" href="#encryption-overview" title="Permalink to this headline">¶</a></h1>
+<span id="encryption-post-label"></span><h1>Encryption overview<a class="headerlink" href="#encryption-overview" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; <a class="footnote-reference brackets" href="#footcite-kessler" id="id1">1</a>.
 These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="footnote-reference brackets" href="#footcite-kessler" id="id2">1</a>.
 There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="footnote-reference brackets" href="#footcite-kessler" id="id3">1</a>.</p>
 <section id="symmetric-encryption">
-<h2>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Permalink to this headline">¶</a></h2>
+<h2>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Permalink to this headline">#</a></h2>
 <p>In secret key cryptography, both parties (a sender and a receiver for example) agree on a single secret (shared) key for encryption and decryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id4">1</a>. The major concern in this case is to securely share the key between the two peers or else the whole system is jeopardized <a class="footnote-reference brackets" href="#footcite-tamimi" id="id5">2</a>.
 The key management for this encryption is troublesome, especially if a unique secret key is used for each peer-to-peer connection, which results in n(n-1)/2 total number of keys for n-nodes <a class="footnote-reference brackets" href="#footcite-ssl" id="id6">3</a><a class="footnote-reference brackets" href="#footcite-oak" id="id7">4</a>. Symmetric encryption schemes are generally defined as stream ciphers or block ciphers <a class="footnote-reference brackets" href="#footcite-tamimi" id="id8">2</a>.</p>
 </section>
 <section id="asymmetric-encryption">
-<h2>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Permalink to this headline">¶</a></h2>
+<h2>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Permalink to this headline">#</a></h2>
 <p>It also known as Public Key Cryptography (PKC) <a class="footnote-reference brackets" href="#footcite-kessler" id="id9">1</a>. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:</p>
 <ul class="simple">
 <li><p><strong>The public key:</strong> which is used to encrypt data by anyone.</p></li>
@@ -438,7 +448,7 @@ However, asymmetric encryption techniques are way slower than symmetric techniqu
 It is obvious that each of these two approaches (symmetric/asymmetric) provide a set of advantages and limitations, therefore a hybrid scheme is the best compromise.
 Such scheme would apply asymmetric encryption for the secret key distribution and symmetric encryption for the generic data exchange.</p>
 <section id="block-ciphers">
-<h3>Block Ciphers<a class="headerlink" href="#block-ciphers" title="Permalink to this headline">¶</a></h3>
+<h3>Block Ciphers<a class="headerlink" href="#block-ciphers" title="Permalink to this headline">#</a></h3>
 <p>In block ciphers the data is encrypted and decrypted one block at a time using the same key <a class="footnote-reference brackets" href="#footcite-oak" id="id14">4</a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id15">2</a>.
 In its simplest mode (Electronic codebook mode), the plain text is divided into equally long blocks, which are then fed into the cipher system to produce blocks of cipher text <a class="footnote-reference brackets" href="#footcite-kessler" id="id16">1</a>. This type of ciphers requires padding before encryption to ensure that the data length is a multiple of the block’s length. Block ciphers can operate in one of several modes; here are the most famous ones are: Electronic Codebook (ECB) mode, Cipher Block Chaining (CBC), Cipher Feedback (CFB, Output Feedback (OFB) etc.</p>
 <p>Although CBC, CFB and OFB have good resistance against brute-force and deletion attacks, they are not very resistant to single bit errors which will propagate through different blocks in some modes <a class="footnote-reference brackets" href="#footcite-kessler" id="id17">1</a>.
@@ -447,7 +457,7 @@ Like CFB and OFB, it operates on the blocks as in a stream cipher but also it pr
 Using different key inputs, CTR guarantees resistance against brute forcing. Moreover, it allows parallel processing making it superior on performance and speed level.</p>
 </section>
 <section id="stream-ciphers">
-<h3>Stream Ciphers<a class="headerlink" href="#stream-ciphers" title="Permalink to this headline">¶</a></h3>
+<h3>Stream Ciphers<a class="headerlink" href="#stream-ciphers" title="Permalink to this headline">#</a></h3>
 <p>Unlike block ciphers, stream ciphers operate on streams of data bit by bit <a class="footnote-reference brackets" href="#footcite-tamimi" id="id19">2</a>.
 A stream cipher consists essentially of a key stream generator and a mixing function <a class="footnote-reference brackets" href="#footcite-kessler" id="id20">1</a>.
 The mixing function is usually a XOR, and the key stream generator is the main unit of the encryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id21">1</a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id22">2</a>.
@@ -459,79 +469,12 @@ There are several types of stream ciphers but only two are worth mentioning here
 </section>
 </section>
 <section id="padding">
-<h2>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h2>
+<h2>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">#</a></h2>
 <p>Within the context of classical cryptography, padding aims essentially to prevent any type of predictability that might reveal a plain-text or its exact length.
 Such revelations can be beneficial for an attacker and help in breaking the encryption <a class="footnote-reference brackets" href="#footcite-welchman" id="id26">5</a>.
 For example, Advanced Encryption Standard-128 (AES-128) is a symmetric block cipher that processes data by blocks of 128 bits, which means that additional random data must be added to packages with size different from 128 bits multiples.
 This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="footnote-reference brackets" href="#footcite-knudsen" id="id27">6</a>.</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">
-\begin{tikzpicture}
-
-    % first line
-    \node (A0) [draw, minimum height=7mm, minimum width=10mm] {48};
-    \node (A1) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A0] {65};
-    \node (A2) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A1] {6C};
-    \node (A3) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A2] {32};
-    \node (A4) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A3] {6F};
-    \node (A5) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A4] {03};
-    \node (A6) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A5] {03};
-    \node (A7) [draw, minimum height=7mm, minimum width=10mm, right=0cm of A6] {03};
-
-    \coordinate[above left=0mm of A0] (AddrLeft);
-    \coordinate[above right=0mm of A4] (AddrRight);
-
-    \coordinate[below left=0mm of A5] (RWLeft);
-    \coordinate[below right=0mm of A7] (RWRight);
-
-    \draw[decorate,decoration={brace,amplitude=10pt}, minimum height=9mm] (AddrLeft) -- (AddrRight)
-        node[anchor=south,midway,above=8pt] {Information bytes};
-
-    \draw[decorate,decoration={brace,amplitude=8pt}, minimum height=6mm] (RWRight) -- (RWLeft)
-        node[anchor=north,midway,below=8pt] {Padding bytes};
-
-
-    % second line
-    \node (A10) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A0] {48};
-    \node (A11) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A1] {65};
-    \node (A12) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A2] {6C};
-    \node (A13) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A3] {32};
-    \node (A14) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A4] {6F};
-    \node (A15) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A5] {5A};
-    \node (A16) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A6] {02};
-    \node (A17) [draw, minimum height=7mm, minimum width=10mm, below=2cm of A7] {02};
-
-    \coordinate[above left=0mm of A10] (AddrLeft1);
-    \coordinate[above right=0mm of A15] (AddrRight1);
-
-    \coordinate[below left=0mm of A16] (RWLeft1);
-    \coordinate[below right=0mm of A17] (RWRight1);
-
-    \draw[decorate,decoration={brace,amplitude=10pt}, minimum height=9mm] (AddrLeft1) -- (AddrRight1)
-        node[anchor=south,midway,above=8pt] {Information bytes};
-
-    \draw[decorate,decoration={brace,amplitude=8pt}, minimum height=6mm] (RWRight1) -- (RWLeft1)
-        node[anchor=north,midway,below=8pt] {Padding bytes};
-
-\end{tikzpicture}
-
-</span>)</p>
-<p>! LaTeX Error: File `pgfplots.sty' not found.
-
-Type X to quit or &lt;RETURN&gt; to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Emergency stop.
-&lt;read *&gt; 
-         
-l.6 \\usetikzlibrary
-                   {arrows.meta,arrows,shapes,positioning,decorations.pathre...
-
-!  ==&gt; Fatal error occurred, no output PDF file produced!
-Transcript written on tikz-60c6ad4e2a93297001b4cb9bff9ce4a7da1a09cd.log.
-&quot;</p>
-</div>
+<div class="figure" id="id30" style="text-align: center"><p><img width="50%" src="../../../../_images/tikz-60c6ad4e2a93297001b4cb9bff9ce4a7da1a09cd.png" alt="PKCS#5 block padding" /></p>
 <p><span class="caption-text">Figure 2: PKCS#5 block padding</span></p>
 </div><div class="line-block">
 <div class="line"><br /></div>
@@ -541,7 +484,7 @@ This is due to the fact that the receiver has to remove the padding that was ori
 This is further explained in the following post <a class="reference external" href="AuthenticatedEncryption.html">Authenticated_Encryption</a> .</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&title=Encryption%20overview"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&text=Encryption%20overview"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -553,7 +496,7 @@ This is further explained in the following post <a class="reference external" hr
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id29">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-kessler"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id9">5</a>,<a href="#id11">6</a>,<a href="#id13">7</a>,<a href="#id16">8</a>,<a href="#id17">9</a>,<a href="#id18">10</a>,<a href="#id20">11</a>,<a href="#id21">12</a>,<a href="#id23">13</a>,<a href="#id25">14</a>)</span></dt>
@@ -639,7 +582,8 @@ This is further explained in the following post <a class="reference external" hr
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">

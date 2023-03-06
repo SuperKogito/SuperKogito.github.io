@@ -5,21 +5,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="Root mean square normalization in Python" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://superkogito.github.io/blog/2020/04/30/rms_normalization.html" />
-<meta property="og:site_name" content="🧠 SuperKogito" />
-<meta property="og:description" content="Audio signal RMS normalization in Python" />
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/rms_normalization.png" />
-<meta property="og:image:alt" content="root mean square normalization in python" />
-<meta property="og:keywords" content="root mean square, signal normalization, python, Audio normalization, RMS normalization, python, ayoub malek, blog post" />
-<meta name="description" content="Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level. A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS nor..." />
-<meta property="og:ignore_canonical" content="true" />
 
+<meta property="og:title" content="Root mean square normalization in Python" />
+  
+<meta property="og:type" content="article" />
+  
+<meta property="og:url" content="http://superkogito.github.io/blog/2020/04/30/rms_normalization.html" />
+  
+<meta property="og:description" content="Audio signal RMS normalization in Python" />
+  
+<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/rms_normalization.png" />
+  
+<meta property="og:image:alt" content="root mean square normalization in python" />
+  
+<meta property="og:keywords" content="root mean square, signal normalization, python, Audio normalization, RMS normalization, python, ayoub malek, blog post" />
+  
+<meta property="og:ignore_canonical" content="true" />
     <title>Root mean square normalization in Python &#8212; 🧠 SuperKogito  documentation</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -29,12 +35,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
@@ -44,7 +45,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -125,7 +127,7 @@
 </style>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -194,10 +196,8 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
       </ul>
       </div>
@@ -213,7 +213,8 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">  
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
 <h2>
    <i class="fa fa-calendar"></i>
   30 April 2020 
@@ -222,46 +223,52 @@
 <ul>
   
 <li id="published">
-  <span><i class="fa fa-pencil-square-o"></i></span
+  <span
+    ><i class="fa fa-pencil-square-o"></i></span
   >
   08 April 2022
 </li>
  
 <li id="author">
-  <span><i class="fa-fw fa fa-user"></i></span
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
   >
    
   <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
 </li>
  
 <li id="location">
-  <span><i class="fa-fw fa fa-location-arrow"></i></span
+  <span
+    ><i class="fa-fw fa fa-location-arrow"></i></span
   >
    
   <a href="../../../location/munich.html">Munich</a>  
 </li>
  
 <li id="language">
-  <span><i class="fa-fw fa fa-language"></i></span
+  <span
+    ><i class="fa-fw fa fa-language"></i></span
   >
    
   <a href="../../../language/english.html">English</a>  
 </li>
  
 <li id="category">
-  <span><i class="fa-fw fa fa-folder-open"></i></span
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
   >
    
   <a href="../../../category/signal-processing.html">Signal processing</a>  
 </li>
  
 <li id="tags">
-  <span><i class="fa-fw fa fa-tags"></i> </span
+  <span
+    ><i class="fa-fw fa fa-tags"></i> </span
   >
    
-  <a href="../../../tag/augmentation.html">Augmentation</a>   
   <a href="../../../tag/python.html">Python</a>   
-  <a href="../../../tag/audio.html">Audio</a>  
+  <a href="../../../tag/audio.html">Audio</a>   
+  <a href="../../../tag/augmentation.html">Augmentation</a>  
 </li>
  
 </ul>
@@ -274,31 +281,31 @@
   <li>
     <a href="../../../2022/12/27/whisper_aiohttp_server_with_token.html"
       >Whisper based speech recognition server</a>
-      <p>27 December 2022</p>
+      <p>27 Dezember 2022</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server_with_token.html"
       >Token authenticated aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../../2021/12/31/aiohttp_server.html"
       >Basic aiohttp server</a>
-      <p>31 December 2021</p>
+      <p>31 Dezember 2021</p>
   </li>
   
   <li>
     <a href="../../10/25/chmod_modes.html"
       >Chmod modes: from symbolic to octal and back</a>
-      <p>25 October 2020</p>
+      <p>25 Oktober 2020</p>
   </li>
   
   <li>
     <a href="../../10/03/divide_image_using_gdiplus.html"
       >Divide an image into blocks using GDI+ in C++</a>
-      <p>03 October 2020</p>
+      <p>03 Oktober 2020</p>
   </li>
   
 </ul>
@@ -326,6 +333,9 @@
    
 </ul>
 
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -336,7 +346,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -402,12 +412,12 @@
 
               <div>
                  <section id="root-mean-square-normalization-in-python">
-<h1>Root mean square normalization in Python<a class="headerlink" href="#root-mean-square-normalization-in-python" title="Permalink to this headline">¶</a></h1>
+<h1>Root mean square normalization in Python<a class="headerlink" href="#root-mean-square-normalization-in-python" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p>Audio normalization is a fundamental audio processing technique that consists of applying a constant amount of gain to an audio in order to bring its amplitude to a target level.
 A commonly used normalization technique is the Root Mean Square (RMS) normalization. This blog post introduces RMS normalization and provides a Python implementation of it.</p>
 <section id="what-is-rms-normalization">
-<h2>What is RMS normalization?<a class="headerlink" href="#what-is-rms-normalization" title="Permalink to this headline">¶</a></h2>
+<h2>What is RMS normalization?<a class="headerlink" href="#what-is-rms-normalization" title="Permalink to this headline">#</a></h2>
 <p>In general there are two principal types of audio normalization:</p>
 <ul class="simple">
 <li><p>Peak normalization which adjusts the recording based on its highest signal level.</p></li>
@@ -429,7 +439,7 @@ The approach to RMS normalization can be summarized in the following mathematica
 </ul>
 </section>
 <section id="how-to-implement-it-in-python">
-<h2>How to implement it in Python?<a class="headerlink" href="#how-to-implement-it-in-python" title="Permalink to this headline">¶</a></h2>
+<h2>How to implement it in Python?<a class="headerlink" href="#how-to-implement-it-in-python" title="Permalink to this headline">#</a></h2>
 <p>Implementing the RMS normalization is fairly simple in Python and the algorithm can be summarized in the following steps:</p>
 <ul class="simple">
 <li><p>Read audio as an array.</p></li>
@@ -469,12 +479,12 @@ The approach to RMS normalization can be summarized in the following mathematica
 <p>This implementation is available as part of the <a class="reference external" href="https://github.com/SuperKogito/pydiogment/">Pydiogment_library</a></p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>This blog post provided a small introduction of the RMS normalization technique, which is commonly used in speech processing to improve the quality of recordings.
 We also provided a small implementation of the approach that is part of the <a class="reference external" href="https://github.com/SuperKogito/pydiogment/">Pydiogment_library</a>.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">¶</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&text=Root%20mean%20square%20normalization%20in%20Python"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -486,7 +496,7 @@ We also provided a small implementation of the approach that is part of the <a c
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">¶</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id3">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-shelvock"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -557,7 +567,8 @@ We also provided a small implementation of the approach that is part of the <a c
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 <footer class="footer mt-5 mt-md-0">
       <!-- Site footer -->
       <div class="container">
