@@ -1,271 +1,460 @@
 
 <!DOCTYPE html>
 
-<html lang="english">
+
+<html lang="english" data-content_root="../../../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Diabetes detection using machine learning (part I)" />
-  
 <meta property="og:type" content="article" />
-  
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" />
-  
+<meta property="og:url" content="https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
 <meta property="og:description" content="applied machine learning to diabetics detection" />
-  
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/diabetes_detection_using_machine_learning1.png" />
-  
+<meta property="og:image" content="https://superkogito.github.io/_static/meta_images/diabetes_detection_using_machine_learning1.png" />
 <meta property="og:image:alt" content="diabetes_detection_using_machine_learning" />
-  
 <meta property="og:keywords" content="machine learning, Pima, diabetes, scikit-learn, data processing, sklearn, classification, data scaling, knn, svc, gaussian, Ayoub Malek" />
-  
+<meta name="description" content="Diabetes is one of the most serious health challenges today. The publicly available Pima Indian diabetic database ( PIDD) have become a popular approach for testing the efficiency of machine learning algorithms 1. Within this context, this blog post is part of 2 posts providing an in depth introd..." />
 <meta property="og:ignore_canonical" content="true" />
+
     <title>Diabetes detection using machine learning (part I) &#8212; 🧠 SuperKogito  documentation</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=7c449129" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css?v=65b9f0d2" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-    <script src="../../../../_static/jquery.js"></script>
-    <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/clipboard.min.js"></script>
-    <script src="../../../../_static/copybutton.js"></script>
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/documentation_options.js?v=df973ab0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"></script>
     <script src="../../../../_static/twemoji.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="http://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" />
-    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2019/06/30/diabetes_detection_using_machine_learning1';</script>
+    <link rel="canonical" href="https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html" />
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../../../about.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="english">
-    <link 
-    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
-    rel="stylesheet"  type='text/css'>
-    
+    <link rel="search" title="Search" href="../../../../search.html" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
-    <script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="english">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  
+  <!-- Favicons -->
+  
+
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() {dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-GPWJJB9TRK');
-    </script>
+  </script>
 
-    <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
-    
-    <!-- Google Analytics -->
-    <!-- 
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-133660046-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
- --> 
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../../../blog/atom.xml"
   title="SuperKogito"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+
+
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-<a class="navbar-brand" href="../../../../index.html">
-<p class="title">🧠 SuperKogito</p>
-</a>
-
-    
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../index.html">
-  Home
- </a>
-</li>
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../projects.html">
-  Projects
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../blog.html">
-  Blog
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../about.html">
-  About Me
- </a>
-</li>
-
+  
+  <dialog id="pst-search-dialog">
     
-</ul>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this site..."
+         aria-label="Search this site..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-      </div>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🧠 SuperKogito  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
-        </li>
-      </ul>
-      </div>
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../projects.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../blog.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about.html">
+    About Me
+  </a>
+</li>
+
+  </ul>
+</nav></div>
       
     </div>
-  </div>
-</div>
-    </nav>
     
-
-    <div class="container-xl">
-      <div class="row">
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items">  
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../projects.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../blog.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about.html">
+    About Me
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+
+
 <h2>
-   <i class="fa fa-calendar"></i>
-  30 Juni 2019 
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>30 Juni 2019</span>
+  
 </h2>
-
 <ul>
-   
-<li id="author">
-  <span
-    ><i class="fa-fw fa fa-user"></i></span
-  >
-   
-  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
-</li>
- 
-<li id="location">
-  <span
-    ><i class="fa-fw fa fa-location-arrow"></i></span
-  >
-   
-  <a href="../../../location/munich.html">Munich</a>  
-</li>
- 
-<li id="language">
-  <span
-    ><i class="fa-fw fa fa-language"></i></span
-  >
-   
-  <a href="../../../language/english.html">English</a>  
-</li>
- 
-<li id="category">
-  <span
-    ><i class="fa-fw fa fa-folder-open"></i></span
-  >
-   
-  <a href="../../../category/machine-learning.html">Machine learning</a>  
-</li>
- 
-<li id="tags">
-  <span
-    ><i class="fa-fw fa fa-tags"></i> </span
-  >
-   
-  <a href="../../../tag/python.html">Python</a>   
-  <a href="../../../tag/data-processing.html">Data processing</a>   
-  <a href="../../../tag/visualization.html">Visualization</a>  
-</li>
- 
-</ul>
+  <div class="ablog-sidebar-item ablog__postcard2">
 
+
+<li id="ablog-sidebar-item author ablog__author">
+  <span>
+    
+    <i class="fa-fw fa fa-user"></i>
+    
+    </span>
+  
+  
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="../../../location/munich.html">Munich</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item language ablog__language">
+  <span>
+    
+    <i class="fa-fw fa fa-language"></i>
+    
+    </span>
+  
+  
+  <a href="../../../language/english.html">English</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../../category/machine-learning.html">Machine learning</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="../../../tag/python.html">Python</a>
+  
+  
+  
+  
+  
+  <a href="../../../tag/data-processing.html">Data processing</a>
+  
+  
+  
+  
+  
+  <a href="../../../tag/visualization.html">Visualization</a>
+  
+  
+  
+</li>
+
+
+</div>
+</ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
 <h3>
   <a href="../../../../blog.html">✍️ Recent Posts</a>
 </h3>
@@ -302,7 +491,8 @@
   </li>
   
 </ul>
-
+</div>
+        <div class="sidebar-primary-item">
 <h3>
   <a href="../../../archive.html">🗓️ Archives</a>
 </h3>
@@ -325,107 +515,79 @@
   </li>
    
 </ul>
-
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
-
-          
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
 
-<nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-pima-indian-diabetic-database">
-   The Pima Indian diabetic database
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-exploration">
-     Data exploration
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#improving-data-quality">
-     Improving data quality
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#features-overview">
-     Features overview
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#correlation-and-features-selection">
-     Correlation and features selection
-    </a>
-   </li>
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Diabetes detection using machine learning (part I)</span></li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#share-this-blog">
-   Share this blog
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-readings">
-   References and Further readings
-  </a>
- </li>
-</ul>
-
 </nav>
-              </div>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
-              <div class="toc-item">
-                
-              </div>
               
-            
-          </div>
-          
-
-          
-          
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
-              
-<!--  Bootstrap HTML  -->
-<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+  <!-- Cookie Consent Banner -->
+  <div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
     We use cookies on this website to distinguish you from other users.
     We use this data to improve our content experience and for targeted advertising.
     By continuing to use this website you consent to our use of cookies.
     For more information, please see our
-    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
-</div>
+    <a href="../../../../policy/cookies_policy.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>.
+  </div>
 
-
-
-              <div>
-                 <section id="diabetes-detection-using-machine-learning-part-i">
-<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Permalink to this headline">#</a></h1>
+  
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="diabetes-detection-using-machine-learning-part-i">
+<h1>Diabetes detection using machine learning (part I)<a class="headerlink" href="#diabetes-detection-using-machine-learning-part-i" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
 <p>Diabetes is one of the most serious health challenges today.
-The publicly available Pima Indian diabetic database (<a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIDD</a>) have become a popular approach for testing the efficiency of machine learning algorithms <a class="footnote-reference brackets" href="#id6" id="id1">1</a>.
+The publicly available Pima Indian diabetic database (<a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIDD</a>) have become a popular approach for testing the efficiency of machine learning algorithms <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 Within this context, this blog post is part of 2 posts providing an in depth introduction to diabetes detection using various machine learning approaches.
 In this first post in particular, we focus on exploring the data at hand and preparing it for machine learning related processing.</p>
 <ul>
@@ -444,10 +606,10 @@ In this first post in particular, we focus on exploring the data at hand and pre
 </table>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </ul><section id="the-pima-indian-diabetic-database">
-<h2>The Pima Indian diabetic database<a class="headerlink" href="#the-pima-indian-diabetic-database" title="Permalink to this headline">#</a></h2>
+<h2>The Pima Indian diabetic database<a class="headerlink" href="#the-pima-indian-diabetic-database" title="Link to this heading">#</a></h2>
 <p>The Pima Indian diabetes database (<a class="reference external" href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Download_link</a>), donated from the <a class="reference external" href="https://www.niddk.nih.gov/">National_Institute_of_Diabetes_and_Digestive_and_Kidney_Diseases</a>, is a collection of medical diagnostic reports including information (9  numeric variables)
-on 768 female patients (with ages between 21 and 81) of <a class="reference external" href="https://en.wikipedia.org/wiki/Pima_people">Pima</a> Indian heritage (a native American population living near Phoenix, Arizona, USA) <a class="footnote-reference brackets" href="#id7" id="id2">2</a>.
-The database includes the following information <a class="footnote-reference brackets" href="#id8" id="id3">3</a> <a class="footnote-reference brackets" href="#id9" id="id4">4</a> :</p>
+on 768 female patients (with ages between 21 and 81) of <a class="reference external" href="https://en.wikipedia.org/wiki/Pima_people">Pima</a> Indian heritage (a native American population living near Phoenix, Arizona, USA) <a class="footnote-reference brackets" href="#id7" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+The database includes the following information <a class="footnote-reference brackets" href="#id8" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id9" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> :</p>
 <ol class="arabic simple">
 <li><p>Pregnancies: Number of times pregnant</p></li>
 <li><p>Glucose: 2-Hour plasma glucose concentration in an oral glucose tolerance test</p></li>
@@ -463,11 +625,11 @@ The database includes the following information <a class="footnote-reference bra
 </pre></div>
 </div>
 <section id="data-exploration">
-<h3>Data exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">#</a></h3>
+<h3>Data exploration<a class="headerlink" href="#data-exploration" title="Link to this heading">#</a></h3>
 <p>First, we start by loading our data and using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html">pandas.DataFrame.describe</a> to get a nice description of the data at hand.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-i">
-<div class="code-block-caption"><span class="caption-text">Code snippet I</span><a class="headerlink" href="#code-snippet-i" title="Permalink to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="code-block-caption"><span class="caption-text">Code snippet I</span><a class="headerlink" href="#code-snippet-i" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="c1"># define column names</span>
 <span class="linenos">4</span><span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Pregnancies&quot;</span><span class="p">,</span>                <span class="s2">&quot;Glucose&quot;</span><span class="p">,</span> <span class="s2">&quot;Blood_pressure&quot;</span><span class="p">,</span>
@@ -480,7 +642,7 @@ The database includes the following information <a class="footnote-reference bra
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="output-i">
-<div class="code-block-caption"><span class="caption-text">Output I</span><a class="headerlink" href="#output-i" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">Output I</span><a class="headerlink" href="#output-i" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">Pregnancies</span>     <span class="n">Glucose</span>  <span class="n">Blood_pressure</span>  <span class="n">Skin_thickness</span>     <span class="n">Insulin</span>  \
  <span class="n">count</span>   <span class="mf">768.000000</span>  <span class="mf">768.000000</span>      <span class="mf">768.000000</span>      <span class="mf">768.000000</span>  <span class="mf">768.000000</span>
  <span class="n">mean</span>      <span class="mf">3.845052</span>  <span class="mf">120.894531</span>       <span class="mf">69.105469</span>       <span class="mf">20.536458</span>   <span class="mf">79.799479</span>
@@ -505,9 +667,9 @@ The database includes the following information <a class="footnote-reference bra
 </div>
 </section>
 <section id="improving-data-quality">
-<h3>Improving data quality<a class="headerlink" href="#improving-data-quality" title="Permalink to this headline">#</a></h3>
+<h3>Improving data quality<a class="headerlink" href="#improving-data-quality" title="Link to this heading">#</a></h3>
 <p>From the previous output help we can deduce that there are no missing values (all columns include 768 value).
-However,  we notice some unrealistic values (it seems that someone replaced missing  values with zeros ) in the data <a class="footnote-reference brackets" href="#id6" id="id5">1</a>.
+However,  we notice some unrealistic values (it seems that someone replaced missing  values with zeros ) in the data <a class="footnote-reference brackets" href="#id6" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 For example: a Bmi = 0 means that the person either has an infinite height or a zero weight, which is not physically possible.</p>
 <p>These errors are summarized in the following:</p>
 <ul class="simple">
@@ -520,11 +682,11 @@ For example: a Bmi = 0 means that the person either has an infinite height or a 
 <p>Although, these values can be reconstructed (using K-nearest neighbor algorithm assuming the data from patients with similar features follow the same pattern) but I opted for dropping rows including faulty data, which results in a database with only 392 case (no  missing  values).
 The previous pre-processing is done using the following code:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-ii">
-<div class="code-block-caption"><span class="caption-text">Code snippet II</span><a class="headerlink" href="#code-snippet-ii" title="Permalink to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="code-block-caption"><span class="caption-text">Code snippet II</span><a class="headerlink" href="#code-snippet-ii" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="linenos"> 4</span>    <span class="sd">&#39;&#39;&#39;</span>
+<span class="linenos"> 3</span><span class="k">def</span><span class="w"> </span><span class="nf">drop_column_values</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="linenos"> 5</span><span class="sd">    Delete certain dataframe rows based on the value of a certain column element</span>
 <span class="linenos"> 6</span><span class="sd">    &#39;&#39;&#39;</span>
 <span class="linenos"> 7</span>    <span class="c1"># Get names of indexes for which column Age has value 30</span>
@@ -542,7 +704,7 @@ The previous pre-processing is done using the following code:</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="output-ii">
-<div class="code-block-caption"><span class="caption-text">Output II</span><a class="headerlink" href="#output-ii" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">Output II</span><a class="headerlink" href="#output-ii" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">Pregnancies</span>     <span class="n">Glucose</span>  <span class="n">Blood_pressure</span>  <span class="n">Skin_thickness</span>     <span class="n">Insulin</span>  \
  <span class="n">count</span>   <span class="mf">392.000000</span>  <span class="mf">392.000000</span>      <span class="mf">392.000000</span>      <span class="mf">392.000000</span>  <span class="mf">392.000000</span>
  <span class="n">mean</span>      <span class="mf">3.301020</span>  <span class="mf">122.627551</span>       <span class="mf">70.663265</span>       <span class="mf">29.145408</span>  <span class="mf">156.056122</span>
@@ -575,7 +737,7 @@ Finally, we notice that we have more samples describing the 0 outcome than sampl
 This might result in better detection for the 0 outcome. To keep things balanced, I decide to equalize the dataset and use an equal number of samples for both cases.
 In code this looks like the following:</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iii">
-<div class="code-block-caption"><span class="caption-text">Code snippet III</span><a class="headerlink" href="#code-snippet-iii" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">Code snippet III</span><a class="headerlink" href="#code-snippet-iii" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># plot raw data</span>
 <span class="linenos"> 2</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="linenos"> 3</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
@@ -609,17 +771,18 @@ In code this looks like the following:</p>
 </div>
 <p>The effects of the aforementioned transformations can be seen in the following box-plots (<a class="reference external" href="https://en.wikipedia.org/wiki/Box_plot">Box_plot</a>):</p>
 <figure class="align-center" id="id10">
-<a class="reference internal image-reference" href="../../../../_images/data_manipulations.png"><img alt="../../../../_images/data_manipulations.png" src="../../../../_images/data_manipulations.png" style="width: 1440.0px; height: 864.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/data_manipulations.png"><img alt="../../../../_images/data_manipulations.png" src="../../../../_images/data_manipulations.png" style="width: 1440.0px; height: 864.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-text">Figure 7: Box-plots for data transformation</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Figure 7: Box-plots for data transformation</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>We can also visualize the balance in the data using bar and pie plots as shown in the next figure.
 These manipulations though improved the data but it also limited the dataset. The new dataset only includes 115x2 = 230 samples.</p>
 <div class="literal-block-wrapper docutils container" id="code-snippet-iv">
-<div class="code-block-caption"><span class="caption-text">Code snippet IV</span><a class="headerlink" href="#code-snippet-iv" title="Permalink to this code">#</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_overview</span><span class="p">(</span> <span class="n">data</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<div class="code-block-caption"><span class="caption-text">Code snippet IV</span><a class="headerlink" href="#code-snippet-iv" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_overview</span><span class="p">(</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Plot Equalized samples overview</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
@@ -638,28 +801,31 @@ These manipulations though improved the data but it also limited the dataset. Th
 </div>
 </div>
 <figure class="align-center" id="id11">
-<a class="reference internal image-reference" href="../../../../_images/samples_overview.png"><img alt="../../../../_images/samples_overview.png" src="../../../../_images/samples_overview.png" style="width: 576.0px; height: 576.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/samples_overview.png"><img alt="../../../../_images/samples_overview.png" src="../../../../_images/samples_overview.png" style="width: 576.0px; height: 576.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-text">Figure 8: Data overview</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Figure 8: Data overview</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The previously discussed transformations are used to remove possible bias in the data and improve its quality.
 However, if used improperly, it may deteriorate the detection quality. the question of which transformations to apply is dependent on the data nature, and the features correlation and distribution.</p>
 </section>
 <section id="features-overview">
-<h3>Features overview<a class="headerlink" href="#features-overview" title="Permalink to this headline">#</a></h3>
+<h3>Features overview<a class="headerlink" href="#features-overview" title="Link to this heading">#</a></h3>
 <p>Now that we cleaned the data, let us examine the available features closely. For that, we look at the bars and densities charts generated using DfPlotter.py (Github link to come later).
 This should help build some intuitions and observations related to the features interactions.</p>
 <figure class="align-center" id="id12">
-<a class="reference internal image-reference" href="../../../../_images/bars.png"><img alt="../../../../_images/bars.png" src="../../../../_images/bars.png" style="width: 576.0px; height: 691.2px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/bars.png"><img alt="../../../../_images/bars.png" src="../../../../_images/bars.png" style="width: 576.0px; height: 691.2px;" />
+</a>
 <figcaption>
-<p><span class="caption-text">Figure 9: Bar-plots for the different features</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Figure 9: Bar-plots for the different features</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id13">
-<a class="reference internal image-reference" href="../../../../_images/densities.png"><img alt="../../../../_images/densities.png" src="../../../../_images/densities.png" style="width: 1152.0px; height: 864.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/densities.png"><img alt="../../../../_images/densities.png" src="../../../../_images/densities.png" style="width: 1152.0px; height: 864.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-text">Figure 10: Densities of the different features</span><a class="headerlink" href="#id13" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Figure 10: Densities of the different features</span><a class="headerlink" href="#id13" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>From these plots alone, we can already confirm some known facts such as:</p>
@@ -669,16 +835,17 @@ This should help build some intuitions and observations related to the features 
 </ul>
 </section>
 <section id="correlation-and-features-selection">
-<h3>Correlation and features selection<a class="headerlink" href="#correlation-and-features-selection" title="Permalink to this headline">#</a></h3>
+<h3>Correlation and features selection<a class="headerlink" href="#correlation-and-features-selection" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Correlation_and_dependence">Correlation</a> is a numerical coefficient representing the dependence between two features.
 It is a very useful metric, that helps rank the available features importance.
 In many systems, not all the features are relevant or at least some are redundant and leaving them out is a better option for speed or even accuracy reasons.
 Think of it as a similarity metric: if two features are highly correlated so they embody the same information and consequently you can drop one of them.
 Using the DfPlotter.py (Github link to come later) script, we compute &amp; visualize the correlations matrix and the the pai-plots related to the data.</p>
 <figure class="align-center" id="id14">
-<a class="reference internal image-reference" href="../../../../_images/corr.png"><img alt="../../../../_images/corr.png" src="../../../../_images/corr.png" style="width: 828.0px; height: 828.0px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/corr.png"><img alt="../../../../_images/corr.png" src="../../../../_images/corr.png" style="width: 828.0px; height: 828.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-text">Figure 11: Correlation matrix</span><a class="headerlink" href="#id14" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Figure 11: Correlation matrix</span><a class="headerlink" href="#id14" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>When it comes to correlation coefficients:  bigger coefficient mean more dependence between the features.
@@ -689,20 +856,20 @@ Therefore, a better choice would be to take:  Glucose (0.52), Age (0.38) and Bmi
 <figure class="align-center" id="id15">
 <img alt="../../../../_images/pairplot.png" src="../../../../_images/pairplot.png" />
 <figcaption>
-<p><span class="caption-text">Figure 12: Distributions scatter-plots</span><a class="headerlink" href="#id15" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Figure 12: Distributions scatter-plots</span><a class="headerlink" href="#id15" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The pair plots confirm the previous results, since the only curves with some separation between data points are in the Glucose row, in particular the ones on the columns of the Skin_thickness and the Bmi.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>This 1st plot from a series of 3 provided an elaborate explanation of data manipulation techniques, their use and reasons to use them.
 From the raw dataset we retrieve a balanced, scaled and correct number of samples, that we later explored the mechanics regulating its features.
 We will explore all these results to build a robust detection system in the next post.</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Link to this heading">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -710,118 +877,190 @@ We will explore all these results to build a robust detection system in the next
   <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                    target="blank"><i class="fa fa-reddit"></i></a>
 </div></section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
-<dl class="footnote brackets">
-<dt class="label" id="id6"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id5">2</a>)</span></dt>
-<dd><p>Rahmat Zolfaghari, Diagnosis of Diabetes in Female Population of Pima Indian Heritage with Ensemble of BP Neural Network and SVM, IJCEM International Journal of Computational Engineering &amp; Management, Vol. 15 Issue 4, July 2012, <a class="reference external" href="https://www.ijcem.org/papers072012/ijcem_072012_22.pdf">paper</a></p>
-</dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Pima Indians Diabetes Database, <a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIMA_DB</a></p>
-</dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>Igor Shvartser, Jason Brownlee, Case Study: Predicting the Onset of Diabetes Within Five Years (part 1 of 3), March 2014, <a class="reference external" href="https://machinelearningmastery.com/case-study-predicting-the-onset-of-diabetes-within-five-years-part-1-of-3/">case_study_predicting_the_onset_of_diabetes_within_five_years_part_1_of_3</a></p>
-</dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
-<dd><p>Kaggle, Pima Indians Diabetes Database: Predict the onset of diabetes based on diagnostic measures, <a class="reference external" href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">https://www.kaggle.com/uciml/pima-indians-diabetes-database</a></p>
-</dd>
-</dl>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Link to this heading">#</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p>Rahmat Zolfaghari, Diagnosis of Diabetes in Female Population of Pima Indian Heritage with Ensemble of BP Neural Network and SVM, IJCEM International Journal of Computational Engineering &amp; Management, Vol. 15 Issue 4, July 2012, <a class="reference external" href="https://www.ijcem.org/papers072012/ijcem_072012_22.pdf">paper</a></p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Pima Indians Diabetes Database, <a class="reference external" href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.names">PIMA_DB</a></p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Igor Shvartser, Jason Brownlee, Case Study: Predicting the Onset of Diabetes Within Five Years (part 1 of 3), March 2014, <a class="reference external" href="https://machinelearningmastery.com/case-study-predicting-the-onset-of-diabetes-within-five-years-part-1-of-3/">case_study_predicting_the_onset_of_diabetes_within_five_years_part_1_of_3</a></p>
+</aside>
+<aside class="footnote brackets" id="id9" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>Kaggle, Pima Indians Diabetes Database: Predict the onset of diabetes based on diagnostic measures, <a class="reference external" href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">https://www.kaggle.com/uciml/pima-indians-diabetes-database</a></p>
+</aside>
+</aside>
 </section>
 </section>
 
-<div class="section">
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
     
-
-<div class="section">
-  <span style="float: left">
-     
+    
     <a href="../../05/09/voice_based_gender_recognition.html">
-      <i class="fa fa-arrow-circle-left"></i> Voice based gender recognition using Gaussian mixture models
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Voice based gender recognition using Gaussian mixture models</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
-     
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+    
     <a href="diabetes_detection_using_machine_learning2.html">
-      Diabetes detection using machine learning (part II) <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Diabetes detection using machine learning (part II)</span>
+      
+      <i class="fa fa-arrow-circle-right" ></i>
+      
     </a>
     
   </span>
 </div>
+
+  
   
 </div>
 
-              </div>
+                </article>
               
-<!-- Add a comment box underneath the page's content -->
-<script src="https://giscus.app/client.js"
-        data-repo="superKogito/SuperKogito.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
-        data-category="Announcements"
-        data-category-id="DIC_kwDOCYjWaM4CObax"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-<script src="../_static/cookiealert.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+  
+  <!-- Comments Section -->
+  <script 
+    src="https://giscus.app/client.js"
+    data-repo="superKogito/SuperKogito.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOCYjWaM4CObax"
+    data-mapping="pathname"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+  ></script>
+  
+  <!-- Cookie Alert Script -->
+  <script src="../../../../_static/cookiealert.js"></script>
 
               
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
 </div>
+                </footer>
               
-          </main>
-          
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-      </div>
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pima-indian-diabetic-database">The Pima Indian diabetic database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-data-quality">Improving data quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features-overview">Features overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-and-features-selection">Correlation and features selection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#share-this-blog">Share this blog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-readings">References and Further readings</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/blog/2019/06/30/diabetes_detection_using_machine_learning1.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-      <!-- Site footer -->
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-md-6">
-            <ul class="footer-links">
-              <li>
-                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
-                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
-              </li>
-            </ul>
-          </div>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-          <div class="col-xs-6 col-md-2">
-            <ul class="footer-links">
-              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
-              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
-            </ul>
-          </div>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
 
-          <div class="col-xs-6 col-md-2">
-            <ul class="footer-links">
-              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
-              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
-            </ul>
-          </div>
+  <p class="copyright">
+    
+      © Copyright 2019-2025, Ayoub Malek.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
 
-          <div class="col-xs-6 col-md-2">
-            <ul class="footer-links">
-              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
-              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
-            </ul>
-          </div>
-
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
     </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
   </footer>
   </body>
 </html>

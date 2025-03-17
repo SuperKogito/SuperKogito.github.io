@@ -1,279 +1,456 @@
 
 <!DOCTYPE html>
 
-<html lang="english">
+
+<html lang="english" data-content_root="../../../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Encryption overview" />
-  
 <meta property="og:type" content="article" />
-  
-<meta property="og:url" content="http://superkogito.github.io/blog/2019/03/03/encryption_overview.html" />
-  
+<meta property="og:url" content="https://superkogito.github.io/blog/2019/03/03/encryption_overview.html" />
+<meta property="og:site_name" content="🧠 SuperKogito" />
 <meta property="og:description" content="encryption introduction" />
-  
-<meta property="og:image" content="http://superkogito.github.io/_static/meta_images/encryption_overview.png" />
-  
+<meta property="og:image" content="https://superkogito.github.io/_static/meta_images/encryption_overview.png" />
 <meta property="og:image:alt" content="encryption_overview" />
-  
 <meta property="og:keywords" content="encryption overview, encryption, security, ayoub malek, cybersecurity" />
-  
+<meta name="description" content="Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; 1. These operations can be explained by the following formulas: C=E_{k}(P) and P=D_{k}(C), where P = plain-text, C = cipher-text, E = t..." />
 <meta property="og:ignore_canonical" content="true" />
+
     <title>Encryption overview &#8212; 🧠 SuperKogito  documentation</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/twemoji.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=7c449129" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/tree_graph.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/social_media_sharing.css?v=65b9f0d2" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-    <script src="../../../../_static/jquery.js"></script>
-    <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/clipboard.min.js"></script>
-    <script src="../../../../_static/copybutton.js"></script>
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+    <script src="../../../../_static/documentation_options.js?v=df973ab0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"></script>
     <script src="../../../../_static/twemoji.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="http://superkogito.github.io/blog/2019/03/03/encryption_overview.html" />
-    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2019/03/03/encryption_overview';</script>
+    <link rel="canonical" href="https://superkogito.github.io/blog/2019/03/03/encryption_overview.html" />
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../../../about.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="english">
-    <link 
-    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
-    rel="stylesheet"  type='text/css'>
-    
+    <link rel="search" title="Search" href="../../../../search.html" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
-    <script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="english">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  
+  <!-- Favicons -->
+  
+
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() {dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-GPWJJB9TRK');
-    </script>
+  </script>
 
-    <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
-    
-    <!-- Google Analytics -->
-    <!-- 
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-133660046-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
- --> 
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+
+
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../../../blog/atom.xml"
   title="SuperKogito"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+
+
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-<a class="navbar-brand" href="../../../../index.html">
-<p class="title">🧠 SuperKogito</p>
-</a>
-
-    
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../index.html">
-  Home
- </a>
-</li>
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../projects.html">
-  Projects
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../blog.html">
-  Blog
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../../about.html">
-  About Me
- </a>
-</li>
-
+  
+  <dialog id="pst-search-dialog">
     
-</ul>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this site..."
+         aria-label="Search this site..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-      </div>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🧠 SuperKogito  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/superkogito/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
-        </li>
-      </ul>
-      </div>
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../projects.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../blog.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about.html">
+    About Me
+  </a>
+</li>
+
+  </ul>
+</nav></div>
       
     </div>
-  </div>
-</div>
-    </nav>
     
-
-    <div class="container-xl">
-      <div class="row">
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
           
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  03 März 2019 
-</h2>
 
-<ul>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
   
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../projects.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../blog.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about.html">
+    About Me
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/superkogito/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>03 März 2019</span>
+  
+</h2>
+<ul>
+  <div class="ablog-sidebar-item ablog__postcard2">
+
 <li id="published">
-  <span
-    ><i class="fa fa-pencil-square-o"></i></span
-  >
+  <span>
+    
+    <i class="fa fa-fw fa-edit"></i>
+    
+    </span>
   08 April 2022
 </li>
- 
-<li id="author">
-  <span
-    ><i class="fa-fw fa fa-user"></i></span
-  >
-   
-  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>  
-</li>
- 
-<li id="location">
-  <span
-    ><i class="fa-fw fa fa-location-arrow"></i></span
-  >
-   
-  <a href="../../../location/munich.html">Munich</a>  
-</li>
- 
-<li id="language">
-  <span
-    ><i class="fa-fw fa fa-language"></i></span
-  >
-   
-  <a href="../../../language/english.html">English</a>  
-</li>
- 
-<li id="category">
-  <span
-    ><i class="fa-fw fa fa-folder-open"></i></span
-  >
-   
-  <a href="../../../category/cybersecurity.html">Cybersecurity</a>  
-</li>
- 
-<li id="tags">
-  <span
-    ><i
-      class="fa-fw fa fa-tag"
-    ></i
-    ></span
-  >
-   
-  <a href="../../../tag/encryption.html">Encryption</a>  
-</li>
- 
-</ul>
 
+
+<li id="ablog-sidebar-item author ablog__author">
+  <span>
+    
+    <i class="fa-fw fa fa-user"></i>
+    
+    </span>
+  
+  
+  <a href="../../../author/ayoub-malek.html">Ayoub Malek</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item location ablog__location">
+  <span>
+    
+    <i class="fa-fw fa fa-location-arrow"></i>
+    
+    </span>
+  
+  
+  <a href="../../../location/munich.html">Munich</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item language ablog__language">
+  <span>
+    
+    <i class="fa-fw fa fa-language"></i>
+    
+    </span>
+  
+  
+  <a href="../../../language/english.html">English</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../../category/cybersecurity.html">Cybersecurity</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tag"></i>
+    
+    </span>
+  
+  
+  <a href="../../../tag/encryption.html">Encryption</a>
+  
+  
+  
+</li>
+
+
+</div>
+</ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
 <h3>
   <a href="../../../../blog.html">✍️ Recent Posts</a>
 </h3>
@@ -310,7 +487,8 @@
   </li>
   
 </ul>
-
+</div>
+        <div class="sidebar-primary-item">
 <h3>
   <a href="../../../archive.html">🗓️ Archives</a>
 </h3>
@@ -333,158 +511,135 @@
   </li>
    
 </ul>
-
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
-
-          
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
 
-<nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#symmetric-encryption">
-   Symmetric Encryption
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#asymmetric-encryption">
-   Asymmetric Encryption
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#block-ciphers">
-     Block Ciphers
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stream-ciphers">
-     Stream Ciphers
-    </a>
-   </li>
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Encryption overview</span></li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#padding">
-   Padding
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#share-this-blog">
-   Share this blog
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-readings">
-   References and Further readings
-  </a>
- </li>
-</ul>
-
 </nav>
-              </div>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
-              <div class="toc-item">
-                
-              </div>
               
-            
-          </div>
-          
-
-          
-          
-            
-          
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
-              
-<!--  Bootstrap HTML  -->
-<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+  <!-- Cookie Consent Banner -->
+  <div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
     We use cookies on this website to distinguish you from other users.
     We use this data to improve our content experience and for targeted advertising.
     By continuing to use this website you consent to our use of cookies.
     For more information, please see our
-    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
-</div>
+    <a href="../../../../policy/cookies_policy.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>.
+  </div>
 
-
-
-              <div>
-                 <section id="encryption-overview">
-<span id="encryption-post-label"></span><h1>Encryption overview<a class="headerlink" href="#encryption-overview" title="Permalink to this headline">#</a></h1>
+  
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="encryption-overview">
+<span id="encryption-post-label"></span><h1>Encryption overview<a class="headerlink" href="#encryption-overview" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
-<p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; <a class="footnote-reference brackets" href="#footcite-kessler" id="id1">1</a>.
-These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="footnote-reference brackets" href="#footcite-kessler" id="id2">1</a>.
-There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="footnote-reference brackets" href="#footcite-kessler" id="id3">1</a>.</p>
+<p>Encryption transforms a plain-text into a cipher-text using an encryption key. The process of reversing this operation uses also a key and is called &quot;decryption&quot; <a class="footnote-reference brackets" href="#footcite-kessler" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+These operations can be explained by the following formulas: <span class="math notranslate nohighlight">\(C=E_{k}(P)\)</span> and <span class="math notranslate nohighlight">\(P=D_{k}(C)\)</span>, where P = plain-text, C = cipher-text, E = the encryption method, D = the decryption method, and k = the key <a class="footnote-reference brackets" href="#footcite-kessler" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+There exist several types of encryption (symmetric/asymmetric) and several ciphering techniques (block/stream) and modes etc <a class="footnote-reference brackets" href="#footcite-kessler" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <section id="symmetric-encryption">
-<h2>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Permalink to this headline">#</a></h2>
-<p>In secret key cryptography, both parties (a sender and a receiver for example) agree on a single secret (shared) key for encryption and decryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id4">1</a>. The major concern in this case is to securely share the key between the two peers or else the whole system is jeopardized <a class="footnote-reference brackets" href="#footcite-tamimi" id="id5">2</a>.
-The key management for this encryption is troublesome, especially if a unique secret key is used for each peer-to-peer connection, which results in n(n-1)/2 total number of keys for n-nodes <a class="footnote-reference brackets" href="#footcite-ssl" id="id6">3</a><a class="footnote-reference brackets" href="#footcite-oak" id="id7">4</a>. Symmetric encryption schemes are generally defined as stream ciphers or block ciphers <a class="footnote-reference brackets" href="#footcite-tamimi" id="id8">2</a>.</p>
+<h2>Symmetric Encryption<a class="headerlink" href="#symmetric-encryption" title="Link to this heading">#</a></h2>
+<p>In secret key cryptography, both parties (a sender and a receiver for example) agree on a single secret (shared) key for encryption and decryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. The major concern in this case is to securely share the key between the two peers or else the whole system is jeopardized <a class="footnote-reference brackets" href="#footcite-tamimi" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+The key management for this encryption is troublesome, especially if a unique secret key is used for each peer-to-peer connection, which results in n(n-1)/2 total number of keys for n-nodes <a class="footnote-reference brackets" href="#footcite-ssl" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-oak" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>. Symmetric encryption schemes are generally defined as stream ciphers or block ciphers <a class="footnote-reference brackets" href="#footcite-tamimi" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
 </section>
 <section id="asymmetric-encryption">
-<h2>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Permalink to this headline">#</a></h2>
-<p>It also known as Public Key Cryptography (PKC) <a class="footnote-reference brackets" href="#footcite-kessler" id="id9">1</a>. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:</p>
+<h2>Asymmetric Encryption<a class="headerlink" href="#asymmetric-encryption" title="Link to this heading">#</a></h2>
+<p>It also known as Public Key Cryptography (PKC) <a class="footnote-reference brackets" href="#footcite-kessler" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. It has been considered the most significant development in cryptography in the last 300-400 years. PKC employs two separate keys:</p>
 <ul class="simple">
 <li><p><strong>The public key:</strong> which is used to encrypt data by anyone.</p></li>
 <li><p><strong>The private key:</strong> which is kept secret and is used to decrypt data.</p></li>
 </ul>
-<p>This double key feature surmounts the symmetric encryption problem of managing keys, but also makes it mathematically more prone to attacks <a class="footnote-reference brackets" href="#footcite-tamimi" id="id10">2</a>.
-Moreover, this duality provides authentication and non-repudiation with the assumption that the private key is kept secret <a class="footnote-reference brackets" href="#footcite-kessler" id="id11">1</a>.
-However, asymmetric encryption techniques are way slower than symmetric techniques, and they require more computational processing power <a class="footnote-reference brackets" href="#footcite-ssl" id="id12">3</a><a class="footnote-reference brackets" href="#footcite-kessler" id="id13">1</a>.\
+<p>This double key feature surmounts the symmetric encryption problem of managing keys, but also makes it mathematically more prone to attacks <a class="footnote-reference brackets" href="#footcite-tamimi" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+Moreover, this duality provides authentication and non-repudiation with the assumption that the private key is kept secret <a class="footnote-reference brackets" href="#footcite-kessler" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+However, asymmetric encryption techniques are way slower than symmetric techniques, and they require more computational processing power <a class="footnote-reference brackets" href="#footcite-ssl" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-kessler" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.\
 It is obvious that each of these two approaches (symmetric/asymmetric) provide a set of advantages and limitations, therefore a hybrid scheme is the best compromise.
 Such scheme would apply asymmetric encryption for the secret key distribution and symmetric encryption for the generic data exchange.</p>
 <section id="block-ciphers">
-<h3>Block Ciphers<a class="headerlink" href="#block-ciphers" title="Permalink to this headline">#</a></h3>
-<p>In block ciphers the data is encrypted and decrypted one block at a time using the same key <a class="footnote-reference brackets" href="#footcite-oak" id="id14">4</a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id15">2</a>.
-In its simplest mode (Electronic codebook mode), the plain text is divided into equally long blocks, which are then fed into the cipher system to produce blocks of cipher text <a class="footnote-reference brackets" href="#footcite-kessler" id="id16">1</a>. This type of ciphers requires padding before encryption to ensure that the data length is a multiple of the block’s length. Block ciphers can operate in one of several modes; here are the most famous ones are: Electronic Codebook (ECB) mode, Cipher Block Chaining (CBC), Cipher Feedback (CFB, Output Feedback (OFB) etc.</p>
-<p>Although CBC, CFB and OFB have good resistance against brute-force and deletion attacks, they are not very resistant to single bit errors which will propagate through different blocks in some modes <a class="footnote-reference brackets" href="#footcite-kessler" id="id17">1</a>.
+<h3>Block Ciphers<a class="headerlink" href="#block-ciphers" title="Link to this heading">#</a></h3>
+<p>In block ciphers the data is encrypted and decrypted one block at a time using the same key <a class="footnote-reference brackets" href="#footcite-oak" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id15" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+In its simplest mode (Electronic codebook mode), the plain text is divided into equally long blocks, which are then fed into the cipher system to produce blocks of cipher text <a class="footnote-reference brackets" href="#footcite-kessler" id="id16" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. This type of ciphers requires padding before encryption to ensure that the data length is a multiple of the block’s length. Block ciphers can operate in one of several modes; here are the most famous ones are: Electronic Codebook (ECB) mode, Cipher Block Chaining (CBC), Cipher Feedback (CFB, Output Feedback (OFB) etc.</p>
+<p>Although CBC, CFB and OFB have good resistance against brute-force and deletion attacks, they are not very resistant to single bit errors which will propagate through different blocks in some modes <a class="footnote-reference brackets" href="#footcite-kessler" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 On top of all, there is also textbf{the Counter (CTR) mode` is a relatively modern approach that provides a good compromise.
-Like CFB and OFB, it operates on the blocks as in a stream cipher but also it processes them independently as in ECB <a class="footnote-reference brackets" href="#footcite-kessler" id="id18">1</a>.
+Like CFB and OFB, it operates on the blocks as in a stream cipher but also it processes them independently as in ECB <a class="footnote-reference brackets" href="#footcite-kessler" id="id18" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 Using different key inputs, CTR guarantees resistance against brute forcing. Moreover, it allows parallel processing making it superior on performance and speed level.</p>
 </section>
 <section id="stream-ciphers">
-<h3>Stream Ciphers<a class="headerlink" href="#stream-ciphers" title="Permalink to this headline">#</a></h3>
-<p>Unlike block ciphers, stream ciphers operate on streams of data bit by bit <a class="footnote-reference brackets" href="#footcite-tamimi" id="id19">2</a>.
-A stream cipher consists essentially of a key stream generator and a mixing function <a class="footnote-reference brackets" href="#footcite-kessler" id="id20">1</a>.
-The mixing function is usually a XOR, and the key stream generator is the main unit of the encryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id21">1</a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id22">2</a>.
+<h3>Stream Ciphers<a class="headerlink" href="#stream-ciphers" title="Link to this heading">#</a></h3>
+<p>Unlike block ciphers, stream ciphers operate on streams of data bit by bit <a class="footnote-reference brackets" href="#footcite-tamimi" id="id19" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+A stream cipher consists essentially of a key stream generator and a mixing function <a class="footnote-reference brackets" href="#footcite-kessler" id="id20" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+The mixing function is usually a XOR, and the key stream generator is the main unit of the encryption <a class="footnote-reference brackets" href="#footcite-kessler" id="id21" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-tamimi" id="id22" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
 There are several types of stream ciphers but only two are worth mentioning here:</p>
 <ul class="simple">
-<li><p><strong>Self-synchronizing stream cipher</strong> calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors <a class="footnote-reference brackets" href="#footcite-kessler" id="id23">1</a>.</p></li>
-<li><p><strong>Synchronous stream ciphers</strong> generate the key-stream independently and use the same generation function at both sender and receiver <a class="footnote-reference brackets" href="#footcite-tamimi" id="id24">2</a>. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited <a class="footnote-reference brackets" href="#footcite-kessler" id="id25">1</a>.</p></li>
+<li><p><strong>Self-synchronizing stream cipher</strong> calculate each bit in the key-stream by using the previous n bits in the key-stream. In this approach the decryption and encryption are synchronized, which causes problematic propagation errors <a class="footnote-reference brackets" href="#footcite-kessler" id="id23" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+<li><p><strong>Synchronous stream ciphers</strong> generate the key-stream independently and use the same generation function at both sender and receiver <a class="footnote-reference brackets" href="#footcite-tamimi" id="id24" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. While in this case propagation errors are not an issue, their periodic nature (The key-stream will eventually repeat) poses a vulnerability that can be exploited <a class="footnote-reference brackets" href="#footcite-kessler" id="id25" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
 </ul>
 </section>
 </section>
 <section id="padding">
-<h2>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">#</a></h2>
+<h2>Padding<a class="headerlink" href="#padding" title="Link to this heading">#</a></h2>
 <p>Within the context of classical cryptography, padding aims essentially to prevent any type of predictability that might reveal a plain-text or its exact length.
-Such revelations can be beneficial for an attacker and help in breaking the encryption <a class="footnote-reference brackets" href="#footcite-welchman" id="id26">5</a>.
+Such revelations can be beneficial for an attacker and help in breaking the encryption <a class="footnote-reference brackets" href="#footcite-welchman" id="id26" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>.
 For example, Advanced Encryption Standard-128 (AES-128) is a symmetric block cipher that processes data by blocks of 128 bits, which means that additional random data must be added to packages with size different from 128 bits multiples.
-This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="footnote-reference brackets" href="#footcite-knudsen" id="id27">6</a>.</p>
+This makes the data generically processable and is called padding. There are various approaches to padding, but the most popular (as defined in PKCS#5) appends the missing bytes N with the value N <a class="footnote-reference brackets" href="#footcite-knudsen" id="id27" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>.</p>
 <div class="figure" id="id30" style="text-align: center"><p><img width="50%" src="../../../../_images/tikz-60c6ad4e2a93297001b4cb9bff9ce4a7da1a09cd.png" alt="PKCS#5 block padding" /></p>
 <p><span class="caption-text">Figure 2: PKCS#5 block padding</span></p>
 </div><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><strong>Remark:</strong> When using a combination of Message Authentication code (MAC) and encryption with the purpose of ensuring data authenticity and secrecy, the combinations order is very important and can result in some cases in vulnerabilities.
-This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack <a class="footnote-reference brackets" href="#footcite-moxie" id="id28">7</a>.
+This is due to the fact that the receiver has to remove the padding that was originally introduced during the encryption process before decrypting the received cipher-text, which can be exploited by a padding oracle attack <a class="footnote-reference brackets" href="#footcite-moxie" id="id28" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>.
 This is further explained in the following post <a class="reference external" href="AuthenticatedEncryption.html">Authenticated_Encryption</a> .</p>
 </section>
 <section id="share-this-blog">
-<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Permalink to this headline">#</a></h2>
+<h2>Share this blog<a class="headerlink" href="#share-this-blog" title="Link to this heading">#</a></h2>
 <div id="share">
   <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&title=Encryption%20overview"                target="blank"><i class="fa fa-facebook"></i></a>
   <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/03/03/encryption_overview.html&text=Encryption%20overview"                 target="blank"><i class="fa fa-twitter"></i></a>
@@ -496,129 +651,206 @@ This is further explained in the following post <a class="reference external" hr
 </div>
 </section>
 <section id="references-and-further-readings">
-<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Permalink to this headline">#</a></h2>
+<h2>References and Further readings<a class="headerlink" href="#references-and-further-readings" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id29">
-<dl class="footnote brackets">
-<dt class="label" id="footcite-kessler"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>,<a href="#id4">4</a>,<a href="#id9">5</a>,<a href="#id11">6</a>,<a href="#id13">7</a>,<a href="#id16">8</a>,<a href="#id17">9</a>,<a href="#id18">10</a>,<a href="#id20">11</a>,<a href="#id21">12</a>,<a href="#id23">13</a>,<a href="#id25">14</a>)</span></dt>
-<dd><p>Gary C. Kessler. An Overview of Cryptography. 2017.</p>
-</dd>
-<dt class="label" id="footcite-tamimi"><span class="brackets">2</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id8">2</a>,<a href="#id10">3</a>,<a href="#id15">4</a>,<a href="#id19">5</a>,<a href="#id22">6</a>,<a href="#id24">7</a>)</span></dt>
-<dd><p>Abdel-Karim Al Tamimi. Performance Analysis of Data Encryption Algorithms. 2006.</p>
-</dd>
-<dt class="label" id="footcite-ssl"><span class="brackets">3</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id12">2</a>)</span></dt>
-<dd><p>ssl2buy. Difference Between Hashing and Encryption. <a class="reference external" href="https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption">https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption</a>, 05.01.2018.</p>
-</dd>
-<dt class="label" id="footcite-oak"><span class="brackets">4</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id14">2</a>)</span></dt>
-<dd><p>Madhura Oak. Symmetric Cryptography. <a class="reference external" href="https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/">https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/</a>, 05.01.2018.</p>
-</dd>
-<dt class="label" id="footcite-welchman"><span class="brackets"><a class="fn-backref" href="#id26">5</a></span></dt>
-<dd><p>Gordon Welchman. <em>The Hut Six Story: Breaking the Enigma Codes</em>. 1982.</p>
-</dd>
-<dt class="label" id="footcite-knudsen"><span class="brackets"><a class="fn-backref" href="#id27">6</a></span></dt>
-<dd><p>Jonathan Knudsen. Java cryptography. <a class="reference external" href="https://www.safaribooksonline.com/library/view/java-cryptography/1565924029/ch07s02.html">https://www.safaribooksonline.com/library/view/java-cryptography/1565924029/ch07s02.html</a>, 05.01.2018.</p>
-</dd>
-<dt class="label" id="footcite-moxie"><span class="brackets"><a class="fn-backref" href="#id28">7</a></span></dt>
-<dd><p>M. Marlinspike. blog: The Cryptographic Doom Principle,. <a class="reference external" href="https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017">https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017</a>, 05.01.2018.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="footcite-kessler" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>,<a role="doc-backlink" href="#id4">4</a>,<a role="doc-backlink" href="#id9">5</a>,<a role="doc-backlink" href="#id11">6</a>,<a role="doc-backlink" href="#id13">7</a>,<a role="doc-backlink" href="#id16">8</a>,<a role="doc-backlink" href="#id17">9</a>,<a role="doc-backlink" href="#id18">10</a>,<a role="doc-backlink" href="#id20">11</a>,<a role="doc-backlink" href="#id21">12</a>,<a role="doc-backlink" href="#id23">13</a>,<a role="doc-backlink" href="#id25">14</a>)</span>
+<p>Gary C. Kessler. An Overview of Cryptography. 2017.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-tamimi" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id5">1</a>,<a role="doc-backlink" href="#id8">2</a>,<a role="doc-backlink" href="#id10">3</a>,<a role="doc-backlink" href="#id15">4</a>,<a role="doc-backlink" href="#id19">5</a>,<a role="doc-backlink" href="#id22">6</a>,<a role="doc-backlink" href="#id24">7</a>)</span>
+<p>Abdel-Karim Al Tamimi. Performance Analysis of Data Encryption Algorithms. 2006.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-ssl" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id6">1</a>,<a role="doc-backlink" href="#id12">2</a>)</span>
+<p>ssl2buy. Difference Between Hashing and Encryption. <a class="reference external" href="https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption">https://www.ssl2buy.com/wiki/difference-between-hashing-and-encryption</a>, 05.01.2018.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-oak" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id14">2</a>)</span>
+<p>Madhura Oak. Symmetric Cryptography. <a class="reference external" href="https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/">https://madhuraoakblog.wordpress.com/2014/06/29/symmetric-cryptography/</a>, 05.01.2018.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-welchman" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id26">5</a><span class="fn-bracket">]</span></span>
+<p>Gordon Welchman. <em>The Hut Six Story: Breaking the Enigma Codes</em>. 1982.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-knudsen" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id27">6</a><span class="fn-bracket">]</span></span>
+<p>Jonathan Knudsen. Java cryptography. <a class="reference external" href="https://www.safaribooksonline.com/library/view/java-cryptography/1565924029/ch07s02.html">https://www.safaribooksonline.com/library/view/java-cryptography/1565924029/ch07s02.html</a>, 05.01.2018.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-moxie" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id28">7</a><span class="fn-bracket">]</span></span>
+<p>M. Marlinspike. blog: The Cryptographic Doom Principle,. <a class="reference external" href="https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017">https://moxie.org/blog/the-cryptographic-doom-principle/, Dec.1, 2017</a>, 05.01.2018.</p>
+</aside>
+</aside>
 </div>
 </section>
 </section>
 
-<div class="section">
-    
+<div class="section ablog__blog_comments">
+  
+  
 
-<div class="section">
-  <span style="float: left">
-     
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+    
+    
     <a href="../../02/17/cryptography_overview.html">
-      <i class="fa fa-arrow-circle-left"></i> Cryptography overview
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Cryptography overview</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
-     
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+    
     <a href="../../05/01/authenticated_encryption.html">
-      Authenticated encryption <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Authenticated encryption</span>
+      
+      <i class="fa fa-arrow-circle-right" ></i>
+      
     </a>
     
   </span>
 </div>
+
+  
   
 </div>
 
-              </div>
+                </article>
               
-<!-- Add a comment box underneath the page's content -->
-<script src="https://giscus.app/client.js"
-        data-repo="superKogito/SuperKogito.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
-        data-category="Announcements"
-        data-category-id="DIC_kwDOCYjWaM4CObax"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-<script src="../_static/cookiealert.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+  
+  <!-- Comments Section -->
+  <script 
+    src="https://giscus.app/client.js"
+    data-repo="superKogito/SuperKogito.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOCYjWaM4CObax"
+    data-mapping="pathname"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+  ></script>
+  
+  <!-- Cookie Alert Script -->
+  <script src="../../../../_static/cookiealert.js"></script>
 
               
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
 </div>
+                </footer>
               
-          </main>
-          
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-      </div>
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-encryption">Symmetric Encryption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-encryption">Asymmetric Encryption</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-ciphers">Block Ciphers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stream-ciphers">Stream Ciphers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#padding">Padding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#share-this-blog">Share this blog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-readings">References and Further readings</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/blog/2019/03/03/encryption_overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-      <!-- Site footer -->
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-md-6">
-            <ul class="footer-links">
-              <li>
-                    &copy; Copyright 2019-2023, Ayoub Malek.<br/>
-                  This blog is created using <a href="http://sphinx-doc.org/">Sphinx</a> and the tools from <a href="https://executablebooks.org/en/latest/">The Executable Book Project</a>.<br/>
-              </li>
-            </ul>
-          </div>
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-          <div class="col-xs-6 col-md-2">
-            <ul class="footer-links">
-              <li><a href="https://superkogito.github.io/policy/privacy_policy.html">Privacy Policy</a></li>
-              <li><a href="https://superkogito.github.io/policy/cookies_policy.html">Cookies policy</a></li>
-            </ul>
-          </div>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
 
-          <div class="col-xs-6 col-md-2">
-            <ul class="footer-links">
-              <li><a href="https://superkogito.github.io/policy/terms_and_conditions.html">Terms and conditions</a></li>
-              <li><a href="https://superkogito.github.io/policy/disclaimer.html">Disclaimer</a></li>
-            </ul>
-          </div>
+  <p class="copyright">
+    
+      © Copyright 2019-2025, Ayoub Malek.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
 
-          <div class="col-xs-6 col-md-2">
-            <ul class="footer-links">
-              <li><a href="https://superkogito.github.io/policy/contribute.html">Contribute</a></li>
-              <li><a href="https://superkogito.github.io/sitemap.xml">Sitemap</a></li>
-            </ul>
-          </div>
-
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
     </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
   </footer>
   </body>
 </html>

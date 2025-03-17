@@ -1,70 +1,33 @@
-/* Provided by Sphinx's 'basic' theme, and included in the final set of assets */
-@import "../basic.css";
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
-
 :root {
-  /*****************************************************************************
-  * Theme config
-  **/
+  /* Theme config */
   --pst-header-height: 30px;
 
-  /*****************************************************************************
-  * Font size
-  **/
-  --pst-font-size-base: 12px; /* base font size - applied at body / html level */
-
-  /* heading font sizes */
+  /* Font sizes */
+  --pst-font-size-base: 14px;
   --pst-font-size-h1: 24px;
   --pst-font-size-h2: 22px;
   --pst-font-size-h3: 20px;
   --pst-font-size-h4: 18px;
   --pst-font-size-h5: 16px;
   --pst-font-size-h6: 14px;
-
-  /* smaller then heading font sizes*/
   --pst-font-size-milli: 10px;
-
   --pst-sidebar-font-size: 0.9em;
   --pst-sidebar-caption-font-size: 0.9em;
 
-  /*****************************************************************************
-  * Font family
-  **/
-  /* These are adapted from https://systemfontstack.com/ */
-  --pst-font-family-base-system: -apple-system, BlinkMacSystemFont, Segoe UI,
-    "Helvetica Neue", Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-    Segoe UI Symbol;
-  --pst-font-family-monospace-system: "SFMono-Regular", Menlo, Consolas, Monaco,
-    Liberation Mono, Lucida Console, monospace;
-
-
-
+  /* Font families */
   --pst-font-family-base-system: 'Ubuntu Mono', monospace;
   --pst-font-family-monospace-system: 'Ubuntu Mono', monospace;
-
   --pst-font-family-base: var(--pst-font-family-base-system);
   --pst-font-family-heading: var(--pst-font-family-base);
   --pst-font-family-monospace: var(--pst-font-family-monospace-system);
 
-  /*****************************************************************************
-  * Color
-  *
-  * Colors are defined in rgb string way, "red, green, blue"
-  **/
+  /* Colors */
   --pst-color-primary: 19, 6, 84;
   --pst-color-success: 40, 167, 69;
-  --pst-color-info: 0, 123, 255; /*23, 162, 184;*/
+  --pst-color-info: 0, 123, 255;
   --pst-color-warning: 255, 193, 7;
   --pst-color-danger: 220, 53, 69;
   --pst-color-text-base: 51, 51, 51;
-
-  --pst-color-h1: var(--pst-color-primary);
-  --pst-color-h2: var(--pst-color-primary);
-  --pst-color-h3: var(--pst-color-text-base);
-  --pst-color-h4: var(--pst-color-text-base);
-  --pst-color-h5: var(--pst-color-text-base);
-  --pst-color-h6: var(--pst-color-text-base);
-  --pst-color-paragraph: var(--pst-color-text-base);
   --pst-color-link: 0, 91, 129;
   --pst-color-link-hover: 227, 46, 0;
   --pst-color-headerlink: 198, 15, 15;
@@ -72,25 +35,31 @@
   --pst-color-preformatted-text: 34, 34, 34;
   --pst-color-preformatted-background: 250, 250, 250;
   --pst-color-inline-code: 232, 62, 140;
-
   --pst-color-active-navigation: 19, 6, 84;
   --pst-color-navbar-link: 77, 77, 77;
+  --pst-color-sidebar-link: 77, 77, 77;
+  --pst-color-sidebar-caption: 77, 77, 77;
+  --pst-color-toc-link: 119, 117, 122;
+
+  /* Heading colors */
+  --pst-color-h1: var(--pst-color-primary);
+  --pst-color-h2: var(--pst-color-primary);
+  --pst-color-h3: var(--pst-color-text-base);
+  --pst-color-h4: var(--pst-color-text-base);
+  --pst-color-h5: var(--pst-color-text-base);
+  --pst-color-h6: var(--pst-color-text-base);
+  --pst-color-paragraph: var(--pst-color-text-base);
+
+  /* Navigation colors */
   --pst-color-navbar-link-hover: var(--pst-color-active-navigation);
   --pst-color-navbar-link-active: var(--pst-color-active-navigation);
-  --pst-color-sidebar-link: 77, 77, 77;
   --pst-color-sidebar-link-hover: var(--pst-color-active-navigation);
   --pst-color-sidebar-link-active: var(--pst-color-active-navigation);
   --pst-color-sidebar-expander-background-hover: 244, 244, 244;
-  --pst-color-sidebar-caption: 77, 77, 77;
-  --pst-color-toc-link: 119, 117, 122;
   --pst-color-toc-link-hover: var(--pst-color-active-navigation);
   --pst-color-toc-link-active: var(--pst-color-active-navigation);
 
-  /*****************************************************************************
-  * Icon
-  **/
-
-  /* font awesome icons*/
+  /* Icons */
   --pst-icon-check-circle: "\f058";
   --pst-icon-info-circle: "\f05a";
   --pst-icon-exclamation-triangle: "\f071";
@@ -98,10 +67,7 @@
   --pst-icon-times-circle: "\f057";
   --pst-icon-lightbulb: "\f0eb";
 
-  /*****************************************************************************
-  * Admonitions
-  **/
-
+  /* Admonitions */
   --pst-color-admonition-default: var(--pst-color-info);
   --pst-color-admonition-note: var(--pst-color-info);
   --pst-color-admonition-attention: var(--pst-color-warning);
@@ -124,10 +90,7 @@
   --pst-icon-admonition-tip: var(--pst-icon-lightbulb);
   --pst-icon-admonition-important: var(--pst-icon-exclamation-circle);
 
-  /*****************************************************************************
-  * versionmodified
-  **/
-
+  /* Version modified */
   --pst-color-versionmodified-default: var(--pst-color-info);
   --pst-color-versionmodified-added: var(--pst-color-success);
   --pst-color-versionmodified-changed: var(--pst-color-warning);
@@ -140,180 +103,246 @@
 }
 
 /* Bio area */
-div.profile-pic {
-    margin-top: 1em;
+.profile-pic {
+  margin-top: 1em;
 }
 
-div.profile-pic img {
-    border-radius: 500px;
-    width: 80%;
-    max-width: 190px;
-    margin: 0 auto;
-    display: block;
+.profile-pic img {
+  border-radius: 500px;
+  width: 80%;
+  max-width: 190px;
+  margin: 0 auto;
+  display: block;
 }
 
 .bio-info {
-    margin: 1em auto;
-    max-width: 220px;
+  margin: 1em auto;
+  max-width: 220px;
 }
 
 .name {
-    font-size: 38px;
+  font-size: 38px;
 }
 
 .focusareas {
-    font-size: .9em;
-    font-weight: bold;
+  font-size: .9em;
+  font-weight: bold;
 }
 
 .whatido {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
-
 /* Sidebar for blog archive / each post */
-ul.ablog-archive {
-    padding-left: 0px;
+.ablog-archive {
+  padding-left: 0;
 }
 
 .bd-sidebar h2 {
-    font-size: 1.4em;
+  font-size: 1.4em;
 }
 
 .bd-sidebar ul {
-    padding-left: 0;
-    list-style-type: none;
+  padding-left: 0;
+  list-style-type: none;
 }
 
 .bd-sidebar li {
-    padding-bottom: .5em;
+  padding-bottom: .5em;
 }
 
-div.bd-sidebar h3, div.bd-sidebar h2, div.bd-sidebar ul {
-    padding-left: 5%;
+.bd-sidebar h3, 
+.bd-sidebar h2, 
+.bd-sidebar ul {
+  padding-left: 5%;
 }
 
 /* In-page post lists */
-ul.postlist {
-    padding-left: 0;
+.postlist {
+  padding-left: 0;
 }
 
-ul.postlist > li > p:first-child {
-    font-size: 14px;
+.postlist > li > p:first-child {
+  font-size: 14px;
 }
 
-ul.postlist li + li {
-    margin-top: 0em;
+.postlist li + li {
+  margin-top: 0;
 }
 
-ul.postlist li > p > a {
-    font-style: normal;
-    font-size: 14px;
+.postlist li > p > a {
+  font-style: normal;
+  font-size: 14px;
 }
-
 
 /* Timeline CSS */
-div.timeline div.card {
-    border: 0px;
+.timeline .card {
+  border: 0;
 }
 
-div.timeline div.left {
-    text-align: right;
-    border-right: 1px solid black;
+.timeline .left {
+  text-align: right;
+  border-right: 1px solid black;
 }
 
-div.timeline div.entry::after {
-    width: 1em;
-    height: 1em;
-    background: white;
-    border-radius: 50%;
-    content: "";
-    top: 1em;
-    display: block;
-    position: absolute;
-    border: 1px black solid;
-    z-index: 999;
+.timeline .entry::after {
+  width: 1em;
+  height: 1em;
+  background: white;
+  border-radius: 50%;
+  content: "";
+  top: 1em;
+  display: block;
+  position: absolute;
+  border: 1px black solid;
+  z-index: 999;
 }
 
-div.timeline div.entry.left::after {
-    right: -.5em;
+.timeline .entry.left::after {
+  right: -.5em;
 }
 
-div.timeline div.entry.right::after {
-    left: -.5em;
+.timeline .entry.right::after {
+  left: -.5em;
 }
-
 
 /* Blog post comments */
 .gsc-reactions {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
+.search-button-field {
+  border-radius: 0.5em;
+  padding: 0.1rem;
+}
 
 /* Consent form */
-
-/*
- * Bootstrap Cookie Alert by Wruczek
- * https://github.com/Wruczek/Bootstrap-Cookie-Alert
- * Released under MIT license
- */
 .cookiealert {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-		height:100%;
-    margin: 0 !important;
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    border-radius: 0;
-    transform: translateY(100%);
-    transition: all 250ms ease-out;
-		color: red;
-		background: hsl(0, 0%, 10%, 0.25);
-		padding: 5px 5px;
-		font-size: 16px;
-		border-radius:5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 0;
+  transform: translateY(100%);
+  transition: all 250ms ease-out;
+  color: red;
+  background: hsla(0, 0%, 10%, 0.25);
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
 .cookiesContainer {
-    width: 50%;
-    height: 10%;
-    display: block;
-    background: var(--main-background-color);
-    margin: 25%;
-    border-radius: 5px;
-		padding: 50px;
+  width: 50%;
+  height: 10%;
+  display: block;
+  background: var(--main-background-color);
+  margin: 25%;
+  border-radius: 5px;
+  padding: 50px;
 }
 
 .cookiealert.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0%);
-    transition-delay: 1000ms;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0%);
+  transition-delay: 1000ms;
 }
 
 .cookiealert a {
-    text-decoration: underline
+  text-decoration: underline;
 }
 
 .cookiealert .acceptcookies {
-    margin-left: 1px;
-    vertical-align: baseline;
-		margin-bottom:0.5em;
+  margin-left: 1px;
+  vertical-align: baseline;
+  margin-bottom: 0.5em;
+}
+
+/* Footer */
+.footer-links li {
+  display: block;
+}
+
+.footer-links.inline li {
+  display: inline-block;
+}
+
+/* Image */
+img {
+  image-rendering: pixelated;
 }
 
 
-/* footer */
-.footer-links li
-{
-  display:block
-}
-.footer-links.inline li
-{
-  display:inline-block
-}
-
-/* image */
-image-rendering: pixelated;
+/* Cryptography tree graph */
+.clt {
+    position: relative;
+    padding-left: 0;
+  }
+  
+  .clt li,
+  .clt ul {
+    position: relative;
+  }
+  
+  .clt ul {
+    padding-left: 100px;
+    list-style: none;
+  }
+  
+  .clt li {
+    padding-left: 65px;
+  }
+  
+  .clt li::before,
+  .clt li::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+  }
+  
+  .clt li::before {
+    top: 10px;
+    width: 25px;
+    height: 0;
+    border-top: 1px solid #008cba;
+  }
+  
+  .clt li::after {
+    top: 2px;
+    width: 0;
+    height: 100%;
+    border-left: 1px solid #008cba;
+  }
+  
+  .clt ul > li:last-child::after {
+    height: 8px;
+  }
+  
+  /* Blockquote styling */
+  blockquote {
+    margin: 0 0 21px;
+    padding: 10.5px 21px;
+    border-left: 5px solid #464545;
+    font-size: 14px;
+  }
+  
+  /* Header section styling */
+  Headersection {
+    margin: 0 0 21px;
+    padding: 10.5px 21px;
+    border-left: 5px solid #464545;
+    font-size: 14px;
+  }
+  
+  h6 {
+    padding-bottom: 0;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 9px;
+  }
+  

@@ -1,98 +1,67 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
+# For a full list of options see:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
 from datetime import datetime
 
-# Optional. Use a shorter name to conserve nav. bar space.
-html_short_title = "Ayoub Malek's Blog"
-
 # -- Project information -----------------------------------------------------
-
-now = datetime.now()
 project = "🧠 SuperKogito"
-copyright = "2019-%s, Ayoub Malek" % datetime.now().year
+copyright = f"2019-{datetime.now() .year}, Ayoub Malek"
 author = "Ayoub Malek"
+html_short_title = "Ayoub Malek's Blog"
 html_favicon = "_static/favicon_io/favicon.ico"
 
-
 # -- General configuration ---------------------------------------------------
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
+# Add Sphinx extension modules
 extensions = [
     "ablog",
     "sphinx.ext.intersphinx",
     "sphinxext.opengraph",
-    "sphinx_panels",
     "sphinx_copybutton",
     "sphinxcontrib.bibtex",
     "sphinxcontrib.tikz",
     "sphinxcontrib.pdfembed",
     "sphinxemoji.sphinxemoji",
-    "sphinx_sitemap",
 ]
 
+# Template paths
+templates_path = ['_templates', 'ablog']
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
-
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
+# Patterns to ignore when looking for source files
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-
 # -- Options for HTML output -------------------------------------------------
+# Emoji style
 sphinxemoji_style = "twemoji"
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
+# Theme configuration
 html_theme = "pydata_sphinx_theme"
-
 html_theme_options = {
     "github_url": "https://github.com/superkogito/",
     "search_bar_text": "Search this site...",
     "google_analytics_id": "UA-133660046-1",
-    "navbar_end": ["search-field.html", "navbar-icon-links"],
     "primary_sidebar_end": ["sidebar-ethical-ads"],
+      "footer": ["footer.html"],
+    "back_to_top_button": True,
 }
 
+# Sidebar configuration
 html_sidebars = {
-    "403": [
-        "hello.html",
-    ],  # This ensures we test for custom sidebars
-    "404": [
-        "hello.html",
-    ],  # This ensures we test for custom sidebars
-    "index": [
-        "hello.html",
-    ],  # This ensures we test for custom sidebars
-    "about": [
-        "hello.html",
-    ],  # This ensures we test for custom sidebars
+    "403": ["hello.html"],
+    "404": ["hello.html"],
+    "index": ["hello.html"],
+    "about": ["hello.html"],
     "publications": ["hello.html"],
     "projects": ["hello.html"],
     "projects/**": ["hello.html"],
     "policy/**": ["hello.html"],
-
     "blog": ["tagcloud.html", "archives.html"],
-    "blog/**": ["postcard.html", "recentposts.html", "archives.html"]# "layout.html"],
+    "blog/**": ["ablog/postcard.html", "ablog/recentposts.html", "ablog/archives.html"]
 }
 
+# ABlog configuration
 blog_baseurl = "https://superkogito.github.io"
 blog_title = "SuperKogito"
 blog_path = "blog"
@@ -102,45 +71,34 @@ post_redirect_refresh = 1
 post_auto_image = 0
 post_auto_excerpt = 1
 
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
+# Static files
 html_static_path = ["_static"]
-
 html_css_files = [
     "css/custom.css",
     "css/tree_graph.css",
     "css/social_media_sharing.css",
 ]
 
-# html_extra_path = ["feed.xml"]
-
 # Bibliography and citations
 bibtex_bibfiles = ["refs.bib"]
 suppress_warnings = ["bibtex.duplicate_label"]
 bibtex_default_style = 'unsrt'
 
-# tikz
+# TikZ configuration
 tikz_proc_suite = 'ImageMagick'
 tikz_tikzlibraries = 'arrows.meta,arrows,shapes,positioning,decorations.pathreplacing,chains,backgrounds,fit,shadows,shapes.geometric'
 
-# OpenGraph config
-ogp_site_url = "http://superkogito.github.io/"
+# OpenGraph configuration
+ogp_site_url = "https://superkogito.github.io/"
 ogp_image = "_static/meta_images/meta_ws_img_old.png"
 ogp_description_length = 300
 ogp_type = "article"
-
 ogp_custom_meta_tags = [
     '<meta property="og:ignore_canonical" content="true" />',
 ]
 
-# The language for content autogenerated by Sphinx. Refer to documentation
-# for a list of supported languages.
-#
-# This is also used if you do content translation via gettext catalogs.
-# Usually you set "language" from the command line for these cases.
+# Language configuration
 language = "english"
 
-
-# sitemap config
-html_baseurl = "http://superkogito.github.io/"
+# Base URL for sitemap
+html_baseurl = "https://superkogito.github.io/"

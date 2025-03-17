@@ -1,67 +1,67 @@
-{%- extends "pydata_sphinx_theme/layout.html" %}
+{% extends "pydata_sphinx_theme/layout.html" %}
 
-{%- block extrahead %}
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="{{ language }}">
-    <link 
-    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
-    rel="stylesheet"  type='text/css'>
-    {% for favicon in theme_favicons %}
-      {% if favicon.href[:4] == 'http'%}
+{% block extrahead %}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="{{ language }}">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  
+  <!-- Favicons -->
+  {% for favicon in theme_favicons %}
+    {% if favicon.href[:4] == 'http' %}
       <link rel="{{ favicon.rel }}" sizes="{{ favicon.sizes }}" href="{{ favicon.href }}">
-      {% else %}
-      <link rel="{{ favicon.rel }}" sizes="{{ favicon.sizes }}" href="{{ pathto('_static/' + favicon.href, 1) }}">
-      {% endif %}
-    {% endfor %}
+    {% else %}
+      <link rel="{{ favicon.rel }}" sizes="{{ favicon.sizes }}" href="{{ pathto('_static/' + favicon.href, 1)  }}">
+    {% endif %}
+  {% endfor %}
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
-    <script>
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPWJJB9TRK"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() {dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-GPWJJB9TRK');
-    </script>
+  </script>
 
-    <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
-    
-    <!-- Google Analytics -->
-    <!-- {{ generate_google_analytics_script(id=theme_google_analytics_id) }} -->
-{%- endblock %}
-
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block docs_body %}
-<!--  Bootstrap HTML  -->
-<div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
+  <!-- Cookie Consent Banner -->
+  <div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
     We use cookies on this website to distinguish you from other users.
     We use this data to improve our content experience and for targeted advertising.
     By continuing to use this website you consent to our use of cookies.
     For more information, please see our
-    <a href="https://superkogito.github.io/policy/cookies_policy.html" target="_blank">Cookie Policy</a>.
-</div>
+    <a href="{{ pathto('policy/cookies_policy')  }}" target="_blank" rel="noopener noreferrer">Cookie Policy</a>.
+  </div>
 
-
-{{ super() }}
-<!-- Add a comment box underneath the page's content -->
-<script src="https://giscus.app/client.js"
-        data-repo="superKogito/SuperKogito.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
-        data-category="Announcements"
-        data-category-id="DIC_kwDOCYjWaM4CObax"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-<script src="../_static/cookiealert.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+  {{ super() }}
+  
+  <!-- Comments Section -->
+  <script 
+    src="https://giscus.app/client.js"
+    data-repo="superKogito/SuperKogito.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxNTk5NjI3Mjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOCYjWaM4CObax"
+    data-mapping="pathname"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+  ></script>
+  
+  <!-- Cookie Alert Script -->
+  <script src="{{ pathto('_static/cookiealert.js', 1)  }}"></script>
 {% endblock %}
