@@ -47,6 +47,10 @@ Libraries
    :widths: 20 80
    :header-rows: 0
 
+   * - `Zorch`_
+     - Zorch implements the basic deep learning concepts in the Zig programming language.
+   * - `fastft`_
+     - Fastft aims to provide a Short Time Fourier Transform implementation similar to Python's Librosa implementation in C. The STFT is demoed in a machine learning example (e.g. Mean Opinion Score Neural Network).
    * - `Spafe`_
      - spafe aims to simplify features extractions from mono audio files. The library can extract of the following features: BFCC, LFCC, LPC, LPCC, MFCC, IMFCC, MSRCC, NGCC, PNCC, PSRCC, PLP, RPLP, Frequency-stats etc. It also provides various filterbank modules (Mel, Bark and Gammatone filterbanks) and other spectral statistics.
    * - `Pydiogment`_
@@ -54,5 +58,7 @@ Libraries
 
 
 
+.. _`Zorch`: https://superkogito.github.io/Zorch
+.. _`Fastft`: https://superkogito.github.io/fastft
 .. _`Spafe`: https://superkogito.github.io/spafe
 .. _`Pydiogment`: https://superkogito.github.io/pydiogment

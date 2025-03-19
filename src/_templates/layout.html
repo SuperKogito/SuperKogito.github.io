@@ -3,11 +3,10 @@
 {% block extrahead %}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="{{ language }}">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
   <!-- Favicons -->
   {% for favicon in theme_favicons %}
     {% if favicon.href[:4] == 'http' %}
@@ -27,21 +26,11 @@
   </script>
 
   <!-- Google Ads -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script>
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8554106698532684" crossorigin="anonymous"></script> -->
 {% endblock %}
 
 {% block docs_body %}
-  <!-- Cookie Consent Banner -->
-  <div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    We use cookies on this website to distinguish you from other users.
-    We use this data to improve our content experience and for targeted advertising.
-    By continuing to use this website you consent to our use of cookies.
-    For more information, please see our
-    <a href="{{ pathto('policy/cookies_policy')  }}" target="_blank" rel="noopener noreferrer">Cookie Policy</a>.
-  </div>
+
 
   {{ super() }}
   
@@ -63,5 +52,5 @@
   ></script>
   
   <!-- Cookie Alert Script -->
-  <script src="{{ pathto('_static/cookiealert.js', 1)  }}"></script>
+  <script src="{{ pathto('_static/js/cookiealert.js', 1)  }}"></script>
 {% endblock %}

@@ -37,13 +37,13 @@ The urlstechie organization currently provides two main tools:
 
     <ul>
         <li>
-            <a href="https://github.com/urlstechie/urlchecker-action" title="github"> <i class="fa fa-github"></i> urlchecker-action</a> :
+            <a href="https://github.com/urlstechie/urlchecker-action" title="github"> <i class="fa-brands fa-github"></i> urlchecker-action</a> :
             A GitHub action to collect and check urls in a project (code and documentation).
             The action aims at detecting and reporting broken links.
         </li>
 
         <li>
-            <a href="https://github.com/urlstechie/urlchecker-python" title="github"> <i class="fa fa-github"></i> urlchecker-python</a> :
+            <a href="https://github.com/urlstechie/urlchecker-python" title="github"> <i class="fa-brands fa-github"></i> urlchecker-python</a> :
             A Python module to collect urls over static files (code and documentation), test them and then report broken links.
         </li>
     </ul>
@@ -116,11 +116,11 @@ For more on the tools please refer to:
 
     <ul>
         <li>
-            <a href="https://github.com/urlstechie/urlchecker-action" title="github"> <i class="fa fa-github"></i> urlchecker-action</a>
+            <a href="https://github.com/urlstechie/urlchecker-action" title="github"> <i class="fa-brands fa-github"></i> urlchecker-action</a>
         </li>
 
         <li>
-            <a href="https://github.com/urlstechie/urlchecker-python" title="github"> <i class="fa fa-github"></i> urlchecker-python</a>
+            <a href="https://github.com/urlstechie/urlchecker-python" title="github"> <i class="fa-brands fa-github"></i> urlchecker-python</a>
         </li>
     </ul>
 
@@ -138,10 +138,10 @@ Share this blog
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                target="blank"><i class="fa fa-facebook"></i></a>
-    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&text=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                 target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                    target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                target="blank"><i class="fa-brands fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&text=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                 target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools" target="blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/04/urlstechie.html&title=Introducing%20urlstechie%20and%20its%20urls%20checking%20tools"                    target="blank"><i class="fa-brands fa-reddit"></i></a>
   </div>
 
 

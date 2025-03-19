@@ -1,4 +1,13 @@
 {% extends "pydata_sphinx_theme/layout.html" %}
+
+{% block extrahead %}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="{{ language }}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+{% endblock %}
+
 {% block docs_body %}
   <!-- Cookie Consent Banner -->
   <div id="lawmsg" class="alert alert-info alert-dismissible h5 fade show fixed-bottom" role="alert">

@@ -26,7 +26,7 @@ Voice based gender recognition using Gaussian mixture models
 
   <p>
   This blog presents an approach to recognizing a Speaker's gender by voice using the Mel-frequency cepstrum coefficients (MFCC) and Gaussian mixture models (GMM).
-  The post provides an explanation of the following GitHub-project <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i> Voice-based-gender-recognition</a>.
+  The post provides an explanation of the following GitHub-project <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa-brands fa-github"></i> Voice-based-gender-recognition</a>.
   </p>
   <table align="center" style="width:100%">
     <tr>
@@ -266,7 +266,7 @@ Code & scripts
 .. raw:: html
 
   <p>
-  The full code for this approach to voice based gender identification can be found on GitHub under <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa fa-github"></i> Voice-based-gender-recognition</a>.
+  The full code for this approach to voice based gender identification can be found on GitHub under <a href="https://github.com/SuperKogito/Voice-based-gender-recognition" title="vbgr"><i class="fa-brands fa-github"></i> Voice-based-gender-recognition</a>.
   </p>
 
 Obviously the code provided on GitHub is more structured and advanced than what provided here since it is used to process multiple files,and to compute the accuracy level
@@ -314,10 +314,10 @@ Share this blog
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                target="blank"><i class="fa fa-facebook"></i></a>
-    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&text=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                 target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                    target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                target="blank"><i class="fa-brands fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&text=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                 target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models" target="blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/05/09/voice_based_gender_recognition.html&title=Voice%20based%20gender%20recognition%20using%20Gaussian%20mixture%20models"                    target="blank"><i class="fa-brands fa-reddit"></i></a>
   </div>
 
 

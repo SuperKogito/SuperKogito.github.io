@@ -24,8 +24,8 @@ In this first post in particular, we focus on exploring the data at hand and pre
 .. raw:: html
 
   <ul>
-  <li>The dataset can be Downloaded from   <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-database"></i> here</a>. </li>
-  <li> The code related to this blog can be found under <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa fa-github"></i> Diabetes detection</a>. </li>
+  <li>The dataset can be Downloaded from   <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa-brands fa-database"></i> here</a>. </li>
+  <li> The code related to this blog can be found under <a href="https://github.com/SuperKogito/Diabetes-detection-using-machine-learning" title="vbgr"><i class="fa-brands fa-github"></i> Diabetes detection</a>. </li>
 
 
   <table align="left" style="width:80%">
@@ -323,10 +323,10 @@ Share this blog
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                target="blank"><i class="fa fa-facebook"></i></a>
-    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                 target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                    target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                target="blank"><i class="fa-brands fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&text=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                 target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)" target="blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2019/06/30/diabetes_detection_using_machine_learning1.html&title=Diabetes%20detection%20using%20machine%20learning%20(part%20I)"                    target="blank"><i class="fa-brands fa-reddit"></i></a>
   </div>
 
 References and Further readings

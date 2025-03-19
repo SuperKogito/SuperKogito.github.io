@@ -100,10 +100,10 @@ Share this blog
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                target="blank"><i class="fa fa-facebook"></i></a>
-    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&text=Root%20mean%20square%20normalization%20in%20Python"                 target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                    target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                target="blank"><i class="fa-brands fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&text=Root%20mean%20square%20normalization%20in%20Python"                 target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python" target="blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/04/30/rms_normalization.html&title=Root%20mean%20square%20normalization%20in%20Python"                    target="blank"><i class="fa-brands fa-reddit"></i></a>
   </div>
 
 

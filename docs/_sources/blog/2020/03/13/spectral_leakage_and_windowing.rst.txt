@@ -102,10 +102,10 @@ Share this blog
 .. raw:: html
 
   <div id="share">
-    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                target="blank"><i class="fa fa-facebook"></i></a>
-    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&text=spectral%20leakage%20and%20windowing"                 target="blank"><i class="fa fa-twitter"></i></a>
-    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing" target="blank"><i class="fa fa-linkedin"></i></a>
-    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                    target="blank"><i class="fa fa-reddit"></i></a>
+    <a class="facebook" href="https://www.facebook.com/share.php?u=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                target="blank"><i class="fa-brands fa-facebook"></i></a>
+    <a class="twitter"  href="https://twitter.com/intent/tweet?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&text=spectral%20leakage%20and%20windowing"                 target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing" target="blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a class="reddit"   href="http://www.reddit.com/submit?url=https://superkogito.github.io/blog/2020/03/13/spectral_leakage_windowing.html&title=spectral%20leakage%20and%20windowing"                    target="blank"><i class="fa-brands fa-reddit"></i></a>
   </div>
 
 

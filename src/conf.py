@@ -34,7 +34,11 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
 # Emoji style
-sphinxemoji_style = "twemoji"
+sphinxemoji_style = "twitter"
+
+html_js_files = [
+    "js/custom-emoji.js",
+]
 
 # Theme configuration
 html_theme = "pydata_sphinx_theme"
@@ -43,7 +47,6 @@ html_theme_options = {
     "search_bar_text": "Search this site...",
     "google_analytics_id": "UA-133660046-1",
     "primary_sidebar_end": ["sidebar-ethical-ads"],
-      "footer": ["footer.html"],
     "back_to_top_button": True,
 }
 
@@ -75,8 +78,6 @@ post_auto_excerpt = 1
 html_static_path = ["_static"]
 html_css_files = [
     "css/custom.css",
-    "css/tree_graph.css",
-    "css/social_media_sharing.css",
 ]
 
 # Bibliography and citations
