@@ -11,8 +11,8 @@
   --pst-font-size-h5: 16px;
   --pst-font-size-h6: 14px;
   --pst-font-size-milli: 10px;
-  --pst-sidebar-font-size: 0.9em;
-  --pst-sidebar-caption-font-size: 0.9em;
+  --pst-sidebar-font-size: 1em;
+  --pst-sidebar-caption-font-size: 1em;
 
   /* Font families */
   --pst-font-family-base-system: 'Ubuntu Mono', monospace;
@@ -125,7 +125,7 @@
 }
 
 .focusareas {
-  font-size: .9em;
+  font-size: 1.2em;
   font-weight: bold;
 }
 
@@ -343,7 +343,7 @@ img {
   h6 {
     padding-bottom: 0;
     border-bottom: 1px solid #d0d0d0;
-    font-size: 9px;
+    font-size: 10px;
   }
 
 
